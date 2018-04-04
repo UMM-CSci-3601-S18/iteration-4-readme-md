@@ -1,5 +1,5 @@
 # CSCI 3601 Production Template -- Spring 2018
-[![Build Status](https://travis-ci.org/munnsmunns/iteration-2-bed-mia.svg?branch=master)](https://travis-ci.org/munnsmunns/iteration-2-bed-mia)
+[![Build Status](https://travis-ci.org/UMM-CSci-3601-S18/iteration-3-functional-hooligans.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S18/iteration-3-functional-hooligans)
 <!-- TOC depthFrom:1 depthTo:5 withLinks:1 updateOnSave:1 orderedList:0 -->
 ## Table of Contents
 - [Setup](#setup)
