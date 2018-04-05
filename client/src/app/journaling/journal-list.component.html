@@ -17,6 +17,7 @@
                         <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
                         <mat-card-content>
                             <p>{{selectedJournal.body}}</p>
+                            <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
                         </mat-card-content>
                     </div>
 
