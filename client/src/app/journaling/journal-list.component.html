@@ -6,7 +6,10 @@
             <div flex-gt-sm="80" flex-offset-gt-sm="10">
 
                 <mat-card class="matCardMain">
-                    <mat-card-title id="journal-list-title">Journals</mat-card-title>
+                    <mat-card-title id="journal-list-title">Journals
+                        <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal</button>
+                    </mat-card-title>
+
 
                     <mat-divider></mat-divider>
                     <mat-card-content>
@@ -20,8 +23,12 @@
 
                         <button id="addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
 
+                    </mat-card-content>
+                </mat-card>
 
-
+                <mat-card>
+                    <mat-card-content>
+                        <p>{{selectedJournal.body}}</p>
                     </mat-card-content>
                 </mat-card>
             </div>

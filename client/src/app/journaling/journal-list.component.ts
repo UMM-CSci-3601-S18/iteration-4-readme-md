@@ -26,6 +26,8 @@ export class JournalListComponent implements OnInit {
     public journalBody: string;
     public journalDate: any;
 
+    public selectedJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
+
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
@@ -42,7 +44,7 @@ export class JournalListComponent implements OnInit {
 
     openDialog(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
-        const dialogRef = this.dialog.open(SelectJournalComponent, {
+        const dialogRef = this.dialog.open(AddJournalComponent, {
             width: '500px',
             data: { journal: newJournal }
         });
@@ -60,6 +62,21 @@ export class JournalListComponent implements OnInit {
                 });
         });
     }
+
+    openDialogSelect(): void {
+        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
+        const dialogRef = this.dialog.open(SelectJournalComponent, {
+            width: '500px',
+            data: { journal: newJournal }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if(result != null) {
+                this.selectedJournal = result;
+            }
+        });
+    }
+
 
     openDialogReview(_id: string, subject: string, body: string, date: string): void {
         console.log(_id + ' ' + subject);

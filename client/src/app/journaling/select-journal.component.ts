@@ -54,6 +54,10 @@ export class SelectJournalComponent implements OnInit{
         return this.filteredJournals;
     }
 
+    selectJournal(selectedJournal: Journal): void {
+        this.dialogRef.close(selectedJournal);
+    }
+
     refreshJournals(): Observable<Journal[]> {
         // Get Journals returns an Observable, basically a "promise" that
         // we will get the data from the server.

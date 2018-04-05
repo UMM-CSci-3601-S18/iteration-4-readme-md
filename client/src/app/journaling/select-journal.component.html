@@ -1,12 +1,14 @@
-<div class="add-journal" layout-gt-sm="row">
+<div class="add-journal" layout-gt-sm="row" style="height: 500px">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
 
-        <mat-card *ngIf="journals; else journalsError" cdkScrollable="true" id="journalList" style="height: 100px">
-            <mat-card #elem class="journals" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
-                <a mat-list-item routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}">{{journal.date}}  {{journal.subject}}</a>
-            </mat-card>
+        <mat-card *ngIf="journals; else journalsError" id="journalList">
+            <mat-card-content>
+            <mat-nav-list #elem class="journals" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
+                <mat-list-item routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" (click)="selectJournal(journal)">{{journal.subject}}</mat-list-item>
+            </mat-nav-list>
+            </mat-card-content>
         </mat-card>
-
 
         <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
         <ng-template #journalsError>
@@ -18,6 +20,5 @@
                 Please wait a bit and try again or start the server.
             </mat-error>
         </ng-template>
-        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
     </div>
 </div>
