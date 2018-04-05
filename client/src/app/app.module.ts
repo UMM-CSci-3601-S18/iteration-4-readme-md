@@ -17,6 +17,8 @@ import {AddUserComponent} from './users/add-user.component';
 import {ResponseComponent} from "./home/response.component";
 import {ReportsComponent} from "./reports/reports.component";
 import {ReportsService} from "./reports/reports.service";
+import {ResourcesService} from "./resources/resources.service";
+import {AddResourcesComponent} from "./resources/add-resources.component";
 
 import {JournalListComponent} from "./journaling/journal-list.component";
 import {JournalListService} from "./journaling/journal-list.service";
@@ -71,6 +73,7 @@ export function provideConfig() {
         EditJournalComponent,
         SelectJournalComponent,
         // GoogleSignInComponent,
+        AddResourcesComponent,
 
     ],
     providers: [
@@ -79,6 +82,7 @@ export function provideConfig() {
         ReportsService,
         GoalsService,
         JournalListService,
+        ResourcesService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
@@ -90,6 +94,7 @@ export function provideConfig() {
         EditJournalComponent,
         SelectJournalComponent,
         //add resource component would go here//
+        AddResourcesComponent,
     ],
     bootstrap: [AppComponent]
 })
