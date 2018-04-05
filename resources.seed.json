@@ -1,0 +1,20 @@
+
+    [{
+        "resourceName": "Lir Fealladh",
+        "resourceBody": "My father",
+        "resourcePhone": "555-555-5550",
+        "resourcesURL": "Lir@Fealladh.com"
+    },
+    {
+        "resourceName": "Reina",
+        "resourceBody": "My best friend",
+        "resourcePhone": "555-555-5551",
+        "resourcesURL": "Reina@myfriend.com"
+    },
+    {
+        "resourceName": "Suicide Prevention Lifeline",
+        "resourceBody": "We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.",
+        "resourcePhone": "1-800-555-5555",
+        "resourcesURL": ""
+    }
+]

@@ -4,8 +4,39 @@
     </div>
 </div>
 
+<div>
+    <ol>
+        <button id = "addNewContacts" mat-raised-button (click)="openDialog()">Add your own contact</button>
+    </ol>
+</div>
+
 <!-- Contact Phone numbers card is being instered here-->
 <mat-card>
+    <mat-card-content class="addedResources" id="addedResources">
+        <mat-card-title id="resourceTitle">Your Contacts</mat-card-title>
+        <mat-divider></mat-divider>
+
+        <mat-accordion *ngIf="resources; else resourcesError" >
+            <mat-expansion-panel #elem class="resources" [id]="resources.resourceName"  *ngFor="let resources of this.filterResources(resourcesName)">
+                <mat-expansion-panel-header>
+                    <mat-panel-title id="test">{{resources.resourceName}}</mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description >{{resources.resourceBody}}</mat-panel-description>
+                <mat-panel-description >{{resources.resourcePhone}}</mat-panel-description>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <ng-template #resourcesError>
+            <mat-error>
+                There was a problem loading the data. Possibly the server is down or perhaps there are network
+                issues.
+            </mat-error>
+            <mat-error>
+                Please wait a bit and try again or start the server.
+            </mat-error>
+        </ng-template>
+
+    </mat-card-content>
     <mat-card-content class="contact-numbers">
         <mat-card-title class="contact-numbers-title"><i class="material-icons">phone_forwarded</i><mat-icon class="little-phone-icon">phone</mat-icon>Contact Numbers</mat-card-title>
         <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
@@ -62,12 +93,12 @@
             <mat-panel-description>A few links to breathing exercises to try</mat-panel-description>
             <br>
             <a href="http://www.livingbydesignonline.com/ananga-living-by-design-blog/2009/6/9/5-anti-stress-breathing-techniques-to-help-you-feel-calm-any.html"
-               target="_blank" style="text-decoration: none; border-bottom: 1px transparent; color: #black">5 Anti Stress Breathing techniques</a>
+               target="_blank" style="text-decoration: none; border-bottom: 1px transparent; /*color: #black*/">5 Anti Stress Breathing techniques</a>
             <br>
             <a href="https://psychcentral.com/blog/4-breathing-exercises-to-reduce-your-stress-right-now/" target="_blank"
-               style="text-decoration: none; border-bottom: 1px transparent; color: #black;">4 Breathing Exercises to Reduce Your Stress</a>
+               style="text-decoration: none; border-bottom: 1px transparent; /*color: #black;*/">4 Breathing Exercises to Reduce Your Stress</a>
             <br>
-            <a href="https://www.youtube.com/watch?v=mgzhKW08bMQ" target="_blank" style="text-decoration: none; border-bottom: 1px transparent; color: #black;">
+            <a href="https://www.youtube.com/watch?v=mgzhKW08bMQ" target="_blank" style="text-decoration: none; border-bottom: 1px transparent; /*color: #black;*/">
                 Square Breathing Technique Video
             </a>
         </mat-expansion-panel>
@@ -78,28 +109,28 @@
             <mat-panel-description>Some links on anger management</mat-panel-description>
             <br>
             <a href="https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/anger-management/art-20045434?pg=1" target="_blank"
-               style="text-decoration: none; border-bottom: none; color: #black">10 tips to tame your temper Mayo Clinic</a>
+               style="text-decoration: none; border-bottom: none; /*color: #black*/">10 tips to tame your temper Mayo Clinic</a>
             <br>
             <a href="https://www.webmd.com/mental-health/anger-management#1" target="_blank"
-               style="text-decoration: none; border-bottom: none; color: #black">Mental Health and Anger Management</a>
+               style="text-decoration: none; border-bottom: none; /*color: #black*/">Mental Health and Anger Management</a>
         </mat-expansion-panel>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title class="general-links">Some generally useful links</mat-panel-title>
             </mat-expansion-panel-header>
-            <a href="https://www.youtube.com/watch?v=hFcQpNr_KA4" target="_blank" style="text-decoration: none; border-bottom: none; color: #black">
+            <a href="https://www.youtube.com/watch?v=hFcQpNr_KA4" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
                 Ted Talk Video: Breath -- five minutes can change your life
             </a>
             <br>
-            <a href="https://www.youtube.com/watch?v=8-JXOnFOXQk" target="_blank" style="text-decoration: none; border-bottom: none; color: #black">
+            <a href="https://www.youtube.com/watch?v=8-JXOnFOXQk" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
                 Video: Brené Brown: Why Your Critics Aren't The Ones Who Count
             </a>
             <br>
-            <a href="https://www.youtube.com/watch?v=sXSjc-pbXk4" target="_blank" style="text-decoration: none; border-bottom: none; color: #black">
+            <a href="https://www.youtube.com/watch?v=sXSjc-pbXk4" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
                 Video: The Power of Vulnerability - Brene Brown
             </a>
             <br>
-            <a href="https://www.youtube.com/watch?v=s6xb4H5ueKs" target="_blank" style="text-decoration: none; border-bottom: none; color: #black">
+            <a href="https://www.youtube.com/watch?v=s6xb4H5ueKs" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
                 PBS Video: THE GIFTS OF IMPERFECTION: LIVING WITH COURAGE, COMPASSION AND CONNECTION
             </a>
         </mat-expansion-panel>
