@@ -7,6 +7,7 @@ import {AddJournalComponent} from './add-journal.component';
 import {EditJournalComponent} from "./edit-journal.component";
 import {environment} from "../../environments/environment";
 import {ViewJournalComponent} from "./view-journal.component";
+import {SelectJournalComponent} from "./select-journal.component";
 
 @Component({
     selector: 'app-journal-list-component',
@@ -41,7 +42,7 @@ export class JournalListComponent implements OnInit {
 
     openDialog(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
-        const dialogRef = this.dialog.open(AddJournalComponent, {
+        const dialogRef = this.dialog.open(SelectJournalComponent, {
             width: '500px',
             data: { journal: newJournal }
         });

@@ -1,0 +1,23 @@
+<div class="add-journal" layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+
+        <mat-card *ngIf="journals; else journalsError" cdkScrollable="true" id="journalList" style="height: 100px">
+            <mat-card #elem class="journals" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
+                <a mat-list-item routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}">{{journal.date}}  {{journal.subject}}</a>
+            </mat-card>
+        </mat-card>
+
+
+        <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+        <ng-template #journalsError>
+            <mat-error>
+                There was a problem loading the journals. Possibly the server is down or perhaps there are network
+                issues.
+            </mat-error>
+            <mat-error>
+                Please wait a bit and try again or start the server.
+            </mat-error>
+        </ng-template>
+        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
+    </div>
+</div>

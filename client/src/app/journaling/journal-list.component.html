@@ -4,6 +4,7 @@
 
         <div layout-gt-sm="row">
             <div flex-gt-sm="80" flex-offset-gt-sm="10">
+
                 <mat-card class="matCardMain">
                     <mat-card-title id="journal-list-title">Journals</mat-card-title>
 
@@ -19,32 +20,8 @@
 
                         <button id="addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
 
-                        <div *ngIf="journals; else journalsError">
-                            <div #elem class="journals" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
-                                <mat-card class="matCardJournals">
-                                    Title: {{journal.subject}}
-                                    <br>
-                                    <br>
 
-                                    <!--Some login needs to do into this to determine if the journal has more, rather
-                                     that just splicing anyways and assuming that-->
-                                    {{journal.body.slice(0, 70)}}...
-                                    <button mat-raised-button id="editButton" class="editButton" (click)="openDialogReview(journal._id['$oid'], journal.subject, journal.body, journal.date)">Edit</button>
-                                    <button mat-raised-button id="viewButton" class="viewButton" (click)="showJournalBody(journal.subject, journal.body)">View</button>
-                                </mat-card>
-                            </div>
-                        </div>
 
-                        <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
-                        <ng-template #journalsError>
-                            <mat-error>
-                                There was a problem loading the journals. Possibly the server is down or perhaps there are network
-                                issues.
-                            </mat-error>
-                            <mat-error>
-                                Please wait a bit and try again or start the server.
-                            </mat-error>
-                        </ng-template>
                     </mat-card-content>
                 </mat-card>
             </div>
