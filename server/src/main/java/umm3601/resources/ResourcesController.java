@@ -65,12 +65,13 @@ public class ResourcesController {
     }
 
 
-    public String addNewResources(String id, String name, String email, String phone) {
+    public String addNewResources(String id, String name, String body, String phone, String url) {
 
         Document newResources = new Document();
-        newResources.append("name", name);
-        newResources.append("email", email);
-        newResources.append("phone", phone);
+        newResources.append("resourceName", name);
+        newResources.append("resourceBody", body);
+        newResources.append("resourcePhone", phone);
+        newResources.append("resourcesUrl", url);
 
 
 
@@ -79,7 +80,7 @@ public class ResourcesController {
             resourcesCollection.insertOne(newResources);
 
             ObjectId Id = newResources.getObjectId("_id");
-            System.err.println("Successfully added new resource [_id=" + id + ", name=" + name + ", email=" + email + " phone=" + phone + ']');
+            System.err.println("Successfully added new resource [resourceId=" + id + ", resourceName=" + name + ", resourceBody=" + body + " resourcePhone=" + phone + " resourceUrl=" + url + ']');
 
             return JSON.serialize(Id);
         } catch (MongoException me) {
