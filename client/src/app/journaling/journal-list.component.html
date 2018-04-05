@@ -14,13 +14,6 @@
                     <mat-divider></mat-divider>
                     <mat-card-content>
 
-                        <mat-form-field class="matFormFieldSubject">
-                            <input matInput id="journalSubject" #input type="text" placeholder="Filter by subject" (input)="journalSubject = $event.target.value">
-                        </mat-form-field>
-                        <mat-form-field class="matFormFieldBody">
-                            <input matInput id="journalBody" #input type="text" placeholder="Filter by body" (input)="journalBody = $event.target.value">
-                        </mat-form-field>
-
                         <button id="addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
 
                     </mat-card-content>
