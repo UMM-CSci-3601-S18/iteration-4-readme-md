@@ -35,5 +35,5 @@ describe('AppComponent', () => {
     it(`should have as title 'app'`, () => {
         expect(appInstance.title).toEqual('Sunshine Journal');
     });
-    
+
 });
