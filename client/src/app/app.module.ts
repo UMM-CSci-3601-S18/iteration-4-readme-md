@@ -17,6 +17,8 @@ import {AddUserComponent} from './users/add-user.component';
 import {ResponseComponent} from "./home/response.component";
 import {ReportsComponent} from "./reports/reports.component";
 import {ReportsService} from "./reports/reports.service";
+import {ResourcesService} from "./resources/resources.service";
+import {AddResourcesComponent} from "./resources/add-resources.component";
 
 import {JournalListComponent} from "./journaling/journal-list.component";
 import {JournalListService} from "./journaling/journal-list.service";
@@ -26,13 +28,11 @@ import {EditJournalComponent} from "./journaling/edit-journal.component";
 import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
 import {AddGoalComponent} from "./goals/add-goals.component";
-import {ViewJournalComponent} from "./journaling/view-journal.component";
-
-//import {GoogleSignInComponent} from "angular-google-signin";
 
 import { SocialLoginModule, AuthServiceConfig } from 'angular4-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-login';
 import {AboutComponent} from "./about/about.component";
+import {SelectJournalComponent} from "./journaling/select-journal.component";
 
 let config = new AuthServiceConfig([
     {
@@ -71,8 +71,9 @@ export function provideConfig() {
         AboutComponent,
         AddGoalComponent,
         EditJournalComponent,
-        ViewJournalComponent,
+        SelectJournalComponent,
         // GoogleSignInComponent,
+        AddResourcesComponent,
 
     ],
     providers: [
@@ -81,6 +82,7 @@ export function provideConfig() {
         ReportsService,
         GoalsService,
         JournalListService,
+        ResourcesService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
     ],
@@ -90,8 +92,9 @@ export function provideConfig() {
         AddGoalComponent,
         AddJournalComponent,
         EditJournalComponent,
-        ViewJournalComponent
+        SelectJournalComponent,
         //add resource component would go here//
+        AddResourcesComponent,
     ],
     bootstrap: [AppComponent]
 })

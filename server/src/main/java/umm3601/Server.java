@@ -8,6 +8,8 @@ import umm3601.emoji.EmojiController;
 import umm3601.emoji.EmojiRequestHandler;
 import umm3601.goal.GoalRequestHandler;
 import umm3601.goal.GoalController;
+import umm3601.resources.ResourcesController;
+import umm3601.resources.ResourcesRequestHandler;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
 import umm3601.journal.JournalController;
@@ -27,6 +29,7 @@ public class Server {
 
         MongoClient mongoClient = new MongoClient();
         MongoDatabase emojiDatabase = mongoClient.getDatabase(databaseName);
+        MongoDatabase resourcesDatabase = mongoClient.getDatabase(databaseName);
 
         EmojiController emojiController = new EmojiController(emojiDatabase);
         EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
@@ -34,6 +37,8 @@ public class Server {
         GoalRequestHandler goalRequestHandler = new GoalRequestHandler(goalController);
         JournalController journalController = new JournalController(emojiDatabase);
         JournalRequestHandler journalRequestHandler = new JournalRequestHandler(journalController);
+        ResourcesController resourcesController = new ResourcesController(resourcesDatabase);
+        ResourcesRequestHandler resourcesRequestHandler = new ResourcesRequestHandler(resourcesController);
 
         UserController userController = new UserController(emojiDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
@@ -77,7 +82,8 @@ public class Server {
         /////////////////////////////////////////////
 
         get("api/users", userRequestHandler::getUsers);
-
+        get("api/resources/:id", resourcesRequestHandler::getResourcesJSON);
+        get("api/resources", resourcesRequestHandler::getResources);
         get("api/emojis", emojiRequestHandler::getEmojis);
         get("api/emojis/:id", emojiRequestHandler::getEmojiJSON);
         get("api/goals", goalRequestHandler::getGoals);
@@ -90,6 +96,7 @@ public class Server {
         post("api/goals/new", goalRequestHandler::addNewGoal);
         post("api/journaling/new", journalRequestHandler::addNewJournal);
         post("api/journaling/edit", journalRequestHandler::editJournal);
+        post("api/resources/new", resourcesRequestHandler::addNewResources);
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
         get("api/error", (req, res) -> {

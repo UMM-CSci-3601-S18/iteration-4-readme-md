@@ -6,7 +6,7 @@ import {MatDialog} from '@angular/material';
 import {AddJournalComponent} from './add-journal.component';
 import {EditJournalComponent} from "./edit-journal.component";
 import {environment} from "../../environments/environment";
-import {ViewJournalComponent} from "./view-journal.component";
+import {SelectJournalComponent} from "./select-journal.component";
 
 @Component({
     selector: 'app-journal-list-component',
@@ -24,6 +24,8 @@ export class JournalListComponent implements OnInit {
     public journalSubject: string;
     public journalBody: string;
     public journalDate: any;
+
+    public selectedJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -60,6 +62,21 @@ export class JournalListComponent implements OnInit {
         });
     }
 
+    openDialogSelect(): void {
+        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
+        const dialogRef = this.dialog.open(SelectJournalComponent, {
+            width: '500px',
+            data: { journal: newJournal }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if(result != null) {
+                this.selectedJournal = result;
+            }
+        });
+    }
+
+
     openDialogReview(_id: string, subject: string, body: string, date: string): void {
         console.log(_id + ' ' + subject);
         const newJournal: Journal = {_id: _id, subject: subject, body: body, date: date, email: localStorage.getItem('email')};
@@ -80,6 +97,15 @@ export class JournalListComponent implements OnInit {
                     console.log('The error was ' + JSON.stringify(err));
                 });
         });
+    }
+
+    public getReadableDate(): string {
+        if(this.selectedJournal.date == '') {
+            return '';
+        }
+        const date = new Date(this.selectedJournal.date);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ':'
+            + date.getMinutes();
     }
 
     public filterJournals(searchSubject: string, searchBody: string): Journal[] {
@@ -144,14 +170,6 @@ export class JournalListComponent implements OnInit {
         );
     }
      **/
-
-    showJournalBody(header: string, text: string): void {
-        const newJournal: Journal = {_id: '', subject: header, body: text, date: '', email: localStorage.getItem('email')};
-        const dialogRef = this.dialog.open(ViewJournalComponent, {
-            width: '80%',
-            data: { journal: newJournal },
-        });
-    }
 
     ngOnInit(): void {
         this.refreshJournals();
