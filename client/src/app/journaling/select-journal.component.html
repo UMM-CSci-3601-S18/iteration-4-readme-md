@@ -5,13 +5,14 @@
         <mat-card *ngIf="journals; else journalsError" id="journalList">
             <mat-card-title>
                 <mat-form-field class="matFormFieldSubject">
-                    <input matInput id="journalSubject" #input type="text" placeholder="Filter by subject" (input)="journalSubject = $event.target.value">
+                    <input matInput id="journalSubject" #input type="text" placeholder="Search" (input)="journalSearch = $event.target.value">
                 </mat-form-field>
             </mat-card-title>
+            <mat-divider></mat-divider>
             <mat-card-content>
-            <mat-nav-list #elem class="journals" *ngFor="let journal of this.filterJournals(journalSubject, journalBody)">
-                <mat-list-item routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" (click)="selectJournal(journal)">{{journal.subject}}</mat-list-item>
-            </mat-nav-list>
+                <mat-nav-list #elem class="journals" *ngFor="let journal of this.filterJournals(journalSearch)">
+                    <mat-list-item routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" (click)="selectJournal(journal)">{{journal.subject}}</mat-list-item>
+                </mat-nav-list>
             </mat-card-content>
         </mat-card>
 

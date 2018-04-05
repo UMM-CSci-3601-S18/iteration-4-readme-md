@@ -25,7 +25,8 @@ export class JournalListComponent implements OnInit {
     public journalBody: string;
     public journalDate: any;
 
-    public selectedJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
+    public selectedJournal: Journal;
+    public newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };

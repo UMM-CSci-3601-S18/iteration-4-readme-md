@@ -17,9 +17,7 @@ export class SelectJournalComponent implements OnInit{
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public journalSubject: string;
-    public journalBody: string;
-    public journalDate: any;
+    public journalSearch: string;
 
     constructor(
         public dialogRef: MatDialogRef<SelectJournalComponent>,
@@ -29,25 +27,16 @@ export class SelectJournalComponent implements OnInit{
 
     public userEmail = localStorage.getItem('email');
 
-    public filterJournals(searchSubject: string, searchBody: string): Journal[] {
+    public filterJournals(searchString: string): Journal[] {
 
         this.filteredJournals = this.journals;
 
-        // Filter by subject
-        if (searchSubject != null) {
-            searchSubject = searchSubject.toLocaleLowerCase();
+        // Filter by the searchString, look in body and subject
+        if (searchString != null) {
+            searchString = searchString.toLocaleLowerCase();
 
             this.filteredJournals = this.filteredJournals.filter(journal => {
-                return !searchSubject || journal.subject.toLowerCase().indexOf(searchSubject) !== -1;
-            });
-        }
-
-        // Filter by body
-        if (searchBody != null) {
-            searchBody = searchBody.toLocaleLowerCase();
-
-            this.filteredJournals = this.filteredJournals.filter(journal => {
-                return !searchBody || journal.body.toLowerCase().indexOf(searchBody) !== -1;
+                return !searchString || journal.subject.toLowerCase().indexOf(searchString) !== -1 || journal.body.toLowerCase().indexOf(searchString) !== -1;
             });
         }
 
@@ -68,7 +57,7 @@ export class SelectJournalComponent implements OnInit{
         journalListObservable.subscribe(
             journals => {
                 this.journals = journals;
-                this.filterJournals(this.journalSubject, this.journalBody);
+                this.filterJournals(this.journalSearch);
             },
             err => {
                 console.log(err);
