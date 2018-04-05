@@ -82,4 +82,13 @@ export class ReportsComponent implements OnInit {
         var email = localStorage.getItem('email');
         return ((email != '') && (typeof email != 'undefined'));
     }
+
+    public getReadableDate(dateString: string): string {
+        if(dateString == '') {
+            return '';
+        }
+        const date = new Date(dateString);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ':'
+            + date.getMinutes();
+    }
 }
