@@ -1,38 +1,28 @@
-<div *ngIf="isUserLoggedIN(); else promptLogin">
-    <div class="addNewGoalDiv">
-        <button id = "addNewGoal" mat-raised-button (click)="openDialog()">Add a Goal</button>
+<div class="add-goal" layout-gt-sm="row" *ngIf="isUserLoggedIN(); else promptLogin">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card-title>New Goal</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <br>
+            <mat-form-field>
+                <input matInput #input id="nameField" placeholder="What is your goal?" [(ngModel)]="data.">
+                <mat-error>This field is required</mat-error>
+            </mat-form-field> <br>
+            <mat-select id="category-list" matInput #input [(ngModel)]="data.goal.category" placeholder="Category" [style.width]="'100%'">
+                <mat-option value="Chores">Chores</mat-option>
+                <mat-option value="Family">Family</mat-option>
+                <mat-option value="Personal Health">Personal Health</mat-option>
+            </mat-select>
+            <br><br>
+            <mat-form-field>
+                <input matInput #input id="purposeField" placeholder="What is the purpose?" [(ngModel)]="data.goal.purpose">
+            </mat-form-field>
+        </mat-card-content>
+        <button mat-raised-button id="confirmAddGoalButton" [mat-dialog-close]="data.goal" type="button" (click)="openSnackBar('Goal Added','')">Confirm</button>
+        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Cancel</button>
     </div>
 
-    <mat-card>
-        <mat-card-content>
-            <mat-card-title>Goals</mat-card-title>
-            <mat-divider></mat-divider>
 
-        <mat-accordion *ngIf="goals; else goalError" >
-            <mat-expansion-panel #elem class="goal" [id]="goal._id['$oid']"  *ngFor="let goal of this.filterGoals(goalOwner)">
-                <mat-expansion-panel-header>
-                    <!-- This gets an goal image based on the mood that the user input when creating the goal object -->
-                    <mat-panel-title id="test">{{goal.name}}</mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-panel-description >Name: {{goal.name}}</mat-panel-description>
-                <mat-panel-description >Frequency: {{goal.frequency}}</mat-panel-description>
-                <mat-panel-description >Start Date: {{goal.startDate}}</mat-panel-description>
-                <mat-panel-description >End Date: {{goal.endDate}}</mat-panel-description>
-                <mat-panel-description >Status: {{parseStatus(goal.status)}}</mat-panel-description>
-            </mat-expansion-panel>
-        </mat-accordion>
-
-            <ng-template #goalError>
-                <mat-error>
-                    There was a problem loading the data. Possibly the server is down or perhaps there are network
-                    issues.
-                </mat-error>
-                <mat-error>
-                    Please wait a bit and try again or start the server.
-                </mat-error>
-            </ng-template>
-        </mat-card-content>
-    </mat-card>
 </div>
 
 <!-- What to display if the user isn't logged in -->

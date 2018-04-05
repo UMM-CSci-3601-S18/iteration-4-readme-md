@@ -1,12 +1,8 @@
 export interface Goal {
     _id: string;
-    name: string;
-    owner: string;
-    body: string;
+    purpose: string;
     category: string;
-    startDate: string;
-    endDate: string;
-    frequency: string;
+    name: string;
     status: boolean;
     email: string;
 }

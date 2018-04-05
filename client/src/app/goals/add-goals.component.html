@@ -1,67 +1,25 @@
-<div class="add-user" layout-gt-sm="row">
+
+<div class="add-goal" layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <mat-card>
-            <mat-card-title>New Goal</mat-card-title>
-            <mat-divider></mat-divider>
-
-            <mat-card-content>
-<!--
-                <button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button>
-
-                <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
-                    <mat-step [stepControl]="firstFormGroup">
-                        <form [formGroup]="firstFormGroup">
-                            <ng-template matStepLabel>Fill out your name</ng-template>
-                            <mat-form-field>
-                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                            <div>
-                                <button mat-button matStepperNext>Next</button>
-                            </div>
-                        </form>
-                    </mat-step>
-                    <mat-step [stepControl]="secondFormGroup">
-                        <form [formGroup]="secondFormGroup">
-                            <ng-template matStepLabel>Fill out your address</ng-template>
-                            <mat-form-field>
-                                <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                            </mat-form-field>
-                            <div>
-                                <button mat-button matStepperPrevious>Back</button>
-                                <button mat-button matStepperNext>Next</button>
-                            </div>
-                        </form>
-                    </mat-step>
-                    <mat-step>
-                        <ng-template matStepLabel>Done</ng-template>
-                        You are now done.
-                        <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button (click)="stepper.reset()">Reset</button>
-                        </div>
-                    </mat-step>
-                </mat-horizontal-stepper>
--->
-                <mat-form-field>
-                <input matInput #input id="name" placeholder="Name" [(ngModel)]="data.goal.name">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput id="startDate" [matDatepicker]="startPicker" placeholder="Start Date" [(ngModel)]="data.goal.startDate">
-                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #startPicker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput id="endDate" [matDatepicker]="endPicker" placeholder="End Date" [(ngModel)]="data.goal.endDate">
-                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #endPicker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput #input id="frequency" placeholder="Frequency" [(ngModel)]="data.goal.frequency">
-                </mat-form-field>
-                <!-- [mat-dialog-close]="data.user" causes the data.user object to be returned when the dialog is closed. -->
-                <button mat-button id="confirmAddGoalButton" [mat-dialog-close]="data.goal" type="button">Add goal</button>
-            </mat-card-content>
-        </mat-card>
-        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
+        <mat-card-title>New Goal</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <br>
+            <mat-form-field>
+                <input matInput #input id="nameField" placeholder="What is your goal?" [(ngModel)]="data.goal.name">
+                <mat-error>This field is required</mat-error>
+            </mat-form-field> <br>
+            <mat-select id="category-list" matInput #input [(ngModel)]="data.goal.category" placeholder="Category" [style.width]="'100%'">
+                <mat-option value="Chores">Chores</mat-option>
+                <mat-option value="Family">Family</mat-option>
+                <mat-option value="Personal Health">Personal Health</mat-option>
+            </mat-select>
+            <br><br>
+            <mat-form-field>
+                <input matInput #input id="purposeField" placeholder="What is the purpose?" [(ngModel)]="data.goal.purpose">
+            </mat-form-field>
+        </mat-card-content>
+        <button mat-raised-button id="confirmAddGoalButton" [mat-dialog-close]="data.goal" type="button">Confirm</button>
+        <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Cancel</button>
     </div>
 </div>

@@ -10,6 +10,8 @@ import {AddGoalComponent} from "./add-goals.component";
     templateUrl: './goals.component.html',
     styleUrls: ['./goals.component.css']
 })
+
+
 export class GoalsComponent implements OnInit{
     // These are public so that tests can reference them (.spec.ts)
     public goals: Goal[];
@@ -17,26 +19,32 @@ export class GoalsComponent implements OnInit{
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public goalOwner: string;
-    //public email: string =
-
+    // These are the target values used in searching.
+    public goalPurpose: string;
+    public goalCategory: string;
+    public goalName: string;
+    public goalStatus: string;
 
     // Inject the GoalListService into this component.
     constructor(public goalsService: GoalsService, public dialog: MatDialog) {
 
     }
 
+    isHighlighted(goal: Goal): boolean {
+        return goal._id['$oid'] === this.highlightedID['$oid'];
+    }
+
+    private highlightedID: {'$oid': string} = { '$oid': '' };
+
+
+
     openDialog(): void {
         const newGoal: Goal =
             {
             _id: '',
-            name: '',
-            owner: '',
-            body: '',
+            purpose: '',
             category: '',
-            startDate: '',
-            endDate: '',
-            frequency: '',
+            name: '',
             status: false,
             email: localStorage.getItem('email'),
             };
@@ -58,30 +66,53 @@ export class GoalsComponent implements OnInit{
         });
     }
 
+    deleteGoal(_id: string){
+        this.goalsService.deleteGoal(_id).subscribe(
+            goals => {
+                this.refreshGoals();
+                this.loadService();
+            },
+            err => {
+                console.log(err);
+                this.refreshGoals();
+                this.loadService();
+            }
+        );
+    }
 
-    public filterGoals(searchName): Goal[] {
+    goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName, email: string,) {
+        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: true, email: email};
+        this.goalsService.editGoal(updatedGoal).subscribe(
+            editGoalsResult => {
+                this.highlightedID = editGoalsResult;
+                this.refreshGoals();
+            },
+            err => {
+                console.log('There was an error editing the goal.');
+                console.log('The error was ' + JSON.stringify(err));
+            });
+    }
+
+
+    public filterGoals(searchStatus:string): Goal[] {
 
         this.filteredGoals = this.goals;
 
-        // Filter by name
-        if (searchName != null) {
-            searchName = searchName.toLocaleLowerCase();
+        // Filter by status
+        if (searchStatus != null) {
+            searchStatus = searchStatus.toLocaleLowerCase();
 
             this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchName || goal.name.toLowerCase().indexOf(searchName) !== -1;
+                return !searchStatus || goal.name.toLowerCase().indexOf(searchStatus) !== -1;
             });
         }
 
-        // Sort by start date from newest to oldest
-        this.filteredGoals = this.filteredGoals.sort((goal1, goal2) => {
-            const date1 = new Date(goal1.startDate);
-            const date2 = new Date(goal2.startDate);
-            return date2.valueOf() - date1.valueOf();
-        });
+
 
 
         return this.filteredGoals;
     }
+
 
     /**
      * Starts an asynchronous operation to update the goals list
@@ -98,7 +129,7 @@ export class GoalsComponent implements OnInit{
         goalListObservable.subscribe(
             goals => {
                 this.goals = goals;
-                this.filterGoals(this.goalOwner);
+                this.filterGoals(this.goalStatus);
             },
             err => {
                 console.log(err);
@@ -106,6 +137,17 @@ export class GoalsComponent implements OnInit{
         return goalListObservable;
     }
 
+    loadService(): void {
+        this.goalsService.getGoals().subscribe(
+            goals => {
+                this.goals = goals;
+                this.filteredGoals = this.goals;
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
 
     ngOnInit(): void {
         this.refreshGoals();
@@ -128,4 +170,5 @@ export class GoalsComponent implements OnInit{
         var email = localStorage.getItem('email');
         return ((email != '') && (typeof email != 'undefined'));
     }
+
 }

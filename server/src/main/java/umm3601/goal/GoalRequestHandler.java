@@ -76,19 +76,16 @@ public class GoalRequestHandler {
             {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
-                    String name = dbO.getString("name");
-                    String owner = dbO.getString("owner");
-                    String body = dbO.getString("body");
+
+                    String purpose = dbO.getString("purpose");
                     String category = dbO.getString("category");
-                    String startDate = dbO.getString("startDate");
-                    String endDate = dbO.getString("endDate");
-                    String frequency = dbO.getString("frequency");
+                    String name = dbO.getString("name");
                     Boolean status = dbO.getBoolean("status");
                     String email = dbO.getString("email");
 
 //
 //                    System.err.println("Adding new emoji [owner=" + owner + ", mood=" + mood + " date=" + date  + ']');
-                    return goalController.addNewGoal(owner, name, body, category, startDate, endDate, frequency, status, email);
+                    return goalController.addNewGoal(purpose, category, name, status, email);
                 }
                 catch(NullPointerException e)
                 {
@@ -102,6 +99,25 @@ public class GoalRequestHandler {
                 System.err.println("Expected BasicDBObject, received " + o.getClass());
                 return null;
             }
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
+
+    public String deleteGoal(Request req, Response res){
+
+        System.out.println("I'm here");
+        System.out.println(req.params(":id"));
+
+        res.type("application/json");
+
+        try {
+            String id = req.params(":id");
+            goalController.deleteGoal(id);
+            return req.params(":id");
         }
         catch(RuntimeException ree)
         {
