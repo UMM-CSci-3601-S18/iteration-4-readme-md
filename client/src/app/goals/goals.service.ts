@@ -68,6 +68,7 @@ export class GoalsService {
             }
         }
     }
+
     //added just in case
     filterByCategory(goalCategory?: string): void {
         if (!(goalCategory == null || goalCategory === '')) {
@@ -117,17 +118,31 @@ export class GoalsService {
             }),
         };
 
+        if(this.parameterPresent('email')){
+            this.removeParameter('email')
+            let locationOfQuestionMark = this.goalsUrl.indexOf('?')
+            this.goalsUrl = this.goalsUrl.substring(0, locationOfQuestionMark) + this.goalsUrl.substring(locationOfQuestionMark + 1, this.goalsUrl.length)
+        }
+        
         // Send post request to add a new goal with the goal data as the body with specified headers.
         return this.http.post<{'$oid': string}>(this.goalsUrl + '/edit', editedGoal, httpOptions);
     }
 
     deleteGoal(goalID: String) {
+        console.log ("here!")
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             }),
         };
 
+        if(this.parameterPresent('email')){
+            this.removeParameter('email')
+            let locationOfQuestionMark = this.goalsUrl.indexOf('?')
+            this.goalsUrl = this.goalsUrl.substring(0, locationOfQuestionMark) + this.goalsUrl.substring(locationOfQuestionMark + 1, this.goalsUrl.length)
+        }
+        console.log(this.goalsUrl + '/delete/' + goalID)
+    console.log(this.http.delete(this.goalsUrl + '/delete/' + goalID, httpOptions))
         // Send post request to add a new goal with the goal data as the body with specified headers.
         return this.http.delete(this.goalsUrl + '/delete/' + goalID, httpOptions);
     }

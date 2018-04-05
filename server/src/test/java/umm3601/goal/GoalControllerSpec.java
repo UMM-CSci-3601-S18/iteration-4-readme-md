@@ -1,15 +1,16 @@
 package umm3601.goal;
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.*;
+import org.bson.codecs.*;
+import org.bson.codecs.configuration.CodecRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.json.JsonReader;
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
-import umm3601.ControllerSuperSpec;
-import umm3601.emoji.EmojiControllerSpec;
 
 import java.io.IOException;
 import java.util.*;
@@ -17,96 +18,180 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-public class GoalControllerSpec extends ControllerSuperSpec{
+public class GoalControllerSpec {
     private GoalController goalController;
-    private ObjectId mattsId;
-
+    private ObjectId huntersID;
     @Before
-    public void clearAndPopulateDB() {
+    public void clearAndPopulateDB() throws IOException {
         MongoClient mongoClient = new MongoClient();
         MongoDatabase db = mongoClient.getDatabase("test");
-        MongoCollection<Document> emojiDocuments = db.getCollection("goals");
-        emojiDocuments.drop();
+        MongoCollection<Document> goalDocuments = db.getCollection("goals");
+
+        goalDocuments.drop();
+
         List<Document> testGoals = new ArrayList<>();
         testGoals.add(Document.parse("{\n" +
-            "                    owner: \"Ahnaf\",\n" +
-            "                    name: \"Do the Dishes\",\n" +
-            "                    creation_date: \"8/20/2015 20:00\",\n" +
+            "                    name: \"Clean my room\",\n" +
+            "                    purpose: \"To have a better environment\",\n" +
+            "                    category: \"Living\",\n" +
             "                }"));
         testGoals.add(Document.parse("{\n" +
-            "                    owner: \"Aurora\",\n" +
-            "                    name: \"Call Mom\",\n" +
-            "                    creation_date: \"7/13/2016 08:00\",\n" +
+            "                    name: \"Wash dishes\",\n" +
+            "                    purpose: \"Cleaner kitchen\",\n" +
+            "                    category: \"Chores\",\n" +
             "                }"));
         testGoals.add(Document.parse("{\n" +
-            "                    owner: \"Ethan\",\n" +
-            "                    name: \"Fold Laundry\",\n" +
-            "                    creation_date: \"2/10/2017 12:00\",\n" +
+            "                    name: \"Make cookies\",\n" +
+            "                    purpose: \"Get fatter\",\n" +
+            "                    category: \"Food\",\n" +
             "                }"));
 
-        mattsId = new ObjectId();
-        BasicDBObject matt = new BasicDBObject("_id", mattsId);
-        matt = matt.append("owner", "Matt")
-            .append("name", "Eat Breakfast")
-            .append("creation_date", "11/11/2011 09:00");
+        huntersID = new ObjectId();
+        BasicDBObject hunter = new BasicDBObject("_id", huntersID);
+        hunter = hunter.append("name", "Call mom")
+            .append("purpose", "Improve relationship")
+            .append("category", "Family");
 
+        goalDocuments.insertMany(testGoals);
+        goalDocuments.insertOne(Document.parse(hunter.toJson()));
 
-
-        emojiDocuments.insertMany(testGoals);
-        emojiDocuments.insertOne(Document.parse(matt.toJson()));
-
-        // It might be important to construct this _after_ the DB is set up
-        // in case there are bits in the constructor that care about the state
-        // of the database.
         goalController = new GoalController(db);
     }
 
+    private BsonArray parseJsonArray(String json) {
+        final CodecRegistry codecRegistry
+            = CodecRegistries.fromProviders(Arrays.asList(
+            new ValueCodecProvider(),
+            new BsonValueCodecProvider(),
+            new DocumentCodecProvider()));
 
-    private static String getOwner(BsonValue val) {
+        JsonReader reader = new JsonReader(json);
+        BsonArrayCodec arrayReader = new BsonArrayCodec(codecRegistry);
+
+        return arrayReader.decode(reader, DecoderContext.builder().build());
+    }
+
+    private static String getPurpose(BsonValue val) {
         BsonDocument doc = val.asDocument();
-        return ((BsonString) doc.get("owner")).getValue();
+        return ((BsonString) doc.get("purpose")).getValue();
+    }
+
+    private static String getName(BsonValue val) {
+        BsonDocument doc = val.asDocument();
+        return ((BsonString) doc.get("name")).getValue();
     }
 
     @Test
-    public void getAllUsers() {
+    public void getAllGoals() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = goalController.getItems(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 4 users", 4, docs.size());
-        List<String> names = docs
+        assertEquals("Should be 4 goals", 4, docs.size());
+        List<String> goals = docs
             .stream()
-            .map(GoalControllerSpec::getOwner)
+            .map(GoalControllerSpec::getPurpose)
             .sorted()
             .collect(Collectors.toList());
-        List<String> expectedNames = Arrays.asList("Ahnaf", "Aurora", "Ethan", "Matt");
-        assertEquals("Names should match", expectedNames, names);
+        List<String> expectedNames = Arrays.asList("Cleaner kitchen", "Get fatter", "Improve relationship", "To have a better environment");
+        assertEquals("Goals should match", expectedNames, goals);
     }
 
     @Test
-    public void addGoalTest() {
-        String newId = goalController.addNewGoal("Matt2",
-            "Matt2",
-            "Make good code",
-            "Programming",
-            "8/19/2015 14:00",
-            "8/20/2015 14:00",
-            "Weekly",
-            false,
-            "");
-
-        assertNotNull("Add new goal should return true when a goal is added,", newId);
+    public void getGoalByCategory(){
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("Matt2", new String[] { "Matt2" });
+        // Mongo in GoalController is doing a regex search so can just take a Java Reg. Expression
+        // This will search the category for letters 'f' and 'c'.
+        argMap.put("category", new String[] { "Living" });
+        String jsonResult = goalController.getItems(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+        assertEquals("Should be 3 goals", 3, docs.size());
+        List<String> name = docs
+            .stream()
+            .map(GoalControllerSpec::getName)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedName = Arrays.asList("Call mom","Make cookies","Wash dishes");
+        assertEquals("Names should match", expectedName, name);
+    }
+
+    @Test
+    public void getHuntersByID() {
+        String jsonResult = goalController.getItem(huntersID.toHexString());
+        Document hunterDoc = Document.parse(jsonResult);
+        assertEquals("Name should match", "Call mom", hunterDoc.get("name"));
+        String noJsonResult = goalController.getItem(new ObjectId().toString());
+        assertNull("No name should match",noJsonResult);
+    }
+
+    @Test
+    public void addGoalTest(){
+        String newId = goalController.addNewGoal("Self defense from Bobs", "Injury", "Kick Bob", false, "test@gmail.com");
+
+        assertNotNull("Add new goal should return true when goal is added,", newId);
+        Map<String, String[]> argMap = new HashMap<>();
         String jsonResult = goalController.getItems(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        List<String> name = docs
+        List<String> purpose = docs
             .stream()
-            .map(GoalControllerSpec::getOwner)
+            .map(GoalControllerSpec::getPurpose)
             .sorted()
             .collect(Collectors.toList());
-        assertEquals("Should return the owner of the new goal", "Matt2", name.get(4));
+        // name.get(0) says to get the name of the first person in the database,
+        // so "Bob" will probably always be first because it is sorted alphabetically.
+        // 3/4/18: Not necessarily: it is likely that that is how they're stored but we don't know. Find a different way of doing this.
+        assertEquals("Should return purpose of new goal", "Self defense from Bobs", purpose.get(3));
+    }
+
+    @Test
+    public void editGoalTest() {
+        String newId = goalController.editGoal("5ab53a8907d923f68d03e1a3", "To have a better environment", "Family", "Hug KK", true);
+        assertNotNull("Edit goal should return true when goal is edited,", newId);
+        Map<String, String[]> argMap = new HashMap<>();
+        String jsonResult = goalController.getItems(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+        List<String> purpose = docs
+            .stream()
+            .map(GoalControllerSpec::getPurpose)
+            .sorted()
+            .collect(Collectors.toList());
+        assertEquals("Should return purpose of edited goal", "To have a better environment", purpose.get(3));
+    }
+
+    @Test
+    public void deleteGoalTest(){
+        System.out.println("HuntersID " + huntersID.toHexString());
+        goalController.deleteGoal(huntersID.toHexString());
+        Map<String, String[]> argMap = new HashMap<>();
+        String jsonResult = goalController.getItems(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+        assertEquals("Should be 3 goals", 3, docs.size());
+
+//        //Adding new goal
+//        //Then deleting newly added goal and see if it still works
+//        String newId = goalController.addNewGoal("Self defense from Bobs", "Injury", "Kick Bob", false);
+//
+//        assertNotNull("Add new goal should return true when goal is added,", newId);
+//
+//        Map<String, String[]> argMap2 = new HashMap<>();
+//        String jsonResult2 = goalController.getGoals(argMap2);
+//        BsonArray docs2 = parseJsonArray(jsonResult2);
+//        assertEquals("Should be 4 goals", 4, docs2.size());
+//
+//        Map<String, String[]> argMap4 = new HashMap<>();
+//        // Mongo in GoalController is doing a regex search so can just take a Java Reg. Expression
+//        // This will search the category for letters 'f' and 'c'.
+//        argMap4.put("purpose", new String[] { "[Self defense from Bobs]" });
+//        String jsonResult4 = goalController.getGoals(argMap4);
+//        BsonArray docs4 = parseJsonArray(jsonResult4);
+//
+//        //goalController.deleteGoal(newId);
+//        Map<String, String[]> argMap3 = new HashMap<>();
+//        String jsonResult3 = goalController.getGoals(argMap3);
+//        BsonArray docs3 = parseJsonArray(jsonResult3);
+//        assertEquals("Should be 3 goals", 1, docs4.size());
     }
 }

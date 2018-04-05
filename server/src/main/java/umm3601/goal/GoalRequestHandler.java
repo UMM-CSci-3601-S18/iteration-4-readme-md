@@ -107,6 +107,45 @@ public class GoalRequestHandler {
         }
     }
 
+    public String editGoal(Request req, Response res)
+    {
+
+        res.type("application/json");
+        Object o = JSON.parse(req.body());
+        try {
+            // if the object that is the JSON representation of the request body's class is the class BasicDBObject
+            // then try to add the item with itemController's editGoal method
+            if(o.getClass().equals(BasicDBObject.class)) {
+                try {
+                    BasicDBObject dbO = (BasicDBObject) o;
+
+                    String id = dbO.getString("_id");
+                    String purpose = dbO.getString("purpose");
+                    String category = dbO.getString("category");
+                    String name = dbO.getString("name");
+                    Boolean status = dbO.getBoolean("status");
+
+                    System.err.println("Editing goal [purpose=" + purpose + ", category=" + category + ", name=" + name + ", status=" + status + ']');
+                    return goalController.editGoal(id, purpose, category, name, status).toString();
+                } catch (NullPointerException e) {
+                    System.err.println("A value was malformed or omitted, new item request failed.");
+                    return null;
+                }
+
+            }
+            else
+            {
+                System.err.println("Expected BasicDBObject, received " + o.getClass());
+                return null;
+            }
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
+
     public String deleteGoal(Request req, Response res){
 
         System.out.println("I'm here");
