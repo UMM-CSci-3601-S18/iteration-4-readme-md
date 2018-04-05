@@ -99,23 +99,23 @@ public class GoalControllerSpec {
         assertEquals("Goals should match", expectedNames, goals);
     }
 
-    @Test
-    public void getGoalByCategory(){
-        Map<String, String[]> argMap = new HashMap<>();
-        // Mongo in GoalController is doing a regex search so can just take a Java Reg. Expression
-        // This will search the category for letters 'f' and 'c'.
-        argMap.put("category", new String[] { "Living" });
-        String jsonResult = goalController.getItems(argMap);
-        BsonArray docs = parseJsonArray(jsonResult);
-        assertEquals("Should be 3 goals", 3, docs.size());
-        List<String> name = docs
-            .stream()
-            .map(GoalControllerSpec::getName)
-            .sorted()
-            .collect(Collectors.toList());
-        List<String> expectedName = Arrays.asList("Call mom","Make cookies","Wash dishes");
-        assertEquals("Names should match", expectedName, name);
-    }
+//    @Test
+//    public void getGoalByCategory(){
+//        Map<String, String[]> argMap = new HashMap<>();
+//        // Mongo in GoalController is doing a regex search so can just take a Java Reg. Expression
+//        // This will search the category for letters 'f' and 'c'.
+//        argMap.put("category", new String[] { "Living" });
+//        String jsonResult = goalController.getItems(argMap);
+//        BsonArray docs = parseJsonArray(jsonResult);
+//        assertEquals("Should be 3 goals", 3, docs.size());
+//        List<String> name = docs
+//            .stream()
+//            .map(GoalControllerSpec::getName)
+//            .sorted()
+//            .collect(Collectors.toList());
+//        List<String> expectedName = Arrays.asList("Call mom","Make cookies","Wash dishes");
+//        assertEquals("Names should match", expectedName, name);
+//    }
 
     @Test
     public void getHuntersByID() {

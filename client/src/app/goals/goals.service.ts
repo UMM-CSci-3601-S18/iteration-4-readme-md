@@ -123,7 +123,7 @@ export class GoalsService {
             let locationOfQuestionMark = this.goalsUrl.indexOf('?')
             this.goalsUrl = this.goalsUrl.substring(0, locationOfQuestionMark) + this.goalsUrl.substring(locationOfQuestionMark + 1, this.goalsUrl.length)
         }
-        
+
         // Send post request to add a new goal with the goal data as the body with specified headers.
         return this.http.post<{'$oid': string}>(this.goalsUrl + '/edit', editedGoal, httpOptions);
     }
