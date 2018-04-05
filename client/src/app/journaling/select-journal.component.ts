@@ -73,4 +73,12 @@ export class SelectJournalComponent implements OnInit{
         this.refreshJournals();
         //this.loadService();
     }
+
+    public getReadableDate(dateString: string): string {
+        if(dateString == '') {
+            return '';
+        }
+        const date = new Date(dateString);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+    }
 }
