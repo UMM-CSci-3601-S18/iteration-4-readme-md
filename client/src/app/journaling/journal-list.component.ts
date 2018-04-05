@@ -6,7 +6,6 @@ import {MatDialog} from '@angular/material';
 import {AddJournalComponent} from './add-journal.component';
 import {EditJournalComponent} from "./edit-journal.component";
 import {environment} from "../../environments/environment";
-import {ViewJournalComponent} from "./view-journal.component";
 import {SelectJournalComponent} from "./select-journal.component";
 
 @Component({
@@ -100,6 +99,15 @@ export class JournalListComponent implements OnInit {
         });
     }
 
+    public getReadableDate(): string {
+        if(this.selectedJournal.date == '') {
+            return '';
+        }
+        const date = new Date(this.selectedJournal.date);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ':'
+            + date.getMinutes();
+    }
+
     public filterJournals(searchSubject: string, searchBody: string): Journal[] {
 
         this.filteredJournals = this.journals;
@@ -162,14 +170,6 @@ export class JournalListComponent implements OnInit {
         );
     }
      **/
-
-    showJournalBody(header: string, text: string): void {
-        const newJournal: Journal = {_id: '', subject: header, body: text, date: '', email: localStorage.getItem('email')};
-        const dialogRef = this.dialog.open(ViewJournalComponent, {
-            width: '80%',
-            data: { journal: newJournal },
-        });
-    }
 
     ngOnInit(): void {
         this.refreshJournals();

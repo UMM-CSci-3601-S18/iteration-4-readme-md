@@ -26,9 +26,6 @@ import {EditJournalComponent} from "./journaling/edit-journal.component";
 import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
 import {AddGoalComponent} from "./goals/add-goals.component";
-import {ViewJournalComponent} from "./journaling/view-journal.component";
-
-//import {GoogleSignInComponent} from "angular-google-signin";
 
 import { SocialLoginModule, AuthServiceConfig } from 'angular4-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-login';
@@ -72,7 +69,6 @@ export function provideConfig() {
         AboutComponent,
         AddGoalComponent,
         EditJournalComponent,
-        ViewJournalComponent,
         SelectJournalComponent,
         // GoogleSignInComponent,
 
@@ -92,7 +88,6 @@ export function provideConfig() {
         AddGoalComponent,
         AddJournalComponent,
         EditJournalComponent,
-        ViewJournalComponent,
         SelectJournalComponent,
         //add resource component would go here//
     ],
