@@ -1,5 +1,5 @@
 <!--Don't allow user to do anything without logging in! -->
-<div *ngIf="isUserLoggedIN(); else promptLogin">
+<div *ngIf="loggedIn; else promptLogin">
 
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
@@ -7,7 +7,7 @@
             <mat-card>
                 <mat-card-content id="headerInfo">
                     <!-- Only display first name -->
-                    <h1><strong>Hello {{emoji.owner.split(" ")[0]}}! How are you feeling today?</strong></h1>
+                    <h1><strong>Hello {{user.firstName}}! How are you feeling today?</strong></h1>
                     <p>Use the slider to select how you feel.</p>
 
                     <!-- Show correct emoji image depending on the value of the mat-slider -->
