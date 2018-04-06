@@ -25,7 +25,7 @@ public class ResourcesRequestHandler {
         String id = req.params("id");
         String resources;
         try {
-            resources = resourcesController.getResources(id);
+            resources = resourcesController.getItem(id);
         } catch (IllegalArgumentException e) {
             // This is thrown if the ID doesn't have the appropriate
             // form for a Mongo Object ID.
@@ -56,7 +56,7 @@ public class ResourcesRequestHandler {
     public String getResources(Request req, Response res)
     {
         res.type("application/json");
-        return resourcesController.getResources(req.queryMap().toMap());
+        return resourcesController.getItems(req.queryMap().toMap());
     }
 
 

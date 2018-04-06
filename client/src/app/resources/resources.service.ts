@@ -39,10 +39,9 @@ export class ResourcesService {
     getResourcesById(id: string): Observable<resources> {
         return this.http.get<resources>(this.resourcesUrl + '/' + id);
     }
+
     getResources(resourcesName?: string): Observable<resources[]> {
-        if(resourcesName) {
-            return this.http.get<resources[]>(this.resourcesUrl + '?resourcesName=' + resourcesName);
-        }
+        this.filterByEmail(this.userEmail);
         return this.http.get<resources[]>(this.resourcesUrl);
     }
 

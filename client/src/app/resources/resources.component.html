@@ -1,10 +1,8 @@
 <div *ngIf="isUserLoggedIN(); else promptLogin">
 
-<div>
-    <ol>
-        <button id = "addNewContacts" mat-raised-button (click)="openDialog()">Add your own contact</button>
-    </ol>
-</div>
+    <div class="addNewResourceDiv">
+        <button id = "addNewContact" mat-raised-button (click)="openDialog()">Add a Contact</button>
+    </div>
 
 <!-- Contact Phone numbers card is being instered here-->
 <mat-card>
