@@ -88,6 +88,8 @@ public class Server {
         get("api/emojis/:id", emojiRequestHandler::getEmojiJSON);
         get("api/goals", goalRequestHandler::getGoals);
         get("api/goals/:id", goalRequestHandler::getGoalJSON);
+        post("api/goals/edit", goalRequestHandler::editGoal);
+        delete("api/goals/delete/:id", goalRequestHandler::deleteGoal);
         get("api/journaling", journalRequestHandler::getJournals);
         get("api/journaling/:id", journalRequestHandler::getJournalJSON);
         post("api/emojis/new", emojiRequestHandler::addNewEmoji);
