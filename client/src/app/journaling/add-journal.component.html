@@ -4,9 +4,13 @@
             <mat-card-title>New Journal</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
+                <!--<p>{{generateRandomPrompt()}}</p>-->
+                <!--<button mat-button id="test" (click)="generateRandomPrompt()" type="button">-->
+                <p>{{prompt}}</p>
                 <mat-form-field>
                     <input matInput #input id="subjectField" placeholder="Subject" [(ngModel)]="data.journal.subject">
                 </mat-form-field>
+                <br>
                 <mat-form-field>
                     <textarea matInput #input id="bodyField" matTextareaAutosize placeholder="Body" [(ngModel)]="data.journal.body"></textarea>
                 </mat-form-field>
