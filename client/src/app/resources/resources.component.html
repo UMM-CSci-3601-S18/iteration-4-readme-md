@@ -1,8 +1,8 @@
-<div>
-    <ol>
-        <button id = "addNewContacts" mat-raised-button (click)="openDialog()">Add your own contact</button>
-    </ol>
-</div>
+<div *ngIf="isUserLoggedIN(); else promptLogin">
+
+    <div class="addNewResourceDiv">
+        <button id = "addNewContact" mat-raised-button (click)="openDialog()">Add a Contact</button>
+    </div>
 
 <!-- Contact Phone numbers card is being instered here-->
 <mat-card>
@@ -130,3 +130,9 @@
         </mat-expansion-panel>
     </mat-card-content>
 </mat-card>
+</div>
+
+<ng-template #promptLogin>
+    <img class="loginEmoji" src="https://image.flaticon.com/icons/svg/260/260205.svg" alt="Sunshine Journal">
+    <p class="loginEmojiText">Please sign in with your google account to access Sunshine Journal</p>
+</ng-template>
