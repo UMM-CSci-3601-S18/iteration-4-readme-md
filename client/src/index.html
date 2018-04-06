@@ -19,60 +19,6 @@
 <body>
 
 
-<!--
-These following functions make sure that auth2 is loaded into the page
-which allows for functions like signOut to work properly.
--->
-
-<script type=application/javascript>
-
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-
-            //Clear Global Vars
-            window.name = "";
-            localStorage.setItem('email', '');
-
-            //Reload Page
-            location.reload();
-
-            //Debug
-            console.log('User signed out.');
-        });
-    }
-
-    function onLoad() {
-        gapi.load('auth2', function() {
-            gapi.auth2.init();
-        });
-    }
-
-    function onSignIn(googleUser) {
-
-        //This line prevents an infinite loop of loading in
-//        if(window.name === "")
-//        {
-//            location.reload();
-//        }
-        if(localStorage.getItem('email') === "") {
-            location.reload();
-        }
-
-        localStorage.setItem('email', googleUser.getBasicProfile().getEmail());
-        window.name = googleUser.getBasicProfile().getName();
-
-        /*
-        //Set global variables to be used across the webpage
-        window.email = googleUser.getBasicProfile().getEmail();
-*/
-        //Debug
-        console.log(window.name + ' signed in.');
-    }
-
-
-</script>
-
 <app-root>Loading...?</app-root>
 </body>
 </html>

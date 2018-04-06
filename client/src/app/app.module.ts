@@ -37,7 +37,7 @@ import {SelectJournalComponent} from "./journaling/select-journal.component";
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+        provider: new GoogleLoginProvider("557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com")
     },
     {
         id: FacebookLoginProvider.PROVIDER_ID,
@@ -84,7 +84,11 @@ export function provideConfig() {
         JournalListService,
         ResourcesService,
         {provide: APP_BASE_HREF, useValue: '/'},
-        {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
+        {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+        {
+            provide: AuthServiceConfig,
+            useFactory: provideConfig
+        }
     ],
     entryComponents: [
       AddUserComponent,

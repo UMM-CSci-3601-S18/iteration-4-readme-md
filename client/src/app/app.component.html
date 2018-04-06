@@ -17,27 +17,9 @@
     <!--<button mat-raised-button color="warn" (click)="openDialog()" fxHide="false" fxHide.gt-sm>Crisis</button>-->
 </mat-toolbar>
 
-<div *ngIf="getLoginName() == ''; else signOutButton">
+<!-- Create sign in button -->
+<button mat-raised-button id="signInButton" (click)="signInWithGoogle()">{{buttonText}}</button>
 
-    <!-- Create sign in button -->
-    <div id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <!-- Create INVISIBLE sign out button, that cannot be accessed -->
-    <div>
-        <button style="display:none" mat-raised-button onclick="signOut()">Sign Out</button>
-    </div>
-</div>
-
-<!--If user IS signed in.-->
-<ng-template #signOutButton>
-    <!-- Create an INVISIBLE sign in button. -->
-    <div style="display:none" id="signInButtonInvisible" class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <!-- Create a sign out button. -->
-    <div class="signOutButton">
-        <button mat-raised-button onclick="signOut()">Sign Out</button>
-    </div>
-</ng-template>
 
 <mat-menu x-position="before" #menu="matMenu">
     <button mat-menu-item routerLink="/journaling">Journals</button>
