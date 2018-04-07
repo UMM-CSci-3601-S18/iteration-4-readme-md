@@ -63,19 +63,15 @@ public class GoalController extends SuperController{
 //    }
 
 
-    public String addNewGoal(String ownerId, String name, String body, String category,
-                             String startDate, String endDate, String frequency, Boolean status, String email) {
+    public String addNewGoal(String purpose, String category, String name , Boolean status, String email) {
 
         Document newGoal = new Document();
-        newGoal.append("owner", ownerId);
-        newGoal.append("name", name);
-        newGoal.append("body", body);
+        newGoal.append("purpose", purpose);
         newGoal.append("category", category);
-        newGoal.append("startDate", startDate);
-        newGoal.append("endDate", endDate);
-        newGoal.append("frequency", frequency);
+        newGoal.append("name", name);
         newGoal.append("status", status);
         newGoal.append("email", email);
+
 
 
 
@@ -83,9 +79,7 @@ public class GoalController extends SuperController{
             collection.insertOne(newGoal);
 
             ObjectId id = newGoal.getObjectId("_id");
-            System.err.println("Successfully added new goal [_id=" + id + ", owner=" + ownerId + ", name="
-                + name + " category=" + category + " startDate=" + startDate + " endDate=" + endDate +
-                " frequency=" + frequency + " status=" + status + " email=" + email + ']');
+            System.err.println("Successfully added new goal [_id=" + id + ", purpose=" + purpose + ", category=" + category + ", name=" + name + ']');
 
             return JSON.serialize(id);
         } catch(MongoException me) {
@@ -93,6 +87,46 @@ public class GoalController extends SuperController{
             return null;
         }
     }
+    public String editGoal(String id, String purpose, String category, String name, Boolean status){
+        System.out.println("Right here again");
+        Document newGoal = new Document();
+        newGoal.append("purpose", purpose);
+        newGoal.append("category", category);
+        newGoal.append("name", name);
+        newGoal.append("status", true);
+        Document setQuery = new Document();
+        setQuery.append("$set", newGoal);
+
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+
+        System.out.println(id);
+        try {
+            collection.updateOne(searchQuery, setQuery);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.err.println("Successfully updated goal [_id=" + id1 + ", purpose=" + purpose +
+                ", category=" + category + ", name=" + name + ", status=" + status + ']');
+            return JSON.serialize(id1);
+        } catch(MongoException me) {
+            me.printStackTrace();
+            return null;
+        }
+    }
+
+    public void deleteGoal(String id){
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+
+        try {
+            collection.deleteOne(searchQuery);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.out.println("Succesfully deleted goal " + id1);
+
+        } catch(MongoException me) {
+            me.printStackTrace();
+            System.out.println("error");
+        }
+    }
+
 }
+
 
 
