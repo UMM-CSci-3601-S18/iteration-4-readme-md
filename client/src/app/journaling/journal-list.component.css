@@ -53,3 +53,8 @@
 #addNewJournal{
     background-color: lightcyan;
 }
+
+#editJournal{
+    float: right;
+    bottom: 8px;
+}

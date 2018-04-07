@@ -9,6 +9,12 @@ import {Journal} from './journal';
 
 export class AddJournalComponent {
 
+    public prompts: String[] = ["test1","test2","How are you Feeling?"];
+
+    public prompt: String = this.generateRandomPrompt();
+
+    //var  prompt = this.generateRandomPrompt;
+
     constructor(
         public dialogRef: MatDialogRef<AddJournalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: {journal: Journal}) {
@@ -18,5 +24,9 @@ export class AddJournalComponent {
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+
+    generateRandomPrompt(): String {
+       return this.prompts[Math.floor(Math.random() * this.prompts.length)];
     }
 }
