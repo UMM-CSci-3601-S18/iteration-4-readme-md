@@ -1,12 +1,65 @@
+<body>
+<mat-toolbar color="primary">
 
+    <button mat-button [routerLink]="['/']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>mood</mat-icon>Home</button>
+
+    <span class="fill-remaining-space"></span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button id="journal" [routerLink]="['/journaling']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon class="material-icons">import_contacts</mat-icon>Journaling</button>
+        <button mat-button id="rsrc" [routerLink]="['/resources']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon><i class="material-icons">format_list_numbered</i></mat-icon>Resources</button>
+        <button mat-button id="rep" [routerLink]="['/reports']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon><i class="material-icons">assignment</i></mat-icon>Reports</button>
+        <button mat-button id="goals" [routerLink]="['/goals']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon><i class="material-icons">accessibility</i></mat-icon>Goals</button>
+        <button mat-button id="about" [routerLink]="['/about']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon><i class="material-icons">assessment</i></mat-icon>Charts</button>
+        <button mat-raised-button color="warn" id="crisisButton" (click)="openDialog()">Crisis</button>
+    </div>
+
+    <button mat-button id="menu" [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm><mat-icon>menu</mat-icon></button>
+    <button mat-raised-button color="warn" (click)="openDialog()" fxHide="false" fxHide.gt-sm>Crisis</button>
+</mat-toolbar>
+
+<div *ngIf="getLoginName() == ''; else signOutButton">
+
+    <!-- Create sign in button -->
+    <div id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <!-- Create INVISIBLE sign out button, that cannot be accessed -->
+    <div>
+        <button style="display:none" mat-raised-button onclick="signOut()">Sign Out</button>
+    </div>
+</div>
+
+<!--If user IS signed in.-->
+<ng-template #signOutButton>
+    <!-- Create an INVISIBLE sign in button. -->
+    <div style="display:none" id="signInButtonInvisible" class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <!-- Create a sign out button. -->
+    <div class="signOutButton">
+        <button mat-raised-button onclick="signOut()">Sign Out</button>
+    </div>
+</ng-template>
+
+<mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item routerLink="/journaling">Journals</button>
+    <button mat-menu-item routerLink="/resources">Resources</button>
+    <button mat-menu-item routerLink="/reports">Reports</button>
+    <button mat-menu-item routerLink="/goals">Goals</button>
+    <button mat-menu-item routerLink="/about">Charts</button>
+
+</mat-menu>
+
+<router-outlet></router-outlet>
+</body>
+
+
+ <!--OLD Cascading Menu; Keep in case something above is broken!
 <td-layout #layout>
     <td-navigation-drawer id="navBar"flex sidenavTitle="Menu" >
         <mat-nav-list>
-            <a mat-list-item [routerLink]="['/']" (click)="layout.close()" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"><mat-icon>mood</mat-icon>Home</a>
-            <!--
+            &lt;!&ndash;
             We have added ids specifically for each of the items on the menu bar for E2E tests to recognize where to highlight and select
             Journaling id= journal, Resources id = rsrc, Reports id = rep -Ahnaf
-            -->
+            &ndash;&gt;
             <a mat-list-item id="journal" [routerLink]="['/journaling']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon>import_contacts</mat-icon>Journaling</a>
             <a mat-list-item id="rsrc" [routerLink]="['/resources']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon><i class="material-icons">format_list_numbered</i></mat-icon>Resources</a>
             <a mat-list-item id="rep" [routerLink]="['/reports']" (click)="layout.close()" routerLinkActive="nav-active"><mat-icon><i class="material-icons">assessment</i></mat-icon>Reports</a>
@@ -20,29 +73,29 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <!-- Google Login Buttons. Due to complications involving google handling
+        &lt;!&ndash; Google Login Buttons. Due to complications involving google handling
          a lot of the work 'behind the scenes' with g-signin2, for anything involving
          google login to work, it needs to always be loaded, hence the invisible
-         inaccessible buttons.-->
+         inaccessible buttons.&ndash;&gt;
 
-        <!-- Check to see if user logged in, and if they aren't.. -->
+        &lt;!&ndash; Check to see if user logged in, and if they aren't.. &ndash;&gt;
         <div *ngIf="getLoginName() == ''; else signOutButton">
 
-            <!-- Create sign in button -->
+            &lt;!&ndash; Create sign in button &ndash;&gt;
             <div id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></div>
 
-            <!-- Create INVISIBLE sign out button, that cannot be accessed -->
+            &lt;!&ndash; Create INVISIBLE sign out button, that cannot be accessed &ndash;&gt;
             <div>
                 <button style="display:none" mat-raised-button onclick="signOut()">Sign Out</button>
             </div>
         </div>
 
-        <!--If user IS signed in.-->
+        &lt;!&ndash;If user IS signed in.&ndash;&gt;
         <ng-template #signOutButton>
-            <!-- Create an INVISIBLE sign in button. -->
+            &lt;!&ndash; Create an INVISIBLE sign in button. &ndash;&gt;
             <div style="display:none" id="signInButtonInvisible" class="g-signin2" data-onsuccess="onSignIn"></div>
 
-            <!-- Create a sign out button. -->
+            &lt;!&ndash; Create a sign out button. &ndash;&gt;
             <div class="signOutButton">
                 <button mat-raised-button onclick="signOut()">Sign Out</button>
             </div>
@@ -50,5 +103,5 @@
 
         <router-outlet></router-outlet>
     </td-layout-nav>
-</td-layout>
+</td-layout>-->
 

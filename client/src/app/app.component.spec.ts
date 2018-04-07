@@ -36,9 +36,4 @@ describe('AppComponent', () => {
         expect(appInstance.title).toEqual('Sunshine Journal');
     });
 
-    it('should render title in the navbar', () => {
-        appFixture.detectChanges();
-        const navbar: HTMLElement = debugElement.query(By.css('td-layout-nav')).nativeElement;
-        expect(navbar.textContent).toContain('menu');
-    });
 });

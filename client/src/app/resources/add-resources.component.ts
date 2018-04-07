@@ -6,11 +6,15 @@ import {resources} from './resources';
     selector: 'app-add-resources.component',
     templateUrl: 'add-resources.component.html',
 })
+
 export class AddResourcesComponent {
+
     constructor(
         public dialogRef: MatDialogRef<AddResourcesComponent>,
         @Inject(MAT_DIALOG_DATA) public data: {resources: resources}) {
     }
+
+    public userEmail = localStorage.getItem('email');
 
     onNoClick(): void {
         this.dialogRef.close();

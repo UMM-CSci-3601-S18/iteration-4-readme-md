@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {gapi} from 'gapi-client';
 import {environment} from "../environments/environment";
+import {MatDialog} from '@angular/material';
+import {CrisisButtonComponent} from "./resources/crisis-button.component";
 
 @Component({
     selector: 'app-root',
@@ -9,6 +11,10 @@ import {environment} from "../environments/environment";
 })
 export class AppComponent implements OnInit {
     title = "Sunshine Journal";
+
+    constructor(public dialog: MatDialog) {
+
+    }
 
     //New function to return the name of the active user
     //window.* is not defined, or 'gettable' straight from HTML *ngIf
@@ -28,6 +34,13 @@ export class AppComponent implements OnInit {
                 localStorage.setItem('email', '');
             }
         }
+    }
+
+    openDialog(): void{
+        const dialogRef = this.dialog.open(CrisisButtonComponent,{
+            width: '500px',
+            height: 'auto' //Do what we want, please :)
+        });
     }
 
 }
