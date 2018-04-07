@@ -26,22 +26,23 @@
                                             <img *ngIf="goal.category == 'Personal Health'" src="../../assets/health.png"
                                                  class="goal-card-image" height="75">
                                         </div>
-                                        <div class="goals-card-info">
+                                        <span class="goals-card-info">
                                             <mat-card-content class="goal-info">
                                                 <mat-card-title class="goal-name">{{goal.name}}</mat-card-title>
-                                                <p>Purpose: {{goal.purpose}}</p>
+                                                <p> {{goal.purpose}}</p>
+                                                <div class="goals-buttons">
+                                                    <button mat-icon-button class="button delete-button"
+                                                            (click)="deleteGoal(goal._id['$oid']); ">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                    <button *ngIf="!goal.status" mat-icon-button class="complete-button" class="completeGoal"
+                                                            (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); ">
+                                                        <mat-icon>done</mat-icon>
+                                                    </button>
+                                                </div>
                                             </mat-card-content>
-                                        </div>
-                                        <div class="goals-buttons">
-                                            <button mat-icon-button class="button delete-button"
-                                                    (click)="deleteGoal(goal._id['$oid']); ">
-                                                <mat-icon>delete</mat-icon>
-                                            </button>
-                                            <button *ngIf="!goal.status" mat-icon-button class="complete-button" class="completeGoal"
-                                                    (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); ">
-                                                <mat-icon>done</mat-icon>
-                                            </button>
-                                        </div>
+                                        </span>
+
                                     </mat-card>
                                 </mat-tab>
                                 <mat-tab label="Complete">
@@ -60,17 +61,13 @@
                                             <mat-card-content class="goal-info">
                                                 <mat-card-title class="goal-name">{{goal.name}}</mat-card-title>
                                                 <p>Purpose: {{goal.purpose}}</p>
+                                                <div class="goals-buttons">
+                                                    <button mat-icon-button class="button delete-button"
+                                                            (click)="deleteGoal(goal._id['$oid']); ">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </div>
                                             </mat-card-content>
-                                        </div>
-                                        <div class="goals-buttons">
-                                            <button mat-icon-button class="button delete-button"
-                                                    (click)="deleteGoal(goal._id['$oid']); ">
-                                                <mat-icon>delete</mat-icon>
-                                            </button>
-                                            <button *ngIf="!goal.status" mat-icon-button class="button complete-button" class="completeGoal"
-                                                    (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); ">
-                                                <mat-icon>done</mat-icon>
-                                            </button>
                                         </div>
                                     </mat-card>
                                 </mat-tab>
