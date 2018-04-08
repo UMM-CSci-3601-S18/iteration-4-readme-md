@@ -34,6 +34,8 @@ export class AppComponent implements OnInit {
 
             .then((res) => {
                 console.log(this.user.name + ' signed in.');
+                //refreshes after login so that the name of the user can be shown
+                window.location.reload();
                 return;
             })
             .catch((err) => {

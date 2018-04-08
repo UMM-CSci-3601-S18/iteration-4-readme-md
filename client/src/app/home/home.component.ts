@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     public emoji: Emoji = {_id: '', owner: '', date: '', mood: 5, email: localStorage.getItem('email')};
     public email: string = localStorage.getItem('email');
     public user: SocialUser;
-    public loggedIn: boolean;
+    public name: string;
 
     constructor(public homeService: HomeService, public dialog: MatDialog, public snackBar: MatSnackBar,
                 public authService: AuthService) {
@@ -87,7 +87,6 @@ export class HomeComponent implements OnInit {
     ngOnInit(){
         this.authService.authState.subscribe((user) => {
             this.user = user;
-            this.loggedIn = (user != null);
         });
     }
 
