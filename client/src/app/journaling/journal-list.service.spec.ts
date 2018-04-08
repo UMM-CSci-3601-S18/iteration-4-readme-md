@@ -70,7 +70,7 @@ describe('Journal list service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testJournals) a few lines
         // down.
-        journalListService.getJournals().subscribe(
+        journalListService.getJournals('').subscribe(
             journals => expect(journals).toBe(testJournals)
         );
 

@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import {AuthService, SocialUser} from "angular4-social-login";
 
 describe('Journal list', () => {
 
@@ -18,6 +19,10 @@ describe('Journal list', () => {
 
     let journalListServiceStub: {
         getJournals: () => Observable<Journal[]>
+    };
+
+    let authServiceStub: {
+        authState: Observable<SocialUser>
     };
 
     beforeEach(() => {
@@ -48,13 +53,29 @@ describe('Journal list', () => {
             ])
         };
 
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                }
+            )
+        };
+
         TestBed.configureTestingModule({
             imports: [CustomModule],
             declarations: [JournalListComponent],
             // providers:    [ JournalListService ]  // NO! Don't provide the real service!
             // Provide a test-double instead
             providers: [{provide: JournalListService, useValue: journalListServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
@@ -121,6 +142,10 @@ describe('Misbehaving Journal List', () => {
         getJournals: () => Observable<Journal[]>
     };
 
+    let authServiceStub: {
+        authState: Observable<SocialUser>
+    };
+
     beforeEach(() => {
         // stub JournalService for test purposes
         journalListServiceStub = {
@@ -129,11 +154,27 @@ describe('Misbehaving Journal List', () => {
             })
         };
 
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                }
+            )
+        };
+
         TestBed.configureTestingModule({
             imports: [FormsModule, CustomModule],
             declarations: [JournalListComponent],
             providers: [{provide: JournalListService, useValue: journalListServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
@@ -170,6 +211,9 @@ describe('Adding a journal', () => {
         getJournals: () => Observable<Journal[]>,
         addNewJournal: (newJournal: Journal) => Observable<{'$oid': string}>
     };
+    let authServiceStub: {
+        authState: Observable<SocialUser>
+    };
     let mockMatDialog: {
         open: (AddJournalComponent, any) => {
             afterClosed: () => Observable<Journal>
@@ -197,6 +241,20 @@ describe('Adding a journal', () => {
                 };
             }
         };
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                }
+            )
+        };
 
         TestBed.configureTestingModule({
             imports: [FormsModule, CustomModule],
@@ -204,7 +262,8 @@ describe('Adding a journal', () => {
             providers: [
                 {provide: JournalListService, useValue: journalListServiceStub},
                 {provide: MatDialog, useValue: mockMatDialog},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
