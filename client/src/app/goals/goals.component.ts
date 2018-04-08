@@ -158,10 +158,10 @@ export class GoalsComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        this.refreshGoals();
         this.authService.authState.subscribe((user) => {
             this.user = user;
         });
+        this.refreshGoals();
     }
 
     //New function to return the name of the active user

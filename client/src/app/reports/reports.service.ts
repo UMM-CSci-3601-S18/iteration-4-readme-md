@@ -10,14 +10,13 @@ import {environment} from '../../environments/environment';
 export class ReportsService {
     readonly baseUrl: string = environment.API_URL + 'emojis';
     private emojiUrl: string = this.baseUrl;
-    private userEmail: string = localStorage.getItem('email');
 
     constructor(private http: HttpClient) {
     }
 
 
-    getEmojis(): Observable<Emoji[]> {
-        this.filterByEmail(this.userEmail);
+    getEmojis(userEmail: string): Observable<Emoji[]> {
+        this.filterByEmail(userEmail);
         return this.http.get<Emoji[]>(this.emojiUrl);
     }
 
