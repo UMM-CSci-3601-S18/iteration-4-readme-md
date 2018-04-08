@@ -73,7 +73,10 @@ export class AppComponent implements OnInit {
     openDialog(): void{
         const dialogRef = this.dialog.open(CrisisButtonComponent,{
             width: '500px',
-            height: 'auto' //Do what we want, please :)
+            height: 'auto', //Do what we want, please :)
+            data: {
+                user: this.user
+            }
         });
     }
 

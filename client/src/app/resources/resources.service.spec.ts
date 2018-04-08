@@ -82,7 +82,7 @@ describe('Resource list service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testJournals) a few lines
         // down.
-        resourcesService.getResources().subscribe(
+        resourcesService.getResources('').subscribe(
             resources => expect(resources).toBe(testResources)
         );
 

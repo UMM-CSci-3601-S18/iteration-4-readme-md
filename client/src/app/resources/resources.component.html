@@ -1,4 +1,4 @@
-<div *ngIf="isUserLoggedIN(); else promptLogin">
+<div *ngIf="user; else promptLogin">
 
     <div class="addNewResourceDiv">
         <button id = "addNewContact" mat-raised-button (click)="openDialog()">Add a Contact</button>

@@ -14,11 +14,9 @@ import {ResourcesComponent} from "./resources.component";
 export class ResourcesService {
     readonly baseUrl: string = environment.API_URL + 'resources';
     private resourcesUrl: string = this.baseUrl;
-    public userEmail: string = localStorage.getItem('email');
 
     constructor(private http: HttpClient) {
     }
-// Resources over resources **SIDE NOTE FOR Ahnaf, if things break its for that
 
     addResources(newResources: resources): Observable<{'$oid': string}> {
         const httpOptions = {
@@ -40,8 +38,8 @@ export class ResourcesService {
         return this.http.get<resources>(this.resourcesUrl + '/' + id);
     }
 
-    getResources(resourcesName?: string): Observable<resources[]> {
-        this.filterByEmail(this.userEmail);
+    getResources(userEmail: string): Observable<resources[]> {
+        this.filterByEmail(userEmail);
         return this.http.get<resources[]>(this.resourcesUrl);
     }
 
