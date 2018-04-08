@@ -12,7 +12,7 @@
                     </mat-card-title>
                     <mat-divider></mat-divider>
 
-                    <div *ngIf="selectedJournal; else addJournal">
+                    <div *ngIf="selectedJournal">
                         <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
                         <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
                         <mat-card-content>

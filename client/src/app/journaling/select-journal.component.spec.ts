@@ -61,7 +61,7 @@ describe('Select Journal', () => {
             providers: [{provide: JournalListService, useValue: journalListServiceStub},
                 { provide: MatDialogRef, useValue: mockMatDialogRef },
                 { provide: MAT_DIALOG_DATA, useValue: null },
-                { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true }
+                { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
             ]
         });
     });
@@ -115,7 +115,7 @@ describe('Select Journal', () => {
         journalList.journalSearch = "Madelyn";
         journalList.journalSearch = 'go';
         journalList.refreshJournals().subscribe(() => {
-            expect(journalList.filteredJournals.length).toBe(1);
+            expect(journalList.filteredJournals.length).toBe(2);
         });
     });
 
@@ -141,6 +141,10 @@ describe('Misbehaving Journal List', () => {
             imports: [FormsModule, CustomModule],
             declarations: [SelectJournalComponent],
             providers: [{provide: JournalListService, useValue: journalListServiceStub},
+                {provide: JournalListService, useValue: journalListServiceStub},
+/*
+                {provide: MatDialogRef, useValue: journalListServiceStub},
+*/
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         });
     });
