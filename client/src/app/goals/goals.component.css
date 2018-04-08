@@ -31,11 +31,13 @@
 .goal-content {
     list-style-type: none;
     font-size: 21px;
+    Word-wrap: break-word;
 }
 
 .your-goals-title {
     text-align: left;
     font-size: 32px;
+    Word-wrap: break-word;
 }
 
 #add-icon {
@@ -69,6 +71,7 @@
 
 .goal-name {
     text-align: center;
+    Word-wrap: break-word;
 }
 
 .goals-image {
