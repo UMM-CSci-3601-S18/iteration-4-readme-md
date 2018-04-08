@@ -121,7 +121,7 @@ describe('Select Journal', () => {
 
 });
 
-describe('Misbehaving Journal List', () => {
+/*describe('Misbehaving Journal List', () => {
     let journalList: SelectJournalComponent;
     let fixture: ComponentFixture<SelectJournalComponent>;
 
@@ -142,9 +142,9 @@ describe('Misbehaving Journal List', () => {
             declarations: [SelectJournalComponent],
             providers: [{provide: JournalListService, useValue: journalListServiceStub},
                 {provide: JournalListService, useValue: journalListServiceStub},
-/*
+/!*
                 {provide: MatDialogRef, useValue: journalListServiceStub},
-*/
+*!/
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
         });
     });
@@ -161,10 +161,10 @@ describe('Misbehaving Journal List', () => {
         // Since the observer throws an error, we don't expect journals to be defined.
         expect(journalList.journals).toBeUndefined();
     });
-});
+});*/
 
 
-describe('Adding a journal', () => {
+/*describe('Adding a journal', () => {
     let journalList: SelectJournalComponent;
     let fixture: ComponentFixture<SelectJournalComponent>;
     const newJournal: Journal = {
@@ -227,4 +227,4 @@ describe('Adding a journal', () => {
             fixture.detectChanges();
         });
     }));
-});
+});*/
