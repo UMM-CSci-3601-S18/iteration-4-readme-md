@@ -7,7 +7,7 @@ import {
     MatListModule, MatButtonModule, MatCardModule, MatIconModule,
     MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
     MatExpansionModule, MatTooltipModule, MatDialogModule, MatSliderModule, MatDatepickerModule,
-    MatSnackBarModule, MatNativeDateModule,
+    MatSnackBarModule, MatNativeDateModule, MatSelectModule, MatTabsModule
     // MatTooltipMoudule
 } from '@angular/material';
 
@@ -44,6 +44,8 @@ const MATERIAL_MODULES: any[] = [
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
+    MatTabsModule
 ];
 
 const COVALENT_MODULES: any[] = [

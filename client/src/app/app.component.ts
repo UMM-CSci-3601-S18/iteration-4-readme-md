@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {gapi} from 'gapi-client';
 import {environment} from "../environments/environment";
 import {AuthService, GoogleLoginProvider, SocialUser} from "angular4-social-login";
+import {MatDialog} from '@angular/material';
+import {CrisisButtonComponent} from "./resources/crisis-button.component";
 
 @Component({
     selector: 'app-root',
@@ -15,7 +17,7 @@ export class AppComponent implements OnInit {
 
     public buttonText: string;
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, public dialog: MatDialog) { }
 
     //New function to return the name of the active user
     //window.* is not defined, or 'gettable' straight from HTML *ngIf
@@ -65,6 +67,13 @@ export class AppComponent implements OnInit {
             else {
                 this.buttonText = 'Sign In'
             }
+        });
+    }
+
+    openDialog(): void{
+        const dialogRef = this.dialog.open(CrisisButtonComponent,{
+            width: '500px',
+            height: 'auto' //Do what we want, please :)
         });
     }
 

@@ -19,6 +19,7 @@ import {ReportsComponent} from "./reports/reports.component";
 import {ReportsService} from "./reports/reports.service";
 import {ResourcesService} from "./resources/resources.service";
 import {AddResourcesComponent} from "./resources/add-resources.component";
+import {CrisisButtonComponent} from "./resources/crisis-button.component";
 
 import {JournalListComponent} from "./journaling/journal-list.component";
 import {JournalListService} from "./journaling/journal-list.service";
@@ -74,6 +75,7 @@ export function provideConfig() {
         SelectJournalComponent,
         // GoogleSignInComponent,
         AddResourcesComponent,
+        CrisisButtonComponent,
 
     ],
     providers: [
@@ -97,8 +99,8 @@ export function provideConfig() {
         AddJournalComponent,
         EditJournalComponent,
         SelectJournalComponent,
-        //add resource component would go here//
         AddResourcesComponent,
+        CrisisButtonComponent,
     ],
     bootstrap: [AppComponent]
 })

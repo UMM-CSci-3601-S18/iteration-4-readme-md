@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Goal} from './goals';
+import {MatSnackBar} from '@angular/material';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -12,13 +13,19 @@ export class AddGoalComponent {
 //    firstFormGroup: FormGroup;
 //    secondFormGroup: FormGroup;
     constructor(
-        public dialogRef: MatDialogRef<AddGoalComponent>,
+        public snackBar: MatSnackBar, public dialogRef: MatDialogRef<AddGoalComponent>,
 //        private _formBuilder: FormBuilder,
         @Inject(MAT_DIALOG_DATA) public data: {goal: Goal}) {
     }
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 2000,
+        });
     }
 /*
     ngOnInit() {

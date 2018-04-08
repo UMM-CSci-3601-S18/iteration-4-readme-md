@@ -8,16 +8,14 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import umm3601.SuperController;
 
 import java.util.Iterator;
 import java.util.Map;
 
 import static com.mongodb.client.model.Filters.eq;
 
-public class ResourcesController {
-    private final Gson gson;
-    private MongoDatabase database;
-    private final MongoCollection<Document> resourcesCollection;
+public class ResourcesController extends SuperController{
 
     /**
      * Construct a controller for resources.
@@ -27,10 +25,10 @@ public class ResourcesController {
     public ResourcesController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
-        resourcesCollection = database.getCollection("resources");
+        collection = database.getCollection("resources");
     }
 
-    public String getResources(String id) {
+    /*public String getResources(String id) {
 
         FindIterable<Document> jsonResources
             = resourcesCollection
@@ -63,24 +61,25 @@ public class ResourcesController {
 
         return JSON.serialize(matchingResources);
     }
+*/
 
-
-    public String addNewResources(String id, String name, String body, String phone, String url) {
+    public String addNewResources(String id, String name, String body, String phone, String url, String email) {
 
         Document newResources = new Document();
         newResources.append("resourceName", name);
         newResources.append("resourceBody", body);
         newResources.append("resourcePhone", phone);
         newResources.append("resourcesUrl", url);
-
+        newResources.append("email", email);
 
 
 
         try {
-            resourcesCollection.insertOne(newResources);
+            collection.insertOne(newResources);
 
             ObjectId Id = newResources.getObjectId("_id");
-            System.err.println("Successfully added new resource [resourceId=" + id + ", resourceName=" + name + ", resourceBody=" + body + " resourcePhone=" + phone + " resourceUrl=" + url + ']');
+            System.err.println("Successfully added new resource [resourceId=" + id + ", resourceName=" + name +
+                ", resourceBody=" + body + " resourcePhone=" + phone + " resourceUrl=" + url + " email=" + email + ']');
 
             return JSON.serialize(Id);
         } catch (MongoException me) {
