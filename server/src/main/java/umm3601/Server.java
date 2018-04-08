@@ -84,19 +84,24 @@ public class Server {
         get("api/users", userRequestHandler::getUsers);
         get("api/resources/:id", resourcesRequestHandler::getResourcesJSON);
         get("api/resources", resourcesRequestHandler::getResources);
+        post("api/resources/new", resourcesRequestHandler::addNewResources);
+
         get("api/emojis", emojiRequestHandler::getEmojis);
         get("api/emojis/:id", emojiRequestHandler::getEmojiJSON);
+        post("api/emojis/new", emojiRequestHandler::addNewEmoji);
+
         get("api/goals", goalRequestHandler::getGoals);
         get("api/goals/:id", goalRequestHandler::getGoalJSON);
         post("api/goals/edit", goalRequestHandler::editGoal);
         delete("api/goals/delete/:id", goalRequestHandler::deleteGoal);
+        post("api/goals/new", goalRequestHandler::addNewGoal);
+
         get("api/journaling", journalRequestHandler::getJournals);
         get("api/journaling/:id", journalRequestHandler::getJournalJSON);
-        post("api/emojis/new", emojiRequestHandler::addNewEmoji);
-        post("api/goals/new", goalRequestHandler::addNewGoal);
+        delete("api/journaling/delete/:id", journalRequestHandler::deleteJournal);
         post("api/journaling/new", journalRequestHandler::addNewJournal);
         post("api/journaling/edit", journalRequestHandler::editJournal);
-        post("api/resources/new", resourcesRequestHandler::addNewResources);
+
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
         get("api/error", (req, res) -> {

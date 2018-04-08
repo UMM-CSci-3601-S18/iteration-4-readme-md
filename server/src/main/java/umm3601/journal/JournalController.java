@@ -8,6 +8,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+
 import umm3601.SuperController;
 
 import java.util.Iterator;
@@ -114,4 +115,20 @@ public class JournalController extends SuperController {
             return null;
         }
     }
+
+    public void deleteJournal(String id){
+        Document searchQuery = new Document().append("_id", new ObjectId(id));
+
+        try {
+            collection.deleteOne(searchQuery);
+            ObjectId id1 = searchQuery.getObjectId("_id");
+            System.out.println("Succesfully deleted goal " + id1);
+
+        } catch(MongoException me) {
+            me.printStackTrace();
+            System.out.println("error");
+        }
+    }
+
 }
+
