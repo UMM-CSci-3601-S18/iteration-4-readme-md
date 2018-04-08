@@ -25,7 +25,7 @@ public class ResourcesRequestHandler {
         String id = req.params("id");
         String resources;
         try {
-            resources = resourcesController.getResources(id);
+            resources = resourcesController.getItem(id);
         } catch (IllegalArgumentException e) {
             // This is thrown if the ID doesn't have the appropriate
             // form for a Mongo Object ID.
@@ -56,7 +56,7 @@ public class ResourcesRequestHandler {
     public String getResources(Request req, Response res)
     {
         res.type("application/json");
-        return resourcesController.getResources(req.queryMap().toMap());
+        return resourcesController.getItems(req.queryMap().toMap());
     }
 
 
@@ -83,11 +83,12 @@ public class ResourcesRequestHandler {
                     String body = dbO.getString("resourceBody");
                     String phone = dbO.getString("resourcePhone");
                     String url = dbO.getString("resourcesUrl");
+                    String email = dbO.getString("email");
 
 
 //
 //                    System.err.println("Adding new resource [id=" + id + ", name=" + name + " phonenumber=" + phonenumber + "email" + email  + ']');
-                    return resourcesController.addNewResources( id, name, body, phone, url).toString();
+                    return resourcesController.addNewResources( id, name, body, phone, url, email).toString();
                 }
                 catch(NullPointerException e)
                 {

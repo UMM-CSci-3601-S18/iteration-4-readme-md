@@ -7,32 +7,22 @@
 
                 <mat-card class="matCardMain">
                     <mat-card-title id="journal-list-title">Journals
-                        <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal</button>
-                    </mat-card-title>
-
-
-                    <mat-divider></mat-divider>
-                    <mat-card-content>
-
-                        <mat-form-field class="matFormFieldSubject">
-                            <input matInput id="journalSubject" #input type="text" placeholder="Filter by subject" (input)="journalSubject = $event.target.value">
-                        </mat-form-field>
-                        <mat-form-field class="matFormFieldBody">
-                            <input matInput id="journalBody" #input type="text" placeholder="Filter by body" (input)="journalBody = $event.target.value">
-                        </mat-form-field>
-
+                        <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
                         <button id="addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
+                    </mat-card-title>
+                    <mat-divider></mat-divider>
 
-                    </mat-card-content>
+                    <div *ngIf="selectedJournal; else addJournal">
+                        <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
+                        <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
+                        <mat-card-content>
+                            <p>{{selectedJournal.body}}</p>
+                            <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
+                        </mat-card-content>
+                    </div>
+
                 </mat-card>
 
-                <mat-card>
-                    <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
-                    <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
-                    <mat-card-content>
-                        <p>{{selectedJournal.body}}</p>
-                    </mat-card-content>
-                </mat-card>
             </div>
         </div>
 
