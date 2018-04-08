@@ -3,6 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Journal} from './journal';
 import {JournalListService} from "./journal-list.service";
 import {Observable} from "rxjs/Observable";
+import {AuthService, SocialUser} from "angular4-social-login";
 
 @Component({
     selector: 'app-select-journal.component',
@@ -19,13 +20,14 @@ export class SelectJournalComponent implements OnInit{
     // We should rename them to make that clearer.
     public journalSearch: string;
 
+    public user: SocialUser;
+
     constructor(
         public dialogRef: MatDialogRef<SelectJournalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: {journal: Journal},
-        public journalListService: JournalListService) {
+        public journalListService: JournalListService,
+        public authService: AuthService) {
     }
-
-    public userEmail = localStorage.getItem('email');
 
     public filterJournals(searchString: string): Journal[] {
 
@@ -53,7 +55,7 @@ export class SelectJournalComponent implements OnInit{
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals();
+        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals(this.user.email);
         journalListObservable.subscribe(
             journals => {
                 this.journals = journals;
@@ -70,8 +72,10 @@ export class SelectJournalComponent implements OnInit{
     }
 
     ngOnInit(): void {
+        this.authService.authState.subscribe((user) => { //this must happen BEFORE any other methods are called in OnInit
+            this.user = user;
+        });
         this.refreshJournals();
-        //this.loadService();
     }
 
     public getReadableDate(dateString: string): string {

@@ -7,6 +7,8 @@ import {AddJournalComponent} from './add-journal.component';
 import {EditJournalComponent} from "./edit-journal.component";
 import {environment} from "../../environments/environment";
 import {SelectJournalComponent} from "./select-journal.component";
+import {AuthService} from "angular4-social-login";
+import {SocialUser} from "angular4-social-login";
 
 @Component({
     selector: 'app-journal-list-component',
@@ -24,15 +26,16 @@ export class JournalListComponent implements OnInit {
     public journalSubject: string;
     public journalBody: string;
     public journalDate: any;
+    public user: SocialUser;
 
     public selectedJournal: Journal;
-    public newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
     // Inject the JournalListService into this component.
-    constructor(public journalListService: JournalListService, public dialog: MatDialog) {
+    constructor(public journalListService: JournalListService, public dialog: MatDialog,
+                public authService: AuthService) {
         if(environment.production === false) {
 
         }
@@ -43,7 +46,7 @@ export class JournalListComponent implements OnInit {
     }
 
     openDialog(): void {
-        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
+        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
         const dialogRef = this.dialog.open(AddJournalComponent, {
             width: '500px',
             data: { journal: newJournal }
@@ -64,7 +67,7 @@ export class JournalListComponent implements OnInit {
     }
 
     openDialogSelect(): void {
-        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: localStorage.getItem('email')};
+        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
         const dialogRef = this.dialog.open(SelectJournalComponent, {
             width: '500px',
             data: { journal: newJournal }
@@ -144,7 +147,7 @@ export class JournalListComponent implements OnInit {
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals();
+        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals(this.user.email);
         journalListObservable.subscribe(
             journals => {
                 this.journals = journals;
@@ -172,13 +175,9 @@ export class JournalListComponent implements OnInit {
      **/
 
     ngOnInit(): void {
+        this.authService.authState.subscribe((user) => {
+            this.user = user;
+        });
         this.refreshJournals();
-        //this.loadService();
-    }
-
-    //This function returns true when the user is signed in and false otherwise
-    isUserLoggedIN(): boolean {
-        var email = localStorage.getItem('email');
-        return ((email != '') && (typeof email != 'undefined'));
     }
 }
