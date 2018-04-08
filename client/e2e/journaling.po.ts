@@ -47,4 +47,18 @@ export class JournalingPage {
         const card = element(by.css('.matCardJournals'));
         return card.getText();
     }
+
+    selectJournal(search: string){
+        const input = element(by.id('selectJournal'));
+        input.click();
+        const subjectInput = element(by.id('searchjournals'));
+        subjectInput.click();
+        subjectInput.sendKeys(search);
+
+
+
+
+
+
+    }
 }
