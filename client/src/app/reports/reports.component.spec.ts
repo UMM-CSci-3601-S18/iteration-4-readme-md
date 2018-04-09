@@ -63,6 +63,7 @@ describe('Reports list', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
@@ -149,6 +150,7 @@ describe('Misbehaving Emoji List', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };

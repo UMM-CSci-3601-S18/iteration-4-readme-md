@@ -117,7 +117,7 @@ export class JournalListComponent implements OnInit {
     }
 
     loadService(): void {
-        this.journalListService.getJournals().subscribe(
+        this.journalListService.getJournals(this.user.email).subscribe(
             journals => {
                 this.journals = journals;
                 this.filteredJournals = this.journals;

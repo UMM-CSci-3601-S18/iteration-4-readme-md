@@ -69,6 +69,7 @@ describe('Goal list', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
@@ -151,6 +152,7 @@ describe('Misbehaving Goals', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
@@ -239,6 +241,7 @@ describe('Adding a goal', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };

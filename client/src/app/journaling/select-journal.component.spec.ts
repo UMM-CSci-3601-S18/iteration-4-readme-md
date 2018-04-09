@@ -11,6 +11,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MATERIAL_COMPATIBILITY_MODE} from '@angul
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import {AuthService, SocialUser} from "angularx-social-login";
 
 describe('Select Journal', () => {
 
@@ -20,7 +21,9 @@ describe('Select Journal', () => {
     let journalListServiceStub: {
         getJournals: () => Observable<Journal[]>
     };
-
+    let authServiceStub: {
+        authState: Observable<SocialUser>
+    };
     const mockMatDialogRef = {
         close() {  }
     };
@@ -53,6 +56,22 @@ describe('Select Journal', () => {
             ])
         };
 
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                    idToken: '',
+                }
+            )
+        };
+
         TestBed.configureTestingModule({
             imports: [CustomModule],
             declarations: [SelectJournalComponent],
@@ -62,6 +81,7 @@ describe('Select Journal', () => {
                 { provide: MatDialogRef, useValue: mockMatDialogRef },
                 { provide: MAT_DIALOG_DATA, useValue: null },
                 { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
+                { provide: AuthService, useValue: authServiceStub}
             ]
         });
     });

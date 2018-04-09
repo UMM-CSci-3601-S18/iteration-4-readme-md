@@ -68,6 +68,7 @@ describe('Resource list', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
@@ -150,6 +151,7 @@ describe('Misbehaving Resource List', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
@@ -229,6 +231,7 @@ describe('Adding a resource', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };

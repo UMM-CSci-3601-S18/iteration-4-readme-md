@@ -66,6 +66,7 @@ describe('Adding an emoji', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };

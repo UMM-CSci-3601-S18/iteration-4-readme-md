@@ -10,7 +10,7 @@ import {MatDialog} from '@angular/material';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 describe('Journal list', () => {
 
@@ -64,6 +64,7 @@ describe('Journal list', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
@@ -165,6 +166,7 @@ describe('Misbehaving Journal List', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
@@ -252,6 +254,7 @@ describe('Adding a journal', () => {
                     firstName: 'test',
                     lastName: 'dummy',
                     authToken: '',
+                    idToken: '',
                 }
             )
         };
