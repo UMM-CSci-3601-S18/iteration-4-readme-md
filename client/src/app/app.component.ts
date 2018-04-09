@@ -4,6 +4,7 @@ import {environment} from "../environments/environment";
 import {AuthService, GoogleLoginProvider, SocialUser} from "angular4-social-login";
 import {MatDialog} from '@angular/material';
 import {CrisisButtonComponent} from "./resources/crisis-button.component";
+import {LoginService} from "./login.service";
 
 @Component({
     selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
 
     public buttonText: string;
 
-    constructor(private authService: AuthService, public dialog: MatDialog) { }
+    constructor(private authService: AuthService, public dialog: MatDialog, private loginService: LoginService) { }
 
     //New function to return the name of the active user
     //window.* is not defined, or 'gettable' straight from HTML *ngIf
@@ -60,9 +61,17 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.authService.authState.subscribe((user) => {
             this.user = user;
+
             this.loggedIn = (user != null);
             if(this.loggedIn) {
-                this.buttonText = 'Sign Out'
+                this.buttonText = 'Sign Out';
+                if(this.loginService.authenticate(user.authToken)){
+                    console.log('User Authenticated!');
+                }
+                else {
+                    console.log('User Not Authenticated')
+                    user = null;
+                }
             }
             else {
                 this.buttonText = 'Sign In'

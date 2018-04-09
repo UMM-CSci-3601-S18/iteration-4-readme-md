@@ -34,6 +34,7 @@ import { SocialLoginModule, AuthServiceConfig } from 'angular4-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-login';
 import {AboutComponent} from "./about/about.component";
 import {SelectJournalComponent} from "./journaling/select-journal.component";
+import {LoginService} from "./login.service";
 
 let config = new AuthServiceConfig([
     {
@@ -85,6 +86,7 @@ export function provideConfig() {
         GoalsService,
         JournalListService,
         ResourcesService,
+        LoginService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
         {
