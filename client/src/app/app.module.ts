@@ -35,6 +35,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-logi
 import {AboutComponent} from "./about/about.component";
 import {SelectJournalComponent} from "./journaling/select-journal.component";
 
+
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,

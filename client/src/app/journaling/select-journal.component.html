@@ -10,8 +10,8 @@
             </mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
-                <mat-nav-list #elem class="journals" *ngFor="let journal of this.filterJournals(journalSearch)">
-                    <mat-list-item routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" (click)="selectJournal(journal)">
+                <mat-nav-list id = 'searchjournals' #elem class="journals" *ngFor="let journal of this.filterJournals(journalSearch)">
+                    <mat-list-item  (click)="selectJournal(journal)">
                         {{getReadableDate(journal.date)}} <br> {{journal.subject.slice(0, 50)}}
                     </mat-list-item>
                 </mat-nav-list>
@@ -30,3 +30,6 @@
         </ng-template>
     </div>
 </div>
+
+<!--
+routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"-->
