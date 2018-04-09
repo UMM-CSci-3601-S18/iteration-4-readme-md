@@ -119,10 +119,7 @@ describe('Goal list', () => {
 */
 });
 
-
-// this test will randomly fail or randomly pass, so it is being skipped (by using xdescribe instead of describe)
-
-xdescribe('Misbehaving Goals', () => {
+describe('Misbehaving Goals', () => {
     let goals: GoalsComponent;
     let fixture: ComponentFixture<GoalsComponent>;
 

@@ -134,8 +134,7 @@ describe('Journal list', () => {
 
 });
 
-//sometimes randomly fails, so we are skipping it (by using xdescribe)
-xdescribe('Misbehaving Journal List', () => {
+describe('Misbehaving Journal List', () => {
     let journalList: JournalListComponent;
     let fixture: ComponentFixture<JournalListComponent>;
 
