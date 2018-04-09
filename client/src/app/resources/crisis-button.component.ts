@@ -4,7 +4,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ResourcesService} from "./resources.service";
 import {resources} from "./resources";
 import {Observable} from "rxjs/Observable";
-import {SocialUser} from "angular4-social-login";
+import {SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'app-crisis-button.component',

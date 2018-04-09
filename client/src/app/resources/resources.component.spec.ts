@@ -10,7 +10,7 @@ import {MatDialog} from '@angular/material';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 describe('Resource list', () => {
 

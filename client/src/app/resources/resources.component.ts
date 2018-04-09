@@ -4,7 +4,7 @@ import {resources} from "./resources";
 import {ResourcesService} from "./resources.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddResourcesComponent} from "./add-resources.component";
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'resources-component',

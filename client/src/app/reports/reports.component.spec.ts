@@ -9,7 +9,7 @@ import {ReportsService} from "./reports.service";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import {Emoji} from "../emoji";
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 describe('Reports list', () => {
 

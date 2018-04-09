@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Emoji} from "../emoji";
 import {ReportsService} from "./reports.service";
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'app-reports-component',

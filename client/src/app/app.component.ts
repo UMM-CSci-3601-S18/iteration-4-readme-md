@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {gapi} from 'gapi-client';
 import {environment} from "../environments/environment";
-import {AuthService, GoogleLoginProvider, SocialUser} from "angular4-social-login";
+import {AuthService, GoogleLoginProvider, SocialUser} from "angularx-social-login";
 import {MatDialog} from '@angular/material';
 import {CrisisButtonComponent} from "./resources/crisis-button.component";
 import {LoginService} from "./login.service";
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
             .then((res) => {
                 console.log(this.user.name + ' signed in.');
                 //refreshes after login so that the name of the user can be shown
-                window.location.reload();
+                //window.location.reload();
                 return;
             })
             .catch((err) => {
@@ -60,21 +60,18 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.authService.authState.subscribe((user) => {
-            this.user = user;
 
-            this.loggedIn = (user != null);
+            //only get the user's information if the authentication works
+            if(user != null && this.loginService.authenticate(user.idToken)) {
+                this.user = user;
+            }
+
+            this.loggedIn = (this.user != null);
             if(this.loggedIn) {
                 this.buttonText = 'Sign Out';
-                if(this.loginService.authenticate(user.authToken)){
-                    console.log('User Authenticated!');
-                }
-                else {
-                    console.log('User Not Authenticated')
-                    user = null;
-                }
             }
             else {
-                this.buttonText = 'Sign In'
+                this.buttonText = 'Sign In';
             }
         });
     }

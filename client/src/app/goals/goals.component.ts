@@ -5,7 +5,7 @@ import {GoalsService} from "./goals.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddGoalComponent} from "./add-goals.component";
 import {MatSnackBar} from '@angular/material';
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 @Component({
     selector: 'app-goals-component',
     templateUrl: './goals.component.html',

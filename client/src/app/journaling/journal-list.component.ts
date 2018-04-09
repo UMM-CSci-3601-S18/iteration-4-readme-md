@@ -7,8 +7,8 @@ import {AddJournalComponent} from './add-journal.component';
 import {EditJournalComponent} from "./edit-journal.component";
 import {environment} from "../../environments/environment";
 import {SelectJournalComponent} from "./select-journal.component";
-import {AuthService} from "angular4-social-login";
-import {SocialUser} from "angular4-social-login";
+import {AuthService} from "angularx-social-login";
+import {SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'app-journal-list-component',

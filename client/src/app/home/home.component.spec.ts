@@ -9,7 +9,7 @@ import {Emoji} from "../emoji";
 import {Observable} from "rxjs/Observable";
 import {FormsModule} from "@angular/forms";
 import {HomeService} from "./home.service";
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 describe('Adding an emoji', () => {
 

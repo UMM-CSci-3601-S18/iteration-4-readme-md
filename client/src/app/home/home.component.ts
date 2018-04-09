@@ -4,7 +4,7 @@ import {HomeService} from "./home.service";
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {ResponseComponent} from "./response.component";
 import {AppComponent} from "../app.component";
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 // Selector will change when we know more
 

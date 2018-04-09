@@ -3,7 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Journal} from './journal';
 import {JournalListService} from "./journal-list.service";
 import {Observable} from "rxjs/Observable";
-import {AuthService, SocialUser} from "angular4-social-login";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'app-select-journal.component',

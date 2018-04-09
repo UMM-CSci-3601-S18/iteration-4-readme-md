@@ -366,6 +366,10 @@ angular4-social-login@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/angular4-social-login/-/angular4-social-login-1.1.1.tgz#ed61571a449fad56f21488389212cc9882823d98"
 
+angularx-social-login@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/angularx-social-login/-/angularx-social-login-1.1.8.tgz#169828be47a68bd8a2e84519d57d44bdaf38d866"
+
 ansi-html@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.7.tgz#813584021962a9e9e6fd039f940d12f56ca7859e"
