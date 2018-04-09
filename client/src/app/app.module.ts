@@ -36,6 +36,7 @@ import {AboutComponent} from "./about/about.component";
 import {SelectJournalComponent} from "./journaling/select-journal.component";
 import {LoginService} from "./login.service";
 
+
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,

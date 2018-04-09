@@ -102,6 +102,33 @@ export class JournalListComponent implements OnInit {
         });
     }
 
+    deleteJournal(_id: string){
+        this.journalListService.deleteJournal(_id).subscribe(
+            journals => {
+                this.refreshJournals();
+                this.loadService();
+            },
+            err => {
+                console.log(err);
+                this.refreshJournals();
+                this.loadService();
+            }
+        );
+    }
+
+    loadService(): void {
+        this.journalListService.getJournals().subscribe(
+            journals => {
+                this.journals = journals;
+                this.filteredJournals = this.journals;
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+
     public getReadableDate(): string {
         if(this.selectedJournal.date == '') {
             return '';

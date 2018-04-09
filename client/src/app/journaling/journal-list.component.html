@@ -16,6 +16,7 @@
                         <mat-card-content>
                             <p>{{selectedJournal.body}}</p>
                             <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
+                            <button id="deleteJournal" mat-raised-button (click)="deleteJournal(selectedJournal._id['$oid'])">Delete Journal</button>
                         </mat-card-content>
                     </div>
 

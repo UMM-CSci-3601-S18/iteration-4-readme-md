@@ -132,4 +132,23 @@ export class JournalListService {
         // Send post request to add a new journal with the journal data as the body with specified headers.
         return this.http.post<{'$oid': string}>(this.journalUrl + '/edit', id, httpOptions);
     }
+
+    deleteJournal(id: string): Observable<{'$oid': string}>{
+        console.log ("here!")
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+
+        if(this.parameterPresent('email')){
+            this.removeParameter('email')
+            let locationOfQuestionMark = this.journalUrl.indexOf('?')
+            this.journalUrl = this.journalUrl.substring(0, locationOfQuestionMark) + this.journalUrl.substring(locationOfQuestionMark + 1, this.journalUrl.length)
+        }
+        console.log(this.journalUrl + '/delete/' + id)
+        console.log(this.http.delete(this.journalUrl + '/delete/' + id, httpOptions))
+
+        return this.http.delete<{'$oid': string}>(this.journalUrl + '/delete/' + id, httpOptions);
+    }
 }
