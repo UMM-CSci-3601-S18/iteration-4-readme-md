@@ -25,13 +25,13 @@ export class ResourcesService {
             }),
         };
 
-        if (this.parameterPresent('email')) {
-            this.removeParameter('email')
-            let locationOfQuestionMark = this.resourcesUrl.indexOf('?')
-            this.resourcesUrl = this.resourcesUrl.substring(0, locationOfQuestionMark) + this.resourcesUrl.substring(locationOfQuestionMark + 1, this.resourcesUrl.length)
+        // if (this.parameterPresent('email')) {
+        //     this.removeParameter('email')
+        //     let locationOfQuestionMark = this.resourcesUrl.indexOf('?')
+        //     this.resourcesUrl = this.resourcesUrl.substring(0, locationOfQuestionMark) + this.resourcesUrl.substring(locationOfQuestionMark + 1, this.resourcesUrl.length)
 
-            return this.http.post<{ '$oid': string }>(this.resourcesUrl + '/new', newResources, httpOptions);
-        }
+            return this.http.post<{ '$oid': string }>(this.baseUrl + '/new', newResources, httpOptions);
+        //}
     }
 
     getResourcesById(id: string): Observable<resources> {

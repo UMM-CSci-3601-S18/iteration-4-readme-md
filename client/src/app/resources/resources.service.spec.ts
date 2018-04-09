@@ -5,11 +5,6 @@ import {HttpClient} from '@angular/common/http';
 import {resources} from './resources';
 import {ResourcesService} from "./resources.service";
 
-declare const expect: any;
-declare const it: any;
-declare const afterEach: any;
-declare const beforeEach: any;
-declare const describe: any;
 
 describe('Resource list service: ', () => {
     // A small collection of test journals
@@ -101,7 +96,7 @@ describe('Resource list service: ', () => {
             resources => expect(resources).toEqual(mResources)
         );
 
-        const req = httpTestingController.expectOne(resourcesService.baseUrl + '?subject=m&');
+        const req = httpTestingController.expectOne(resourcesService.baseUrl + '?email=m&');
         expect(req.request.method).toEqual('GET');
         req.flush(mResources);
     });

@@ -9,6 +9,7 @@ import {ReportsService} from "./reports.service";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import {Emoji} from "../emoji";
+import {AuthService, SocialUser} from "angular4-social-login";
 
 describe('Reports list', () => {
 
@@ -17,6 +18,10 @@ describe('Reports list', () => {
 
     let ReportsListServiceStub: {
         getEmojis: () => Observable<Emoji[]>
+    };
+
+    let authServiceStub: {
+        authState: Observable<SocialUser>
     };
 
     beforeEach(() => {
@@ -47,13 +52,29 @@ describe('Reports list', () => {
             ])
         };
 
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                }
+            )
+        };
+
         TestBed.configureTestingModule({
             imports: [CustomModule],
             declarations: [ReportsComponent],
             // providers:    [ UserListService ]  // NO! Don't provide the real service!
             // Provide a test-double instead
             providers: [{provide: ReportsService, useValue: ReportsListServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
@@ -105,6 +126,10 @@ describe('Misbehaving Emoji List', () => {
         getEmojis: () => Observable<Emoji[]>
     };
 
+    let authServiceStub: {
+        authState: Observable<SocialUser>
+    };
+
     beforeEach(() => {
         // stub UserService for test purposes
         emojiListServiceStub = {
@@ -113,11 +138,27 @@ describe('Misbehaving Emoji List', () => {
             })
         };
 
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                }
+            )
+        };
+
         TestBed.configureTestingModule({
             imports: [FormsModule, CustomModule],
             declarations: [ReportsComponent],
             providers: [{provide: ReportsService, useValue: emojiListServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 

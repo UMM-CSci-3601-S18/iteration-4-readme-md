@@ -89,7 +89,7 @@ describe('Journal list service: ', () => {
             journals => expect(journals).toEqual(mJournals)
         );
 
-        const req = httpTestingController.expectOne(journalListService.baseUrl + '?subject=m&');
+        const req = httpTestingController.expectOne(journalListService.baseUrl + '?email=m&');
         expect(req.request.method).toEqual('GET');
         req.flush(mJournals);
     });
