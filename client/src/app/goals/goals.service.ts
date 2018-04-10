@@ -69,32 +69,7 @@ export class GoalsService {
         }
     }
 
-    //added just in case
-    filterByCategory(goalCategory?: string): void {
-        if (!(goalCategory == null || goalCategory === '')) {
-            if (this.parameterPresent('category=') ) {
-                // there was a previous search by category that we need to clear
-                this.removeParameter('category=');
-            }
-            if (this.goalsUrl.indexOf('?') !== -1) {
-                // there was already some information passed in this url
-                this.goalsUrl += 'category=' + goalCategory + '&';
-            } else {
-                // this was the first bit of information to pass in the url
-                this.goalsUrl += '?category=' + goalCategory + '&';
-            }
-        } else {
-            // there was nothing in the box to put onto the URL... reset
-            if (this.parameterPresent('category=')) {
-                let start = this.goalsUrl.indexOf('category=');
-                const end = this.goalsUrl.indexOf('&', start);
-                if (this.goalsUrl.substring(start - 1, start) === '?') {
-                    start = start - 1;
-                }
-                this.goalsUrl = this.goalsUrl.substring(0, start) + this.goalsUrl.substring(end + 1);
-            }
-        }
-    }
+
 
     private parameterPresent(searchParam: string) {
         return this.goalsUrl.indexOf(searchParam) !== -1;

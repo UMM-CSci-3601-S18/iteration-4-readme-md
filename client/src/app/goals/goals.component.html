@@ -2,84 +2,101 @@
     <body class="whole-body" *ngIf="isUserLoggedIN(); else promptLogin">
 
     <main>
-        <div  layout="column" >
-            <div layout="column">
-                <div class="first-sec">
-                    <mat-card class="manage-goals-card">
-                        <mat-card-title id="goal-title">Your Goals</mat-card-title>
-                        <mat-card-subtitle class="goal-subtitle">Goals can help you stay on
-                            track with daily activities in your life.
-                        </mat-card-subtitle>
-                        <mat-card-content class="goal-content">
-                            <li class="content-item" id="addNewGoal">
-                                <button mat-raised-button (click)="openDialog()" class="goal-button">
-                                    <mat-icon id="add-icon">add</mat-icon>
-                                    Add a Goal</button>
-                                <mat-tab-group>
-                                    <mat-tab label="Incomplete">
-                                        <h1>Some tab content</h1>
-                                        <p>...</p>
-                                    </mat-tab>
-                                    <mat-tab label="Complete">
-                                        <h1>Some more tab content</h1>
-                                        <p>...</p>
-                                    </mat-tab>
-                                </mat-tab-group>
-                            </li>
-                            <br>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-                <div class="grid-goals-section" >
-                    <div layout="row" layout-wrap>
-                        <!-- The errors card is commented out beacuse it messes with the goals cards layout -->
-                        <!--<mat-card *ngIf="goals; else goalsError"></mat-card>-->
-                        <mat-card class="goals-card"
-                                  *ngFor="let goal of this.filterGoals(goalPurpose, goalCategory, goalName, goalStatus)"
-                                  #elem [id]="goal._id['$oid']">
-                            <div class ="goals-image">
-                                <img *ngIf="goal.category == 'Family'" src="../../assets/family.png"
-                                     class="goal-card-image" height="75">
-                                <img *ngIf="goal.category == 'Chores'" src="../../assets/chores.png"
-                                     class="goal-card-image" height="75">
-                                <img *ngIf="goal.category == 'Personal Health'" src="../../assets/health.png"
-                                     class="goal-card-image" height="75">
-                            </div>
-                            <div class="goals-card-info">
-                                <mat-card-content class="goal-info">
-                                    <mat-card-title id="goal-name">{{goal.name}}</mat-card-title>
-                                    <p>Purpose: {{goal.purpose}}</p>
-                                    <p>Status:
-                                        <b *ngIf="goal.status" id="goal-complete">Complete</b>
-                                        <b *ngIf="!goal.status" id="goal-incomplete">Incomplete</b>
-                                    </p>
-                                </mat-card-content>
-                            </div>
-                            <div class="goals-buttons">
-                                <button mat-icon-button class="button delete-button"
-                                        (click)="deleteGoal(goal._id['$oid']); ">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                                <button *ngIf="!goal.status" mat-icon-button class="button complete-button" id="completeGoal"
-                                        (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); ">
-                                    <mat-icon>done</mat-icon>
-                                </button>
-                            </div>
-                        </mat-card>
-                        <!-- Errors message card can be uncommented if you fix the layout issue -->
-                        <!--<ng-template #goalsError>
-                            <mat-error>
-                                There was a problem loading the goals. Possibly the server is down or perhaps there are network
-                                issues.
-                            </mat-error>
-                            <mat-error>
-                                Please wait a bit and try again or start the server.
-                            </mat-error>
-                        </ng-template>-->
-                    </div>
+            <div class="first-sec">
+                <mat-card class="manage-goals-card">
+                    <mat-card-title id="goal-title">Your Goals</mat-card-title>
+                    <mat-card-subtitle class="goal-subtitle">Goals can help you stay on
+                        track with daily activities in your life.
+                    </mat-card-subtitle>
+                    <mat-card-content class="goal-content">
+                        <li class="content-item" id="addNewGoal">
+                            <button mat-raised-button (click)="openDialog()" class="goal-button">
+                                <mat-icon id="add-icon">add</mat-icon>
+                                Add a Goal</button>
+                            <mat-tab-group>
+                                <mat-tab label="Incomplete">
+                                    <mat-card class="goals-card"
+                                              *ngFor="let goal of this.filterGoals(false)"
+                                              #elem [id]="goal._id['$oid']">
+                                        <div class ="goals-image">
+                                            <img *ngIf="goal.category == 'Family'" src="../../assets/family.png"
+                                                 class="goal-card-image" height="70">
+                                            <img *ngIf="goal.category == 'Chores'" src="../../assets/chores.png"
+                                                 class="goal-card-image" height="70">
+                                            <img *ngIf="goal.category == 'Personal Health'" src="../../assets/health.png"
+                                                 class="goal-card-image" height="70">
+                                            <img *ngIf="goal.category == 'Work'" src="../../assets/Work.png"class ="goal-card-image" height="70" width="70">
+                                            <img *ngIf="goal.category == 'Exercise'" src="../../assets/exercise.png"class ="goal-card-image" height="70"width="84">
+
+                                        </div>
+                                        <span class="goals-card-info">
+                                            <mat-card-content class="goal-info">
+                                                <mat-card-title class="goal-name">{{goal.name}}</mat-card-title>
+                                                <p> {{goal.purpose}}</p>
+                                                <div class="goals-buttons">
+                                                    <button mat-icon-button class="button delete-button"
+                                                            (click)="deleteGoal(goal._id['$oid']); ">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                    <button *ngIf="!goal.status" mat-icon-button class="complete-button" class="completeGoal"
+                                                            (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); ">
+                                                        <mat-icon>done</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </mat-card-content>
+                                        </span>
+
+                                    </mat-card>
+                                </mat-tab>
+                                <mat-tab label="Complete">
+                                    <mat-card class="goals-card"
+                                              *ngFor="let goal of this.filterGoals(true)"
+                                              #elem [id]="goal._id['$oid']">
+                                        <div class ="goals-image">
+                                            <img *ngIf="goal.category == 'Family'" src="../../assets/family.png"
+                                                 class="goal-card-image" height="75">
+                                            <img *ngIf="goal.category == 'Chores'" src="../../assets/chores.png"
+                                                 class="goal-card-image" height="75">
+                                            <img *ngIf="goal.category == 'Personal Health'" src="../../assets/health.png"
+                                                 class="goal-card-image" height="75">
+                                            <img *ngIf="goal.category == 'Work'" src="../../assets/Work.png"class ="goal-card-image" height="70" width="70">
+                                            <img *ngIf="goal.category == 'Exercise'" src="../../assets/exercise.png"class ="goal-card-image" height="70"width="84">
+                                            <div *ngIf="goal.category == 'Other'" ></div>
+                                        </div>
+                                        <div class="goals-card-info">
+                                            <mat-card-content class="goal-info">
+                                                <mat-card-title class="goal-name">{{goal.name}}</mat-card-title>
+                                                <p>Purpose: {{goal.purpose}}</p>
+                                                <div class="goals-buttons">
+                                                    <button mat-icon-button class="button delete-button"
+                                                            (click)="deleteGoal(goal._id['$oid']); ">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </mat-card-content>
+                                        </div>
+                                    </mat-card>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </li>
+                        <br>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="grid-goals-section" >
+                <div layout="row" layout-wrap>
+                    <!-- Errors message card can be uncommented if you fix the layout issue -->
+                    <!--<ng-template #goalsError>
+                        <mat-error>
+                            There was a problem loading the goals. Possibly the server is down or perhaps there are network
+                            issues.
+                        </mat-error>
+                        <mat-error>
+                            Please wait a bit and try again or start the server.
+                        </mat-error>
+                    </ng-template>-->
                 </div>
             </div>
-        </div>
     </main>
     </body>
 
