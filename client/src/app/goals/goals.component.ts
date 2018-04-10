@@ -23,7 +23,7 @@ export class GoalsComponent implements OnInit{
     public goalPurpose: string;
     public goalCategory: string;
     public goalName: string;
-    public goalStatus: string;
+    public goalStatus: boolean;
 
     // Inject the GoalListService into this component.
     constructor(public goalsService: GoalsService, public dialog: MatDialog, public snackBar: MatSnackBar) {
@@ -81,7 +81,7 @@ export class GoalsComponent implements OnInit{
     }
 
     goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName, email: string,) {
-        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status:true, email: email};
+        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: true, email: email};
         this.goalsService.editGoal(updatedGoal).subscribe(
             editGoalsResult => {
                 this.highlightedID = editGoalsResult;
@@ -99,17 +99,15 @@ export class GoalsComponent implements OnInit{
         });
     }
 
-    public filterGoals(searchStatus:string): Goal[] {
-        console.log("fdfsdfsdfdsfdsfdsfsdf")
+    public filterGoals(searchStatus:boolean): Goal[] {
 
         this.filteredGoals = this.goals;
 
         // Filter by status
         if (searchStatus != null) {
-            searchStatus = searchStatus.toLocaleLowerCase();
 
             this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchStatus || goal.name.toLowerCase().indexOf(searchStatus) !== -1;
+                return goal.status === searchStatus;
             });
         }
 
@@ -117,15 +115,6 @@ export class GoalsComponent implements OnInit{
 
 
         return this.filteredGoals;
-    }
-
-
-    onSelectChange(event) {
-        if(event.index== 0){
-            console.log('Tab1 is selected!');
-        }else{
-            console.log('Tab1 is not selected!')
-        }
     }
 
 

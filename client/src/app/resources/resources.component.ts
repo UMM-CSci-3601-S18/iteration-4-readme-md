@@ -24,7 +24,15 @@ export class ResourcesComponent implements OnInit{
     }
 
     openDialog(): void {
-        const newResources: resources = {resourcesId: '', resourceName: '', resourceBody: '', resourcePhone: '', resourcesUrl: ''};
+        const newResources: resources =
+            {
+                resourcesId: '',
+                resourceName: '',
+                resourceBody: '',
+                resourcePhone: '',
+                resourcesUrl: '',
+                email: localStorage.getItem('email'),
+            };
         const dialogRef = this.dialog.open(AddResourcesComponent, {
             width: '500px',
             data: { resources: newResources }
@@ -93,6 +101,11 @@ export class ResourcesComponent implements OnInit{
     getLoginName(){
         var name = window['name'];
         return name;
+    }
+
+    isUserLoggedIN(): boolean {
+        var email = localStorage.getItem('email');
+        return ((email != '') && (typeof email != 'undefined'));
     }
 
 }
