@@ -20,27 +20,21 @@ export class AppComponent implements OnInit {
 
     constructor(private authService: AuthService, public dialog: MatDialog, private loginService: LoginService) { }
 
-    //New function to return the name of the active user
-    //window.* is not defined, or 'gettable' straight from HTML *ngIf
-    //So this function will return that
-    getLoginName(){
-        var name = window['name'];
-        return name;
-    }
-
     signInWithGoogle(): void {
         if(this.loggedIn) {
             this.signOut();
             return;
         }
+        console.log('1\n');
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-
         // once the user signs in, authenticate it
             .then((user) => {
+                console.log('2\n');
                 return this.loginService.authenticate(user.idToken);
             })
 
             .then((authResponse) => {
+                console.log('3\n');
                 // check that our client id is within the response from google
                 if (authResponse.aud != '557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com') {
                     console.log('Error: login response did not contain our app\'s client ID');
@@ -76,7 +70,6 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.authService.authState.subscribe((user) => {
 
-            //only get the user's information if the authentication works
             this.user = user;
 
             this.loggedIn = (this.user != null);
