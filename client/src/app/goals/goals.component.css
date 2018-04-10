@@ -13,7 +13,7 @@
 
 
 .first-sec {
-    width: 320px;
+    /*width: 320px;*/
     padding: 15px;
     margin-left: auto;
     margin-right: auto;
@@ -23,7 +23,7 @@
     background-color: rgba(173, 216, 230, 0.14);
 }
 
-#goal-title {
+.goal-title {
     font-size: 32px;
     text-align: center;
 }
@@ -31,43 +31,47 @@
 .goal-content {
     list-style-type: none;
     font-size: 21px;
+    Word-wrap: break-word;
 }
 
 .your-goals-title {
     text-align: left;
     font-size: 32px;
+    Word-wrap: break-word;
 }
 
 #add-icon {
     color: forestgreen;
 }
 
-#goal-complete {
+.goal-complete {
     color: green;
 }
 
-#goal-incomplete {
+.goal-incomplete {
     color: red;
 }
 
 .goals-card {
     width: 275px;
     padding: 15px;
-    margin: 0 auto;
+    margin:0 auto;
     margin-bottom: 15px;
     background-color: rgba(144, 238, 144, 0.22);
 }
 
 .delete-button {
     color: indianred;
+
 }
 
 .complete-button {
     color: limegreen;
 }
 
-#goal-name {
+.goal-name {
     text-align: center;
+    Word-wrap: break-word;
 }
 
 .goals-image {

@@ -3,6 +3,6 @@ export interface Goal {
     purpose: string;
     category: string;
     name: string;
-    status: string;
+    status: boolean;
     email: string;
 }

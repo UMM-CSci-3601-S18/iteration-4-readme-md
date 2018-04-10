@@ -24,8 +24,8 @@ export class GoalsComponent implements OnInit{
     public goalPurpose: string;
     public goalCategory: string;
     public goalName: string;
-    public goalStatus: string;
     public user: SocialUser;
+    public goalStatus: boolean;
 
     // Inject the GoalListService into this component.
     constructor(public goalsService: GoalsService, public dialog: MatDialog,
@@ -48,7 +48,7 @@ export class GoalsComponent implements OnInit{
             purpose: '',
             category: '',
             name: '',
-            status: 'incomplete',
+            status: false,
             email: this.user.email,
             };
         const dialogRef = this.dialog.open(AddGoalComponent, {
@@ -84,7 +84,7 @@ export class GoalsComponent implements OnInit{
     }
 
     goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName, email: string,) {
-        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: "complete", email: email};
+        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: true, email: email};
         this.goalsService.editGoal(updatedGoal).subscribe(
             editGoalsResult => {
                 this.highlightedID = editGoalsResult;
@@ -102,16 +102,15 @@ export class GoalsComponent implements OnInit{
         });
     }
 
-    public filterGoals(searchStatus:string): Goal[] {
+    public filterGoals(searchStatus:boolean): Goal[] {
 
         this.filteredGoals = this.goals;
 
         // Filter by status
         if (searchStatus != null) {
-            searchStatus = searchStatus.toLocaleLowerCase();
 
             this.filteredGoals = this.filteredGoals.filter(goal => {
-                return !searchStatus || goal.name.toLowerCase().indexOf(searchStatus) !== -1;
+                return goal.status === searchStatus;
             });
         }
 
