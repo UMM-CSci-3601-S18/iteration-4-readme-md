@@ -13,20 +13,20 @@ export class LoginService {
 
     // Sends a request to google's endpoint with the authentication token.
     // Returns true if authenticated, false if not
-    authenticate(authToken: string): boolean {
+    authenticate(authToken: string): Promise<AuthResponse> {
 
-        this.http.get<any>('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + authToken).subscribe(
-            authResponse => {
-                console.log('Signed in as ' + authResponse.name);
-                return true;
-            },
-            err => {
-                console.log(err);
-                return false;
-            }
-        );
-
-        return false;
+        //return a promise instead of a callback
+        return new Promise((resolve, reject) => {
+            this.http.get<any>('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + authToken).subscribe(
+                authResponse => {
+                    resolve(authResponse);
+                },
+                err => {
+                    console.log(err);
+                    reject(err);
+                }
+            );
+        });
     }
 
 }

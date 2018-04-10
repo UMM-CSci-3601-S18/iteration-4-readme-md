@@ -35,14 +35,28 @@ export class AppComponent implements OnInit {
         }
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
 
-            .then((res) => {
-                console.log(this.user.name + ' signed in.');
-                //refreshes after login so that the name of the user can be shown
-                //window.location.reload();
-                return;
+            .then((user) => {
+                return this.loginService.authenticate(user.idToken);
             })
+
+            .then((authResponse) => {
+                // check that our client id is within the response from google
+                if (authResponse.aud != '557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com') {
+                    console.log('Error: login response did not contain our app\'s client ID');
+                    this.user = null;
+                } else {
+                    //refreshes after login so that the name of the user can be shown
+                    window.location.reload();
+                    console.log(authResponse.name + ' signed in.');
+                }
+
+            })
+
             .catch((err) => {
+
+                // if an error occurs, print it out and clear the data from this.user
                 console.log(err);
+                this.user = null;
             });
     }
 
@@ -62,9 +76,7 @@ export class AppComponent implements OnInit {
         this.authService.authState.subscribe((user) => {
 
             //only get the user's information if the authentication works
-            if(user != null && this.loginService.authenticate(user.idToken)) {
-                this.user = user;
-            }
+            this.user = user;
 
             this.loggedIn = (this.user != null);
             if(this.loggedIn) {
