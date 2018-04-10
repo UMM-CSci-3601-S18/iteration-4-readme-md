@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Emoji} from "../emoji";
 import {ReportsService} from "./reports.service";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'app-reports-component',
@@ -13,15 +14,14 @@ export class ReportsComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
     public emojis: Emoji[];
     public filteredEmojis: Emoji[];
-    public userEmail: string = localStorage.getItem('email');
-
+    public user: SocialUser;
     // These are the target values used in searching.
     // We should rename them to make that clearer.
     public emojiOwner: string;
 
 
     // Inject the EmojiListService into this component.
-    constructor(public reportsService: ReportsService) {
+    constructor(public reportsService: ReportsService, public authService: AuthService) {
 
     }
 
@@ -61,7 +61,7 @@ export class ReportsComponent implements OnInit {
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis();
+        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email);
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;
@@ -75,12 +75,10 @@ export class ReportsComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.authService.authState.subscribe((user) => {
+            this.user = user;
+        });
         this.refreshEmojis();
-    }
-
-    isUserLoggedIN(): boolean {
-        var email = localStorage.getItem('email');
-        return ((email != '') && (typeof email != 'undefined'));
     }
 
     public getReadableDate(dateString: string): string {

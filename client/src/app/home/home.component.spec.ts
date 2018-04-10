@@ -9,6 +9,7 @@ import {Emoji} from "../emoji";
 import {Observable} from "rxjs/Observable";
 import {FormsModule} from "@angular/forms";
 import {HomeService} from "./home.service";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 describe('Adding an emoji', () => {
 
@@ -18,10 +19,10 @@ describe('Adding an emoji', () => {
 
     const newEmoji: Emoji = {
         _id: '',
-        owner: '',
+        owner: 'test dummy',
         mood: 3,
-        date: "", //date will be created during the test so that it matches what is made in component.addEmoji
-        email: null,
+        date: '', //date will be created during the test so that it matches what is made in component.addEmoji
+        email: '',
     };
 
     const newId = 'nick_id';
@@ -30,6 +31,10 @@ describe('Adding an emoji', () => {
 
     let homeServiceStub: {
         addEmoji: (newEmoji: Emoji) => Observable<{'$oid': string}>
+    };
+
+    let authServiceStub: {
+        authState: Observable<SocialUser>
     };
 
     let mockMatDialog: {
@@ -50,6 +55,22 @@ describe('Adding an emoji', () => {
             }
         };
 
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                    idToken: '',
+                }
+            )
+        };
+
         mockMatDialog = {
             open: () => {
                 return {afterClosed: () => {return}  };
@@ -62,7 +83,8 @@ describe('Adding an emoji', () => {
             providers: [
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
                 {provide: MatDialog, useValue: mockMatDialog},
-                {provide: HomeService, useValue: homeServiceStub}]
+                {provide: HomeService, useValue: homeServiceStub},
+                {provide: AuthService, useValue: authServiceStub}]
         });
 
     });

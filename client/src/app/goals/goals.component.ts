@@ -5,6 +5,7 @@ import {GoalsService} from "./goals.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddGoalComponent} from "./add-goals.component";
 import {MatSnackBar} from '@angular/material';
+import {AuthService, SocialUser} from "angularx-social-login";
 @Component({
     selector: 'app-goals-component',
     templateUrl: './goals.component.html',
@@ -23,10 +24,12 @@ export class GoalsComponent implements OnInit{
     public goalPurpose: string;
     public goalCategory: string;
     public goalName: string;
+    public user: SocialUser;
     public goalStatus: boolean;
 
     // Inject the GoalListService into this component.
-    constructor(public goalsService: GoalsService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+    constructor(public goalsService: GoalsService, public dialog: MatDialog,
+                public snackBar: MatSnackBar, public authService: AuthService) {
 
     }
 
@@ -46,7 +49,7 @@ export class GoalsComponent implements OnInit{
             category: '',
             name: '',
             status: false,
-            email: localStorage.getItem('email'),
+            email: this.user.email,
             };
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '500px',
@@ -154,6 +157,9 @@ export class GoalsComponent implements OnInit{
     }
 
     ngOnInit(): void {
+        this.authService.authState.subscribe((user) => {
+            this.user = user;
+        });
         this.refreshGoals();
     }
 
@@ -161,18 +167,13 @@ export class GoalsComponent implements OnInit{
     //window.* is not defined, or 'gettable' straight from HTML *ngIf
     //So this function will return that
     getLoginName(){
-        var name = window['name'];
+        var name = this.user.name;
         return name;
     }
 
     parseStatus(thing: Boolean){
         if(thing == true) return "Complete"
         else return "Incomplete"
-    }
-
-    isUserLoggedIN(): boolean {
-        var email = localStorage.getItem('email');
-        return ((email != '') && (typeof email != 'undefined'));
     }
 
 }

@@ -11,14 +11,12 @@ import {environment} from '../../environments/environment';
 export class JournalListService {
     readonly baseUrl: string = environment.API_URL + 'journaling';
     private journalUrl: string = this.baseUrl;
-    public userEmail: string = localStorage.getItem('email');
 
     constructor(private http: HttpClient) {
     }
 
-    getJournals(journalSubject?: string): Observable<Journal[]> {
-        this.filterBySubject(journalSubject);
-        this.filterByEmail(this.userEmail);
+    getJournals(userEmail: string): Observable<Journal[]> {
+        this.filterByEmail(userEmail);
         return this.http.get<Journal[]>(this.journalUrl);
     }
 

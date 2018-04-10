@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import {AuthService, SocialUser} from "angularx-social-login";
 
 describe('Resource list', () => {
 
@@ -18,6 +19,9 @@ describe('Resource list', () => {
 
     let resourceListServiceStub: {
         getResources: () => Observable<resources[]>
+    };
+    let authServiceStub: {
+        authState: Observable<SocialUser>
     };
 
     beforeEach(() => {
@@ -53,6 +57,21 @@ describe('Resource list', () => {
                 }
             ])
         };
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                    idToken: '',
+                }
+            )
+        };
 
         TestBed.configureTestingModule({
             imports: [CustomModule],
@@ -60,7 +79,8 @@ describe('Resource list', () => {
             // providers:    [ UserListService ]  // NO! Don't provide the real service!
             // Provide a test-double instead
             providers: [{provide: ResourcesService, useValue: resourceListServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
@@ -109,6 +129,9 @@ describe('Misbehaving Resource List', () => {
     let resourceListServiceStub: {
         getResources: () => Observable<resources[]>
     };
+    let authServiceStub: {
+        authState: Observable<SocialUser>
+    };
 
     beforeEach(() => {
         // stub UserService for test purposes
@@ -117,12 +140,28 @@ describe('Misbehaving Resource List', () => {
                 observer.error('Error-prone observable');
             })
         };
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                    idToken: '',
+                }
+            )
+        };
 
         TestBed.configureTestingModule({
             imports: [FormsModule, CustomModule],
             declarations: [ResourcesComponent],
             providers: [{provide: ResourcesService, useValue: resourceListServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
@@ -160,6 +199,9 @@ describe('Adding a resource', () => {
         getResources: () => Observable<resources[]>,
         addNewResource: (newResource: resources) => Observable<{'$oid': string}>
     };
+    let authServiceStub: {
+        authState: Observable<SocialUser>
+    };
     let mockMatDialog: {
         open: (AddResourceComponent, any) => {
             afterClosed: () => Observable<resources>
@@ -178,6 +220,21 @@ describe('Adding a resource', () => {
                 });
             }
         };
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                    idToken: '',
+                }
+            )
+        };
         mockMatDialog = {
             open: () => {
                 return {
@@ -194,7 +251,8 @@ describe('Adding a resource', () => {
             providers: [
                 {provide: ResourcesService, useValue: resourceListServiceStub},
                 {provide: MatDialog, useValue: mockMatDialog},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 

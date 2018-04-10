@@ -30,16 +30,17 @@ import {GoalsComponent} from "./goals/goals.component";
 import {GoalsService} from "./goals/goals.service";
 import {AddGoalComponent} from "./goals/add-goals.component";
 
-import { SocialLoginModule, AuthServiceConfig } from 'angular4-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-login';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import {AboutComponent} from "./about/about.component";
 import {SelectJournalComponent} from "./journaling/select-journal.component";
+import {LoginService} from "./login.service";
 
 
 let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+        provider: new GoogleLoginProvider("557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com")
     },
     {
         id: FacebookLoginProvider.PROVIDER_ID,
@@ -86,8 +87,13 @@ export function provideConfig() {
         GoalsService,
         JournalListService,
         ResourcesService,
+        LoginService,
         {provide: APP_BASE_HREF, useValue: '/'},
-        {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}
+        {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+        {
+            provide: AuthServiceConfig,
+            useFactory: provideConfig
+        }
     ],
     entryComponents: [
       AddUserComponent,

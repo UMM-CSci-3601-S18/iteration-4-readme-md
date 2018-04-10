@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {gapi} from 'gapi-client';
 import {environment} from "../environments/environment";
+import {AuthService, GoogleLoginProvider, SocialUser} from "angularx-social-login";
 import {MatDialog} from '@angular/material';
 import {CrisisButtonComponent} from "./resources/crisis-button.component";
+import {LoginService} from "./login.service";
 
 @Component({
     selector: 'app-root',
@@ -11,10 +13,12 @@ import {CrisisButtonComponent} from "./resources/crisis-button.component";
 })
 export class AppComponent implements OnInit {
     title = "Sunshine Journal";
+    public user: SocialUser;
+    public loggedIn: boolean;
 
-    constructor(public dialog: MatDialog) {
+    public buttonText: string;
 
-    }
+    constructor(private authService: AuthService, public dialog: MatDialog, private loginService: LoginService) { }
 
     //New function to return the name of the active user
     //window.* is not defined, or 'gettable' straight from HTML *ngIf
@@ -24,22 +28,74 @@ export class AppComponent implements OnInit {
         return name;
     }
 
-    ngOnInit() {
-        //This first if statement makes it so that the e2e tests will still run without getting locked out of the site
-        //This should probably be removed at some point and instead have the e2e tests use a fake user somehow
-        if(environment.production) {
-            //Fixes a bug where the first time an instance of the browser visits the page
-            //It would display all users data instead of locking the user out and filtering
-            if (localStorage.getItem('email') === null) {
-                localStorage.setItem('email', '');
-            }
+    signInWithGoogle(): void {
+        if(this.loggedIn) {
+            this.signOut();
+            return;
         }
+        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+
+        // once the user signs in, authenticate it
+            .then((user) => {
+                return this.loginService.authenticate(user.idToken);
+            })
+
+            .then((authResponse) => {
+                // check that our client id is within the response from google
+                if (authResponse.aud != '557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com') {
+                    console.log('Error: login response did not contain our app\'s client ID');
+                    this.signOut();
+                } else {
+                    //refreshes after login so that the name of the user can be shown
+                    window.location.reload();
+                    console.log(authResponse.name + ' signed in.');
+                }
+
+            })
+
+            .catch((err) => {
+
+                // if an error occurs, print it out and clear the data from this.user
+                console.log(err);
+                this.signOut();
+            });
+    }
+
+    signOut(): void {
+        this.authService.signOut()
+
+            .then((res) => {
+                console.log('Signed out.');
+                return;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    ngOnInit() {
+        this.authService.authState.subscribe((user) => {
+
+            //only get the user's information if the authentication works
+            this.user = user;
+
+            this.loggedIn = (this.user != null);
+            if(this.loggedIn) {
+                this.buttonText = 'Sign Out';
+            }
+            else {
+                this.buttonText = 'Sign In';
+            }
+        });
     }
 
     openDialog(): void{
         const dialogRef = this.dialog.open(CrisisButtonComponent,{
             width: '500px',
-            height: 'auto' //Do what we want, please :)
+            height: 'auto', //Do what we want, please :)
+            data: {
+                user: this.user
+            }
         });
     }
 

@@ -362,9 +362,9 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular4-social-login@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/angular4-social-login/-/angular4-social-login-1.1.1.tgz#ed61571a449fad56f21488389212cc9882823d98"
+angularx-social-login@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/angularx-social-login/-/angularx-social-login-1.1.8.tgz#169828be47a68bd8a2e84519d57d44bdaf38d866"
 
 ansi-html@0.0.7:
   version "0.0.7"

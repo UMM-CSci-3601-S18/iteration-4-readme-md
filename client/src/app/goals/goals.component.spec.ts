@@ -12,6 +12,7 @@ import {MatDialog} from '@angular/material';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import {AuthService, SocialUser} from "angularx-social-login";
 import {HttpClient} from "@angular/common/http";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 
@@ -22,6 +23,10 @@ describe('Goal list', () => {
 
     let goalsServiceStub: {
         getGoals: () => Observable<Goal[]>
+    };
+
+    let authServiceStub: {
+        authState: Observable<SocialUser>
     };
 
     beforeEach(() => {
@@ -57,13 +62,30 @@ describe('Goal list', () => {
         let goalListService: GoalsService;
         let currentlyImpossibleToGenerateSearchJournalUrl: string;
 
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                    idToken: '',
+                }
+            )
+        };
+
         TestBed.configureTestingModule({
             imports: [CustomModule],
             declarations: [GoalsComponent],
             // providers:    [ GoalsService ]  // NO! Don't provide the real service!
             // Provide a test-double instead
             providers: [{provide: GoalsService, useValue: goalsServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
@@ -115,6 +137,11 @@ describe('Goal list', () => {
 //         getGoals: () => Observable<Goal[]>
 //     };
 //
+//     let authServiceStub: {
+//         authState: Observable<SocialUser>
+//     };
+//
+//
 //     beforeEach(() => {
 //         // stub GoalService for test purposes
 //         goalsServiceStub = {
@@ -123,11 +150,28 @@ describe('Goal list', () => {
 //             })
 //         };
 //
+//         authServiceStub = {
+//             authState: Observable.of(
+//                 {
+//                     provider: '',
+//                     id: '',
+//                     email: '',
+//                     name: 'test dummy',
+//                     photoUrl: '',
+//                     firstName: 'test',
+//                     lastName: 'dummy',
+//                     authToken: '',
+//                     idToken: '',
+//                 }
+//             )
+//         };
+//
 //         TestBed.configureTestingModule({
 //             imports: [FormsModule, CustomModule],
 //             declarations: [GoalsComponent],
 //             providers: [{provide: GoalsService, useValue: goalsServiceStub},
-//                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+//                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+//                 {provide: AuthService, useValue: authServiceStub}]
 //         });
 //     });
 //
@@ -140,7 +184,6 @@ describe('Goal list', () => {
 //     }));
 //
 //     it('generates an error if we don\'t set up a GoalsService', () => {
-//         console.log(goals.goals);
 //         // Since the observer throws an error, we don't expect goals to be defined.
 //         expect(goals.goals).toBeUndefined();
 //     });
@@ -165,6 +208,9 @@ describe('Adding a goal', () => {
     let goalsServiceStub: {
         getGoals: () => Observable<Goal[]>,
         addNewGoal: (newGoal: Goal) => Observable<{'$oid': string}>
+    };
+    let authServiceStub: {
+        authState: Observable<SocialUser>
     };
     let mockMatDialog: {
         open: (AddGoalComponent, any) => {
@@ -193,6 +239,21 @@ describe('Adding a goal', () => {
                 };
             }
         };
+        authServiceStub = {
+            authState: Observable.of(
+                {
+                    provider: '',
+                    id: '',
+                    email: '',
+                    name: 'test dummy',
+                    photoUrl: '',
+                    firstName: 'test',
+                    lastName: 'dummy',
+                    authToken: '',
+                    idToken: '',
+                }
+            )
+        };
 
         TestBed.configureTestingModule({
             imports: [FormsModule, CustomModule],
@@ -200,7 +261,8 @@ describe('Adding a goal', () => {
             providers: [
                 {provide: GoalsService, useValue: goalsServiceStub},
                 {provide: MatDialog, useValue: mockMatDialog},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
+                {provide: AuthService, useValue: authServiceStub}]
         });
     });
 
@@ -220,6 +282,4 @@ describe('Adding a goal', () => {
         expect(calledGoal).toEqual(newGoal);
     });
 */
-
-
 });

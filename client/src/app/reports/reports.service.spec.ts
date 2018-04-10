@@ -71,7 +71,7 @@ describe('Report service: ', () => {
         // This happens when we call req.flush(testUsers) a few lines
         // down.
 
-        reportsListService.getEmojis().subscribe(
+        reportsListService.getEmojis('').subscribe(
             emojis => expect(emojis).toBe(testEmojis)
         );
 

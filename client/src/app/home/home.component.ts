@@ -3,6 +3,8 @@ import {Emoji} from '../emoji';
 import {HomeService} from "./home.service";
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {ResponseComponent} from "./response.component";
+import {AppComponent} from "../app.component";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 // Selector will change when we know more
 
@@ -15,8 +17,11 @@ export class HomeComponent implements OnInit {
 
     public emoji: Emoji = {_id: '', owner: '', date: '', mood: 5, email: localStorage.getItem('email')};
     public email: string = localStorage.getItem('email');
+    public user: SocialUser;
+    public name: string;
 
-    constructor(public homeService: HomeService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+    constructor(public homeService: HomeService, public dialog: MatDialog, public snackBar: MatSnackBar,
+                public authService: AuthService) {
 
     }
 
@@ -38,8 +43,8 @@ export class HomeComponent implements OnInit {
 
         const date = new Date();
         this.emoji.date = date.toString();
-        this.emoji.owner = window['name'];
-        this.emoji.email = localStorage.getItem('email');
+        this.emoji.owner = this.user.name;
+        this.emoji.email = this.user.email;
 
         this.homeService.addEmoji(this.emoji).subscribe(
             addEmojiResult => {
@@ -80,13 +85,11 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.emoji.owner = window['name'];
+        this.authService.authState.subscribe((user) => {
+            this.user = user;
+        });
     }
 
-    isUserLoggedIN(): boolean {
-        var email = localStorage.getItem('email');
-        return ((email != '') && (typeof email != 'undefined'));
-    }
 }
 
 

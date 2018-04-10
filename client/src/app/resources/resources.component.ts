@@ -4,6 +4,7 @@ import {resources} from "./resources";
 import {ResourcesService} from "./resources.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddResourcesComponent} from "./add-resources.component";
+import {AuthService, SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'resources-component',
@@ -17,9 +18,11 @@ export class ResourcesComponent implements OnInit{
 
     //This is the target value used in searching.
     public resourcesName: string;
+    public user: SocialUser;
 
 
-    constructor(public resourcesService: ResourcesService, public dialog: MatDialog) {
+    constructor(public resourcesService: ResourcesService, public dialog: MatDialog,
+                public authService: AuthService) {
         this.title = 'Resources';
     }
 
@@ -31,7 +34,7 @@ export class ResourcesComponent implements OnInit{
                 resourceBody: '',
                 resourcePhone: '',
                 resourcesUrl: '',
-                email: localStorage.getItem('email'),
+                email: this.user.email,
             };
         const dialogRef = this.dialog.open(AddResourcesComponent, {
             width: '500px',
@@ -78,7 +81,7 @@ export class ResourcesComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources();
+        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources(this.user.email);
         resourcesListObservable.subscribe(
             resources => {
                 this.resources = resources;
@@ -92,6 +95,9 @@ export class ResourcesComponent implements OnInit{
 
 
     ngOnInit(): void {
+        this.authService.authState.subscribe((user) => {
+            this.user = user;
+        });
         this.refreshResources();
     }
 
@@ -99,13 +105,10 @@ export class ResourcesComponent implements OnInit{
     //window.* is not defined, or 'gettable' straight from HTML *ngIf
     //So this function will return that
     getLoginName(){
-        var name = window['name'];
+        var name = this.user.firstName;
         return name;
     }
 
-    isUserLoggedIN(): boolean {
-        var email = localStorage.getItem('email');
-        return ((email != '') && (typeof email != 'undefined'));
-    }
+
 
 }

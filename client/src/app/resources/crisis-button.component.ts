@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {MatDialog} from "@angular/material/dialog";
 import {ResourcesService} from "./resources.service";
 import {resources} from "./resources";
 import {Observable} from "rxjs/Observable";
+import {SocialUser} from "angularx-social-login";
 
 @Component({
     selector: 'app-crisis-button.component',
@@ -19,7 +20,8 @@ export class CrisisButtonComponent implements OnInit{
     public filteredResources: resources[];
 
     constructor(
-        public dialogRef: MatDialogRef<CrisisButtonComponent>, public resourcesService: ResourcesService, public dialog: MatDialog) {
+        public dialogRef: MatDialogRef<CrisisButtonComponent>, public resourcesService: ResourcesService, public dialog: MatDialog,
+        @Inject(MAT_DIALOG_DATA) public data: {user: SocialUser}) {
     }
 
     public filterResources(searchName): resources[] {
@@ -48,7 +50,7 @@ export class CrisisButtonComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources();
+        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources(this.data.user.email);
         resourcesListObservable.subscribe(
             resources => {
                 this.resources = resources;

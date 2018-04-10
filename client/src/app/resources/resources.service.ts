@@ -14,11 +14,9 @@ import {ResourcesComponent} from "./resources.component";
 export class ResourcesService {
     readonly baseUrl: string = environment.API_URL + 'resources';
     private resourcesUrl: string = this.baseUrl;
-    public userEmail: string = localStorage.getItem('email');
 
     constructor(private http: HttpClient) {
     }
-// Resources over resources **SIDE NOTE FOR Ahnaf, if things break its for that
 
     addResources(newResources: resources): Observable<{'$oid': string}> {
         const httpOptions = {
@@ -27,21 +25,21 @@ export class ResourcesService {
             }),
         };
 
-        if (this.parameterPresent('email')) {
-            this.removeParameter('email')
-            let locationOfQuestionMark = this.resourcesUrl.indexOf('?')
-            this.resourcesUrl = this.resourcesUrl.substring(0, locationOfQuestionMark) + this.resourcesUrl.substring(locationOfQuestionMark + 1, this.resourcesUrl.length)
+        // if (this.parameterPresent('email')) {
+        //     this.removeParameter('email')
+        //     let locationOfQuestionMark = this.resourcesUrl.indexOf('?')
+        //     this.resourcesUrl = this.resourcesUrl.substring(0, locationOfQuestionMark) + this.resourcesUrl.substring(locationOfQuestionMark + 1, this.resourcesUrl.length)
 
-            return this.http.post<{ '$oid': string }>(this.resourcesUrl + '/new', newResources, httpOptions);
-        }
+            return this.http.post<{ '$oid': string }>(this.baseUrl + '/new', newResources, httpOptions);
+        //}
     }
 
     getResourcesById(id: string): Observable<resources> {
         return this.http.get<resources>(this.resourcesUrl + '/' + id);
     }
 
-    getResources(resourcesName?: string): Observable<resources[]> {
-        this.filterByEmail(this.userEmail);
+    getResources(userEmail: string): Observable<resources[]> {
+        this.filterByEmail(userEmail);
         return this.http.get<resources[]>(this.resourcesUrl);
     }
 

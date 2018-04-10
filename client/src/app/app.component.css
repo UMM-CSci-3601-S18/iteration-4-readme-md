@@ -1,11 +1,6 @@
-.g-signin2{
-    float: left;
-    padding: 10px;
-}
 
-.signOutButton{
-    float: left;
-    padding: 10px;
+#signInButton{
+    margin: 10px;
 }
 
 .fill-remaining-space {

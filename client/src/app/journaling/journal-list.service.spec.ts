@@ -70,7 +70,7 @@ describe('Journal list service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testJournals) a few lines
         // down.
-        journalListService.getJournals().subscribe(
+        journalListService.getJournals('').subscribe(
             journals => expect(journals).toBe(testJournals)
         );
 
@@ -89,7 +89,7 @@ describe('Journal list service: ', () => {
             journals => expect(journals).toEqual(mJournals)
         );
 
-        const req = httpTestingController.expectOne(journalListService.baseUrl + '?subject=m&');
+        const req = httpTestingController.expectOne(journalListService.baseUrl + '?email=m&');
         expect(req.request.method).toEqual('GET');
         req.flush(mJournals);
     });
