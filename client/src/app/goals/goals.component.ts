@@ -45,7 +45,7 @@ export class GoalsComponent implements OnInit{
             purpose: '',
             category: '',
             name: '',
-            status: 'incomplete',
+            status: false,
             email: localStorage.getItem('email'),
             };
         const dialogRef = this.dialog.open(AddGoalComponent, {
@@ -81,7 +81,7 @@ export class GoalsComponent implements OnInit{
     }
 
     goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName, email: string,) {
-        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: "complete", email: email};
+        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status:true, email: email};
         this.goalsService.editGoal(updatedGoal).subscribe(
             editGoalsResult => {
                 this.highlightedID = editGoalsResult;
@@ -100,6 +100,7 @@ export class GoalsComponent implements OnInit{
     }
 
     public filterGoals(searchStatus:string): Goal[] {
+        console.log("fdfsdfsdfdsfdsfdsfsdf")
 
         this.filteredGoals = this.goals;
 
@@ -116,6 +117,15 @@ export class GoalsComponent implements OnInit{
 
 
         return this.filteredGoals;
+    }
+
+
+    onSelectChange(event) {
+        if(event.index== 0){
+            console.log('Tab1 is selected!');
+        }else{
+            console.log('Tab1 is not selected!')
+        }
     }
 
 
