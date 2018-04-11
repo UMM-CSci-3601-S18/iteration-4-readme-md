@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 import {AuthResponse} from "./AuthResponse";
 import {LoginService} from "./login.service";
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
     let appInstance: AppComponent;
     let appFixture: ComponentFixture<AppComponent>;
     let debugElement: DebugElement;

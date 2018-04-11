@@ -4,10 +4,13 @@ import {HttpClient} from '@angular/common/http';
 import {LoginService} from "./login.service";
 import {AuthResponse} from "./AuthResponse";
 
-fdescribe('Login service: ', () => {
+describe('Login service: ', () => {
 
     let loginService: LoginService;
     let testResponse: AuthResponse;
+    let testErr = {
+        error_description: 'Invalid Value'
+    };
 
     testResponse = {
 
@@ -73,6 +76,21 @@ fdescribe('Login service: ', () => {
         // triggers the subscribe above, which leads to that check
         // actually being performed.
         req.flush(testResponse);
+    });
+
+    it('authenticate returns an error when it receives a bad response', () => {
+        loginService.authenticate('badTestToken')
+            .catch((err) => {
+                expect(err).toBe(testErr)
+            });
+        // Specify that (exactly) one request will be made to the specified URL.
+        const req = httpTestingController.expectOne('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=badTestToken');
+        // Check that the request made to that URL was a GET request.
+        expect(req.request.method).toEqual('GET');
+        // Specify the content of the response to that request. This
+        // triggers the subscribe above, which leads to that check
+        // actually being performed.
+        req.flush(testErr);
     });
 
 });

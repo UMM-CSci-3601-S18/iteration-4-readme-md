@@ -17,7 +17,7 @@ export class LoginService {
 
         //return a promise instead of using a callback
         return new Promise((resolve, reject) => {
-            this.http.get<any>('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + authToken).subscribe(
+            this.http.get<AuthResponse>('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + authToken).subscribe(
                 authResponse => {
                     resolve(authResponse);
                 },
