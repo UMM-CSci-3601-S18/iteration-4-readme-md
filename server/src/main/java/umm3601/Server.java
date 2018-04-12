@@ -10,8 +10,6 @@ import umm3601.goal.GoalRequestHandler;
 import umm3601.goal.GoalController;
 import umm3601.resources.ResourcesController;
 import umm3601.resources.ResourcesRequestHandler;
-import umm3601.user.UserController;
-import umm3601.user.UserRequestHandler;
 import umm3601.journal.JournalController;
 import umm3601.journal.JournalRequestHandler;
 
@@ -40,8 +38,6 @@ public class Server {
         ResourcesController resourcesController = new ResourcesController(resourcesDatabase);
         ResourcesRequestHandler resourcesRequestHandler = new ResourcesRequestHandler(resourcesController);
 
-        UserController userController = new UserController(emojiDatabase);
-        UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
         //Configure Spark
         port(serverPort);
         enableDebugScreen();
@@ -81,7 +77,6 @@ public class Server {
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
 
-        get("api/users", userRequestHandler::getUsers);
         get("api/resources/:id", resourcesRequestHandler::getResourcesJSON);
         get("api/resources", resourcesRequestHandler::getResources);
         post("api/resources/new", resourcesRequestHandler::addNewResources);
