@@ -115,39 +115,73 @@ describe('Goal  service: ', () => {
         req.flush(targetGoal);
     });
 
-    // it('adding a goal calls api/goals/new', () => {
-    //     const enid_id = { '$oid': 'enid_id' };
-    //     const newGoal: Goal = {
-    //             _id: "5aa0b36e9c7d66070b9231e4",
-    //             purpose:"To get a good grade",
-    //             category: "Study",
-    //             name: "Study for math",
-    //             status: false,
-    //             email: "enid@gmail.com",
-    //         };
-    //
-    //     goalService.addGoal(newGoal).subscribe(
-    //         id => {
-    //             expect(id).toBe(enid_id);
-    //         }
-    //     );
-    //
-    //     goalService.deleteGoal("5aa0b36e9c7d66070b9231e4").subscribe(
-    //         id => {
-    //             expect(id).toBeNull();
-    //         }
-    //     );
-    //
-    //     const expectedUrl: string = goalService.baseUrl + '/new';
-    //     console.log(goalService.baseUrl);
-    //     const expectedUrl2: string = goalService.baseUrl + '/delete';
-    //     console.log("dfdsfdsfdsfdsfdsfdsff")
-    //     console.log(goalService.baseUrl);
-    //     const req = httpTestingController.expectOne(expectedUrl);
-    //     const req2 = httpTestingController.expectOne(expectedUrl2);
-    //     console.log(req);
-    //     expect(req.request.method).toEqual('POST');
-    //    // expect(req2.request.method).toEqual('DELETE');
-    //     req.flush(enid_id);
-    // });
+    it('adding a goal calls api/goals/new', () => {
+        const enid_id = { '$oid': 'enid_id' };
+        const newGoal: Goal = {
+                _id: "5aa0b36e9c7d66070b9231e4",
+                purpose:"To get a good grade",
+                category: "Study",
+                name: "Study for math",
+                status: false,
+                email: "enid@gmail.com",
+            };
+
+        goalService.addGoal(newGoal).subscribe(
+            id => {
+                expect(id).toBe(enid_id);
+            }
+        );
+
+
+        const expectedUrl: string = goalService.baseUrl + '/new';
+        const req = httpTestingController.expectOne(expectedUrl);
+
+        expect(req.request.method).toEqual('POST');
+        req.flush(enid_id);
+    });
+
+
+    it('editing a goal calls api/goals/edit', () => {
+        const family_id = { '$oid': 'family_id' };
+        const editGoal: Goal = {
+            _id: "5aa0b36e9c7d66070b9231e4",
+            purpose:"To get a good grade",
+            category: "Study",
+            name: "Study for math",
+            status: false,
+            email: "enid@gmail.com",
+        };
+
+        goalService.editGoal(editGoal).subscribe(
+            id => {
+                expect(id).toBe(family_id);
+            }
+        );
+
+        const expectedUrl: string = goalService.baseUrl + '/edit';
+        const req = httpTestingController.expectOne(expectedUrl);
+        expect(req.request.method).toEqual('POST');
+        req.flush(family_id);
+    });
+
+    it('editing a goal calls api/goals/edit', () => {
+        const family_id = { '$oid': 'family_id' };
+        const deleteGoal: Goal = {
+            _id: "5aa0b36e9c7d66070b9231e4",
+            purpose:"To get a good grade",
+            category: "Study",
+            name: "Study for math",
+            status: false,
+            email: "enid@gmail.com",
+        };
+
+        goalService.deleteGoal(deleteGoal._id);
+
+
+
+        const expectedUrl: string = goalService.baseUrl + '/delete';
+       // const req = httpTestingController.expectOne(expectedUrl);
+       // expect(req.request.method).toEqual('DELETE');
+        //req.flush(family_id);
+    });
 });

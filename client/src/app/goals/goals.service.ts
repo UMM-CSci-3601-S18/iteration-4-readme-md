@@ -10,7 +10,7 @@ import {Goal} from "./goals";
 export class GoalsService {
     readonly baseUrl: string = environment.API_URL + 'goals';
     private goalsUrl: string = this.baseUrl;
-    private userEmail: string = localStorage.getItem('email');
+    public userEmail: string = localStorage.getItem('email');
 
     constructor(private http: HttpClient) {
     }
@@ -28,7 +28,7 @@ export class GoalsService {
             this.goalsUrl = this.goalsUrl.substring(0, locationOfQuestionMark) + this.goalsUrl.substring(locationOfQuestionMark + 1, this.goalsUrl.length)
         }
 
-        // Send post request to add a new user with the user data as the body with specified headers.
+
         return this.http.post<{'$oid': string}>(this.goalsUrl + '/new', newGoal, httpOptions);
     }
 
@@ -86,6 +86,7 @@ export class GoalsService {
         this.goalsUrl = this.goalsUrl.substring(0, start) + this.goalsUrl.substring(end);
     }
 
+
     editGoal(editedGoal: Goal): Observable<{'$oid': string}> {
         const httpOptions = {
             headers: new HttpHeaders({
@@ -104,7 +105,7 @@ export class GoalsService {
     }
 
     deleteGoal(goalID: String) {
-        console.log ("here!")
+
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
