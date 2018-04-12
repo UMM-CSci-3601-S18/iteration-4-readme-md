@@ -7,13 +7,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {HomeService} from "./home/home.service";
-import {UserListComponent} from './users/user-list.component';
-import {UserListService} from './users/user-list.service';
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {ResourcesComponent} from "./resources/resources.component";
 import {CustomModule} from './custom.module';
-import {AddUserComponent} from './users/add-user.component';
 import {ResponseComponent} from "./home/response.component";
 import {ReportsComponent} from "./reports/reports.component";
 import {ReportsService} from "./reports/reports.service";
@@ -63,8 +60,6 @@ export function provideConfig() {
     declarations: [
         AppComponent,
         HomeComponent,
-        UserListComponent,
-        AddUserComponent,
         ResourcesComponent,
         ResponseComponent,
         ReportsComponent,
@@ -81,7 +76,6 @@ export function provideConfig() {
 
     ],
     providers: [
-        UserListService,
         HomeService,
         ReportsService,
         GoalsService,
@@ -96,7 +90,6 @@ export function provideConfig() {
         }
     ],
     entryComponents: [
-      AddUserComponent,
         ResponseComponent,
         AddGoalComponent,
         AddJournalComponent,
