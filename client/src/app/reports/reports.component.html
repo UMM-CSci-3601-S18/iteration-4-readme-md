@@ -3,7 +3,13 @@
     <div layout-gt-sm="row">
         <div flex-gt-sm="80" flex-offset-gt-sm="10">
             <mat-card class="reportscard">
-                <mat-card-title id="reports-title">Reports</mat-card-title>
+                <mat-card-title id="reports-title">Reports
+                    <mat-select placehoder="Mood">
+                        <mat-option *ngFor="let mood of moods" [value]="mood.value">
+                            {{emojiMood == mood.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-card-title>
                 <mat-divider></mat-divider>
                 <mat-card-content>
 
