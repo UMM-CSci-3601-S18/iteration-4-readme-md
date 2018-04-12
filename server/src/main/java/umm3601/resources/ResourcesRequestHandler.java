@@ -109,4 +109,23 @@ public class ResourcesRequestHandler {
             return null;
         }
     }
+
+    public String deleteResource(Request req, Response res){
+
+        System.out.println("I'm here");
+        System.out.println(req.params(":id"));
+
+        res.type("application/json");
+
+        try {
+            String id = req.params(":id");
+            resourcesController.deleteResource(id);
+            return req.params(":id");
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
 }

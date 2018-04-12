@@ -14,6 +14,8 @@ import {ResourcesComponent} from "./resources.component";
 export class ResourcesService {
     readonly baseUrl: string = environment.API_URL + 'resources';
     private resourcesUrl: string = this.baseUrl;
+    private userEmail: string = localStorage.getItem('email');
+
 
     constructor(private http: HttpClient) {
     }
@@ -38,8 +40,14 @@ export class ResourcesService {
         return this.http.get<resources>(this.resourcesUrl + '/' + id);
     }
 
-    getResources(userEmail: string): Observable<resources[]> {
+    /*getResources(userEmail: string): Observable<resources[]> {
         this.filterByEmail(userEmail);
+        return this.http.get<resources[]>(this.resourcesUrl);
+    }
+    */
+
+    getResources(): Observable<resources[]> {
+        this.filterByEmail(this.userEmail);
         return this.http.get<resources[]>(this.resourcesUrl);
     }
 
@@ -84,4 +92,23 @@ export class ResourcesService {
             }
             this.resourcesUrl = this.resourcesUrl.substring(0, start) + this.resourcesUrl.substring(end);
         }
+
+    deleteResource(resourceID: string) {
+        console.log ("here!")
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+        };
+
+        if(this.parameterPresent('email')){
+            this.removeParameter('email')
+            let locationOfQuestionMark = this.resourcesUrl.indexOf('?')
+            this.resourcesUrl = this.resourcesUrl.substring(0, locationOfQuestionMark) + this.resourcesUrl.substring(locationOfQuestionMark + 1, this.resourcesUrl.length)
+        }
+        console.log(this.resourcesUrl + '/delete/' + resourceID)
+        console.log(this.http.delete(this.resourcesUrl + '/delete/' + resourceID, httpOptions))
+        // Send post request to add a new goal with the goal data as the body with specified headers.
+        return this.http.delete (this.resourcesUrl + '/delete/' + resourceID, httpOptions);
+    }
 }

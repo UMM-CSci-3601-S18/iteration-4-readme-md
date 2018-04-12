@@ -80,6 +80,7 @@ public class Server {
         get("api/resources/:id", resourcesRequestHandler::getResourcesJSON);
         get("api/resources", resourcesRequestHandler::getResources);
         post("api/resources/new", resourcesRequestHandler::addNewResources);
+        delete("api/resources/delete/:id", resourcesRequestHandler::deleteResource);
 
         get("api/emojis", emojiRequestHandler::getEmojis);
         get("api/emojis/:id", emojiRequestHandler::getEmojiJSON);

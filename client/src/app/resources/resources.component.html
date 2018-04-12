@@ -11,12 +11,13 @@
         <mat-divider></mat-divider>
 
         <mat-accordion *ngIf="resources; else resourcesError" >
-            <mat-expansion-panel #elem class="resources" [id]="resources.resourceName"  *ngFor="let resources of this.filterResources(resourcesName)">
+            <mat-expansion-panel #elem class="resources" *ngFor="let resource of this.filterResources(resourcesName)">
                 <mat-expansion-panel-header>
-                    <mat-panel-title id="test">{{resources.resourceName}}</mat-panel-title>
-                    <mat-panel-description >{{resources.resourcePhone}}</mat-panel-description>
+                    <mat-panel-title>{{resource.resourceName}}</mat-panel-title>
+                    <mat-panel-description >{{resource.resourcePhone}}</mat-panel-description>
+                    <button id = "deleteContact" mat-raised-button (click)="deleteResource(resource.resourcesId)">Delete Contact</button>
                 </mat-expansion-panel-header>
-                <mat-panel-description >{{resources.resourceBody}}</mat-panel-description>
+                <mat-panel-description >{{resource.resourceBody}}</mat-panel-description>
             </mat-expansion-panel>
         </mat-accordion>
 
