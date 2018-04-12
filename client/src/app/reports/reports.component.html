@@ -4,17 +4,20 @@
         <div flex-gt-sm="80" flex-offset-gt-sm="10">
             <mat-card class="reportscard">
                 <mat-card-title id="reports-title">Reports
-                    <mat-select placehoder="Mood">
-                        <mat-option *ngFor="let mood of moods" [value]="mood.value">
-                            {{emojiMood == mood.viewValue}}
-                        </mat-option>
+                    <mat-select id="selector" placeholder = "Select Mood"[(value)]="emojiMood">
+                        <mat-option value = 1>Anxious</mat-option>
+                        <mat-option value = 2>Sad</mat-option>
+                        <mat-option value = 3>Down</mat-option>
+                        <mat-option value = 4>Meh</mat-option>
+                        <mat-option value = 5>Happy</mat-option>
+                        <mat-option value = 6>Radiant</mat-option>
                     </mat-select>
                 </mat-card-title>
                 <mat-divider></mat-divider>
                 <mat-card-content>
 
                     <mat-list *ngIf="emojis; else emojiError" >
-                        <mat-list-item #elem class="emoji" [id]="emoji._id['$oid']"  *ngFor="let emoji of this.filterEmojis(emojiOwner)">
+                        <mat-list-item #elem class="emoji" [id]="emoji._id['$oid']"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
                                 <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
                             <img matListAvatar src="assets/Emojis/{{emoji.mood}}.png" style="width: 48px; height: 48px">
 
