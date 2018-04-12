@@ -21,10 +21,9 @@ export class GoalPage {
          return goal;
      }
 
-     getFirstGoalTitle() {
-         const elementToGet = element(by.className(".mat-expansion-panel-title")).first();
-         elementToGet.click();
-         //elementToGet.getAttribute('mat-panel-title');
+     getGoalText() {
+        //What is elementToGet is? Which Id should I put here?
+         const elementToGet = element(by.id(goal._id['$oid']));
          return elementToGet.getText();
      }
 
@@ -53,18 +52,31 @@ export class GoalPage {
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
 
-    testAddNewGoal(name: string, frequency: string) {
+    testAddNewGoal(name: string, category: string, purpose: string) {
         const input = element(by.id('addNewGoal'));
         input.click();
         const nameInput = element(by.id('name'));
         nameInput.sendKeys(name);
-        const frequencyInput = element(by.id('frequency'));
-        frequencyInput.click();
-        frequencyInput.sendKeys(frequency);
+
+        const categoryInput = element(by.id('category-list'));
+        categoryInput.click();
+        categoryInput.sendKeys(category);
+
+        //How to select mat-option?
+        const purposeInput = element(by.id('purposeField'));
+        purposeInput.click();
+        purposeInput.sendKeys(purpose)
+
         const button = element(by.id('confirmAddGoalButton'));
         const buttonWasThere = button.isDisplayed();
         button.click();
         return buttonWasThere;
     }
+
+    testDeleteGoal(){
+        const input = element(by.id('deletegoal'));
+        input.click();
+
+}
 
 }

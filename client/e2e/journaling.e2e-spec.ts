@@ -27,6 +27,7 @@ describe('Journaling Page', () => {
 
     it('Should be able view a journal entry', () => {
         JournalingPage.navigateTo();
+        var buttonExisted = page.selectJournal("I love CSci")
         expect(page.getJournalText()).toContain('I love CSci');
     });
 
@@ -38,6 +39,7 @@ describe('Journaling Page', () => {
 
     it('Should be able to view a journal entry', () => {
         JournalingPage.navigateTo();
+        var buttonExisted = page.selectJournal("Wow")
         expect(page.getJournalText()).toContain('Wow');
     });
 });

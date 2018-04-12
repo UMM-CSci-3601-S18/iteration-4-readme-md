@@ -27,15 +27,14 @@ describe('', () => {
 
     it('Should add a goal.', () => {
         GoalPage.navigateTo();
-        expect(page.testAddNewGoal("Go to bed early", "Every day")).toBeTruthy();
+        expect(page.testAddNewGoal("Get score", "Work", "improve salary")).toBeTruthy();
     });
 
     // Doesn't work
 
     it('Should view a goal.', () => {
         GoalPage.navigateTo();
-        expect(page.clickElementByCss(".mat-expansion-panel")).toBeTruthy();
-        expect(page.getFirstGoalTitle()).toBe('Go to bed early');
+        expect(page.getGoalText()).toBe('Get score');
     });
 /*
      it('Should open the expansion panel and get the Name', () => {
