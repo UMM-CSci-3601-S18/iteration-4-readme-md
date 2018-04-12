@@ -30,7 +30,17 @@ describe('AppComponent', () => {
     beforeEach(() => {
         //stub authService
         authServiceStub = {
-            authState: Observable.of(null),
+            authState: Observable.of({
+                provider: '',
+                id: '',
+                email: '',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            }),
             signIn: providerId => {
                 return new Promise(resolve => {
                     let user = {
@@ -46,7 +56,7 @@ describe('AppComponent', () => {
                     };
 
                     // set authstate to the user
-                    this.authState = Observable.of(user);
+                    authServiceStub.authState = Observable.of(user);
 
                     resolve(user);
                 });
@@ -55,7 +65,7 @@ describe('AppComponent', () => {
             signOut: () => {
                 return new Promise(resolve => {
                     //set user to null when signing out
-                    this.authState = Observable.of(null);
+                    appInstance.user = null;
                     resolve('Signed Out');
                 });
             }
@@ -109,9 +119,11 @@ describe('AppComponent', () => {
         expect(appInstance.title).toEqual('Sunshine Journal');
     });
 
-    xit('user name should be test dummy after logging in', () => {
-        appInstance.signInWithGoogle();
-        expect(appInstance.user.name).toBe('test dummy');
+    it('user should be null after logging out', () => {
+        appInstance.ngOnInit();
+        expect(appInstance.user.name).toBe('test dummy')
+        appInstance.signOut();
+        expect(appInstance.user).toBeNull();
     });
 
 });
