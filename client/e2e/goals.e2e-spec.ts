@@ -38,7 +38,6 @@ describe('', () => {
         expect(element(by.binding('Get score'))).toBeDefined();
     });
 
-    it('Should ')
 /*
      it('Should open the expansion panel and get the Name', () => {
          GoalPage.navigateTo();

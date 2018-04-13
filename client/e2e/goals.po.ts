@@ -55,7 +55,7 @@ export class GoalPage {
     testAddNewGoal(name: string, category: string, purpose: string) {
         const input = element(by.id('addNewGoal'));
         input.click();
-        const nameInput = element(by.id('name'));
+        const nameInput = element(by.id('nameField'));
         nameInput.sendKeys(name);
 
         const categoryInput = element(by.id('category-list'));
