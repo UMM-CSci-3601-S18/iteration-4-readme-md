@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddGoalComponent} from "./add-goals.component";
 import {MatSnackBar} from '@angular/material';
 import {AuthService, SocialUser} from "angularx-social-login";
+import {environment} from "../../environments/environment";
 @Component({
     selector: 'app-goals-component',
     templateUrl: './goals.component.html',
@@ -157,9 +158,26 @@ export class GoalsComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        this.authService.authState.subscribe((user) => {
-            this.user = user;
-        });
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
+                this.user = user;
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+        }
         this.refreshGoals();
     }
 

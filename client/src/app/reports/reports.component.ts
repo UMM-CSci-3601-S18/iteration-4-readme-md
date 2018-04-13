@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Emoji} from "../emoji";
 import {ReportsService} from "./reports.service";
 import {AuthService, SocialUser} from "angularx-social-login";
+import {environment} from "../../environments/environment";
 
 @Component({
     selector: 'app-reports-component',
@@ -92,9 +93,26 @@ export class ReportsComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.authService.authState.subscribe((user) => {
-            this.user = user;
-        });
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
+                this.user = user;
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+        }
         this.refreshEmojis();
     }
 

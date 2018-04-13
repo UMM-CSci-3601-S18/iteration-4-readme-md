@@ -25,16 +25,13 @@ export class AppComponent implements OnInit {
             this.signOut();
             return;
         }
-        console.log('1\n');
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
         // once the user signs in, authenticate it
             .then((user) => {
-                console.log('2\n');
                 return this.loginService.authenticate(user.idToken);
             })
 
             .then((authResponse) => {
-                console.log('3\n');
                 // check that our client id is within the response from google
                 if (authResponse.aud != '557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com') {
                     console.log('Error: login response did not contain our app\'s client ID');
@@ -68,18 +65,38 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.authState.subscribe((user) => {
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
 
-            this.user = user;
+                this.user = user;
 
-            this.loggedIn = (this.user != null);
-            if(this.loggedIn) {
-                this.buttonText = 'Sign Out';
-            }
-            else {
-                this.buttonText = 'Sign In';
-            }
-        });
+                this.loggedIn = (this.user != null);
+                if(this.loggedIn) {
+                    this.buttonText = 'Sign Out';
+                }
+                else {
+                    this.buttonText = 'Sign In';
+                }
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+            this.buttonText = 'Sign Out';
+            this.loggedIn = true;
+        }
+
     }
 
     openDialog(): void{

@@ -37,7 +37,7 @@ task runClientTestWithCoverage(type: Exec, dependsOn: yarn_install) {
 task runE2ETest(type:Exec){
     group = 'application'
     executable "ng"
-    args = ["e2e"]
+    args = ["e2e", "--environment=e2e"]
 }
 
 task runClientTests(dependsOn: yarn_run_test) {
