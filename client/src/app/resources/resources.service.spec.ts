@@ -10,35 +10,32 @@ describe('Resource list service: ', () => {
     // A small collection of test journals
     const testResources: resources[] = [
         {
-            resourcesId: '5ab2bc3742f5a7b6f0f48626',
-            resourceName: 'Lir Fealladh',
-            resourceBody: 'My farther',
-            resourcePhone: '555-555-5550',
-            resourcesUrl: 'www.fakeurl.com',
+            _id: '5ab2bc3742f5a7b6f0f48626',
+            name: 'Lir Fealladh',
+            body: 'My farther',
+            phone: '555-555-5550',
             email: 'Lir@Fealladh.com'
 
         },
         {
-            resourcesId: '5ab2bc37bc8681f8f0ddf797',
-            resourceName: 'Reina',
-            resourceBody: 'My best friend',
-            resourcePhone: '555-555-5551',
-            resourcesUrl: '',
+            _id: '5ab2bc37bc8681f8f0ddf797',
+            name: 'Reina',
+            body: 'My best friend',
+            phone: '555-555-5551',
             email: 'Reina@myfriend.com'
 
         },
         {
-            resourcesId: '5ab2bc370290adc56f8065fc',
-            resourceName: 'Suicide Prevention Lifeline',
-            resourceBody: 'We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.',
-            resourcePhone: '1-800-555-5555',
-            resourcesUrl: '',
+            _id: '5ab2bc370290adc56f8065fc',
+            name: 'Suicide Prevention Lifeline',
+            body: 'We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.',
+            phone: '1-800-555-5555',
             email: 'preventsuicide@lifeline.org'
 
         }
     ];
     const mResources: resources[] = testResources.filter(resources =>
-        resources.resourceName.toLowerCase().indexOf('m') !== -1
+        resources.name.toLowerCase().indexOf('m') !== -1
     );
 
     // We will need some url information from the journalListService to meaningfully test subject filtering;
@@ -77,7 +74,7 @@ describe('Resource list service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testJournals) a few lines
         // down.
-        resourcesService.getResources('').subscribe(
+        resourcesService.getResources().subscribe(
             resources => expect(resources).toBe(testResources)
         );
 
@@ -91,19 +88,9 @@ describe('Resource list service: ', () => {
         req.flush(testResources);
     });
 
-    it('getResources(resourceName) adds appropriate param string to called URL', () => {
-        resourcesService.getResources('m').subscribe(
-            resources => expect(resources).toEqual(mResources)
-        );
-
-        const req = httpTestingController.expectOne(resourcesService.baseUrl + '?email=m&');
-        expect(req.request.method).toEqual('GET');
-        req.flush(mResources);
-    });
-
     it('getResourceById() calls api/resources/id', () => {
         const targetResource: resources = testResources[1];
-        const targetId: string = targetResource.resourceName;
+        const targetId: string = targetResource._id;
         resourcesService.getResourcesById(targetId).subscribe(
             resources => expect(resources).toBe(targetResource)
         );
@@ -117,11 +104,10 @@ describe('Resource list service: ', () => {
     it('adding a resource calls api/resources/new', () => {
         const bryon_id = { '$oid': 'bryon_id' };
         const newResource: resources = {
-            resourcesId: '5ab2bc37e194ff1f2434eb46',
-            resourceName: 'Bryon',
-            resourceBody: "My Other Best Friend",
-            resourcePhone: "555-555-5552",
-            resourcesUrl: "",
+            _id: '5ab2bc37e194ff1f2434eb46',
+            name: 'Bryon',
+            body: "My Other Best Friend",
+            phone: "555-555-5552",
             email: "bryonotherbestfriend.gov",
         };
 

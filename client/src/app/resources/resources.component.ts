@@ -29,11 +29,10 @@ export class ResourcesComponent implements OnInit{
     openDialog(): void {
         const newResources: resources =
             {
-                resourcesId: '',
-                resourceName: '',
-                resourceBody: '',
-                resourcePhone: '',
-                resourcesUrl: '',
+                _id: '',
+                name: '',
+                body: '',
+                phone: '',
                 email: this.user.email,
             };
         const dialogRef = this.dialog.open(AddResourcesComponent, {
@@ -64,7 +63,7 @@ export class ResourcesComponent implements OnInit{
             searchName = searchName.toLocaleLowerCase();
 
             this.filteredResources = this.filteredResources.filter(resources => {
-                return !searchName || resources.resourceName.toLowerCase().indexOf(searchName) !== -1;
+                return !searchName || resources.name.toLowerCase().indexOf(searchName) !== -1;
             });
         }
         return this.filteredResources;

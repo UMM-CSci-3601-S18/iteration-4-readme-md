@@ -63,13 +63,12 @@ public class ResourcesController extends SuperController{
     }
 */
 
-    public String addNewResources(String id, String name, String body, String phone, String url, String email) {
+    public String addNewResources(String name, String body, String phone, String email) {
 
         Document newResources = new Document();
-        newResources.append("resourceName", name);
-        newResources.append("resourceBody", body);
-        newResources.append("resourcePhone", phone);
-        newResources.append("resourcesUrl", url);
+        newResources.append("name", name);
+        newResources.append("body", body);
+        newResources.append("phone", phone);
         newResources.append("email", email);
 
 
@@ -78,8 +77,8 @@ public class ResourcesController extends SuperController{
             collection.insertOne(newResources);
 
             ObjectId Id = newResources.getObjectId("_id");
-            System.err.println("Successfully added new resource [resourceId=" + id + ", resourceName=" + name +
-                ", resourceBody=" + body + " resourcePhone=" + phone + " resourceUrl=" + url + " email=" + email + ']');
+            System.err.println("Successfully added new resource [name=" + name +
+                ", body=" + body + " phone=" + phone +  " email=" + email + ']');
 
             return JSON.serialize(Id);
         } catch (MongoException me) {

@@ -33,7 +33,7 @@ export class CrisisButtonComponent implements OnInit{
             searchName = searchName.toLocaleLowerCase();
 
             this.filteredResources = this.filteredResources.filter(resources => {
-                return !searchName || resources.resourceName.toLowerCase().indexOf(searchName) !== -1;
+                return !searchName || resources.name.toLowerCase().indexOf(searchName) !== -1;
             });
         }
         return this.filteredResources;
