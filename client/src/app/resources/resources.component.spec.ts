@@ -29,29 +29,26 @@ describe('Resource list', () => {
         resourceListServiceStub = {
             getResources: () => Observable.of([
                 {
-                    resourcesId: '5ab2bc3742f5a7b6f0f48626',
-                    resourceName: 'Lir Fealladh',
-                    resourceBody: 'My farther',
-                    resourcePhone: '555-555-5550',
-                    resourcesUrl: 'www.fakeurl.com',
+                    _id: '5ab2bc3742f5a7b6f0f48626',
+                    name: 'Lir Fealladh',
+                    body: 'My farther',
+                    phone: '555-555-5550',
                     email: 'Lir@Fealladh.com'
 
                 },
                 {
-                    resourcesId: '5ab2bc37bc8681f8f0ddf797',
-                    resourceName: 'Reina',
-                    resourceBody: 'My best friend',
-                    resourcePhone: '555-555-5551',
-                    resourcesUrl: '',
+                    _id: '5ab2bc37bc8681f8f0ddf797',
+                    name: 'Reina',
+                    body: 'My best friend',
+                    phone: '555-555-5551',
                     email: 'Reina@myfriend.com'
 
                 },
                 {
-                    resourcesId: '5ab2bc370290adc56f8065fc',
-                    resourceName: 'Suicide Prevention Lifeline',
-                    resourceBody: 'We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.',
-                    resourcePhone: '1-800-555-5555',
-                    resourcesUrl: '',
+                    _id: '5ab2bc370290adc56f8065fc',
+                    name: 'Suicide Prevention Lifeline',
+                    body: 'We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.',
+                    phone: '1-800-555-5555',
                     email: 'preventsuicide@lifeline.org'
 
                 }
@@ -97,27 +94,16 @@ describe('Resource list', () => {
     });
 
     it('contains a resource with name \'Lir Fealladh\'', () => {
-        expect(resourceList.resources.some((resource: resources) => resource.resourceName === 'Lir Fealladh')).toBe(true);
+        expect(resourceList.resources.some((resource: resources) => resource.name === 'Lir Fealladh')).toBe(true);
     });
 
     it('doesn\'t contain a user named \'Santa\'', () => {
-        expect(resourceList.resources.some((resource: resources) => resource.resourceName === 'Santa')).toBe(false);
+        expect(resourceList.resources.some((resource: resources) => resource.name === 'Santa')).toBe(false);
     });
 
-    it('has one resources with url', () => {
-        expect(resourceList.resources.filter((resource: resources) => resource.resourcesUrl === 'www.fakeurl.com').length).toBe(1);
-    });
 
     it('has one resources with phone', () => {
-        expect(resourceList.resources.filter((resource: resources) => resource.resourcePhone === '555-555-5551').length).toBe(1);
-    });
-
-    it('resource list filters by name', () => {
-        expect(resourceList.filteredResources.length).toBe(3);
-        resourceList.resourcesName = 'Lir';
-        resourceList.refreshResources().subscribe(() => {
-            expect(resourceList.filteredResources.length).toBe(1);
-        });
+        expect(resourceList.resources.filter((resource: resources) => resource.phone === '555-555-5551').length).toBe(1);
     });
 
 });
@@ -184,11 +170,10 @@ describe('Adding a resource', () => {
     let resourceList: ResourcesComponent;
     let fixture: ComponentFixture<ResourcesComponent>;
     const newResource: resources = {
-        resourcesId: '5ab2bc37e194ff1f2434eb46',
-        resourceName: 'Bryon',
-        resourceBody: "My Other Best Friend",
-        resourcePhone: "555-555-5552",
-        resourcesUrl: "",
+        _id: '',
+        name: 'Bryon',
+        body: "My Other Best Friend",
+        phone: "555-555-5552",
         email: "bryonotherbestfriend.gov",
     };
     const newId = 'new_id';

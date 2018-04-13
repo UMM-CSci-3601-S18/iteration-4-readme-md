@@ -78,17 +78,16 @@ public class ResourcesRequestHandler {
             {
                 try {
                     BasicDBObject dbO = (BasicDBObject) o;
-                    String id = dbO.getString("resourcesId");
-                    String name = dbO.getString("resourceName");
-                    String body = dbO.getString("resourceBody");
-                    String phone = dbO.getString("resourcePhone");
-                    String url = dbO.getString("resourcesUrl");
+                    String id = dbO.getString("_id");
+                    String name = dbO.getString("name");
+                    String body = dbO.getString("body");
+                    String phone = dbO.getString("phone");
                     String email = dbO.getString("email");
 
 
 //
 //                    System.err.println("Adding new resource [id=" + id + ", name=" + name + " phonenumber=" + phonenumber + "email" + email  + ']');
-                    return resourcesController.addNewResources( id, name, body, phone, url, email).toString();
+                    return resourcesController.addNewResources(name, body, phone, email).toString();
                 }
                 catch(NullPointerException e)
                 {
@@ -102,6 +101,25 @@ public class ResourcesRequestHandler {
                 System.err.println("Expected BasicDBObject, received " + o.getClass());
                 return null;
             }
+        }
+        catch(RuntimeException ree)
+        {
+            ree.printStackTrace();
+            return null;
+        }
+    }
+
+    public String deleteResource(Request req, Response res){
+
+        System.out.println("I'm here");
+        System.out.println(req.params(":id"));
+
+        res.type("application/json");
+
+        try {
+            String id = req.params(":id");
+            resourcesController.deleteResource(id);
+            return req.params(":id");
         }
         catch(RuntimeException ree)
         {
