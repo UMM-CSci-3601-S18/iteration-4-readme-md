@@ -118,4 +118,15 @@ public class JournalControllerSpec extends ControllerSuperSpec {
         assertEquals("Subject should match", "Java is the best language", nic1.getString("subject"));
 
     }
+
+    @Test
+    public void deleteJournalTest(){
+        journalController.deleteJournal(nicId.toHexString());
+        Map<String, String[]> argMap = new HashMap<>();
+        String jsonResult = journalController.getItems(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+        assertEquals("Should be 3 goals", 2, docs.size());
+    }
+
+
 }
