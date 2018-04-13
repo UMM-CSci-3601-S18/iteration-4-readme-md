@@ -1,4 +1,5 @@
-import {browser} from 'protractor';
+import {browser, by, element} from 'protractor';
+import {Key} from "selenium-webdriver";
 
 export class AppPage {
     static navigateTo() {
