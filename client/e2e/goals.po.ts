@@ -21,11 +21,11 @@ export class GoalPage {
          return goal;
      }
 
-     getGoalText() {
+     /*getGoalText() {
         //What is elementToGet is? Which Id should I put here?
          const elementToGet = element(by.id(goal._id['$oid']));
          return elementToGet.getText();
-     }
+     }*/
 
      clickElementByCss(css: string) {
          const elementToClick = element(by.css(css));
@@ -63,9 +63,10 @@ export class GoalPage {
         categoryInput.sendKeys(category);
 
         //How to select mat-option?
-        const purposeInput = element(by.id('purposeField'));
+        const purposeInput = element(by.css('.mat-select[value = Work]'));
         purposeInput.click();
         purposeInput.sendKeys(purpose)
+
 
         const button = element(by.id('confirmAddGoalButton'));
         const buttonWasThere = button.isDisplayed();
