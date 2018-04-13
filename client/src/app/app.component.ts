@@ -102,7 +102,7 @@ export class AppComponent implements OnInit {
     openDialog(): void{
         const dialogRef = this.dialog.open(CrisisButtonComponent,{
             width: '500px',
-            height: '500px', //Do what we want, please :)
+            height: '500px', //Makes crisis button popup be a decent size and able to be scrolled. DON'T SET TO auto OR inherit :)
             data: {
                 user: this.user
             }

@@ -9,7 +9,7 @@ import {Journal} from './journal';
 
 export class AddJournalComponent {
 
-    public prompts: String[] = ["test1","test2","How are you Feeling?"];
+    public prompts: String[] = ["What are you grateful for?","What scares you?","How are you Feeling?", "What do you love about your life?","Today I accomplished...","Who made you feel good this week?","What did you enjoy doing this week?","What would you do if you knew you could not fail?","What are your best character traits?","What did you learn this week?","What did you do this week that moved you closer to reaching your goals?"];
 
     public prompt: String = this.generateRandomPrompt();
 
