@@ -107,6 +107,7 @@ export class JournalListComponent implements OnInit {
             journals => {
                 this.refreshJournals();
                 this.loadService();
+                this.selectedJournal = null;
             },
             err => {
                 console.log(err);
