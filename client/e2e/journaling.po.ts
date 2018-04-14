@@ -38,23 +38,34 @@ export class JournalingPage {
         return buttonWasThere;
     }
 
-    static getPageTitle(): promise.Promise<string> {
-        const title = element(by.css('#journal-list-title'));
-        return title.getText();
+/*
+    getJournalText() {
+        const card = element(by.id('journal.subject'));
+        return card.getText();
+    }*/
+
+    /*getJournalText(subject: string) {
+        const card = element(by.id(subject));
+        return card.getText();
+    }*/
+
+    clickSelectJournalButton() {
+        const elementToGet = element(by.id('selectJournal'))
+        elementToGet.click();
     }
 
     getJournalText() {
-        const card = element(by.css('.matCardJournals'));
-        return card.getText();
+        const card = element(by.cssContainingText('.mat-list-item-content', 'I love CSci'));
+        card.getText();
     }
 
-    selectJournal(search: string){
+/*    selectJournal(search: string){
         const input = element(by.id('selectJournal'));
         input.click();
-        const subjectInput = element(by.id('searchjournals'));
+        /!*const subjectInput = element(by.id('searchjournals'));
         subjectInput.click();
-        subjectInput.sendKeys(search);
-    }
+        subjectInput.sendKeys(search);*!/
+    }*/
 
 
 

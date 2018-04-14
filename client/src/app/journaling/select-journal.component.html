@@ -1,4 +1,4 @@
-s<div class="add-journal" layout-gt-sm="row" style="height: 500px">
+<div class="add-journal" layout-gt-sm="row" style="height: 500px">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
 
@@ -11,7 +11,7 @@ s<div class="add-journal" layout-gt-sm="row" style="height: 500px">
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-nav-list id = 'searchjournals' #elem class="journals" *ngFor="let journal of this.filterJournals(journalSearch)">
-                    <mat-list-item  (click)="selectJournal(journal)">
+                    <mat-list-item id="journal.subject" (click)="selectJournal(journal)">
                         {{getReadableDate(journal.date)}} <br> {{journal.subject.slice(0, 50)}}
                     </mat-list-item>
                 </mat-nav-list>
