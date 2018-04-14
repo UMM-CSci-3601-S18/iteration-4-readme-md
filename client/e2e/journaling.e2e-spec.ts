@@ -4,16 +4,11 @@ import {Key} from 'selenium-webdriver';
 
 const origFn = browser.driver.controlFlow().execute;
 
-describe('Journaling Page', () => {
+fdescribe('Journaling Page', () => {
     let page: JournalingPage;
 
     beforeEach(() => {
         page = new JournalingPage();
-    });
-
-    it('Should be titled Journals', () => {
-        JournalingPage.navigateTo();
-        expect(JournalingPage.getPageTitle()).toBe('Journals');
     });
 
     it('Should be able to add a journal entry', ()=> {
@@ -27,19 +22,15 @@ describe('Journaling Page', () => {
 
     it('Should be able view a journal entry', () => {
         JournalingPage.navigateTo();
-        var buttonExisted = page.selectJournal("I love CSci")
-        expect(page.getJournalText()).toContain('I love CSci');
+        page.selectJournal("Brittany");
+        expect(page.getJournalText('Brittany')).toContain('Brittany');
     });
 
     it('Should be able to edit a journal entry', ()=> {
         JournalingPage.navigateTo();
+        page.selectJournal("Brittany");
         var buttonExisted = page.editJournal('Wow', 'Big wow');
         expect(buttonExisted).toBe(true);
     });
 
-    it('Should be able to view a journal entry', () => {
-        JournalingPage.navigateTo();
-        var buttonExisted = page.selectJournal("Wow")
-        expect(page.getJournalText()).toContain('Wow');
-    });
 });

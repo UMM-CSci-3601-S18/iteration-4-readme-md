@@ -56,6 +56,7 @@ export class JournalListComponent implements OnInit {
             this.journalListService.addNewJournal(result).subscribe(
                 addJournalResult => {
                     this.highlightedID = addJournalResult;
+                    this.selectedJournal = newJournal;
                     this.refreshJournals();
                 },
                 err => {
