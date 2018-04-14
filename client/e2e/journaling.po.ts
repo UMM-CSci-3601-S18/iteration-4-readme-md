@@ -54,11 +54,10 @@ export class JournalingPage {
         const subjectInput = element(by.id('searchjournals'));
         subjectInput.click();
         subjectInput.sendKeys(search);
-
-
-
-
-
-
     }
+
+
+
+
+
 }

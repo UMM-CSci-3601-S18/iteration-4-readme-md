@@ -20,21 +20,12 @@ export class AppComponent implements OnInit {
 
     constructor(private authService: AuthService, public dialog: MatDialog, private loginService: LoginService) { }
 
-    //New function to return the name of the active user
-    //window.* is not defined, or 'gettable' straight from HTML *ngIf
-    //So this function will return that
-    getLoginName(){
-        var name = window['name'];
-        return name;
-    }
-
     signInWithGoogle(): void {
         if(this.loggedIn) {
             this.signOut();
             return;
         }
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-
         // once the user signs in, authenticate it
             .then((user) => {
                 return this.loginService.authenticate(user.idToken);
@@ -74,25 +65,44 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.authState.subscribe((user) => {
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
 
-            //only get the user's information if the authentication works
-            this.user = user;
+                this.user = user;
 
-            this.loggedIn = (this.user != null);
-            if(this.loggedIn) {
-                this.buttonText = 'Sign Out';
-            }
-            else {
-                this.buttonText = 'Sign In';
-            }
-        });
+                this.loggedIn = (this.user != null);
+                if(this.loggedIn) {
+                    this.buttonText = 'Sign Out';
+                }
+                else {
+                    this.buttonText = 'Sign In';
+                }
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+            this.buttonText = 'Sign Out';
+            this.loggedIn = true;
+        }
+
     }
 
     openDialog(): void{
         const dialogRef = this.dialog.open(CrisisButtonComponent,{
             width: '500px',
-            height: 'auto', //Do what we want, please :)
+            height: '500px', //Makes crisis button popup be a decent size and able to be scrolled. DON'T SET TO auto OR inherit :)
             data: {
                 user: this.user
             }

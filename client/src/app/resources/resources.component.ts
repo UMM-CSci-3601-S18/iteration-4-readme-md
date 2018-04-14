@@ -5,6 +5,7 @@ import {ResourcesService} from "./resources.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddResourcesComponent} from "./add-resources.component";
 import {AuthService, SocialUser} from "angularx-social-login";
+import {environment} from "../../environments/environment";
 
 @Component({
     selector: 'resources-component',
@@ -29,11 +30,10 @@ export class ResourcesComponent implements OnInit{
     openDialog(): void {
         const newResources: resources =
             {
-                resourcesId: '',
-                resourceName: '',
-                resourceBody: '',
-                resourcePhone: '',
-                resourcesUrl: '',
+                _id: '',
+                name: '',
+                body: '',
+                phone: '',
                 email: this.user.email,
             };
         const dialogRef = this.dialog.open(AddResourcesComponent, {
@@ -64,7 +64,7 @@ export class ResourcesComponent implements OnInit{
             searchName = searchName.toLocaleLowerCase();
 
             this.filteredResources = this.filteredResources.filter(resources => {
-                return !searchName || resources.resourceName.toLowerCase().indexOf(searchName) !== -1;
+                return !searchName || resources.name.toLowerCase().indexOf(searchName) !== -1;
             });
         }
         return this.filteredResources;
@@ -81,7 +81,7 @@ export class ResourcesComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources(this.user.email);
+        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources();
         resourcesListObservable.subscribe(
             resources => {
                 this.resources = resources;
@@ -93,22 +93,55 @@ export class ResourcesComponent implements OnInit{
         return resourcesListObservable;
     }
 
+    deleteResource(_id: string){
+        this.resourcesService.deleteResource(_id).subscribe(
+            resources => {
+                this.refreshResources();
+                this.loadService();
+            },
+            err => {
+                console.log(err);
+                this.refreshResources();
+                this.loadService();
+            }
+        );
+    }
+
+
+    loadService(): void {
+        this.resourcesService.getResources().subscribe(
+            resources => {
+                this.resources = resources;
+                this.filteredResources = this.resources;
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
 
     ngOnInit(): void {
-        this.authService.authState.subscribe((user) => {
-            this.user = user;
-        });
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
+                this.user = user;
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+        }
         this.refreshResources();
     }
-
-    //New function to return the name of the active user
-    //window.* is not defined, or 'gettable' straight from HTML *ngIf
-    //So this function will return that
-    getLoginName(){
-        var name = this.user.firstName;
-        return name;
-    }
-
-
 
 }

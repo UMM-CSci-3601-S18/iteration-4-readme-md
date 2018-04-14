@@ -5,13 +5,13 @@
             <mat-divider></mat-divider>
             <mat-card-content>
                 <mat-form-field>
-                    <input matInput #input id="nameField" placeholder="Name" [(ngModel)]="data.resources.resourceName">
+                    <input matInput #input id="nameField" placeholder="Name" [(ngModel)]="data.resources.name">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput #input id="bodyField" placeholder="Description" [(ngModel)]="data.resources.resourceBody">
+                    <input matInput #input id="bodyField" placeholder="Description" [(ngModel)]="data.resources.body">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput #input id="phonenumberField" placeholder="Phone Number" [(ngModel)]="data.resources.resourcePhone">
+                    <input matInput #input id="phonenumberField" placeholder="Phone Number" [(ngModel)]="data.resources.phone">
                 </mat-form-field>
                 <button mat-button id="confirmAddresourcesButton" [mat-dialog-close]="data.resources" type="button">Add Contact</button>
             </mat-card-content>

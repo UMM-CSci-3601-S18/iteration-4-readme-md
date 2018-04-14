@@ -5,6 +5,7 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 import {ResponseComponent} from "./response.component";
 import {AppComponent} from "../app.component";
 import {AuthService, SocialUser} from "angularx-social-login";
+import {environment} from "../../environments/environment";
 
 // Selector will change when we know more
 
@@ -85,9 +86,26 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.authService.authState.subscribe((user) => {
-            this.user = user;
-        });
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
+                this.user = user;
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+        }
     }
 
 }

@@ -29,37 +29,33 @@ public class ResourcesControllerSpec extends ControllerSuperSpec{
         resourceDocuments.drop();
         List<Document> testResource = new ArrayList<>();
         testResource.add(Document.parse("{\n" +
-            "                    resourcesId: \"5ab2bc3742f5a7b6f0f48626\",\n" +
-            "                    resourceName: \"Lir Fealladh\",\n" +
-            "                    resourceBody: \"My Father\",\n" +
-            "                    resourcePhone: \"555-555-5550\",\n" +
-            "                    resourcesUrl: \"www.fakeurl.com\",\n" +
+            "                    _id: \"5ab2bc3742f5a7b6f0f48626\",\n" +
+            "                    name: \"Lir Fealladh\",\n" +
+            "                    body: \"My Father\",\n" +
+            "                    phone: \"555-555-5550\",\n" +
             "                    email: \"Lir@Fealladh.com\",\n" +
             "                }"));
         testResource.add(Document.parse("{\n" +
-            "                    resourcesId: \"5ab2bc37bc8681f8f0ddf797\",\n" +
-            "                    resourceName: \"Reina\",\n" +
-            "                    resourceBody: \"My best friend\",\n" +
-            "                    resourcePhone: \"555-555-5551\",\n" +
-            "                    resourcesUrl: \"www.fakeurl2.com\",\n" +
+            "                    _id: \"5ab2bc37bc8681f8f0ddf797\",\n" +
+            "                    name: \"Reina\",\n" +
+            "                    body: \"My best friend\",\n" +
+            "                    phone: \"555-555-5551\",\n" +
             "                    email: \"Reina@myfriend.com\",\n" +
             "                }"));
         testResource.add(Document.parse("{\n" +
-            "                    resourcesId: \"5ab2bc370290adc56f8065fc\",\n" +
-            "                    resourceName: \"Suicide Prevention Lifeline\",\n" +
-            "                    resourceBody: \"We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.\",\n" +
-            "                    resourcePhone: \"1-800-555-5555\",\n" +
-            "                    resourcesUrl: \"www.fakeurl3.com\",\n" +
+            "                    _id: \"5ab2bc370290adc56f8065fc\",\n" +
+            "                    name: \"Suicide Prevention Lifeline\",\n" +
+            "                    body: \"We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.\",\n" +
+            "                    phone: \"1-800-555-5555\",\n" +
             "                    email: \"preventsuicide@lifeline.org\",\n" +
             "                }"));
 
         floraId = new ObjectId();
         BasicDBObject flora = new BasicDBObject("_id", floraId);
         flora = flora.append("resourcesId", "5ab2bc399990adc56f8065fz")
-            .append("resourceName", "Flora Hull")
-            .append("resourceBody", "Flower shop?")
-            .append("resourcePhone", "922-486-2948")
-            .append("resourcesUrl", "")
+            .append("name", "Flora Hull")
+            .append("body", "Flower shop?")
+            .append("phone", "922-486-2948")
             .append("email", "florahull@flowershopquestionmark.net");
         resourceDocuments.insertMany(testResource);
         resourceDocuments.insertOne(Document.parse(flora.toJson()));
@@ -69,7 +65,7 @@ public class ResourcesControllerSpec extends ControllerSuperSpec{
 
     private static String getName(BsonValue val) {
         BsonDocument doc = val.asDocument();
-        return ((BsonString) doc.get("resourceName")).getValue();
+        return ((BsonString) doc.get("name")).getValue();
     }
 
     private static String getEmail(BsonValue value) {
@@ -106,14 +102,14 @@ public class ResourcesControllerSpec extends ControllerSuperSpec{
         System.out.println(jsonResult);
         Document flora = Document.parse(jsonResult);
 
-        assertEquals("Name should match", "Flora Hull", flora.getString("resourceName"));
+        assertEquals("Name should match", "Flora Hull", flora.getString("name"));
         String noJsonResult = resourceController.getItem(new ObjectId().toHexString());
         assertNull("No name should match",noJsonResult);
     }
 
     @Test
     public void addResourceTest() {
-        String newId = resourceController.addNewResources("5ab2bc37bc9991f8f0ddf797", "Rik", "My Brother", "555-555-5589", "www.fakeurl4.com", "rik12365@gmail.com");
+        String newId = resourceController.addNewResources("Rik", "My Brother", "555-555-5589", "rik12365@gmail.com");
 
         assertNotNull("Add new resource should return true when an resource is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();

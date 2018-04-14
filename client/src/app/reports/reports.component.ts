@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Emoji} from "../emoji";
 import {ReportsService} from "./reports.service";
 import {AuthService, SocialUser} from "angularx-social-login";
+import {environment} from "../../environments/environment";
 
 @Component({
     selector: 'app-reports-component',
@@ -18,7 +19,16 @@ export class ReportsComponent implements OnInit {
     // These are the target values used in searching.
     // We should rename them to make that clearer.
     public emojiOwner: string;
+    public emojiMood: any;
 
+    moods = [
+        {value: 'Anxious', viewValue:1},
+        {value: 'sad', viewValue:2},
+        {value: 'down', viewValue:3},
+        {value: 'meh', viewValue:4},
+        {value: 'happy', viewValue:5},
+        {value: 'radiant', viewValue:6},
+    ]
 
     // Inject the EmojiListService into this component.
     constructor(public reportsService: ReportsService, public authService: AuthService) {
@@ -26,11 +36,11 @@ export class ReportsComponent implements OnInit {
     }
 
 
-    public filterEmojis(searchOwner): Emoji[] {
+    public filterEmojis(searchOwner, searchMood): Emoji[] {
 
         this.filteredEmojis = this.emojis;
 
-        // Filter by name
+        // Filter by owner
         if (searchOwner != null) {
             searchOwner = searchOwner.toLocaleLowerCase();
 
@@ -38,6 +48,14 @@ export class ReportsComponent implements OnInit {
                 return !searchOwner || emoji.owner.toLowerCase().indexOf(searchOwner) !== -1;
             });
         }
+
+        // Filter by mood
+        if (searchMood != null) {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return !searchMood || emoji.mood == searchMood;
+            });
+        }
+
 
         // Sort by date
         this.filteredEmojis = this.filteredEmojis.sort((emoji1, emoji2) => {
@@ -65,7 +83,7 @@ export class ReportsComponent implements OnInit {
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;
-                this.filterEmojis(this.emojiOwner);
+                this.filterEmojis(this.emojiOwner,this.emojiMood);
             },
             err => {
                 console.log(err);
@@ -75,9 +93,26 @@ export class ReportsComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.authService.authState.subscribe((user) => {
-            this.user = user;
-        });
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
+                this.user = user;
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+        }
         this.refreshEmojis();
     }
 

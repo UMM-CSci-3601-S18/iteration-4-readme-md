@@ -4,12 +4,12 @@
         <mat-divider></mat-divider>
 
         <mat-accordion *ngIf="resources; else resourcesError" >
-            <mat-expansion-panel #elem class="resources" [id]="resources.resourceName"  *ngFor="let resources of this.filterResources(resourcesName)">
+            <mat-expansion-panel #elem class="resources" *ngFor="let resource of resources">
                 <mat-expansion-panel-header>
-                    <mat-panel-description >{{resources.resourceName}}</mat-panel-description>
+                    <mat-panel-description >{{resource.name}}</mat-panel-description>
+                    <mat-panel-description >{{resource.phone}}</mat-panel-description>
                 </mat-expansion-panel-header>
-                <mat-panel-description >{{resources.resourceBody}}</mat-panel-description>
-                <mat-panel-description >{{resources.resourcePhone}}</mat-panel-description>
+                <mat-panel-description >{{resource.body}}</mat-panel-description>
             </mat-expansion-panel>
         </mat-accordion>
 
@@ -27,16 +27,14 @@
     <mat-card-content class="contact-numbers">
         <mat-card-title class="contact-numbers-title"><i class="material-icons">phone_forwarded</i><mat-icon class="little-phone-icon">phone</mat-icon>Contact Numbers</mat-card-title>
         <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
-            to have support. It's always okay to have someone to talk to</mat-card-subtitle>
+            to have support. It's always okay to have someone to talk to.</mat-card-subtitle>
 
         <mat-expansion-panel id="suicide-prevention-lifeline" #elem class="contact-numbers-to-call">
             <mat-expansion-panel-header>
                 <mat-panel-title class="hotline-company-name">Suicide Prevention Lifeline</mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-panel-description>We can all help prevent suicide. The Lifeline provides 24/7,
-                free and confidential support for people in distress, prevention and crisis
-                resources for you or your loved ones, and best practices
-                for professionals.</mat-panel-description>
+            <mat-panel-description>Provides 24/7, free and confidential support for people in distress and prevention and crisis
+                resources for you or your loved ones.</mat-panel-description>
             <br>
             <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 1-800-273-8255</mat-panel-description>
         </mat-expansion-panel>
@@ -45,11 +43,8 @@
             <mat-expansion-panel-header>
                 <mat-panel-title class="hotline-company-name">Crisis Hotline</mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-panel-description>Crisis Call Center’s 24-hour crisis line often
-                serves as the first point of contact for individuals who are seeking
-                help, support, and information. Crisis can affect anyone at any time.
-                The need for emotional support or referral assistance is something most
-                individuals encounter at some point in their lives.</mat-panel-description>
+            <mat-panel-description>24-hour crisis line often serves as the first point of contact for individuals who are seeking
+                help and support.</mat-panel-description>
             <br>
             <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 775-784-8090</mat-panel-description>
         </mat-expansion-panel>
@@ -61,8 +56,7 @@
             <mat-panel-description>Free, 24/7 support for people in crisis. Every texter
                 is connected with a Crisis Counselor, a real-life human being trained to
                 bring texters from a hot moment to a cool calm through active listening
-                and collaborative problem solving. All of our Crisis Counselors are volunteers,
-                donating their time to helping people in crisis.</mat-panel-description>
+                and collaborative problem solving.</mat-panel-description>
             <br>
         </mat-expansion-panel>
     </mat-card-content>
