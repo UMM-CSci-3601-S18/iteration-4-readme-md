@@ -30,7 +30,7 @@ export class JournalingPage {
         subjectInput.sendKeys(subject);
         const bodyInput = element(by.id('bodyField'));
         bodyInput.click();
-        subjectInput.clear();
+        bodyInput.clear();
         bodyInput.sendKeys(body);
         const button = element(by.css('#confirmAddJournalButton'));
         const buttonWasThere = button.isDisplayed();

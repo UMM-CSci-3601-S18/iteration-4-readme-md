@@ -4,7 +4,7 @@ import {Key} from 'selenium-webdriver';
 
 const origFn = browser.driver.controlFlow().execute;
 
-fdescribe('Journaling Page', () => {
+describe('Journaling Page', () => {
     let page: JournalingPage;
 
     beforeEach(() => {
