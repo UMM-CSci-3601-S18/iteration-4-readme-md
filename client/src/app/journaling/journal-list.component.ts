@@ -56,6 +56,7 @@ export class JournalListComponent implements OnInit {
             this.journalListService.addNewJournal(result).subscribe(
                 addJournalResult => {
                     this.highlightedID = addJournalResult;
+                    this.selectedJournal = newJournal;
                     this.refreshJournals();
                 },
                 err => {
@@ -92,6 +93,9 @@ export class JournalListComponent implements OnInit {
             this.journalListService.editJournal(result).subscribe(
                 editJournalResult => {
                     //this.highlightedID = editJournalResult;
+                    if(result != null) {
+                        this.selectedJournal = result;
+                    }
                     this.refreshJournals();
                 },
                 err => {
@@ -113,6 +117,7 @@ export class JournalListComponent implements OnInit {
                 console.log(err);
                 this.refreshJournals();
                 this.loadService();
+                this.selectedJournal = null;
             }
         );
     }
