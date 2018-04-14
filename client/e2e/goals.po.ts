@@ -14,24 +14,25 @@ export class GoalPage {
          selectButton.click();
      }
 
-     getUniqueGoal(name: string) {
-         const goal = element(by.id(name)).getText();
-         this.highlightElement(by.id(name));
-
+     getUniqueGoal() {
+         const goal = element(by.cssContainingText('.mat-card-title', 'Go to bed early')).getText();
          return goal;
      }
 
-     /*getGoalText() {
-        //What is elementToGet is? Which Id should I put here?
-         const elementToGet = element(by.id(goal._id['$oid']));
-         return elementToGet.getText();
-     }*/
-
-     clickElementByCss(css: string) {
-         const elementToClick = element(by.css(css));
+     clickComplete() {
+         const elementToClick = element(by.id('complete'));
          elementToClick.click();
-         return elementToClick.isPresent();
      }
+
+    clickCompleteTab() {
+        const element2ToClick = element(by.id('md-tab-label-0-1'));
+        element2ToClick.click();
+    }
+
+    clickDelete() {
+        const element3ToClick = element(by.id('delete'));
+        element3ToClick.click();
+    }
 
     static clickElement(elementId: string){
         const input = element(by.id(elementId));
@@ -51,25 +52,19 @@ export class GoalPage {
 
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
-
-    testAddNewGoal(name: string, /*category: string,*/ purpose: string) {
-        const input = element(by.id('addNewGoal'));
+       
+    testAddNewGoal(name: string, purpose: string) {
+        const input = element(by.id('addNewGoalButton'));
         input.click();
         const nameInput = element(by.id('nameField'));
-        nameInput.click();
         nameInput.sendKeys(name);
-
-        /*const categoryInput = element(by.value('Work'));
+        const categoryInput = element(by.id('category-list'));
         categoryInput.click();
-        categoryInput.sendKeys(category);*/
-
-        //How to select mat-option?
+        const categoryItem = element(by.cssContainingText('.mat-option', 'Chores')); //https://github.com/angular/protractor/issues/4304
+        categoryItem.click();
         const purposeInput = element(by.id('purposeField'));
-        purposeInput.click();
         purposeInput.sendKeys(purpose);
-
-
-        const button = element(by.css('confirmAddGoalButton'));
+        const button = element(by.id('confirmAddGoalButton'));
         const buttonWasThere = button.isDisplayed();
         button.click();
         return buttonWasThere;

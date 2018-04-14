@@ -27,31 +27,23 @@ describe('', () => {
 
     it('Should add a goal.', () => {
         GoalPage.navigateTo();
-        var buttonExisted = page.testAddNewGoal('get', 'pass');
-/*
-        expect(page.testAddNewGoal("get name", "get work")).toBeTruthy();
-*/
+        expect(page.testAddNewGoal("Go to bed early", "To sleep more")).toBeTruthy();
     });
-
-    // Doesn't work
 
     it('Should view a goal.', () => {
         GoalPage.navigateTo();
-        /*expect(page.getGoalText()).toBe('Get score');*/
-        expect(element(by.binding('Get score'))).toBeDefined();
+
+        expect(page.getUniqueGoal()).toBe('Go to bed early');
     });
 
-/*
-     it('Should open the expansion panel and get the Name', () => {
-         GoalPage.navigateTo();
-         GoalPage.getOwner('DATA');
-         browser.actions().sendKeys(Key.ENTER).perform();
+    it('Should click complete button on goal and then click complete tab.', () => {
+        GoalPage.navigateTo();
+        page.clickComplete();
+        page.clickCompleteTab();
+    });
 
-         expect(page.getUniqueGoal('Drink more water')).toEqual('Drink more water');
-
-         // This is just to show that the panels can be opened
-         browser.actions().sendKeys(Key.TAB).perform();
-         browser.actions().sendKeys(Key.ENTER).perform();
-    })
-    */
+    it('Should click delete button on goal.', () => {
+        GoalPage.navigateTo();
+        page.clickDelete();
+    });
 });

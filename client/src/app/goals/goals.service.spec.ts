@@ -76,12 +76,12 @@ describe('Goal  service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testGoals) a few lines
         // down.
-        goalService.getGoals().subscribe(
+        goalService.getGoals('').subscribe(
             goals => expect(goals).toBe(testGoals)
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(goalService.baseUrl);
+        const req = httpTestingController.expectOne(goalService.baseUrl + '?email=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
@@ -115,39 +115,67 @@ describe('Goal  service: ', () => {
         req.flush(targetGoal);
     });
 
-    // it('adding a goal calls api/goals/new', () => {
-    //     const enid_id = { '$oid': 'enid_id' };
-    //     const newGoal: Goal = {
-    //             _id: "5aa0b36e9c7d66070b9231e4",
-    //             purpose:"To get a good grade",
-    //             category: "Study",
-    //             name: "Study for math",
-    //             status: false,
-    //             email: "enid@gmail.com",
-    //         };
-    //
-    //     goalService.addGoal(newGoal).subscribe(
-    //         id => {
-    //             expect(id).toBe(enid_id);
-    //         }
-    //     );
-    //
-    //     goalService.deleteGoal("5aa0b36e9c7d66070b9231e4").subscribe(
-    //         id => {
-    //             expect(id).toBeNull();
-    //         }
-    //     );
-    //
-    //     const expectedUrl: string = goalService.baseUrl + '/new';
-    //     console.log(goalService.baseUrl);
-    //     const expectedUrl2: string = goalService.baseUrl + '/delete';
-    //     console.log("dfdsfdsfdsfdsfdsfdsff")
-    //     console.log(goalService.baseUrl);
-    //     const req = httpTestingController.expectOne(expectedUrl);
-    //     const req2 = httpTestingController.expectOne(expectedUrl2);
-    //     console.log(req);
-    //     expect(req.request.method).toEqual('POST');
-    //    // expect(req2.request.method).toEqual('DELETE');
-    //     req.flush(enid_id);
-    // });
+    it('adding a goal calls api/goals/new', () => {
+        const enid_id = { '$oid': 'enid_id' };
+        const newGoal: Goal = {
+                _id: "5aa0b36e9c7d66070b9231e4",
+                purpose:"To get a good grade",
+                category: "Study",
+                name: "Study for math",
+                status: false,
+                email: "enid@gmail.com",
+            };
+
+        goalService.addGoal(newGoal).subscribe(
+            id => {
+                expect(id).toBe(enid_id);
+            }
+        );
+
+
+        const expectedUrl: string = goalService.baseUrl + '/new';
+        const req = httpTestingController.expectOne(expectedUrl);
+
+        expect(req.request.method).toEqual('POST');
+        req.flush(enid_id);
+    });
+
+
+    it('editing a goal calls api/goals/edit', () => {
+        const family_id = { '$oid': 'family_id' };
+        const editGoal: Goal = {
+            _id: "5aa0b36e9c7d66070b9231e4",
+            purpose:"To get a good grade",
+            category: "Study",
+            name: "Study for math",
+            status: false,
+            email: "enid@gmail.com",
+        };
+
+        goalService.editGoal(editGoal).subscribe(
+            id => {
+                expect(id).toBe(family_id);
+            }
+        );
+
+        const expectedUrl: string = goalService.baseUrl + '/edit';
+        const req = httpTestingController.expectOne(expectedUrl);
+        expect(req.request.method).toEqual('POST');
+        req.flush(family_id);
+    });
+
+    it('deleting a goal calls api/goals/delete', () => {
+
+        // deleting 'call dad'
+        goalService.deleteGoal('5aa0b36e3f417437ce3c502a').subscribe(
+            (res) => {
+                expect(res).toBe('5aa0b36e3f417437ce3c502a');
+            }
+        );
+
+        const expectedUrl: string = goalService.baseUrl + '/delete/5aa0b36e3f417437ce3c502a';
+        const req = httpTestingController.expectOne(expectedUrl);
+        expect(req.request.method).toEqual('DELETE');
+        req.flush('5aa0b36e3f417437ce3c502a');
+    });
 });
