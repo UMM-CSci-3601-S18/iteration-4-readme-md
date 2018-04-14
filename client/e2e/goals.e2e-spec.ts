@@ -18,7 +18,7 @@ browser.driver.controlFlow().execute = function () {
     return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-describe('', () => {
+fdescribe('', () => {
     let page: GoalPage;
 
     beforeEach(() => {
@@ -27,27 +27,22 @@ describe('', () => {
 
     it('Should add a goal.', () => {
         GoalPage.navigateTo();
-        expect(page.testAddNewGoal("Go to bed early", "Every day")).toBeTruthy();
+        expect(page.testAddNewGoal("Go to bed early", "To sleep more")).toBeTruthy();
     });
-
-    // Doesn't work
 
     it('Should view a goal.', () => {
         GoalPage.navigateTo();
-        expect(page.clickElementByCss(".mat-expansion-panel")).toBeTruthy();
-        expect(page.getFirstGoalTitle()).toBe('Go to bed early');
+        expect(page.getUniqueGoal()).toBe('Go to bed early');
     });
-/*
-     it('Should open the expansion panel and get the Name', () => {
-         GoalPage.navigateTo();
-         GoalPage.getOwner('DATA');
-         browser.actions().sendKeys(Key.ENTER).perform();
 
-         expect(page.getUniqueGoal('Drink more water')).toEqual('Drink more water');
+    it('Should click complete button on goal and then click complete tab.', () => {
+        GoalPage.navigateTo();
+        page.clickComplete();
+        page.clickCompleteTab();
+    });
 
-         // This is just to show that the panels can be opened
-         browser.actions().sendKeys(Key.TAB).perform();
-         browser.actions().sendKeys(Key.ENTER).perform();
-    })
-    */
+    it('Should click delete button on goal.', () => {
+        GoalPage.navigateTo();
+        page.clickDelete();
+    });
 });
