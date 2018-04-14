@@ -76,12 +76,12 @@ describe('Goal  service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testGoals) a few lines
         // down.
-        goalService.getGoals().subscribe(
+        goalService.getGoals('').subscribe(
             goals => expect(goals).toBe(testGoals)
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(goalService.baseUrl);
+        const req = httpTestingController.expectOne(goalService.baseUrl + '?email=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
