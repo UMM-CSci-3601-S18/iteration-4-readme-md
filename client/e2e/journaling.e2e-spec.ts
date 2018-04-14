@@ -32,5 +32,4 @@ fdescribe('Journaling Page', () => {
         var buttonExisted = page.editJournal('Wow', 'Big wow');
         expect(buttonExisted).toBe(true);
     });
-
 });

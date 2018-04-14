@@ -52,23 +52,24 @@ export class GoalPage {
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
 
-    testAddNewGoal(name: string, category: string, purpose: string) {
+    testAddNewGoal(name: string, /*category: string,*/ purpose: string) {
         const input = element(by.id('addNewGoal'));
         input.click();
         const nameInput = element(by.id('nameField'));
+        nameInput.click();
         nameInput.sendKeys(name);
 
-        const categoryInput = element(by.id('category-list'));
+        /*const categoryInput = element(by.value('Work'));
         categoryInput.click();
-        categoryInput.sendKeys(category);
+        categoryInput.sendKeys(category);*/
 
         //How to select mat-option?
-        const purposeInput = element(by.css('.mat-select[value = Work]'));
+        const purposeInput = element(by.id('purposeField'));
         purposeInput.click();
-        purposeInput.sendKeys(purpose)
+        purposeInput.sendKeys(purpose);
 
 
-        const button = element(by.id('confirmAddGoalButton'));
+        const button = element(by.css('confirmAddGoalButton'));
         const buttonWasThere = button.isDisplayed();
         button.click();
         return buttonWasThere;

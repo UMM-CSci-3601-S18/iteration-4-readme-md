@@ -4,12 +4,12 @@
         <mat-divider></mat-divider>
 
         <mat-accordion *ngIf="resources; else resourcesError" >
-            <mat-expansion-panel #elem class="resources" [id]="resources.resourceName"  *ngFor="let resources of this.filterResources(resourcesName)">
+            <mat-expansion-panel #elem class="resources" *ngFor="let resource of resources">
                 <mat-expansion-panel-header>
-                    <mat-panel-description >{{resources.resourceName}}</mat-panel-description>
-                    <mat-panel-description >{{resources.resourcePhone}}</mat-panel-description>
+                    <mat-panel-description >{{resource.name}}</mat-panel-description>
+                    <mat-panel-description >{{resource.phone}}</mat-panel-description>
                 </mat-expansion-panel-header>
-                <mat-panel-description >{{resources.resourceBody}}</mat-panel-description>
+                <mat-panel-description >{{resource.body}}</mat-panel-description>
             </mat-expansion-panel>
         </mat-accordion>
 
