@@ -11,11 +11,6 @@ describe('Journaling Page', () => {
         page = new JournalingPage();
     });
 
-    it('Should be titled Journals', () => {
-        JournalingPage.navigateTo();
-        expect(JournalingPage.getPageTitle()).toBe('Journals');
-    });
-
     it('Should be able to add a journal entry', ()=> {
         JournalingPage.navigateTo();
         var buttonExisted = page.addNewJournal('I love CSci', 'I do, in fact, really love CSci.');
@@ -27,17 +22,14 @@ describe('Journaling Page', () => {
 
     it('Should be able view a journal entry', () => {
         JournalingPage.navigateTo();
-        expect(page.getJournalText()).toContain('I love CSci');
+        page.selectJournal("Brittany");
+        expect(page.getJournalText('Brittany')).toContain('Brittany');
     });
 
     it('Should be able to edit a journal entry', ()=> {
         JournalingPage.navigateTo();
+        page.selectJournal("Brittany");
         var buttonExisted = page.editJournal('Wow', 'Big wow');
         expect(buttonExisted).toBe(true);
-    });
-
-    it('Should be able to view a journal entry', () => {
-        JournalingPage.navigateTo();
-        expect(page.getJournalText()).toContain('Wow');
     });
 });

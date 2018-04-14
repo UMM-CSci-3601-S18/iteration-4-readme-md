@@ -18,7 +18,7 @@ browser.driver.controlFlow().execute = function () {
     return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-fdescribe('', () => {
+describe('', () => {
     let page: GoalPage;
 
     beforeEach(() => {
@@ -32,6 +32,7 @@ fdescribe('', () => {
 
     it('Should view a goal.', () => {
         GoalPage.navigateTo();
+
         expect(page.getUniqueGoal()).toBe('Go to bed early');
     });
 

@@ -52,7 +52,7 @@ export class GoalPage {
 
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
-
+       
     testAddNewGoal(name: string, purpose: string) {
         const input = element(by.id('addNewGoalButton'));
         input.click();
@@ -69,5 +69,11 @@ export class GoalPage {
         button.click();
         return buttonWasThere;
     }
+
+    testDeleteGoal(){
+        const input = element(by.id('deletegoal'));
+        input.click();
+
+}
 
 }

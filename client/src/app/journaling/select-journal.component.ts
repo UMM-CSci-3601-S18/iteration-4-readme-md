@@ -4,6 +4,7 @@ import {Journal} from './journal';
 import {JournalListService} from "./journal-list.service";
 import {Observable} from "rxjs/Observable";
 import {AuthService, SocialUser} from "angularx-social-login";
+import {environment} from "../../environments/environment";
 
 @Component({
     selector: 'app-select-journal.component',
@@ -72,9 +73,26 @@ export class SelectJournalComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        this.authService.authState.subscribe((user) => { //this must happen BEFORE any other methods are called in OnInit
-            this.user = user;
-        });
+        if(environment.envName != 'e2e') {
+            this.authService.authState.subscribe((user) => {
+                this.user = user;
+            });
+        }
+        else {
+            // run this code during e2e testing
+            // so that we don't have to sign in
+            this.user = {
+                provider: '',
+                id: '',
+                email: 'sunshine@test.com',
+                name: 'test dummy',
+                photoUrl: '',
+                firstName: 'test',
+                lastName: 'dummy',
+                authToken: '',
+                idToken: 'testToken',
+            };
+        }
         this.refreshJournals();
     }
 
