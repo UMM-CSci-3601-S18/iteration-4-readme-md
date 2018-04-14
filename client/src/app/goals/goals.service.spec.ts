@@ -164,24 +164,18 @@ describe('Goal  service: ', () => {
         req.flush(family_id);
     });
 
-    it('editing a goal calls api/goals/edit', () => {
-        const family_id = { '$oid': 'family_id' };
-        const deleteGoal: Goal = {
-            _id: "5aa0b36e9c7d66070b9231e4",
-            purpose:"To get a good grade",
-            category: "Study",
-            name: "Study for math",
-            status: false,
-            email: "enid@gmail.com",
-        };
+    it('deleting a goal calls api/goals/delete', () => {
 
-        goalService.deleteGoal(deleteGoal._id);
+        // deleting 'call dad'
+        goalService.deleteGoal('5aa0b36e3f417437ce3c502a').subscribe(
+            (res) => {
+                expect(res).toBe('5aa0b36e3f417437ce3c502a');
+            }
+        );
 
-
-
-        const expectedUrl: string = goalService.baseUrl + '/delete';
-       // const req = httpTestingController.expectOne(expectedUrl);
-       // expect(req.request.method).toEqual('DELETE');
-        //req.flush(family_id);
+        const expectedUrl: string = goalService.baseUrl + '/delete/5aa0b36e3f417437ce3c502a';
+        const req = httpTestingController.expectOne(expectedUrl);
+        expect(req.request.method).toEqual('DELETE');
+        req.flush('5aa0b36e3f417437ce3c502a');
     });
 });
