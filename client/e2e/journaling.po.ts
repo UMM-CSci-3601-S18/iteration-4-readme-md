@@ -39,7 +39,7 @@ export class JournalingPage {
     }
 
     getJournalText(search: string) {
-        const card = element(by.cssContainingText('mat-card-title', search));
+        const card = element(by.cssContainingText('.mat-card-title', search));
         return card.getText();
     }
 
@@ -47,14 +47,14 @@ export class JournalingPage {
         const input = element(by.id('selectJournal'));
         input.click();
 
-        //search for journal
+        // //search for journal
         const subjectInput = element(by.id('journalSubject'));
         subjectInput.click();
-        subjectInput.sendKeys(search);
-
-        //click journal
+       subjectInput.sendKeys(search);
+        //
+        // //click journal
         const journal = element(by.cssContainingText('mat-list-item',search));
-        journal.click();
+         journal.click();
 
     }
 
