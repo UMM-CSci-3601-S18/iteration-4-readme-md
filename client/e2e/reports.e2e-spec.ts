@@ -1,11 +1,9 @@
-import {JournalingPage} from './journaling.po';
-import {browser, protractor, element, by} from 'protractor';
-import {Key} from 'selenium-webdriver';
+import {browser} from 'protractor';
 import {ReportsPage} from "./reports.po";
 
 const origFn = browser.driver.controlFlow().execute;
 
-describe('Reports Page', () => {
+describe('Tests reports page functionality: filtering of selected emotions and checking that they are there', () => {
     let page: ReportsPage;
 
     beforeEach(() => {
