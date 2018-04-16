@@ -74,12 +74,12 @@ describe('Resource list service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testJournals) a few lines
         // down.
-        resourcesService.getResources().subscribe(
+        resourcesService.getResources('').subscribe(
             resources => expect(resources).toBe(testResources)
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(resourcesService.baseUrl);
+        const req = httpTestingController.expectOne(resourcesService.baseUrl + '?email=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
