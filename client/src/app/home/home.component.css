@@ -1,5 +1,9 @@
 mat-card {
     text-align: center;
+    border-radius: 10px;
+    background: linear-gradient(#1a75ff,#ffff99 80%);
+ /*   #4d94ff */
+
 }
 
 mat-card-content img {

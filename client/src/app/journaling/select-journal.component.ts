@@ -9,6 +9,7 @@ import {environment} from "../../environments/environment";
 @Component({
     selector: 'app-select-journal.component',
     templateUrl: 'select-journal.component.html',
+    styleUrls: ['./select-journal.component.css']
 })
 
 export class SelectJournalComponent implements OnInit{
