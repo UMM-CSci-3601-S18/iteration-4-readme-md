@@ -8,7 +8,7 @@
                     <input matInput #input id="subjectField" placeholder="Subject" [(ngModel)]="data.journal.subject">
                 </mat-form-field>
                 <mat-form-field>
-                    <textarea matInput #input id="bodyField" matTextareaAutosize placeholder="Body" [(ngModel)]="data.journal.body"></textarea>
+                    <textarea matInput #input id="bodyField"  placeholder="Body" [(ngModel)]="data.journal.body"></textarea>
                 </mat-form-field>
 
                 <button mat-button id="confirmAddJournalButton" [mat-dialog-close]="data.journal" type="button">Edit journal</button>
