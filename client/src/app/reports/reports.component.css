@@ -34,7 +34,7 @@ mat-list-item {
     padding: 15px;
     margin:0 auto;
     margin-bottom: 15px;
-    background-color: rgba(144, 238, 144, 0.22);
+    background-color: rgba(144, 238, 144, 0.5);
 }
 
 .emojiTime {
