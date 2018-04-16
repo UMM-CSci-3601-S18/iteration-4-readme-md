@@ -17,7 +17,7 @@
                 <mat-card-content>
 
                     <mat-list *ngIf="emojis; else emojiError" >
-                        <mat-list-item #elem class="emoji" [id]="emoji._id['$oid']"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
+                        <mat-list-item #elem class="emoji" [id]="emoji._id"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
                                 <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
                             <img matListAvatar src="assets/Emojis/{{emoji.mood}}.png" style="width: 48px; height: 48px">
 

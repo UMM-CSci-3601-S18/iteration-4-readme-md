@@ -9,7 +9,7 @@ export class ResourcesPage {
     static clickElement(elementId: string){
         const input = element(by.id(elementId));
         input.click();
-    }
+    };
 
 
 
