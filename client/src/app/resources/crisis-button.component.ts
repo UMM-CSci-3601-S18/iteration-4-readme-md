@@ -50,7 +50,7 @@ export class CrisisButtonComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources();
+        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources(this.data.user.email);
         resourcesListObservable.subscribe(
             resources => {
                 this.resources = resources;

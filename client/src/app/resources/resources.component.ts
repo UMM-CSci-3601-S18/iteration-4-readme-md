@@ -81,7 +81,7 @@ export class ResourcesComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources();
+        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources(this.user.email);
         resourcesListObservable.subscribe(
             resources => {
                 this.resources = resources;
@@ -109,7 +109,7 @@ export class ResourcesComponent implements OnInit{
 
 
     loadService(): void {
-        this.resourcesService.getResources().subscribe(
+        this.resourcesService.getResources(this.user.email).subscribe(
             resources => {
                 this.resources = resources;
                 this.filteredResources = this.resources;
