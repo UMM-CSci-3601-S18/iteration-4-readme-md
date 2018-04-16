@@ -30,19 +30,12 @@ export class JournalListComponent implements OnInit {
 
     public selectedJournal: Journal;
 
-    // The ID of the
-    private highlightedID: {'$oid': string} = { '$oid': '' };
-
     // Inject the JournalListService into this component.
     constructor(public journalListService: JournalListService, public dialog: MatDialog,
                 public authService: AuthService) {
         if(environment.production === false) {
 
         }
-    }
-
-    isHighlighted(journal: Journal): boolean {
-        return journal._id['$oid'] === this.highlightedID['$oid'];
     }
 
     openDialog(): void {
@@ -55,7 +48,6 @@ export class JournalListComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.journalListService.addNewJournal(result).subscribe(
                 addJournalResult => {
-                    this.highlightedID = addJournalResult;
                     this.selectedJournal = newJournal;
                     this.refreshJournals();
                 },
@@ -92,7 +84,7 @@ export class JournalListComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.journalListService.editJournal(result).subscribe(
                 editJournalResult => {
-                    //this.highlightedID = editJournalResult;
+
                     if(result != null) {
                         this.selectedJournal = result;
                     }
