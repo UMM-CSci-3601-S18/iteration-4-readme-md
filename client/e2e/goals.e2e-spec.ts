@@ -18,7 +18,7 @@ browser.driver.controlFlow().execute = function () {
     return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-describe('', () => {
+describe('Tests all functionality that the goals page provides: from viewing pre-existing goals to adding a new goal to completing/deleting a goal', () => {
     let page: GoalPage;
 
     beforeEach(() => {

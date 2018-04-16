@@ -4,7 +4,7 @@ import {Key} from 'selenium-webdriver';
 
 const origFn = browser.driver.controlFlow().execute;
 
-describe('Journaling Page', () => {
+describe('Tests all functionality on the journaling page: from creating journals to editing them to viewing/deleting them', () => {
     let page: JournalingPage;
 
     beforeEach(() => {
@@ -16,9 +16,6 @@ describe('Journaling Page', () => {
         var buttonExisted = page.addNewJournal('I love CSci', 'I do, in fact, really love CSci.');
         expect(buttonExisted).toBe(true);
     });
-
-    // Works but fails after a while due to how edit works in the e2e
-    // Need to make edit select all and replace over adding to the end
 
     it('Should be able view a journal entry', () => {
         JournalingPage.navigateTo();

@@ -1,6 +1,6 @@
 mat-card{
     border-radius: 10px;
-    background: linear-gradient(#1a75ff,#ffff99 80%);
+    background: linear-gradient(#c2c2d6,#f0f0f5);
 }
 
 mat-list-item {
@@ -35,10 +35,13 @@ mat-list-item {
     margin:0 auto;
     margin-bottom: 15px;
     background-color: rgba(144, 238, 144, 0.22);
+}
 
+.emojiTime {
+    float: right;
 }
 .reportscard{
-    background-color: rgba(173, 216, 230, 0.14);
+    /*background-color: rgba(173, 216, 230, 0.14);*/
 
 }
 

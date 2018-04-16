@@ -1,7 +1,7 @@
 import {AppPage} from './app.po';
 import {browser} from 'protractor';
 
-describe('angular-spark-lab', () => {
+describe('Testing that all the items in the nav-bar work', () => {
     let page: AppPage;
 
     beforeEach(() => {
@@ -26,6 +26,9 @@ describe('angular-spark-lab', () => {
         AppPage.navigateTo();
         page.reportButtonExists();
         page.clickReportButton();
+    });
+
+    it('should make sure that each nav-bar item exists and then clicks each ', () => {
         AppPage.navigateTo();
         page.goalButtonExists();
         page.clickGoalButton();

@@ -182,7 +182,7 @@ describe('Adding a resource', () => {
 
     let resourceListServiceStub: {
         getResources: () => Observable<resources[]>,
-        addNewResource: (newResource: resources) => Observable<{'$oid': string}>
+        addResources: (newResource: resources) => Observable<{'$oid': string}>
     };
     let authServiceStub: {
         authState: Observable<SocialUser>
@@ -198,7 +198,7 @@ describe('Adding a resource', () => {
         // stub ResourceService for test purposes
         resourceListServiceStub = {
             getResources: () => Observable.of([]),
-            addNewResource: (resourceToAdd: resources) => {
+            addResources: (resourceToAdd: resources) => {
                 calledResource = resourceToAdd;
                 return Observable.of({
                     '$oid': newId
@@ -249,11 +249,10 @@ describe('Adding a resource', () => {
         });
     }));
 
-    /**
-     it('calls ResourcesService.addResource', () => {
+    it('calls ResourcesService.addResource', () => {
         expect(calledResource).toBeNull();
         resourceList.openDialog();
         expect(calledResource).toEqual(newResource);
     });
-     **/
+
 });

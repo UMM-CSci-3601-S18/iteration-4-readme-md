@@ -37,7 +37,6 @@ describe('Journal list service: ', () => {
     // We will need some url information from the journalListService to meaningfully test subject filtering;
     // https://stackoverflow.com/questions/35987055/how-to-write-unit-testing-for-angular-2-typescript-for-private-methods-with-ja
     let journalListService: JournalListService;
-    let currentlyImpossibleToGenerateSearchJournalUrl: string;
 
     // These are used to mock the HTTP requests so that we (a) don't have to
     // have the server running and (b) we can check exactly which HTTP
@@ -75,7 +74,7 @@ describe('Journal list service: ', () => {
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(journalListService.baseUrl);
+        const req = httpTestingController.expectOne(journalListService.baseUrl + '?email=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
@@ -89,30 +88,9 @@ describe('Journal list service: ', () => {
             journals => expect(journals).toEqual(mJournals)
         );
 
-        const req = httpTestingController.expectOne(journalListService.baseUrl + '?email=m&');
+        const req = httpTestingController.expectOne(journalListService.baseUrl + '?email=m');
         expect(req.request.method).toEqual('GET');
         req.flush(mJournals);
-    });
-
-    it('filterBySubject(journalSubject) deals appropriately with a URL that already had a subject', () => {
-        currentlyImpossibleToGenerateSearchJournalUrl = journalListService.baseUrl + '?subject=f&something=k&';
-        journalListService['journalUrl'] = currentlyImpossibleToGenerateSearchJournalUrl;
-        journalListService.filterBySubject('m');
-        expect(journalListService['journalUrl']).toEqual(journalListService.baseUrl + '?something=k&subject=m&');
-    });
-
-    it('filterBySubject(journalSubject) deals appropriately with a URL that already had some filtering, but no subject', () => {
-        currentlyImpossibleToGenerateSearchJournalUrl = journalListService.baseUrl + '?something=k&';
-        journalListService['journalUrl'] = currentlyImpossibleToGenerateSearchJournalUrl;
-        journalListService.filterBySubject('m');
-        expect(journalListService['journalUrl']).toEqual(journalListService.baseUrl + '?something=k&subject=m&');
-    });
-
-    it('filterBySubject(journalSubject) deals appropriately with a URL has the keyword subject, but nothing after the =', () => {
-        currentlyImpossibleToGenerateSearchJournalUrl = journalListService.baseUrl + '?subject=&';
-        journalListService['journalUrl'] = currentlyImpossibleToGenerateSearchJournalUrl;
-        journalListService.filterBySubject('');
-        expect(journalListService['journalUrl']).toEqual(journalListService.baseUrl + '');
     });
 
     it('getJournalById() calls api/journals/id', () => {
@@ -148,6 +126,48 @@ describe('Journal list service: ', () => {
         const req = httpTestingController.expectOne(expectedUrl);
         console.log(req);
         expect(req.request.method).toEqual('POST');
+        req.flush(pennington_id);
+    });
+
+    it('editJournal calls api/journals/edit', () => {
+        const pennington_id = { '$oid': 'pennington_id' };
+
+        const editedJournal: Journal = {
+            _id: "5aa0b36e1f57545f27a26b69",
+            subject: "Pennington",
+            body: "Get it done fast",
+            date: "Sun Feb 07 1982 22:41:23 GMT-0600 (CST)",
+            email: "pennington@penn.com"
+        };
+
+        journalListService.editJournal(editedJournal).subscribe(
+            res => {
+                expect(res).toBe(pennington_id);
+            }
+        );
+
+        const expectedUrl: string = journalListService.baseUrl + '/edit';
+        const req = httpTestingController.expectOne(expectedUrl);
+        console.log(req);
+        expect(req.request.method).toEqual('POST');
+        expect(req.request.body).toEqual(editedJournal);
+        req.flush(pennington_id);
+    });
+
+    it('deleteJournal calls api/journals/delete/id', () => {
+        const pennington_id = { '$oid': 'pennington_id' };
+
+
+        journalListService.deleteJournal(pennington_id['$oid']).subscribe(
+            res => {
+                expect(res).toBe(pennington_id);
+            }
+        );
+
+        const expectedUrl: string = journalListService.baseUrl + '/delete/' + pennington_id['$oid'];
+        const req = httpTestingController.expectOne(expectedUrl);
+        console.log(req);
+        expect(req.request.method).toEqual('DELETE');
         req.flush(pennington_id);
     });
 });

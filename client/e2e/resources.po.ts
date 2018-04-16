@@ -1,5 +1,4 @@
 import {browser, element, by, promise} from 'protractor';
-import {Key} from 'selenium-webdriver';
 
 export class ResourcesPage {
     static navigateTo(): promise.Promise<any> {
@@ -9,9 +8,7 @@ export class ResourcesPage {
     static clickElement(elementId: string){
         const input = element(by.id(elementId));
         input.click();
-    }
-
-
+    };
 
     // http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/
     highlightElement(byObject) {
@@ -23,9 +20,22 @@ export class ResourcesPage {
             }, 200);
             return 'highlighted';
         }
-
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
 
+    getResourceTitle() {
+        const title = element(by.id('resourceTitle')).getText();
+        this.highlightElement(by.id('resourceTitle'));
+        return title;
+    }
 
+    buttonExists(): promise.Promise<boolean> {
+        this.highlightElement(by.id('addNewContact'));
+        return element(by.id('addNewContact')).isPresent();
+    }
+
+    clickAddContactButton(): promise.Promise<void> {
+        this.highlightElement(by.id('addNewContact'));
+        return element(by.id('addNewContact')).click();
+    }
 }

@@ -195,7 +195,7 @@ describe('Misbehaving Journal List', () => {
 });
 
 
-describe('Adding a journal', () => {
+describe('Journal dialog', () => {
     let journalList: JournalListComponent;
     let fixture: ComponentFixture<JournalListComponent>;
     const newJournal: Journal = {
@@ -211,7 +211,9 @@ describe('Adding a journal', () => {
 
     let journalListServiceStub: {
         getJournals: () => Observable<Journal[]>,
-        addNewJournal: (newJournal: Journal) => Observable<{'$oid': string}>
+        addNewJournal: (newJournal: Journal) => Observable<{'$oid': string}>,
+        editJournal: (editedJournal: Journal) => Observable<Journal>,
+        deleteJournal: (id: string) => Observable<{'$oid': string}>
     };
     let authServiceStub: {
         authState: Observable<SocialUser>
@@ -232,7 +234,17 @@ describe('Adding a journal', () => {
                 return Observable.of({
                     '$oid': newId
                 });
-            }
+            },
+            editJournal: (editedJournal: Journal) => {
+              calledJournal = editedJournal;
+              return Observable.of(editedJournal);
+            },
+            deleteJournal: (id: string) => {
+                calledJournal = null;
+                return Observable.of({
+                    '$oid': id
+                });
+            },
         };
         mockMatDialog = {
             open: () => {
@@ -282,5 +294,24 @@ describe('Adding a journal', () => {
         expect(calledJournal).toBeNull();
         journalList.openDialog();
         expect(calledJournal).toEqual(newJournal);
+    });
+
+    it('calls JournalListService.editJournal', () => {
+        expect(calledJournal).toBeNull();
+        journalList.openDialogReview(newJournal);
+        expect(calledJournal).toEqual(newJournal);
+    });
+
+    it('calls JournalListService.deleteJournal', () => {
+        calledJournal = newJournal;
+        expect(calledJournal).toEqual(newJournal);
+        journalList.deleteJournal(newJournal._id);
+        expect(calledJournal).toBeNull();
+    });
+
+    it('updates selected journal when the dialog is closed', () => {
+        expect(journalList.selectedJournal).toBeUndefined();
+        journalList.openDialogSelect(); // will 'select' newJournal
+        expect(journalList.selectedJournal).toEqual(newJournal);
     });
 });
