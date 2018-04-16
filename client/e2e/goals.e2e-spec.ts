@@ -32,8 +32,7 @@ describe('Tests all functionality that the goals page provides: from viewing pre
 
     it('Should view a goal.', () => {
         GoalPage.navigateTo();
-
-        expect(page.getUniqueGoal()).toBe('Go to bed early');
+        expect(page.getUniqueGoal()).toBe('Go to bed earlier');
     });
 
     it('Should click complete button on goal and then click complete tab.', () => {
