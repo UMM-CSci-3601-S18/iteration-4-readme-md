@@ -59,8 +59,6 @@ describe('Goal list', () => {
                 }
             ])
         };
-        let goalListService: GoalsService;
-        let currentlyImpossibleToGenerateSearchJournalUrl: string;
 
         authServiceStub = {
             authState: Observable.of(
@@ -190,9 +188,10 @@ describe('Goal list', () => {
 // });
 
 
-describe('Adding a goal', () => {
+describe('Goals Mat Dialogs', () => {
     let goals: GoalsComponent;
     let fixture: ComponentFixture<GoalsComponent>;
+    let goalDeleted: boolean;
     const newGoal: Goal = {
         _id: "5aa0b36e9c7d66070b9231e4",
         purpose: "To feel better",
@@ -207,7 +206,8 @@ describe('Adding a goal', () => {
 
     let goalsServiceStub: {
         getGoals: () => Observable<Goal[]>,
-        addNewGoal: (newGoal: Goal) => Observable<{'$oid': string}>
+        addGoal: (newGoal: Goal) => Observable<{'$oid': string}>,
+        deleteGoal: (id: string) => Observable<object>,
     };
     let authServiceStub: {
         authState: Observable<SocialUser>
@@ -220,13 +220,20 @@ describe('Adding a goal', () => {
 
     beforeEach(() => {
         calledGoal = null;
+        goalDeleted = false;
         // stub GoalService for test purposes
         goalsServiceStub = {
             getGoals: () => Observable.of([]),
-            addNewGoal: (goalToAdd: Goal) => {
+            addGoal: (goalToAdd: Goal) => {
                 calledGoal = goalToAdd;
                 return Observable.of({
                     '$oid': newId
+                });
+            },
+            deleteGoal: (id: string) => {
+                goalDeleted = true;
+                return Observable.of({
+                    '$oid' : id
                 });
             }
         };
@@ -273,13 +280,16 @@ describe('Adding a goal', () => {
             fixture.detectChanges();
         });
     }));
-/*
-    // Says function .addGoal does not exist?
 
     it('calls GoalsService.addGoal in GoalComponent.openDialog()', () => {
         expect(calledGoal).toBeNull();
         goals.openDialog();
         expect(calledGoal).toEqual(newGoal);
     });
-*/
+
+    it('calls GoalsService.deleteGoal in GoalComponent.deleteGoal()', () => {
+        goals.deleteGoal('testId');
+        expect(goalDeleted).toBeTruthy();
+    });
+
 });

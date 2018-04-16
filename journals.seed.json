@@ -3,53 +3,64 @@
         "_id": "5aa0b36ecf40cfd384c299fd",
         "subject": "Brittany",
         "body": "Get it done",
-        "date": "Wed Dec 24 2014 05:08:39 GMT-0600 (CST)"
+        "date": "Wed Dec 24 2014 05:08:39 GMT-0600 (CST)",
+        "email": "sunshine@test.com"
+
     },
     {
         "_id": "5aa0b36e50d6094af8e91aba",
         "subject": "Cathleen",
         "body": "You can do it",
-        "date": "Fri Nov 28 1975 16:13:36 GMT-0600 (CST)"
+        "date": "Fri Nov 28 1975 16:13:36 GMT-0600 (CST)",
+        "email": "sunshine@test.com"
+
 
     },
     {
         "_id": "5aa0b36e3f417437ce3c502a",
         "subject": "Martinez",
         "body": "Get it done",
-        "date": "Thu Jan 30 1986 09:39:30 GMT-0600 (CST)"
+        "date": "Thu Jan 30 1986 09:39:30 GMT-0600 (CST)",
+        "email": "sunshine@test.com"
+
     },
     {
         "_id": "5aa0b36e4b7ba6cf891b779c",
         "subject": "Petty",
         "body": "Keep up the good work",
-        "date": "Wed Jul 15 1981 10:54:40 GMT-0500 (CDT)"
+        "date": "Wed Jul 15 1981 10:54:40 GMT-0500 (CDT)",
+        "email": "sunshine@test.com"
+
 
     },
     {
         "_id": "5aa0b36e5e8168ca8a43d474",
         "subject": "Kim",
         "body": "There you go",
-        "date": "Thu Aug 05 1999 22:05:50 GMT-0500 (CDT)"
-
+        "date": "Thu Aug 05 1999 22:05:50 GMT-0500 (CDT)",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5aa0b36e4b078ae23cb27cc7",
         "subject": "Francis",
         "body": "Get it done",
-        "date": "Tue Oct 28 1986 08:50:23 GMT-0600 (CST)"
-
+        "date": "Tue Oct 28 1986 08:50:23 GMT-0600 (CST)",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5aa0b36e8284be6bb9be63b9",
         "subject": "Mathis",
         "body": "You can do it",
-        "date": "Wed Jun 03 1992 00:43:53 GMT-0500 (CDT)"
+        "date": "Wed Jun 03 1992 00:43:53 GMT-0500 (CDT)",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5aa0b36e2c5639603eb77c7c",
         "subject": "Velez",
         "body": "You can do it",
-        "date": "Fri Jun 17 1977 21:34:22 GMT-0500 (CDT)"
+        "date": "Fri Jun 17 1977 21:34:22 GMT-0500 (CDT)",
+        "email": "sunshine@test.com"
+
 
     },
     {
@@ -136,14 +147,16 @@
         "_id": "5aa0b36ea075a655f72e8e46",
         "subject": "Lynn",
         "body": "There you go",
-        "date": "Thu Apr 02 1992 22:26:34 GMT-0600 (CST)"
+        "date": "Thu Apr 02 1992 22:26:34 GMT-0600 (CST)",
+        "email": "sunshine@test.com"
 
     },
     {
         "_id": "5aa0b36e4015ea4ed194338c",
         "subject": "Caroline",
         "body": "Get it done",
-        "date": "Sat Dec 31 1994 17:00:40 GMT-0600 (CST)"
+        "date": "Sat Dec 31 1994 17:00:40 GMT-0600 (CST)",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5aa0b36e343ca2a239f47a65",

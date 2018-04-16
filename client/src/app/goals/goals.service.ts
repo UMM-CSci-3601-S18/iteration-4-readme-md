@@ -45,6 +45,7 @@ export class GoalsService {
 
     deleteGoal(goalID: String) {
         console.log ("here!");
+
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'

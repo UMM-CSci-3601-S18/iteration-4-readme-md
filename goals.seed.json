@@ -1050,20 +1050,14 @@
         "name": "Go to bed earlier",
         "body": "Keep up the good work",
         "category": "Todo",
-        "startDate": "Fri Dec 01 1972 17:23:34 GMT-0600 (CST)",
-        "endDate": "Fri May 18 1973 01:22:08 GMT-0500 (CDT)",
-        "frequency": "Once a year",
+
         "status": false
     },
     {
         "_id": "5aa0b36e401cfced5f36b1a7",
-        "owner": "York",
         "name": "Go to bed earlier",
         "body": "You can do it",
         "category": "Todo",
-        "startDate": "Sun Feb 04 1979 13:35:46 GMT-0600 (CST)",
-        "endDate": "Fri Feb 09 1996 11:10:28 GMT-0600 (CST)",
-        "frequency": "Once a year",
         "status": false
     },
     {

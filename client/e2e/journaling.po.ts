@@ -22,7 +22,7 @@ export class JournalingPage {
     }
 
     editJournal(subject: string, body: string) {
-        const input = element(by.id('editButton'));
+        const input = element(by.id('editJournal'));
         input.click();
         const subjectInput = element(by.id('subjectField'));
         subjectInput.click();
@@ -30,7 +30,7 @@ export class JournalingPage {
         subjectInput.sendKeys(subject);
         const bodyInput = element(by.id('bodyField'));
         bodyInput.click();
-        subjectInput.clear();
+        bodyInput.clear();
         bodyInput.sendKeys(body);
         const button = element(by.css('#confirmAddJournalButton'));
         const buttonWasThere = button.isDisplayed();
@@ -38,22 +38,24 @@ export class JournalingPage {
         return buttonWasThere;
     }
 
-    static getPageTitle(): promise.Promise<string> {
-        const title = element(by.css('#journal-list-title'));
-        return title.getText();
-    }
-
-    getJournalText() {
-        const card = element(by.css('.matCardJournals'));
+    getJournalText(search: string) {
+        const card = element(by.cssContainingText('mat-card-title', search));
         return card.getText();
     }
 
     selectJournal(search: string){
         const input = element(by.id('selectJournal'));
         input.click();
-        const subjectInput = element(by.id('searchjournals'));
+
+        //search for journal
+        const subjectInput = element(by.id('journalSubject'));
         subjectInput.click();
         subjectInput.sendKeys(search);
+
+        //click journal
+        const journal = element(by.cssContainingText('mat-list-item',search));
+        journal.click();
+
     }
 
 
