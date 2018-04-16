@@ -15,7 +15,7 @@ export class GoalPage {
      }
 
      getUniqueGoal() {
-         const goal = element(by.cssContainingText('.mat-card-title', 'Go to bed early')).getText();
+         const goal = element(by.id('goalName')).getText();
          return goal;
      }
 
@@ -52,7 +52,7 @@ export class GoalPage {
 
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
-       
+
     testAddNewGoal(name: string, purpose: string) {
         const input = element(by.id('addNewGoalButton'));
         input.click();

@@ -1,5 +1,4 @@
 import {browser, element, by, promise} from 'protractor';
-import {Key} from 'selenium-webdriver';
 
 export class ReportsPage {
     static navigateTo(): promise.Promise<any> {
