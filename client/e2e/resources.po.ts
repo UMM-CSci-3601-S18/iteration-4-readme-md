@@ -8,7 +8,7 @@ export class ResourcesPage {
     static clickElement(elementId: string){
         const input = element(by.id(elementId));
         input.click();
-    }
+    };
 
     // http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/
     highlightElement(byObject) {
