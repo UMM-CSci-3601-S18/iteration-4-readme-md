@@ -4,7 +4,7 @@ import {Key} from 'selenium-webdriver';
 
 const origFn = browser.driver.controlFlow().execute;
 
-describe('Journaling Page', () => {
+describe('Tests all functionality on the journaling page: from creating journals to editing them to viewing/deleting them', () => {
     let page: JournalingPage;
 
     beforeEach(() => {
