@@ -17,9 +17,6 @@ describe('Tests all functionality on the journaling page: from creating journals
         expect(buttonExisted).toBe(true);
     });
 
-    // Works but fails after a while due to how edit works in the e2e
-    // Need to make edit select all and replace over adding to the end
-
     it('Should be able view a journal entry', () => {
         JournalingPage.navigateTo();
         page.selectJournal("Brittany");

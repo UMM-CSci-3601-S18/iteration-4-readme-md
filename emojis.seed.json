@@ -1,9 +1,10 @@
 [
     {
-        "_id": "5a98ab3747faebe4490d5155",
+        "_id": "sad",
         "mood": 2,
         "date": "Tue Nov 07 1995 06:30:35 GMT+0000 (UTC)",
-        "owner": "Gross"
+        "owner": "Gross",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5a98ab37df1d93f364a9e893",
@@ -27,13 +28,15 @@
         "_id": "5a98ab376551b24c43a903cb",
         "mood": 3,
         "date": "Tue Apr 02 2002 13:25:27 GMT+0000 (UTC)",
-        "owner": "Inez"
+        "owner": "Inez",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5a98ab37c00223a9d183508a",
         "mood": 4,
         "date": "Fri May 26 1989 12:09:33 GMT+0000 (UTC)",
-        "owner": "Harvey"
+        "owner": "Harvey",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5a98ab3718a4a2c2ebf59a18",
@@ -63,7 +66,8 @@
         "_id": "5a98ab376daa873c39298750",
         "mood": 1,
         "date": "Tue Apr 06 1993 19:09:53 GMT+0000 (UTC)",
-        "owner": "Zimmerman"
+        "owner": "Zimmerman",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5a98ab374e63cefba95ee9df",
@@ -75,7 +79,8 @@
         "_id": "5a98ab37aaa89d63b84f22f3",
         "mood": 5,
         "date": "Wed Jan 15 2003 18:55:24 GMT+0000 (UTC)",
-        "owner": "Kitty"
+        "owner": "Kitty",
+        "email": "sunshine@test.com"
     },
     {
         "_id": "5a98ab370c0c989af8c656fb",
