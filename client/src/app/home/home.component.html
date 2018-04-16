@@ -1,8 +1,8 @@
 <!--Don't allow user to do anything without logging in! -->
 <div *ngIf="user; else promptLogin">
 
-<div layout-gt-sm="row">
-    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+    <div layout-gt-sm="row">
+        <div flex-gt-sm="80" flex-offset-gt-sm="10">
             <!-- Main Page -->
             <mat-card>
                 <mat-card-content id="headerInfo">
@@ -11,7 +11,8 @@
                     <p>Use the slider to select how you feel.</p>
 
                     <!-- Show correct emoji image depending on the value of the mat-slider -->
-                    <img  id="{{matslider.value}}emoji" src="assets/Emojis/{{matslider.value}}.png" style="width:33%;height:33%">
+                    <img id="{{matslider.value}}emoji" src="assets/Emojis/{{matslider.value}}.png"
+                         style="width:33%;height:33%">
                     <br/>
 
                     <!-- This is the slider that the user will choose to determine their mo od value/ emoji
@@ -21,9 +22,12 @@
 
                     <h2>I'm feeling {{parseEmotion(matslider.value)}}.</h2>
 
-                    <mat-slider class="slider" thumbLabel tick-interval="1" min="1" max="6" step="1" value="6" #matslider [(ngModel)]="emoji.mood"></mat-slider>
+                    <mat-slider class="slider" thumbLabel tick-interval="1" min="1" max="5" step="1" value="5"
+                                #matslider [(ngModel)]="emoji.mood"></mat-slider>
                     <br/>
-                    <button mat-raised-button id="submitEmoji" color="primary" (click)="addEmoji()" type="button">Submit</button>
+                    <button mat-raised-button id="submitEmoji" color="primary" (click)="addEmoji()" type="button">
+                        Submit
+                    </button>
                 </mat-card-content>
             </mat-card>
         </div>

@@ -68,16 +68,14 @@ export class HomeComponent implements OnInit {
         switch(num)
         {
             case 1:
-                return "anxious";
-            case 2:
                 return "sad";
-            case 3:
+            case 2:
                 return "down";
-            case 4:
+            case 3:
                 return "meh";
-            case 5:
+            case 4:
                 return "happy";
-            case 6:
+            case 5:
                 return "radiant";
         }
 
