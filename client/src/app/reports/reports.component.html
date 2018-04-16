@@ -16,8 +16,8 @@
                 <mat-divider></mat-divider>
                 <mat-card-content>
 
-                    <mat-list *ngIf="emojis; else emojiError" >
-                        <mat-list-item #elem class="emoji" [id]="emoji._id['$oid']"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
+                    <div *ngIf="emojis; else emojiError" >
+                        <mat-card #elem class="emoji" [id]="emoji._id['$oid']"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
                                 <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
                             <img matListAvatar src="assets/Emojis/{{emoji.mood}}.png" style="width: 48px; height: 48px">
 
@@ -25,9 +25,9 @@
                                 <mat-panel-title id="test"><img src="assets/Emojis/{{emoji.mood}}.png" style="width: 24px; height: 24px"></mat-panel-title>
 -->
 
-                            <mat-card-title>{{getReadableDate(emoji.date)}}</mat-card-title>
-                        </mat-list-item>
-                    </mat-list>
+                            <mat-card-title class="emojiTime">{{getReadableDate(emoji.date)}}</mat-card-title>
+                        </mat-card>
+                    </div>
 
                     <ng-template #emojiError>
                         <mat-error>

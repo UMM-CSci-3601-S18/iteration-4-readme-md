@@ -76,7 +76,7 @@ describe('Report service: ', () => {
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(reportsListService.baseUrl);
+        const req = httpTestingController.expectOne(reportsListService.baseUrl + '?email=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
