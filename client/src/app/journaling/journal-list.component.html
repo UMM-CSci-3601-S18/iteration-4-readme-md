@@ -1,29 +1,36 @@
 <!-- Don't allow the user to see anything if they aren't logged in. -->
 <div *ngIf="user; else promptLogin">
-        <div layout-gt-sm="row">
-            <div flex-gt-sm="80" flex-offset-gt-sm="10">
+    <div layout-gt-sm="row">
+        <div flex-gt-sm="80" flex-offset-gt-sm="10">
 
-                <mat-card class="matCardMain">
-                    <mat-card-title id="journal-list-title">Journals
-                        <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
-                        <button id="addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
-                    </mat-card-title>
-                    <mat-divider></mat-divider>
+            <mat-card class="matCardMain">
+                <mat-card-title id="journal-list-title">Journals
+                    <br>
+                    <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
+                    <button id="addNewJournal" mat-raised-button (click)="openDialog()">Add A New Journal</button>
+                </mat-card-title>
+                <mat-divider></mat-divider>
 
-                    <div *ngIf="selectedJournal">
-                        <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
-                        <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
-                        <mat-card-content>
-                            <p>{{selectedJournal.body}}</p>
-                            <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
-                            <button id="deleteJournal" mat-raised-button (click)="deleteJournal(selectedJournal._id['$oid'])">Delete Journal</button>
-                        </mat-card-content>
-                    </div>
+                <div *ngIf="selectedJournal">
+                    <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
+                    <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
+                    <mat-card-content>
+                        <p>{{selectedJournal.body}}</p>
+                        <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit
+                            Journal
+                        </button>
+                        <button id="deleteJournal" mat-raised-button
+                                (click)="deleteJournal(selectedJournal._id['$oid'])">Delete Journal
+                        </button>
+                    </mat-card-content>
+                </div>
 
-                </mat-card>
+            </mat-card>
 
-            </div>
         </div>
+    </div>
+
+
 
 </div>
 

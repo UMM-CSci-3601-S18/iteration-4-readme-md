@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
         this.homeService.addEmoji(this.emoji).subscribe(
             addEmojiResult => {
                 console.log('emoji '+ addEmojiResult + ' successfully added');
-                this.openSnackBar('Emoji Saved', 'OK');
+                this.openSnackBar('Emotion Saved', 'OK');
             },
             err => {
                 // This should probably be turned into some sort of meaningful response.
