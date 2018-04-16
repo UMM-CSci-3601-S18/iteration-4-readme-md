@@ -16,6 +16,10 @@ mat-expansion-panel{
 .addNewResourceDiv{
     padding: 10px;
 }
+#add-icon {
+    color: forestgreen;
+}
+
 
 .loginEmoji{
     display: flex;

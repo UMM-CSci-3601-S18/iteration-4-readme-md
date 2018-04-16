@@ -50,7 +50,7 @@ export class ReportsComponent implements OnInit {
         }
 
         // Filter by mood
-        if (searchMood != null) {
+        if (searchMood != null && searchMood != '') {
             this.filteredEmojis = this.filteredEmojis.filter(emoji => {
                 return !searchMood || emoji.mood == searchMood;
             });
