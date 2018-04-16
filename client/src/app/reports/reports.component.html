@@ -5,19 +5,20 @@
             <mat-card class="reportscard">
                 <mat-card-title id="reports-title">Reports
                     <mat-select id="selector" placeholder = "Select Mood"[(value)]="emojiMood">
-                        <mat-option value = 1>Sad</mat-option>
-                        <mat-option value = 2>Down</mat-option>
-                        <mat-option value = 3>Meh</mat-option>
-                        <mat-option value = 4>Happy</mat-option>
-                        <mat-option value = 5>Radiant</mat-option>
+                        <mat-option value = "">All Moods</mat-option>
+                        <mat-option value = 1>Anxious</mat-option>
+                        <mat-option value = 2>Sad</mat-option>
+                        <mat-option value = 3>Down</mat-option>
+                        <mat-option value = 4>Meh</mat-option>
+                        <mat-option value = 5>Happy</mat-option>
+                        <mat-option value = 6>Radiant</mat-option>
                     </mat-select>
                 </mat-card-title>
                 <mat-divider></mat-divider>
                 <mat-card-content>
-                  
+
                     <mat-list *ngIf="emojis; else emojiError" >
-                        <mat-list-item #elem class="emoji" [id]="emoji._id"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
-                          
+                        <mat-list-item #elem class="emoji" [id]="emoji._id['$oid']"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
                                 <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
                             <img matListAvatar src="assets/Emojis/{{emoji.mood}}.png" style="width: 48px; height: 48px">
 
@@ -25,7 +26,7 @@
                                 <mat-panel-title id="test"><img src="assets/Emojis/{{emoji.mood}}.png" style="width: 24px; height: 24px"></mat-panel-title>
 -->
 
-                            <mat-card-title class="emojiTime">{{getReadableDate(emoji.date)}}</mat-card-title>
+                            <mat-card-title>{{getReadableDate(emoji.date)}}</mat-card-title>
                         </mat-list-item>
                     </mat-list>
 

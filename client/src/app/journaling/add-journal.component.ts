@@ -5,6 +5,7 @@ import {Journal} from './journal';
 @Component({
     selector: 'app-add-journal.component',
     templateUrl: 'add-journal.component.html',
+    styleUrls: ['./add-journal.component.css']
 })
 
 export class AddJournalComponent implements OnInit{

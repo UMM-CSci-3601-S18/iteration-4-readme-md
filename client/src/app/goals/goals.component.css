@@ -1,3 +1,8 @@
+mat-card{
+    border-radius: 10px;
+    background: linear-gradient(#1a75ff,#ffff99 80%);
+}
+
 .loginEmoji{
     display: flex;
     margin-left: auto;
@@ -65,7 +70,8 @@
 
 }
 
-.complete-button {
+.complete-button {    background-color:black;
+
     color: limegreen;
 }
 
@@ -81,3 +87,4 @@
 .goals-buttons {
     float: right;
 }
+
