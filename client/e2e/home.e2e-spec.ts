@@ -18,7 +18,7 @@ browser.driver.controlFlow().execute = function () {
     return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-describe('', () => {
+describe('Tests all functionality on the homepage: mostly just the slider/emotion selector ', () => {
     let page: HomePage;
 
     beforeEach(() => {
