@@ -38,10 +38,6 @@ let config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider("557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com")
-    },
-    {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("Facebook-App-Id")
     }
 ]);
 

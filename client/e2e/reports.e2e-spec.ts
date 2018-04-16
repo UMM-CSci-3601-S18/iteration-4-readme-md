@@ -5,7 +5,7 @@ import {ReportsPage} from "./reports.po";
 
 const origFn = browser.driver.controlFlow().execute;
 
-fdescribe('Reports Page', () => {
+describe('Reports Page', () => {
     let page: ReportsPage;
 
     beforeEach(() => {

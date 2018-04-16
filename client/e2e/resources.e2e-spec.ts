@@ -17,7 +17,7 @@ import {element, by} from 'protractor';
 //     return origFn.apply(browser.driver.controlFlow(), args);
 // };
 
-fdescribe('Testing all resource page functionality: from checking currently existing resources to adding new contacts', () => {
+describe('Testing all resource page functionality: from checking currently existing resources to adding new contacts', () => {
     let page: ResourcesPage;
 
     beforeEach(() => {
