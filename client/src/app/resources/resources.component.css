@@ -6,6 +6,9 @@ mat-card{
 mat-expansion-panel{
     background: linear-gradient(#ccf2ff,#e6e6e6);
 }
+#add-icon {
+    color: forestgreen;
+}
 
 
 
