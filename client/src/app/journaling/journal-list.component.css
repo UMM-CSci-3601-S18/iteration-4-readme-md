@@ -4,7 +4,6 @@ mat-card{
     background: linear-gradient(#1a75ff,#ffff99 80%);
 }
 
-
 .loginEmoji{
     display: flex;
     margin-left: auto;
@@ -72,4 +71,8 @@ mat-card{
 #deleteJournal{
     float: right;
     bottom: 8px;
+}
+
+#journalButtons{
+    padding: 10px;
 }

@@ -2,12 +2,14 @@
 <div *ngIf="user; else promptLogin">
         <div layout-gt-sm="row">
             <div flex-gt-sm="80" flex-offset-gt-sm="10">
+                <div id="journalButtons">
+                    <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
+                    <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
+                </div>
 
                 <mat-card class="matCardMain">
-                    <mat-card-title id="journal-list-title">Journals
-                        <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
-                        <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
-                    </mat-card-title>
+                    <mat-card-title id="journal-list-title">Journals</mat-card-title>
+                    <mat-card-subtitle>Add a new journal entry or click "Select a Journal Entry" to view a previous one.</mat-card-subtitle>
                     <mat-divider></mat-divider>
 
                     <div *ngIf="selectedJournal">
