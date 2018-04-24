@@ -45,20 +45,27 @@ public abstract class SuperController {
     public String getItems(Map<String, String[]> queryParams) {
         Document filterDoc = new Document();
 
+        // TODO: delete this once the user database is fully implemented
         if (queryParams.containsKey("email")) {
             String targetEmail = (queryParams.get("email")[0]);
             filterDoc = filterDoc.append("email", targetEmail);
+        } else {
+            System.out.println("It had no userID");
+            return JSON.serialize("[ ]");
         }
 
-        if (queryParams.containsKey("owner")) {
-            String targetOwner = (queryParams.get("owner")[0]);
-            filterDoc = filterDoc.append("owner", targetOwner);
+
+
+        if (queryParams.containsKey("userId")) {
+            String targetUserId = (queryParams.get("userId")[0]);
+            filterDoc = filterDoc.append("userId", targetUserId);
         }
 
-        if (queryParams.containsKey("user_id")) {
-            String targetUserId = (queryParams.get("user_id")[0]);
-            filterDoc = filterDoc.append("user_id", targetUserId);
-        }
+        // TODO: uncomment this once the user database is fully implemented
+//        else {
+//            System.out.println("It had no userID");
+//            return JSON.serialize("[ ]");
+//        }
 
         if (queryParams.containsKey("subject")) {
             String targetContent = (queryParams.get("subject")[0]);

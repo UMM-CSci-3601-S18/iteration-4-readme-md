@@ -29,7 +29,7 @@ import org.json.*;
 
 public class Server {
     private static final String databaseName = "dev";
-    private static final int serverPort = 4567;
+    private static final int serverPort = 4567; // change to port 80 on the droplet
 
     public static void main(String[] args) throws IOException {
 
