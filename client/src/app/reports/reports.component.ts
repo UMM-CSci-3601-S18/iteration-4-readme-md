@@ -22,13 +22,12 @@ export class ReportsComponent implements OnInit {
     public emojiMood: any;
 
     moods = [
-        {value: 'Anxious', viewValue:1},
-        {value: 'sad', viewValue:2},
-        {value: 'down', viewValue:3},
-        {value: 'meh', viewValue:4},
-        {value: 'happy', viewValue:5},
-        {value: 'radiant', viewValue:6},
-    ]
+        {value: 'Angry', viewValue:1},
+        {value: 'Anxious', viewValue:2},
+        {value: 'Happy', viewValue:3},
+        {value: 'Meh', viewValue:4},
+        {value: 'Sad', viewValue:5},
+    ];
 
     // Inject the EmojiListService into this component.
     constructor(public reportsService: ReportsService, public authService: AuthService) {
