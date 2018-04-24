@@ -4,6 +4,7 @@ import {Emoji} from "../emoji";
 import {ReportsService} from "./reports.service";
 import {AuthService, SocialUser} from "angularx-social-login";
 import {environment} from "../../environments/environment";
+import * as Chart from 'chart.js';
 
 @Component({
     selector: 'app-reports-component',
@@ -12,7 +13,25 @@ import {environment} from "../../environments/environment";
 })
 
 export class ReportsComponent implements OnInit {
-    // These are public so that tests can reference them (.spec.ts)
+    startDate;
+    endDate;
+    getDate;
+
+    canvas: any;
+    ctx: any;
+    myChart: any;
+
+    public emojis: Emoji[];
+    public filteredEmojis: Emoji[];
+
+    public emojiMood: number;
+    public emojiIntensity: number;
+    public inputType;
+
+    private highlightedID: {'$oid': string} = { '$oid': '' };
+
+
+    /*// These are public so that tests can reference them (.spec.ts)
     public emojis: Emoji[];
     public filteredEmojis: Emoji[];
     public user: SocialUser;
@@ -28,46 +47,50 @@ export class ReportsComponent implements OnInit {
         {value: 'meh', viewValue:4},
         {value: 'happy', viewValue:5},
         {value: 'radiant', viewValue:6},
-    ]
+    ]*/
 
     // Inject the EmojiListService into this component.
     constructor(public reportsService: ReportsService, public authService: AuthService) {
 
     }
 
+    isHighlighted(emoji: Emoji): boolean {
+        return emoji._id['$oid'] === this.highlightedID['$oid'];
+    }
 
-    public filterEmojis(searchOwner, searchMood): Emoji[] {
+
+    public filterEmojis(searchMood: number, searchIntensity: number): Emoji[] {
 
         this.filteredEmojis = this.emojis;
 
-        // Filter by owner
-        if (searchOwner != null) {
-            searchOwner = searchOwner.toLocaleLowerCase();
+        // Filter by mood
+        if (searchMood == null) {
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return true;
+                });
 
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchOwner || emoji.owner.toLowerCase().indexOf(searchOwner) !== -1;
-            });
-        }
+            } else{
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return !searchMood || searchMood == emoji.mood;
+                })
+            }
 
         // Filter by mood
-        if (searchMood != null && searchMood != '') {
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchMood || emoji.mood == searchMood;
-            });
+        if (searchIntensity != null) {
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return true;
+                });
+            }
+            else {
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return !searchIntensity || searchIntensity == emoji.intensity;
+                });
         }
-
-
-        // Sort by date
-        this.filteredEmojis = this.filteredEmojis.sort((emoji1, emoji2) => {
-            const date1 = new Date(emoji1.date);
-            const date2 = new Date(emoji2.date);
-            return date2.valueOf() - date1.valueOf();
-        });
-
 
         return this.filteredEmojis;
     }
 
+    filterDataByDate()
     /**
      * Starts an asynchronous operation to update the emojis list
      *

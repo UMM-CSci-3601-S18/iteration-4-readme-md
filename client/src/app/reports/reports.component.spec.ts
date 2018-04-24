@@ -1,3 +1,4 @@
+/*
 import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {ReportsComponent} from "./reports.component";
 import {Observable} from 'rxjs/Observable';
@@ -180,3 +181,4 @@ describe('Misbehaving Emoji List', () => {
 
 
 
+*/

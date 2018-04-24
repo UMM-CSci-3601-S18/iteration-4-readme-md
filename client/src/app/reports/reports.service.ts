@@ -14,6 +14,8 @@ export class ReportsService {
     }
 
 
+
+
     getEmojis(userEmail: string): Observable<Emoji[]> {
         return this.http.get<Emoji[]>(this.baseUrl + '?email=' + userEmail);
     }
