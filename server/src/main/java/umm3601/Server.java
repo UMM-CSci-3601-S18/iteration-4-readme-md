@@ -12,6 +12,7 @@ import umm3601.resources.ResourcesController;
 import umm3601.resources.ResourcesRequestHandler;
 import umm3601.journal.JournalController;
 import umm3601.journal.JournalRequestHandler;
+import umm3601.user.UserController;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -33,17 +34,21 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase emojiDatabase = mongoClient.getDatabase(databaseName);
-        MongoDatabase resourcesDatabase = mongoClient.getDatabase(databaseName);
+        MongoDatabase mongoDatabase = mongoClient.getDatabase(databaseName);
 
-        EmojiController emojiController = new EmojiController(emojiDatabase);
+        EmojiController emojiController = new EmojiController(mongoDatabase);
         EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
-        GoalController goalController = new GoalController(emojiDatabase);
+
+        GoalController goalController = new GoalController(mongoDatabase);
         GoalRequestHandler goalRequestHandler = new GoalRequestHandler(goalController);
-        JournalController journalController = new JournalController(emojiDatabase);
+
+        JournalController journalController = new JournalController(mongoDatabase);
         JournalRequestHandler journalRequestHandler = new JournalRequestHandler(journalController);
-        ResourcesController resourcesController = new ResourcesController(resourcesDatabase);
+
+        ResourcesController resourcesController = new ResourcesController(mongoDatabase);
         ResourcesRequestHandler resourcesRequestHandler = new ResourcesRequestHandler(resourcesController);
+
+        UserController userController = new UserController(mongoDatabase);
 
         //Configure Spark
         port(serverPort);
@@ -143,7 +148,7 @@ public class Server {
                         clientSecrets.getDetails().getClientSecret(),
                         authCode,
                         "http://localhost:9000")
-                        //Not sure if we have a redirectUri
+                        // Might need to be changed in production?
 
                         // Specify the same redirect URI that you use with your web
                         // app. If you don't have a web version of your app, you can
@@ -168,7 +173,7 @@ public class Server {
                 System.out.println(name);
                 System.out.println(locale);
 
-                //return userController.addNewUser(subjectId, givenName, familyName);
+                return userController.addNewUser(subjectId, givenName, familyName);
 
             } catch (Exception e) {
                 System.out.println(e);
