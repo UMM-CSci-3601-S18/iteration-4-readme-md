@@ -1,3 +1,4 @@
+/*
 package umm3601.emoji;
 
 import com.mongodb.BasicDBObject;
@@ -151,3 +152,4 @@ public class EmojiControllerSpec {
 
 }
 
+*/
