@@ -2,10 +2,10 @@
 <div *ngIf="user; else promptLogin">
         <div layout-gt-sm="row">
             <div flex-gt-sm="80" flex-offset-gt-sm="10">
-                <div id="journalButtons">
-                    <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
-                    <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
-                </div>
+                <!--<div id="journalButtons">
+                    &lt;!&ndash;<button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
+                    <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>&ndash;&gt;
+                </div>-->
 
                 <mat-card class="matCardMain">
                     <mat-card-title id="journal-list-title">Journals</mat-card-title>
@@ -26,19 +26,31 @@
                                         </mat-panel-title>
                                     </mat-expansion-panel-header>
                                     <p>{{journal.body}}</p>
+                                    <button id="editJournal" mat-raised-button (click)="openDialogReview(journal)">Edit Journal</button>
+                                    <button id="deleteJournal" mat-raised-button (click)="deleteJournal(journal._id['$oid'])">Delete Journal</button>
                                 </mat-expansion-panel>
                             </mat-accordion>
-
-
-
-
                         </mat-tab>
 
 
+                        <mat-tab label="Add Journal">
+                                <mat-card-title>New Journal</mat-card-title>
+                                <mat-divider></mat-divider>
+                                <mat-card-content>
+                                    <button mat-raised-button id="newPrompt" (click)="generateRandomPrompt()" type="button">New Prompt</button>
+                                    <p>{{prompt}}</p>
+                                    <mat-form-field>
+                                        <input matInput #input id="subjectField" placeholder="Subject" [(ngModel)]="journalSubject">
+                                    </mat-form-field>
+                                    <br>
+                                    <mat-form-field>
+                                        <textarea matInput #input id="bodyField" matTextareaAutosize placeholder="Body" [(ngModel)]="journalBody"></textarea>
+                                    </mat-form-field>
 
+                                    <button mat-button id="confirmAddJournalButton" (click)="journals" type="button">Add journal</button>
+                                </mat-card-content>
 
-
-                        <mat-tab label="Add Journal">Content 2</mat-tab>
+                        </mat-tab>
                     </mat-tab-group>
 
                     <!--<div *ngIf="selectedJournal">
