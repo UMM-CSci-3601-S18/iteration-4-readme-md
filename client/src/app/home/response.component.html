@@ -17,10 +17,31 @@
             emoji or mood response gives out is not repeating.
             -->
 
-            <mat-card-content>
-                <p>Here's a video that might make your day better: </p>
-                <button mat-raised-button (click)="getLink()">Go to Video</button>
-            </mat-card-content>
+            <mat-card-content id="response6" *ngIf="data.response == 1">                                <iframe id="responseSadVideoFrame"
+                                                                                                                src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu&index=2"
+                                                                                                                frameborder="0"
+                                                                                                                allowfullscreen
+                                                                                                                class="video"></iframe></mat-card-content>
+            <mat-card-content id="response7" *ngIf="data.response == 2">                                <iframe id="responseAnxiousVideoFrame"
+                                                                                                                src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9&index=8"
+                                                                                                                frameborder="0"
+                                                                                                                allowfullscreen
+                                                                                                                class="video"></iframe></mat-card-content>
+            <mat-card-content id="response8" *ngIf="data.response == 3">                                <iframe id="responseHappyVideoFrame"
+                                                                                                                src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr"
+                                                                                                                frameborder="0"
+                                                                                                                allowfullscreen
+                                                                                                                class="video"></iframe></mat-card-content>
+            <mat-card-content id="response9" *ngIf="data.response == 4">                                <iframe id="responseMehVideoFrame"
+                                                                                                                src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX"
+                                                                                                                frameborder="0"
+                                                                                                                allowfullscreen
+                                                                                                                class="video"></iframe></mat-card-content>
+            <mat-card-content id="response10" *ngIf="data.response == 5">                                <iframe id="responseHappyVideoFrame"
+                                                                                                                 src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr"
+                                                                                                                 frameborder="0"
+                                                                                                                 allowfullscreen
+                                                                                                                 class="video"></iframe></mat-card-content>
         </mat-card>
     </div>
 </div>
