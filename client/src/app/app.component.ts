@@ -49,8 +49,7 @@ export class AppComponent implements OnInit {
 
     signOut(): void {
         this.authService.signOut()
-
-            .then((res) => {
+            .then(() => {
                 console.log('Signed out.');
                 return;
             })

@@ -63,14 +63,14 @@ public class GoalController extends SuperController{
 //    }
 
 
-    public String addNewGoal(String purpose, String category, String name , Boolean status, String email) {
+    public String addNewGoal(String purpose, String category, String name , Boolean status, String userId) {
 
         Document newGoal = new Document();
         newGoal.append("purpose", purpose);
         newGoal.append("category", category);
         newGoal.append("name", name);
         newGoal.append("status", status);
-        newGoal.append("email", email);
+        newGoal.append("userId", userId);
 
 
 

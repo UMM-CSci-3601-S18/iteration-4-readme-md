@@ -71,11 +71,11 @@ public class JournalController extends SuperController {
 //        return JSON.serialize(matchingJournals);
 //    }
 
-    public String addNewJournal(String subject, String body, String email) {
+    public String addNewJournal(String subject, String body, String userId) {
         Document newJournal = new Document();
         newJournal.append("subject",subject);
         newJournal.append("body",body);
-        newJournal.append("email",email);
+        newJournal.append("userId",userId);
 
         Date now = new Date();
         newJournal.append("date", now.toString());
