@@ -1,4 +1,4 @@
-/*
+
 import {TestBed, ComponentFixture, async} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
 import {DebugElement} from '@angular/core';
@@ -21,6 +21,7 @@ describe('Adding an emoji', () => {
     const newEmoji: Emoji = {
         _id: '',
         owner: 'test dummy',
+        intensity: 1,
         mood: 3,
         date: '', //date will be created during the test so that it matches what is made in component.addEmoji
         email: '',
@@ -29,6 +30,8 @@ describe('Adding an emoji', () => {
     const newId = 'nick_id';
 
     let calledEmoji: Emoji;
+
+    //let parseEmotionIntensity:
 
     let homeServiceStub: {
         addEmoji: (newEmoji: Emoji) => Observable<{'$oid': string}>
@@ -102,6 +105,7 @@ describe('Adding an emoji', () => {
         expect(calledEmoji).toBeNull();
 
         component.emoji._id = newEmoji._id;
+        component.emoji.intensity = newEmoji.intensity;
         component.emoji.mood = newEmoji.mood;
         component.emoji.owner = newEmoji.owner;
         const date = new Date();
@@ -111,5 +115,19 @@ describe('Adding an emoji', () => {
 
         expect(calledEmoji).toEqual(newEmoji);
     });
+
+
+    it('parsemoodintensity', () =>{
+        expect(component.parseEmotionIntensity(1, 1)).toEqual("Frustrated");
+        expect(component.parseEmotionIntensity(2, 1)).toEqual("Anxious");
+        expect(component.parseEmotionIntensity(3, 1)).toEqual("Happy");
+        expect(component.parseEmotionIntensity(3, 2)).toEqual("Content");
+        expect(component.parseEmotionIntensity(4, 1)).toEqual("Meh");
+        expect(component.parseEmotionIntensity(4, 2)).toEqual("Bleh");
+        expect(component.parseEmotionIntensity(5, 1)).toEqual("Unhappy");
+        expect(component.parseEmotionIntensity(5, 2)).toEqual("Sad");
+    })
+
+
 });
-*/
+
