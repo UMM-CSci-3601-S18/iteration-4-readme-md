@@ -24,6 +24,8 @@ export class ReportsComponent implements OnInit {
     public emojis: Emoji[];
     public filteredEmojis: Emoji[];
 
+    public user: SocialUser;
+
     public emojiMood: number;
     public emojiIntensity: number;
     public inputType;
@@ -40,7 +42,7 @@ export class ReportsComponent implements OnInit {
     public emojiOwner: string;
     public emojiMood: any;
 
-    moods = [
+    moods = [+ '&date=' + startDate + ',' + endDate
         {value: 'Anxious', viewValue:1},
         {value: 'sad', viewValue:2},
         {value: 'down', viewValue:3},
@@ -90,7 +92,7 @@ export class ReportsComponent implements OnInit {
         return this.filteredEmojis;
     }
 
-    filterDataByDate()
+
     /**
      * Starts an asynchronous operation to update the emojis list
      *
@@ -101,12 +103,12 @@ export class ReportsComponent implements OnInit {
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-
-        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email);
+        //if (this.inputType ==
+        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email, this.startDate, this.endDate);
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;
-                this.filterEmojis(this.emojiOwner,this.emojiMood);
+                this.filterEmojis(this.emojiMood,this.emojiIntensity);
             },
             err => {
                 console.log(err);

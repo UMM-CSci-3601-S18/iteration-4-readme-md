@@ -75,13 +75,14 @@ public abstract class SuperController {
             filterDoc = filterDoc.append("body", contentRegQuery);
         }
 
-        if (queryParams.containsKey("startDate") && queryParams.containsKey("endDate") ) {
-            String targetStartContent = (queryParams.get("startDate")[0]);
-            String targetEndContent = (queryParams.get("endDate")[0]);
+        if (queryParams.containsKey("date")) {
+            String targetContent = (queryParams.get("date")[0]);
+            String[] arg1 = targetContent.split(",");
+            String targetStartContent = arg1[0];
+            String targetEndContent = arg1[1];
             Document contentRegQuery = new Document();
-            contentRegQuery.append("$lte", targetEndContent);
             contentRegQuery.append("$gte", targetStartContent);
-            //contentRegQuery.append("$options", "i");
+            contentRegQuery.append("$lte", targetEndContent);
             filterDoc = filterDoc.append("date", contentRegQuery);
         }
 

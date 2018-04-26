@@ -16,8 +16,11 @@ export class ReportsService {
 
 
 
-    getEmojis(userEmail: string): Observable<Emoji[]> {
-        return this.http.get<Emoji[]>(this.baseUrl + '?email=' + userEmail);
+    getEmojis(userEmail: string, startDate: string, endDate: string): Observable<Emoji[]> {
+        if (startDate == null && endDate == null){
+            return this.http.get<Emoji[]>(this.baseUrl + '?email=' + userEmail);
+        } else{
+            return this.http.get<Emoji[]>(this.baseUrl + '?email=' + userEmail + '&date=' + startDate + ',' + endDate);
+        }
     }
-
 }
