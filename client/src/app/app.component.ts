@@ -31,17 +31,12 @@ export class AppComponent implements OnInit {
                 return this.loginService.authenticate(user.idToken);
             })
 
-            .then((authResponse) => {
-                // check that our client id is within the response from google
-                if (authResponse.aud != '557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com') {
-                    console.log('Error: login response did not contain our app\'s client ID');
-                    this.signOut();
-                } else {
-                    //refreshes after login so that the name of the user can be shown
-                    window.location.reload();
-                    console.log(authResponse.name + ' signed in.');
-                }
+            .then((userId) => {
+                localStorage.setItem('userId', userId);
 
+                //refreshes after login so that the name of the user can be shown
+                window.location.reload();
+                console.log(this.user.name + ' signed in.');
             })
 
             .catch((err) => {
