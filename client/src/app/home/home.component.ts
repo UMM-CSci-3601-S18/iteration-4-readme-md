@@ -16,8 +16,7 @@ import {environment} from "../../environments/environment";
 })
 export class HomeComponent implements OnInit {
 
-    public emoji: Emoji = {_id: '', owner: '', date: '', mood: 5, email: localStorage.getItem('email')};
-    public email: string = localStorage.getItem('email');
+    public emoji: Emoji = {_id: '', owner: '', date: '', mood: 5, userId: localStorage.getItem('userId')};
     public user: SocialUser;
     public name: string;
 
@@ -45,7 +44,7 @@ export class HomeComponent implements OnInit {
         const date = new Date();
         this.emoji.date = date.toString();
         this.emoji.owner = this.user.name;
-        this.emoji.email = this.user.email;
+        this.emoji.userId = localStorage.getItem('userId');
 
         this.homeService.addEmoji(this.emoji).subscribe(
             addEmojiResult => {
@@ -54,7 +53,7 @@ export class HomeComponent implements OnInit {
             },
             err => {
                 // This should probably be turned into some sort of meaningful response.
-                console.log('There was an error adding the user.');
+                console.log('There was an error adding the emotion.');
                 console.log('The error was ' + JSON.stringify(err));
                 this.openSnackBar('There was an error communicating with the server. Your entry was not saved.', 'OK');
             });

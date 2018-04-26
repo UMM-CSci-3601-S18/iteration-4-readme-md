@@ -12,7 +12,7 @@ describe('Home service: ', () => {
             mood: 5,
             date: "8/20/2015 20:00",
             owner: "Ahnaf",
-            email: "ahnaf@gmail.com",
+            userId: "ahnaf@gmail.com",
         },
         {
 
@@ -20,14 +20,14 @@ describe('Home service: ', () => {
             mood: 3,
             date: "8/20/2018 20:00",
             owner: "Chuck",
-            email: "chuck@gmail.com",
+            userId: "chuck@gmail.com",
         },
         {
             _id: "a98ab3747faebe4490d5151",
             mood: 3,
             date: "8/23/2018 20:00",
             owner: "Matt",
-            email: "matt@gmail.com",
+            userId: "matt@gmail.com",
         },
     ];
 
@@ -69,12 +69,12 @@ describe('Home service: ', () => {
         // checked until the mocked HTTP request "returns" a response.
         // This happens when we call req.flush(testUsers) a few lines
         // down.
-        emojiListService.getEmojis().subscribe(
+        emojiListService.getEmojis('').subscribe(
             emojis => expect(emojis).toBe(testEmojis)
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(emojiListService.baseUrl);
+        const req = httpTestingController.expectOne(emojiListService.baseUrl + '?userId=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
@@ -106,7 +106,7 @@ describe('Home service: ', () => {
             mood: 4,
             date: "6/20/2012 20:00",
             owner: "Chuck",
-            email: "chuck@gmail.com",
+            userId: "chuck@gmail.com",
         };
 
         emojiListService.addEmoji(newEmoji).subscribe(

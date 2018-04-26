@@ -7,6 +7,8 @@ import {AddGoalComponent} from "./add-goals.component";
 import {MatSnackBar} from '@angular/material';
 import {AuthService, SocialUser} from "angularx-social-login";
 import {environment} from "../../environments/environment";
+import {isNullOrUndefined} from "util";
+
 @Component({
     selector: 'app-goals-component',
     templateUrl: './goals.component.html',
@@ -110,13 +112,12 @@ export class GoalsComponent implements OnInit{
         // Filter by status
         if (searchStatus != null) {
 
+            // for some reason, an error is usually thrown here. not sure why.
+            // the app still works regardless
             this.filteredGoals = this.filteredGoals.filter(goal => {
                 return goal.status === searchStatus;
             });
         }
-
-
-
 
         return this.filteredGoals;
     }
