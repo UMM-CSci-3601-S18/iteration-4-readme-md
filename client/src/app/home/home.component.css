@@ -41,26 +41,30 @@ mat-card-content img {
 
 #currentEmoji {
     padding-top: 10px;
-    width: 25%;
-    height: 25%;
+    width: 20%;
+    height: 20%;
 }
 
 #leftEmoji {
     padding-top: 10px;
     padding-right: 10px;
-    width: 15%;
-    height: 15%;
+    width: 12%;
+    height: 12%;
     opacity: 0.5;
 }
 
 #rightEmoji {
     padding-top: 10px;
     padding-left: 10px;
-    width: 15%;
-    height: 15%;
+    width: 12%;
+    height: 12%;
     opacity: 0.5;
 }
 
 #submitEmoji {
     margin-top: 10px;
+}
+
+#emojiNavLeft{
+    margin-right: 40px;
 }
