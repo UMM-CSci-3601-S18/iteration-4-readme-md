@@ -7,6 +7,8 @@ export class JournalingPage {
     }
 
     addNewJournal(subject: string, body: string) {
+        const tabinput = element(by.id('md-tab-label-0-1'));
+        tabinput.click();
         const input = element(by.id('addNewJournal'));
         input.click();
         const subjectInput = element(by.id('subjectField'));
@@ -39,22 +41,22 @@ export class JournalingPage {
     }
 
     getJournalText(search: string) {
-        const card = element(by.cssContainingText('.mat-card-title', search));
+        const card = element(by.cssContainingText('.mat-expansion-panel-header-title', search));
         return card.getText();
     }
 
     selectJournal(search: string){
-        const input = element(by.id('selectJournal'));
+        const input = element(by.id('md-tab-label-0-0'));
         input.click();
 
         // //search for journal
         const subjectInput = element(by.id('journalSubject'));
         subjectInput.click();
-       subjectInput.sendKeys(search);
+        subjectInput.sendKeys(search);
         //
         // //click journal
-        const journal = element(by.cssContainingText('mat-list-item',search));
-         journal.click();
+        const journal = element(by.cssContainingText('.mat-expansion-panel-header-title',search));
+        journal.click();
 
     }
 
