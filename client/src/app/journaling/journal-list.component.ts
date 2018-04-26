@@ -31,9 +31,9 @@ export class JournalListComponent implements OnInit {
 
     public journalSearch: string;
 
-    public prompts: String[] = ["What are you grateful for?","What scares you?","How are you Feeling?", "What do you love about your life?","Today I accomplished...","Who made you feel good this week?","What did you enjoy doing this week?","What would you do if you knew you could not fail?","What are your best character traits?","What did you learn this week?","What did you do this week that moved you closer to reaching your goals?"];
+    /*public prompts: String[] = ["What are you grateful for?","What scares you?","How are you Feeling?", "What do you love about your life?","Today I accomplished...","Who made you feel good this week?","What did you enjoy doing this week?","What would you do if you knew you could not fail?","What are your best character traits?","What did you learn this week?","What did you do this week that moved you closer to reaching your goals?"];
 
-    public prompt: String;
+    public prompt: String;*/
 
 
     public selectedJournal: Journal;
@@ -51,7 +51,7 @@ export class JournalListComponent implements OnInit {
 
 
 
-    /*openDialog(): void {
+    openDialog(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
         const dialogRef = this.dialog.open(AddJournalComponent, {
             width: '500px',
@@ -70,7 +70,7 @@ export class JournalListComponent implements OnInit {
                     console.log('The error was ' + JSON.stringify(err));
                 });
         });
-    }*/
+    }
 
     /*openDialogSelect(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
@@ -225,11 +225,11 @@ export class JournalListComponent implements OnInit {
             };
         }
         this.refreshJournals();
-        this.generateRandomPrompt();
+        /*this.generateRandomPrompt();*/
     }
 
 
-    generateRandomPrompt(): void {
+    /*generateRandomPrompt(): void {
         this.prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
-    }
+    }*/
 }

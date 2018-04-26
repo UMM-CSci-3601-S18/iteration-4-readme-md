@@ -34,21 +34,7 @@
 
 
                         <mat-tab label="Add Journal">
-                                <mat-card-title>New Journal</mat-card-title>
-                                <mat-divider></mat-divider>
-                                <mat-card-content>
-                                    <button mat-raised-button id="newPrompt" (click)="generateRandomPrompt()" type="button">New Prompt</button>
-                                    <p>{{prompt}}</p>
-                                    <mat-form-field>
-                                        <input matInput #input id="subjectField" placeholder="Subject" [(ngModel)]="journalSubject">
-                                    </mat-form-field>
-                                    <br>
-                                    <mat-form-field>
-                                        <textarea matInput #input id="bodyField" matTextareaAutosize placeholder="Body" [(ngModel)]="journalBody"></textarea>
-                                    </mat-form-field>
-
-                                    <button mat-button id="confirmAddJournalButton" (click)="journals" type="button">Add journal</button>
-                                </mat-card-content>
+                            <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
 
                         </mat-tab>
                     </mat-tab-group>
