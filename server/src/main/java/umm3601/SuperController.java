@@ -75,20 +75,14 @@ public abstract class SuperController {
             filterDoc = filterDoc.append("body", contentRegQuery);
         }
 
-        if (queryParams.containsKey("startDate")) {
-            String targetContent = (queryParams.get("startDate")[0]);
+        if (queryParams.containsKey("startDate") && queryParams.containsKey("endDate") ) {
+            String targetStartContent = (queryParams.get("startDate")[0]);
+            String targetEndContent = (queryParams.get("endDate")[0]);
             Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("startDate", contentRegQuery);
-        }
-
-        if (queryParams.containsKey("endDate")) {
-            String targetContent = (queryParams.get("endDate")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("endDate", contentRegQuery);
+            contentRegQuery.append("$lte", targetEndContent);
+            contentRegQuery.append("$gte", targetStartContent);
+            //contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("date", contentRegQuery);
         }
 
        // db.emotions.find({ "date" : {$lte: "Wed Mar 3 2018 12:02:21 GMT-0500",$gte: "Wed Mar 3 2018 12:02:21 GMT-0500"}})
