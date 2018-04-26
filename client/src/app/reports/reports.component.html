@@ -2,91 +2,45 @@
 <div *ngIf="user; else promptLogin">
     <div layout-gt-sm="row">
         <div flex-gt-sm="80" flex-offset-gt-sm="10">
-
-            <div id="pageTitle">
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+            <mat-card class="reportscard">
+                <mat-card-title id="reports-title">Reports
+                    <mat-select id="selector" placeholder = "Select Mood"[(value)]="emojiMood">
+                        <mat-option value = "">All Moods</mat-option>
+                        <mat-option value = 1>Anxious</mat-option>
+                        <mat-option value = 2>Sad</mat-option>
+                        <mat-option value = 3>Down</mat-option>
+                        <mat-option value = 4>Meh</mat-option>
+                        <mat-option value = 5>Happy</mat-option>
+                        <mat-option value = 6>Radiant</mat-option>
+                    </mat-select>
+                </mat-card-title>
                 <mat-divider></mat-divider>
-                <h3><i>This is the title</i></h3>
+                <mat-card-content>
 
-                <div id="filterDate">
-                    <mat-form-field class="start">
-                        <input
-                            id = "startDate"
-                            matInput [matDatepicker]="start"
-                            placeholder="Choose a Start Date"
-                            [(ngModel)]="startDate"
-                            (input)="startDate = $event.target.value"
-                            disabled>
-                        <mat-datepicker-toggle id = "startButton" matSuffix [for]="start" enabled></mat-datepicker-toggle>
-                        <mat-datepicker touchUi="true" #start disabled="false"></mat-datepicker>
-                    </mat-form-field> &nbsp;
+                    <mat-list *ngIf="emojis; else emojiError" >
+                        <mat-list-item #elem class="emoji" [id]="emoji._id"  *ngFor="let emoji of this.filterEmojis(emojiOwner,emojiMood)">
+                                <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
+                            <img matListAvatar src="assets/Emojis/{{emoji.mood}}.png" style="width: 48px; height: 48px">
 
-                    <mat-form-field class="end">
-                        <input
-                            id = "endDate"
-                            matInput [matDatepicker]="end"
-                            placeholder="Choose an End Date"
-                            [(ngModel)]="endDate"
-                            (input)="endDate = $event.target.value"
-                            disabled>
-                        <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
-                        <mat-datepicker touchUi="true" #end disabled="false"></mat-datepicker>
-                    </mat-form-field>
-                    <button mat-raised-button id="clearDatesButton" (click)="this.clearDateFilter()">Clear Date Filters</button>
-                    <button mat-raised-button id="filterButton" (click)="this.filterSummarys(summaryMood, summaryIntensity, startDate, endDate)">View</button>
-                </div>
-            </div>
+<!--
+                                <mat-panel-title id="test"><img src="assets/Emojis/{{emoji.mood}}.png" style="width: 24px; height: 24px"></mat-panel-title>
+-->
 
-            <div id="tabs">
-                <mat-tab-group #myTabGroup>
-                    <mat-tab label="Graph Review">
+                            <mat-card-title>{{getReadableDate(emoji.date)}}</mat-card-title>
+                        </mat-list-item>
+                    </mat-list>
 
-                    </mat-tab>
-
-                    <mat-tab label="List Review">
-                        <mat-card class="reportscard">
-                            <mat-card-title id="reports-title">Reports
-                                <mat-select id="selector" placeholder="Select Mood" [(value)]="emojiMood">
-                                    <mat-option value="">All Moods</mat-option>
-                                    <mat-option value=1>Angry</mat-option>
-                                    <mat-option value=2>Anxious</mat-option>
-                                    <mat-option value=3>Happy</mat-option>
-                                    <mat-option value=4>Meh</mat-option>
-                                    <mat-option value=5>Sad</mat-option>
-                                </mat-select>
-                            </mat-card-title>
-                            <mat-divider></mat-divider>
-                            <mat-card-content>
-                                <mat-list *ngIf="emojis; else emojiError">
-                                    <mat-list-item #elem class="emoji" [id]="emoji._id"
-                                                   *ngFor="let emoji of this.filterEmojis(emojiMood,emojiIntensity)">
-                                        <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
-                                        <img matListAvatar src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png"
-                                             style="width: 48px; height: 48px">
-
-                                        <!--
-                                                                        <mat-panel-title id="test"><img src="assets/Emojis/{{emoji.mood}}.png" style="width: 24px; height: 24px"></mat-panel-title>
-                                        -->
-
-                                        <mat-card-title>{{getReadableDate(emoji.date)}}</mat-card-title>
-                                    </mat-list-item>
-                                </mat-list>
-
-                                <ng-template #emojiError>
-                                    <mat-error>
-                                        There was a problem loading the data. Possibly the server is down or perhaps
-                                        there are network
-                                        issues.
-                                    </mat-error>
-                                    <mat-error>
-                                        Please wait a bit and try again or start the server.
-                                    </mat-error>
-                                </ng-template>
-                            </mat-card-content>
-                        </mat-card>
-                    </mat-tab>
-                </mat-tab-group>
-            </div>
+                    <ng-template #emojiError>
+                        <mat-error>
+                            There was a problem loading the data. Possibly the server is down or perhaps there are network
+                            issues.
+                        </mat-error>
+                        <mat-error>
+                            Please wait a bit and try again or start the server.
+                        </mat-error>
+                    </ng-template>
+                </mat-card-content>
+            </mat-card>
         </div>
     </div>
 </div>

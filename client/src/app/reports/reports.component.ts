@@ -5,6 +5,7 @@ import {ReportsService} from "./reports.service";
 import {AuthService, SocialUser} from "angularx-social-login";
 import {environment} from "../../environments/environment";
 import * as Chart from 'chart.js';
+import * as Plotly from 'plotly.js';
 
 @Component({
     selector: 'app-reports-component',
@@ -51,14 +52,21 @@ export class ReportsComponent implements OnInit {
         {value: 'radiant', viewValue:6},
     ]*/
 
+
+
     // Inject the EmojiListService into this component.
     constructor(public reportsService: ReportsService, public authService: AuthService) {
 
+
     }
+
 
     isHighlighted(emoji: Emoji): boolean {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
+
+
+
 
 
     public filterEmojis(searchMood: number, searchIntensity: number): Emoji[] {
@@ -118,10 +126,15 @@ export class ReportsComponent implements OnInit {
 
 
     ngOnInit(): void {
+
+
+
+
         if(environment.envName != 'e2e') {
             this.authService.authState.subscribe((user) => {
                 this.user = user;
             });
+            
         }
         else {
             // run this code during e2e testing
