@@ -1,36 +1,49 @@
 <!--Don't allow user to do anything without logging in! -->
 <div *ngIf="user; else promptLogin">
 
-    <div layout-gt-sm="row">
-        <div flex-gt-sm="80" flex-offset-gt-sm="10">
-            <!-- Main Page -->
-            <mat-card>
-                <mat-card-content id="headerInfo">
-                    <!-- Only display first name -->
-                    <h1><strong>Hello {{user.firstName}}! How are you feeling today?</strong></h1>
-                    <p>Use the slider to select how you feel.</p>
+    <!-- Main Page -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-                    <!-- Show correct emoji image depending on the value of the mat-slider -->
-                    <img id="{{matslider.value}}emoji" src="assets/Emojis/{{matslider.value}}.png"
-                         style="width:33%;height:33%">
-                    <br/>
+    <div id="main-body">
 
-                    <!-- This is the slider that the user will choose to determine their mo od value/ emoji
-                    1 = Very Sad, 2= sad, 3= Normal, 4= Happy, 5= Very Happy
-                    mat-slider is a component in angular we used.
-                    -->
+        <!-- Only display first name -->
+        <h1 class="headerText"><strong>Hello {{emoji.owner.split(" ")[0]}}!<br> How are you feeling today?</strong></h1>
+        <p class="headerText" style="font-size: 100%"><i>Swipe left or right to find your feeling.</i></p>
+        <p class="headerText" style="font-size: 100%"><i>Up or down to choose intensity.</i></p>
 
-                    <h2>I'm feeling {{parseEmotion(matslider.value)}}.</h2>
 
-                    <mat-slider class="slider" thumbLabel tick-interval="1" min="1" max="5" step="1" value="5"
-                                #matslider [(ngModel)]="emoji.mood"></mat-slider>
-                    <br/>
-                    <button mat-raised-button id="submitEmoji" color="primary" (click)="addEmoji()" type="button">
-                        Submit
-                    </button>
-                </mat-card-content>
-            </mat-card>
+
+        <!-- Control Gestures -->
+        <div class="swipe-box"
+             (swipeleft)="emoji.mood = updateEmojiMood(1, emoji.mood, true); emoji.intensity = 1"
+             (swiperight)="emoji.mood = updateEmojiMood(-1, emoji.mood, true); emoji.intensity = 1"
+             (swipeup)="emoji.intensity = updateEmojiIntensity(-1, emoji.intensity, emoji.mood)"
+             (swipedown)="emoji.intensity = updateEmojiIntensity(1, emoji.intensity, emoji.mood)"
+
+        >
+            <!-- Emoji to the left -->
+            <img draggable="false" id="leftEmoji" src="assets/Emojis/{{updateEmojiMood(-1, emoji.mood, false)}}/1.png">
+
+            <!-- Current Emoji being displayed on screen. Is NOT draggable. -->
+            <img draggable="false" id="currentEmoji" src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png">
+
+            <!-- Emoji to the right -->
+            <img draggable="false" id="rightEmoji" src="assets/Emojis/{{updateEmojiMood(1, emoji.mood, false)}}/1.png">
+
         </div>
+
+        <br/>
+
+        <h2 class="moodText">I'm feeling {{parseEmotionIntensity(emoji.mood, emoji.intensity)}}.</h2>
+
+        <button mat-fab id="emojiNavLeft" class="emojiNavigationButtonsHorz" (click)="emoji.mood = updateEmojiMood(-1, emoji.mood, true)">◀</button>
+        <button mat-fab id="emojiNavDown"class="emojiNavigationButtonsVert" (click)="emoji.intensity = updateEmojiIntensity(1, emoji.intensity, emoji.mood)">▼</button>
+        <button mat-fab id="emojiNavUp"class="emojiNavigationButtonsVert" (click)="emoji.intensity = updateEmojiIntensity(-1, emoji.intensity, emoji.mood)">▲</button>
+        <button mat-fab id="emojiNavRight"class="emojiNavigationButtonsHorz" (click)="emoji.mood = updateEmojiMood(1, emoji.mood, true)">▶</button>
+
+        <br/>
+
+        <button mat-raised-button id="submitEmoji" color="primary" (click)="addEmoji()" type="button">Submit</button>
     </div>
 </div>
 

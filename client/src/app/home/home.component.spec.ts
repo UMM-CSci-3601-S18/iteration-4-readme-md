@@ -1,3 +1,4 @@
+/*
 import {TestBed, ComponentFixture, async} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
 import {DebugElement} from '@angular/core';
@@ -111,3 +112,4 @@ describe('Adding an emoji', () => {
         expect(calledEmoji).toEqual(newEmoji);
     });
 });
+*/

@@ -1,11 +1,8 @@
 <div *ngIf="user; else promptLogin">
-
-    <div class="addNewResourceDiv">
-        <button id = "addNewContact" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add a Contact</button>
-    </div>
+<div layout="row" layout-sm="column" layout-xs="column">
 
 <!-- Contact Phone numbers card is being inserted here-->
-<mat-card>
+<mat-card id="yourContacts">
     <mat-card-content class="addedResources" id="addedResources">
         <mat-card-title id="resourceTitle">Your Contacts</mat-card-title>
         <mat-divider></mat-divider>
@@ -30,8 +27,13 @@
                 Please wait a bit and try again or start the server.
             </mat-error>
         </ng-template>
-
     </mat-card-content>
+    <div class="addNewResourceDiv">
+        <button id = "addNewContact" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add a Contact</button>
+    </div>
+</mat-card>
+
+<mat-card id="contactNumbers">
     <mat-card-content class="contact-numbers">
         <mat-card-title class="contact-numbers-title"><i class="material-icons">phone_forwarded</i><mat-icon class="little-phone-icon">phone</mat-icon>Contact Numbers</mat-card-title>
         <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
@@ -76,7 +78,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card>
+<mat-card id="ResourceLinks">
     <mat-card-content class="resource-links">
         <mat-card-title class="resource-links-title">Resource Links</mat-card-title>
         <mat-card-subtitle>Some possibly useful links to resources</mat-card-subtitle>
@@ -131,6 +133,26 @@
         </mat-expansion-panel>
     </mat-card-content>
 </mat-card>
+
+<mat-card>
+    <mat-card-title>YouTube Playlists</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <!--<mat-list>
+            <a mat-list-item *ngFor="let video of videos"
+               class="video link"
+               target="_blank"
+               href="{{video.url}}"
+               <button mat-icon-button class="playButton">
+                   <mat-icon matTooltip="Play" class="playIcon">play_arrow</mat-icon>
+               </button>
+               <h4 mat-line>{{video.name}}</h4>
+               <p mat-line>{{video.subname}}</p>
+            </a>
+        </mat-list>-->
+    </mat-card-content>
+</mat-card>
+</div>
 </div>
 
 <ng-template #promptLogin>
