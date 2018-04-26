@@ -15,7 +15,7 @@ browser.driver.controlFlow().execute = function () {
 
     return origFn.apply(browser.driver.controlFlow(), args);
 };
-describe('Tests all functionality on the journaling page: from creating journals to editing them to viewing/deleting them', () => {
+fdescribe('Tests all functionality on the journaling page: from creating journals to editing them to viewing/deleting them', () => {
     let page: JournalingPage;
 
     beforeEach(() => {

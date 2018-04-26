@@ -13,7 +13,7 @@
                     <mat-divider></mat-divider>
 
                     <mat-tab-group>
-                        <mat-tab label="Select Journal">
+                        <mat-tab id= "selectjournaltab" label="Select Journal">
                             <mat-form-field class="matFormFieldSubject">
                                 <input matInput id="journalSubject" #input type="text" placeholder="Search" (input)="journalSearch = $event.target.value">
                             </mat-form-field>
@@ -33,7 +33,7 @@
                         </mat-tab>
 
 
-                        <mat-tab label="Add Journal">
+                        <mat-tab id="addjournaltab" label="Add Journal">
                             <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
 
                         </mat-tab>
