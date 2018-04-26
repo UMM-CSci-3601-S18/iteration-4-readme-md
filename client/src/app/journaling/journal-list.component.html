@@ -1,31 +1,69 @@
 <!-- Don't allow the user to see anything if they aren't logged in. -->
 <div *ngIf="user; else promptLogin">
-        <div layout-gt-sm="row">
-            <div flex-gt-sm="80" flex-offset-gt-sm="10">
-                <div id="journalButtons">
-                    <button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
-                    <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
-                </div>
+    <div layout-gt-sm="row">
+        <div flex-gt-sm="80" flex-offset-gt-sm="10">
+            <!--<div id="journalButtons">
+                &lt;!&ndash;<button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
+                <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>&ndash;&gt;
+            </div>-->
 
-                <mat-card class="matCardMain">
-                    <mat-card-title id="journal-list-title">Journals</mat-card-title>
-                    <mat-card-subtitle>Add a new journal entry or click "Select a Journal Entry" to view a previous one.</mat-card-subtitle>
-                    <mat-divider></mat-divider>
+            <mat-card class="matCardMain">
+                <mat-card-title id="journal-list-title">Journals</mat-card-title>
+                <mat-card-subtitle>Add a new journal entry or click "Select a Journal Entry" to view a previous one.</mat-card-subtitle>
+                <mat-divider></mat-divider>
 
-                    <div *ngIf="selectedJournal">
-                        <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
-                        <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
-                        <mat-card-content>
-                            <p>{{selectedJournal.body}}</p>
-                            <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
-                            <button id="deleteJournal" mat-raised-button (click)="deleteJournal(selectedJournal._id['$oid'])">Delete Journal</button>
-                        </mat-card-content>
-                    </div>
+                <mat-tab-group>
+                    <mat-tab id= "selectjournaltab" label="Select Journal">
+                        <mat-form-field class="matFormFieldSubject">
+                            <input matInput id="journalSubject" #input type="text" placeholder="Search" (input)="journalSearch = $event.target.value">
+                        </mat-form-field>
 
-                </mat-card>
+                        <mat-accordion *ngIf="journals; else journalsError" id="journalList">
+                            <mat-expansion-panel id = 'searchjournals' #elem class="journals" *ngFor="let journal of this.filterJournals(journalSearch)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title id="journal.subject">
+                                        {{getReadableDate(journal.date)}} <br> {{journal.subject.slice(0, 50)}}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <p>{{journal.body}}</p>
+                                <button id="editJournal" mat-raised-button (click)="openDialogReview(journal)">Edit Journal</button>
+                                <button id="deleteJournal" mat-raised-button (click)="deleteJournal(journal._id['$oid'])">Delete Journal</button>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </mat-tab>
 
-            </div>
+
+                    <mat-tab id="addjournaltab" label="Add Journal">
+                        <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
+
+                    </mat-tab>
+                </mat-tab-group>
+
+                <!--<div *ngIf="selectedJournal">
+                    <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
+                    <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
+                    <mat-card-content>
+                        <p>{{selectedJournal.body}}</p>
+                        <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
+                        <button id="deleteJournal" mat-raised-button (click)="deleteJournal(selectedJournal._id['$oid'])">Delete Journal</button>
+                    </mat-card-content>
+                </div>-->
+
+            </mat-card>
+
+
+            <ng-template #journalsError>
+                <mat-error>
+                    There was a problem loading the journals. Possibly the server is down or perhaps there are network
+                    issues.
+                </mat-error>
+                <mat-error>
+                    Please wait a bit and try again or start the server.
+                </mat-error>
+            </ng-template>
+
         </div>
+    </div>
 
 </div>
 

@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {JournalListService} from './journal-list.service';
 import {Journal} from './journal';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {AddJournalComponent} from './add-journal.component';
 import {EditJournalComponent} from "./edit-journal.component";
 import {environment} from "../../environments/environment";
@@ -28,15 +29,26 @@ export class JournalListComponent implements OnInit {
     public journalDate: any;
     public user: SocialUser;
 
+    public journalSearch: string;
+
+    /*public prompts: String[] = ["What are you grateful for?","What scares you?","How are you Feeling?", "What do you love about your life?","Today I accomplished...","Who made you feel good this week?","What did you enjoy doing this week?","What would you do if you knew you could not fail?","What are your best character traits?","What did you learn this week?","What did you do this week that moved you closer to reaching your goals?"];
+    public prompt: String;*/
+
+
     public selectedJournal: Journal;
 
     // Inject the JournalListService into this component.
-    constructor(public journalListService: JournalListService, public dialog: MatDialog,
-                public authService: AuthService) {
+    constructor(public journalListService: JournalListService,
+                public dialog: MatDialog,
+                public authService: AuthService,) {
+
         if(environment.production === false) {
 
         }
     }
+
+
+
 
     openDialog(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
@@ -59,19 +71,19 @@ export class JournalListComponent implements OnInit {
         });
     }
 
-    openDialogSelect(): void {
+    /*openDialogSelect(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
         const dialogRef = this.dialog.open(SelectJournalComponent, {
             width: '500px',
             data: { journal: newJournal }
         });
-
         dialogRef.afterClosed().subscribe(result => {
             if(result != null) {
                 this.selectedJournal = result;
             }
         });
-    }
+    }*/
+
 
 
     openDialogReview(editJournal: Journal): void {
@@ -127,34 +139,24 @@ export class JournalListComponent implements OnInit {
     }
 
 
-    public getReadableDate(): string {
-        if(this.selectedJournal.date == '') {
+    public getReadableDate(dateString: string): string {
+        if(dateString == '') {
             return '';
         }
-        const date = new Date(this.selectedJournal.date);
-        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ':'
-            + date.getMinutes();
+        const date = new Date(dateString);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
     }
 
-    public filterJournals(searchSubject: string, searchBody: string): Journal[] {
+    public filterJournals(searchString: string): Journal[] {
 
         this.filteredJournals = this.journals;
 
-        // Filter by subject
-        if (searchSubject != null) {
-            searchSubject = searchSubject.toLocaleLowerCase();
+        // Filter by the searchString, look in body and subject
+        if (searchString != null) {
+            searchString = searchString.toLocaleLowerCase();
 
             this.filteredJournals = this.filteredJournals.filter(journal => {
-                return !searchSubject || journal.subject.toLowerCase().indexOf(searchSubject) !== -1;
-            });
-        }
-
-        // Filter by body
-        if (searchBody != null) {
-            searchBody = searchBody.toLocaleLowerCase();
-
-            this.filteredJournals = this.filteredJournals.filter(journal => {
-                return !searchBody || journal.body.toLowerCase().indexOf(searchBody) !== -1;
+                return !searchString || journal.subject.toLowerCase().indexOf(searchString) !== -1 || journal.body.toLowerCase().indexOf(searchString) !== -1;
             });
         }
 
@@ -176,7 +178,7 @@ export class JournalListComponent implements OnInit {
         journalListObservable.subscribe(
             journals => {
                 this.journals = journals;
-                this.filterJournals(this.journalSubject, this.journalBody);
+                this.filterJournals(this.journalSearch);
             },
             err => {
                 console.log(err);
@@ -221,5 +223,11 @@ export class JournalListComponent implements OnInit {
             };
         }
         this.refreshJournals();
+        /*this.generateRandomPrompt();*/
     }
+
+
+    /*generateRandomPrompt(): void {
+        this.prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
+    }*/
 }
