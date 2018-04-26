@@ -3,6 +3,7 @@
  the data.response value. The response value is basically the emoji.mood value
  we referred to in the home component.ts file -- Ahnaf -->
 
+
 <div class="response" layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card style="border-radius: 10px; background: linear-gradient(#1a75ff,#ffff99 80%);">
@@ -12,13 +13,15 @@
             <mat-card-content id="response4" *ngIf="data.response == 4">I'm glad that you're happy!</mat-card-content>
             <mat-card-content id="response5" *ngIf="data.response == 5">Wow! That's great!</mat-card-content>
 
+            <button type="button" (click)="getPlaylists('PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu')">Click ME</button>
+
 
             <!-- get link is a variable that makes sure every link we present for a specific
             emoji or mood response gives out is not repeating.
             -->
 
             <mat-card-content id="response6" *ngIf="data.response == 1">                                <iframe id="responseSadVideoFrame"
-                                                                                                                src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu&index=2"
+                                                                                                                src="randomVideo('saddness')"
                                                                                                                 frameborder="0"
                                                                                                                 allowfullscreen
                                                                                                                 class="video"></iframe></mat-card-content>
@@ -45,3 +48,6 @@
         </mat-card>
     </div>
 </div>
+
+
+

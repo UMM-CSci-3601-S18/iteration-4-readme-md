@@ -1,5 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 @Component({
     selector: 'app-response.component',
     templateUrl: 'response.component.html',
@@ -27,9 +29,14 @@ export class ResponseComponent {
         'https://www.youtube.com/watch?v=1JArN6rag8s'
     ];
 
+    public config: any = [
+
+    ];
+
 
     constructor(
         public dialogRef: MatDialogRef<ResponseComponent>,
+        private http: HttpClient,
         @Inject(MAT_DIALOG_DATA) public data: { response: number }) {
     }
 
@@ -48,4 +55,21 @@ export class ResponseComponent {
     onNoClick(): void {
         this.dialogRef.close();
     }
+
+    randomVideo(){
+
+    }
+
+    getPlaylists(playlistId: string){
+
+        console.log('at least got here')
+        var results = this.http.get<any>('https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu&maxResults=50&part=snippet%2CcontentDetails&key=AIzaSyC6ZtAit2Enk5aih6pqSeX-dMOeIhyC-fI');
+        
+        results.subscribe(data =>{
+            var total = data.pageInfo.totalResults;
+            console.log(total);
+        })
+
+    }
 }
+
