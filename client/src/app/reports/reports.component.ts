@@ -68,10 +68,10 @@ export class ReportsComponent implements OnInit {
 
 
 
-
     public filterEmojis(searchMood: number, searchIntensity: number): Emoji[] {
 
         this.filteredEmojis = this.emojis;
+        this.refreshEmojis();
 
         // Filter by mood
         if (searchMood == null) {
