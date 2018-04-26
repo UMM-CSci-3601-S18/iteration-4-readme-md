@@ -50,7 +50,7 @@ export class GoalsComponent implements OnInit{
             category: '',
             name: '',
             status: false,
-            email: this.user.email,
+            userId: localStorage.getItem('userId'),
             };
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '500px',
@@ -84,8 +84,8 @@ export class GoalsComponent implements OnInit{
         );
     }
 
-    goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName, email: string,) {
-        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: true, email: email};
+    goalSatisfied(goal: Goal) {
+        const updatedGoal: Goal = {_id: goal._id, purpose: goal.purpose, category: goal.category, name: goal.name, status: true, userId: goal.userId};
         this.goalsService.editGoal(updatedGoal).subscribe(
             editGoalsResult => {
                 this.highlightedID = editGoalsResult;

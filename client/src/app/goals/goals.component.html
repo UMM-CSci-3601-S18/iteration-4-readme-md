@@ -39,7 +39,7 @@
                                                         <mat-icon>delete</mat-icon>
                                                     </button>
                                                     <button *ngIf="!goal.status" mat-icon-button id="complete" class="complete-button" class="completeGoal"
-                                                            (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); ">
+                                                            (click)="goalSatisfied(goal);">
                                                         <mat-icon>done</mat-icon>
                                                     </button>
                                                 </div>
