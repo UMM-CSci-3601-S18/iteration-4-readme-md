@@ -57,7 +57,7 @@ export class SelectJournalComponent implements OnInit{
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals(this.user.email);
+        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals(localStorage.getItem('userId'));
         journalListObservable.subscribe(
             journals => {
                 this.journals = journals;
