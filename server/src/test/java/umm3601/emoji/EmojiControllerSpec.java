@@ -1,4 +1,4 @@
-/*
+
 package umm3601.emoji;
 
 import com.mongodb.BasicDBObject;
@@ -34,17 +34,18 @@ public class EmojiControllerSpec {
         testEmojis.add(Document.parse("{\n" +
             "                    owner: \"Ahnaf\",\n" +
             "                    mood: 5,\n" +
-            "                    date: \"8/20/2015 20:00\",\n" +
+            "                    date: \"Wed Mar 1 2018 7:35:02 GMT-05000\",\n" +
+
             "                }"));
         testEmojis.add(Document.parse("{\n" +
             "                    owner: \"Chuck\",\n" +
             "                    mood: 3,\n" +
-            "                    date: \"5/13/2000 14:00\",\n" +
+            "                    date: \"Wed Mar 3 2018 12:02:21 GMT-0500\",\n" +
             "                }"));
         testEmojis.add(Document.parse("{\n" +
             "                    owner: \"Kyle\",\n" +
             "                    mood: 2,\n" +
-            "                    date: \"2/14/2010 09:00\",\n" +
+            "                    date: \"Wed Mar 1 2018 10:14:41 GMT-0500\",\n" +
             "                }"));
 
         mattsId = new ObjectId();
@@ -114,7 +115,7 @@ public class EmojiControllerSpec {
 
     @Test
     public void addEmojiTest(){
-        String newId = emojiController.addNewEmoji("Matt2",5,"8/20/2015 14:00", "");
+        String newId = emojiController.addNewEmoji("Matt2",5,2,"8/20/2015 14:00", "");
 
         assertNotNull("Add new emoji should return true when an emoji is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
@@ -148,8 +149,30 @@ public class EmojiControllerSpec {
 
     }
 
+    @Test
+    public void getEmojisByDate(){
+        Map<String, String[]> argMap = new HashMap<>();
+
+        argMap.put("date", new String[] { "Wed Mar 1 2018 7:35:02 GMT-05000,Wed Mar 3 2018 12:02:21 GMT-0500" });
+
+        String jsonResult = emojiController.getItems(argMap);
+
+        BsonArray docs = parseJsonArray(jsonResult);
+        assertEquals("Should be two emotion entries", 2, docs.size());
+
+        List<String> name = docs
+            .stream()
+            .map(EmojiControllerSpec::getOwner)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedName = Arrays.asList("Ahnaf", "Chuck");
+        assertEquals("Names should match", expectedName, name);
+
+
+    }
+
 
 
 }
 
-*/
+

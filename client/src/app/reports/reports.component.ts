@@ -134,7 +134,7 @@ export class ReportsComponent implements OnInit {
             this.authService.authState.subscribe((user) => {
                 this.user = user;
             });
-            
+
         }
         else {
             // run this code during e2e testing
