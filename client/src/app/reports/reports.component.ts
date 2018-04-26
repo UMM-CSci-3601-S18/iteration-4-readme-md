@@ -71,7 +71,6 @@ export class ReportsComponent implements OnInit {
     public filterEmojis(searchMood: number, searchIntensity: number): Emoji[] {
 
         this.filteredEmojis = this.emojis;
-        this.refreshEmojis();
 
         // Filter by mood
         if (searchMood == null) {
@@ -95,7 +94,9 @@ export class ReportsComponent implements OnInit {
                 this.filteredEmojis = this.filteredEmojis.filter(emoji => {
                     return !searchIntensity || searchIntensity == emoji.intensity;
                 });
+
         }
+
 
         return this.filteredEmojis;
     }
@@ -112,7 +113,7 @@ export class ReportsComponent implements OnInit {
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
         //if (this.inputType ==
-        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email, this.startDate, this.endDate);
+        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email,this.startDate, this.endDate);
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;

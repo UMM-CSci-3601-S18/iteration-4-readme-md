@@ -1,583 +1,802 @@
 [
     {
-        "_id": "sad",
-        "mood": 2,
-        "date": "Tue Nov 07 1995 06:30:35 GMT+0000 (UTC)",
-        "owner": "Gross",
-        "email": "sunshine@test.com"
+        "id": "5ae23e956beb40dfc35097b2",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2017-06-24T21:42:39+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37df1d93f364a9e893",
-        "mood": 2,
-        "date": "Thu May 29 2014 07:44:46 GMT+0000 (UTC)",
-        "owner": "Christie"
-    },
-    {
-        "_id": "5a98ab376d39422503725a06",
-        "mood": 2,
-        "date": "Mon Nov 21 1983 15:57:18 GMT+0000 (UTC)",
-        "owner": "Tania"
-    },
-    {
-        "_id": "5a98ab3775eb55d52cd87398",
-        "mood": 5,
-        "date": "Fri Aug 08 1997 01:46:48 GMT+0000 (UTC)",
-        "owner": "Elinor"
-    },
-    {
-        "_id": "5a98ab376551b24c43a903cb",
+        "id": "5ae23e951149c4c2135c37ca",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Tue Apr 02 2002 13:25:27 GMT+0000 (UTC)",
-        "owner": "Inez",
-        "email": "sunshine@test.com"
+        "intensity": 1,
+        "date": "2018-03-15T20:38:07+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37c00223a9d183508a",
+        "id": "5ae23e95b45ece4051a33760",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 1,
+        "date": "2017-11-20T19:25:26+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95eecb3260b74d6641",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Fri May 26 1989 12:09:33 GMT+0000 (UTC)",
-        "owner": "Harvey",
-        "email": "sunshine@test.com"
+        "intensity": 1,
+        "date": "2017-06-05T02:56:02+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3718a4a2c2ebf59a18",
-        "mood": 3,
-        "date": "Sat Apr 22 2017 10:15:08 GMT+0000 (UTC)",
-        "owner": "Emily"
-    },
-    {
-        "_id": "5a98ab37073a0e36d0b712c1",
-        "mood": 3,
-        "date": "Mon Jun 12 1989 08:35:52 GMT+0000 (UTC)",
-        "owner": "Janell"
-    },
-    {
-        "_id": "5a98ab372f626d2c526a4d7b",
-        "mood": 3,
-        "date": "Sat Dec 02 1989 03:56:34 GMT+0000 (UTC)",
-        "owner": "Wilkins"
-    },
-    {
-        "_id": "5a98ab37ba14a7dc1f9400fd",
-        "mood": 2,
-        "date": "Mon Dec 12 2005 07:46:44 GMT+0000 (UTC)",
-        "owner": "Yesenia"
-    },
-    {
-        "_id": "5a98ab376daa873c39298750",
-        "mood": 1,
-        "date": "Tue Apr 06 1993 19:09:53 GMT+0000 (UTC)",
-        "owner": "Zimmerman",
-        "email": "sunshine@test.com"
-    },
-    {
-        "_id": "5a98ab374e63cefba95ee9df",
-        "mood": 1,
-        "date": "Mon Aug 10 2015 20:49:36 GMT+0000 (UTC)",
-        "owner": "Tasha"
-    },
-    {
-        "_id": "5a98ab37aaa89d63b84f22f3",
-        "mood": 5,
-        "date": "Wed Jan 15 2003 18:55:24 GMT+0000 (UTC)",
-        "owner": "Kitty",
-        "email": "sunshine@test.com"
-    },
-    {
-        "_id": "5a98ab370c0c989af8c656fb",
-        "mood": 2,
-        "date": "Sun Aug 27 2000 21:37:16 GMT+0000 (UTC)",
-        "owner": "Wilma"
-    },
-    {
-        "_id": "5a98ab37ea7520af5b54149b",
+        "id": "5ae23e955c578af23058228f",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Wed Apr 02 2003 09:16:39 GMT+0000 (UTC)",
-        "owner": "Kathie"
+        "intensity": 2,
+        "date": "2017-11-21T11:28:33+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab370ae02bfb2c8128c4",
+        "id": "5ae23e95bfec5003298b9743",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Tue Oct 27 2015 08:28:13 GMT+0000 (UTC)",
-        "owner": "Alberta"
+        "intensity": 1,
+        "date": "2017-11-10T02:34:13+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab379a3b62f5aecbcda5",
+        "id": "5ae23e95e66f51e98b1c94dc",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Thu Sep 05 2013 17:31:22 GMT+0000 (UTC)",
-        "owner": "Janis"
+        "intensity": 2,
+        "date": "2017-11-25T14:17:32+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37f1c7864ff76ab420",
+        "id": "5ae23e95667067b684432c5a",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Tue Jun 29 2010 14:24:15 GMT+0000 (UTC)",
-        "owner": "Burris"
+        "intensity": 1,
+        "date": "2017-09-24T14:44:55+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab377ef8a076d9053c6c",
-        "mood": 1,
-        "date": "Tue Dec 09 1997 05:00:39 GMT+0000 (UTC)",
-        "owner": "Farley"
-    },
-    {
-        "_id": "5a98ab371edbff038666d4bb",
-        "mood": 5,
-        "date": "Thu May 03 1990 15:49:54 GMT+0000 (UTC)",
-        "owner": "Estelle"
-    },
-    {
-        "_id": "5a98ab37da7a26528d66db8f",
-        "mood": 1,
-        "date": "Mon Mar 25 2002 21:18:18 GMT+0000 (UTC)",
-        "owner": "Earnestine"
-    },
-    {
-        "_id": "5a98ab3738774f676dc2d718",
+        "id": "5ae23e95f7b3b6017fb7c297",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Wed May 26 2010 04:27:53 GMT+0000 (UTC)",
-        "owner": "Kris"
+        "intensity": 2,
+        "date": "2017-12-27T21:18:04+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3792b750093796cd5f",
-        "mood": 5,
-        "date": "Mon Oct 10 1977 19:10:46 GMT+0000 (UTC)",
-        "owner": "Williamson"
-    },
-    {
-        "_id": "5a98ab37d8cdec7276964dfe",
-        "mood": 1,
-        "date": "Sat Feb 27 1988 13:26:49 GMT+0000 (UTC)",
-        "owner": "Jo"
-    },
-    {
-        "_id": "5a98ab37ca5432a83af504b0",
-        "mood": 1,
-        "date": "Fri Mar 09 2012 07:04:07 GMT+0000 (UTC)",
-        "owner": "Parsons"
-    },
-    {
-        "_id": "5a98ab37a5210769711b6d10",
-        "mood": 3,
-        "date": "Thu Mar 16 2017 19:16:55 GMT+0000 (UTC)",
-        "owner": "Lourdes"
-    },
-    {
-        "_id": "5a98ab3771cfd646c60b16ee",
+        "id": "5ae23e95a3704639dae003ed",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Sat Sep 23 1972 17:38:18 GMT+0000 (UTC)",
-        "owner": "Brittney"
+        "intensity": 2,
+        "date": "2017-06-09T11:07:58+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab374580120640476dc8",
-        "mood": 5,
-        "date": "Tue May 29 1979 18:19:33 GMT+0000 (UTC)",
-        "owner": "Nolan"
-    },
-    {
-        "_id": "5a98ab37cf415d7c072bc954",
-        "mood": 3,
-        "date": "Thu Jul 19 1990 09:53:31 GMT+0000 (UTC)",
-        "owner": "Contreras"
-    },
-    {
-        "_id": "5a98ab374f09d19047d166f4",
-        "mood": 3,
-        "date": "Tue Jul 21 1992 22:40:55 GMT+0000 (UTC)",
-        "owner": "Bonner"
-    },
-    {
-        "_id": "5a98ab372ba8a78e1c0acb1a",
+        "id": "5ae23e95b8d7ef3a89e8f5a8",
+        "owner": "Kyle Foss",
         "mood": 1,
-        "date": "Tue Jul 16 2013 18:15:02 GMT+0000 (UTC)",
-        "owner": "Hilary"
+        "intensity": 1,
+        "date": "2017-11-05T04:06:05+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37cabba4142b3aa02a",
-        "mood": 5,
-        "date": "Tue Apr 01 2003 01:00:57 GMT+0000 (UTC)",
-        "owner": "Nanette"
+        "id": "5ae23e95a0d21e807c2a1664",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2018-01-20T23:51:46+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37cb8810333895824b",
+        "id": "5ae23e956d793da9867d6863",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2018-01-27T18:10:34+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95ef251f0321b0d72f",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Sun Jul 23 1972 10:33:52 GMT+0000 (UTC)",
-        "owner": "Montoya"
+        "intensity": 1,
+        "date": "2017-11-25T11:13:47+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37ad2ee2177850beb1",
-        "mood": 5,
-        "date": "Tue Aug 31 1982 17:55:02 GMT+0000 (UTC)",
-        "owner": "Solomon"
-    },
-    {
-        "_id": "5a98ab374b60f7710e7a4ac1",
-        "mood": 3,
-        "date": "Mon Feb 06 1984 08:06:37 GMT+0000 (UTC)",
-        "owner": "Ellison"
-    },
-    {
-        "_id": "5a98ab3749b7858be22d30d1",
+        "id": "5ae23e95b0dc64af13f703d9",
+        "owner": "Kyle Foss",
         "mood": 1,
-        "date": "Mon Mar 01 1999 15:38:12 GMT+0000 (UTC)",
-        "owner": "Shepherd"
+        "intensity": 1,
+        "date": "2017-12-11T04:06:33+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37704831900fc875bd",
+        "id": "5ae23e950561c6301e45da5b",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2018-05-01T18:03:55+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95345490b9680cb4f5",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 2,
+        "date": "2018-03-30T06:52:50+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9543c859de45a79ac3",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 2,
+        "date": "2017-09-26T16:36:51+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95fef7b5c6183ed503",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Tue Sep 03 2013 23:28:02 GMT+0000 (UTC)",
-        "owner": "Hammond"
+        "intensity": 1,
+        "date": "2018-05-04T19:47:19+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3700ca9fc6813e15e7",
-        "mood": 5,
-        "date": "Thu Feb 03 1977 04:12:03 GMT+0000 (UTC)",
-        "owner": "Brewer"
-    },
-    {
-        "_id": "5a98ab370df239e16d568469",
-        "mood": 1,
-        "date": "Fri Dec 02 1977 01:12:39 GMT+0000 (UTC)",
-        "owner": "Cook"
-    },
-    {
-        "_id": "5a98ab371be198ba6ca4e942",
-        "mood": 5,
-        "date": "Mon Jul 17 2017 21:54:32 GMT+0000 (UTC)",
-        "owner": "Brandy"
-    },
-    {
-        "_id": "5a98ab37ced1dff30bfe5c55",
-        "mood": 3,
-        "date": "Tue Feb 07 1984 04:39:31 GMT+0000 (UTC)",
-        "owner": "Fuller"
-    },
-    {
-        "_id": "5a98ab37c2be0d370ac267e9",
+        "id": "5ae23e9562b11456d46f32ff",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Mon Mar 22 2004 04:58:14 GMT+0000 (UTC)",
-        "owner": "Dolly"
+        "intensity": 1,
+        "date": "2018-03-29T08:53:37+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37a5479f3ea470f0ce",
-        "mood": 2,
-        "date": "Sun Nov 24 2002 11:02:18 GMT+0000 (UTC)",
-        "owner": "Petersen"
-    },
-    {
-        "_id": "5a98ab37f35c07e8fa2882d0",
+        "id": "5ae23e956a9f006a250588dd",
+        "owner": "Kyle Foss",
         "mood": 1,
-        "date": "Mon Jun 29 1987 08:11:49 GMT+0000 (UTC)",
-        "owner": "Mindy"
+        "intensity": 2,
+        "date": "2017-11-21T14:48:42+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37e732348ca665503c",
-        "mood": 3,
-        "date": "Tue Sep 24 1996 03:41:57 GMT+0000 (UTC)",
-        "owner": "Massey"
-    },
-    {
-        "_id": "5a98ab374e46b12e5ff8c60f",
+        "id": "5ae23e95efa2ad7c57e7511c",
+        "owner": "Kyle Foss",
         "mood": 5,
-        "date": "Sun Mar 03 2013 06:07:01 GMT+0000 (UTC)",
-        "owner": "Gregory"
+        "intensity": 1,
+        "date": "2018-06-27T09:14:51+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab376879fcffcbe7de16",
+        "id": "5ae23e95ab0ab96831380c23",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2018-06-24T16:07:28+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9562fe1652f3741577",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Tue Mar 22 2005 01:42:50 GMT+0000 (UTC)",
-        "owner": "Watts"
+        "intensity": 1,
+        "date": "2017-06-07T14:17:13+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37d976b23fc26aa9fd",
-        "mood": 5,
-        "date": "Thu Jun 08 1995 13:22:00 GMT+0000 (UTC)",
-        "owner": "Patricia"
+        "id": "5ae23e95703dd21409e233de",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 2,
+        "date": "2017-06-16T16:30:56+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab371c67856db447af69",
+        "id": "5ae23e95e36bee1af2c73605",
+        "owner": "Kyle Foss",
         "mood": 1,
-        "date": "Sat May 13 2006 21:25:01 GMT+0000 (UTC)",
-        "owner": "Arnold"
+        "intensity": 1,
+        "date": "2018-06-24T15:04:03+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab376094fee56e7255fd",
+        "id": "5ae23e95de3e1f0e1d5c8980",
+        "owner": "Kyle Foss",
         "mood": 2,
-        "date": "Fri Jan 31 1997 09:46:40 GMT+0000 (UTC)",
-        "owner": "Lucile"
+        "intensity": 2,
+        "date": "2017-12-03T11:32:39+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37a6c3907eaa36b222",
+        "id": "5ae23e958fb6114958774854",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2017-09-11T20:29:39+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9563a99475c8ef70e2",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2018-03-18T17:23:58+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95f3fed836fded38e7",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2017-11-28T15:30:10+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95e0bca300259fbbf2",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Thu Jul 23 1992 17:12:43 GMT+0000 (UTC)",
-        "owner": "Howe"
+        "intensity": 1,
+        "date": "2018-04-30T04:12:07+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3799b0caed639d10c7",
+        "id": "5ae23e957dfa11309aa2708b",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 2,
+        "date": "2018-06-26T13:09:20+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e957cb391d76cbab189",
+        "owner": "Kyle Foss",
         "mood": 2,
-        "date": "Mon Jan 31 1994 02:26:44 GMT+0000 (UTC)",
-        "owner": "Holt"
+        "intensity": 2,
+        "date": "2017-11-23T22:54:10+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37989e0efadddf80e6",
-        "mood": 1,
-        "date": "Mon Jun 19 1989 13:46:14 GMT+0000 (UTC)",
-        "owner": "Hebert"
-    },
-    {
-        "_id": "5a98ab3744d65fc05cc071b9",
+        "id": "5ae23e9541c9d06a424b88f4",
+        "owner": "Kyle Foss",
         "mood": 5,
-        "date": "Sun Jul 23 1978 11:36:26 GMT+0000 (UTC)",
-        "owner": "Briggs"
+        "intensity": 2,
+        "date": "2017-12-29T02:49:59+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37eb1372e520f4ee87",
+        "id": "5ae23e950a4ce454276eea97",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Sun Jul 01 2007 18:56:54 GMT+0000 (UTC)",
-        "owner": "Marietta"
+        "intensity": 2,
+        "date": "2018-03-02T22:49:59+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37e5fad202ab73b0bc",
-        "mood": 2,
-        "date": "Tue Dec 14 1971 05:58:06 GMT+0000 (UTC)",
-        "owner": "Booker"
-    },
-    {
-        "_id": "5a98ab37ab2d91faac893203",
-        "mood": 2,
-        "date": "Thu Jun 07 1990 17:16:51 GMT+0000 (UTC)",
-        "owner": "Tabatha"
-    },
-    {
-        "_id": "5a98ab373dc191500afcc693",
-        "mood": 1,
-        "date": "Wed Dec 30 1987 15:45:53 GMT+0000 (UTC)",
-        "owner": "Margaret"
-    },
-    {
-        "_id": "5a98ab376a904055b062700c",
-        "mood": 2,
-        "date": "Mon Jan 14 1985 05:01:16 GMT+0000 (UTC)",
-        "owner": "Murray"
-    },
-    {
-        "_id": "5a98ab37c4b168965a770d9f",
+        "id": "5ae23e956cffb0baba556a33",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Sat Mar 03 1979 04:50:34 GMT+0000 (UTC)",
-        "owner": "Hendrix"
+        "intensity": 2,
+        "date": "2017-12-27T15:37:33+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37d25a3fad57041cd0",
+        "id": "5ae23e953257384986c34dfd",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2018-05-15T15:34:53+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e954176d3bf44118af7",
+        "owner": "Kyle Foss",
         "mood": 5,
-        "date": "Mon Mar 25 1991 14:10:24 GMT+0000 (UTC)",
-        "owner": "Myers"
+        "intensity": 2,
+        "date": "2018-02-24T21:25:11+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3778eb26ade48b15d2",
+        "id": "5ae23e95f347a5b4a8cfe9a7",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 1,
+        "date": "2017-06-02T15:55:15+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95fd45ca2571e1efec",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 1,
+        "date": "2018-04-30T22:10:24+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e955d24cc86d9474dbf",
+        "owner": "Kyle Foss",
         "mood": 1,
-        "date": "Mon Jan 19 2004 13:11:22 GMT+0000 (UTC)",
-        "owner": "Shaffer"
+        "intensity": 2,
+        "date": "2018-04-01T23:06:54+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37a81334fcda9dcc6c",
-        "mood": 2,
-        "date": "Wed Dec 11 1991 07:43:59 GMT+0000 (UTC)",
-        "owner": "Esmeralda"
-    },
-    {
-        "_id": "5a98ab3709af5de58e4e1297",
-        "mood": 3,
-        "date": "Sat Jun 22 1985 02:05:29 GMT+0000 (UTC)",
-        "owner": "Gutierrez"
-    },
-    {
-        "_id": "5a98ab37f7b840380fa8c312",
-        "mood": 3,
-        "date": "Wed Jul 15 2009 11:41:47 GMT+0000 (UTC)",
-        "owner": "Jeanine"
-    },
-    {
-        "_id": "5a98ab3763e8e5fbd3188a21",
-        "mood": 3,
-        "date": "Fri Mar 07 1997 20:38:14 GMT+0000 (UTC)",
-        "owner": "Guadalupe"
-    },
-    {
-        "_id": "5a98ab3758b6f01a44ca32a4",
-        "mood": 2,
-        "date": "Thu Jul 30 1992 09:17:47 GMT+0000 (UTC)",
-        "owner": "Downs"
-    },
-    {
-        "_id": "5a98ab37b126fbe1333ee590",
-        "mood": 3,
-        "date": "Sat Oct 09 2004 23:51:32 GMT+0000 (UTC)",
-        "owner": "Petty"
-    },
-    {
-        "_id": "5a98ab37ec2c5be333288a21",
+        "id": "5ae23e950ca666dbd248e301",
+        "owner": "Kyle Foss",
         "mood": 5,
-        "date": "Sat Oct 21 2006 11:30:32 GMT+0000 (UTC)",
-        "owner": "Lott"
+        "intensity": 1,
+        "date": "2017-07-27T21:58:29+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37d9b31348a7ca4651",
-        "mood": 3,
-        "date": "Fri Aug 12 1988 03:57:53 GMT+0000 (UTC)",
-        "owner": "Cecile"
-    },
-    {
-        "_id": "5a98ab37fe0aaedacf87ee79",
-        "mood": 2,
-        "date": "Wed Jun 29 1983 13:07:58 GMT+0000 (UTC)",
-        "owner": "Allie"
-    },
-    {
-        "_id": "5a98ab37ccbc60161b0d7446",
+        "id": "5ae23e9532997765cf3be4d1",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Sun Feb 18 1973 04:25:09 GMT+0000 (UTC)",
-        "owner": "Davidson"
+        "intensity": 1,
+        "date": "2018-04-29T20:11:33+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37a13e488921ca31f1",
-        "mood": 1,
-        "date": "Fri Nov 28 2003 01:09:25 GMT+0000 (UTC)",
-        "owner": "Rosanne"
-    },
-    {
-        "_id": "5a98ab37136bf948999a91ed",
-        "mood": 5,
-        "date": "Fri Sep 24 1971 06:39:55 GMT+0000 (UTC)",
-        "owner": "Wolf"
-    },
-    {
-        "_id": "5a98ab3736ba3d2141ea3066",
+        "id": "5ae23e952370061376a82623",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Thu Apr 08 2010 18:10:10 GMT+0000 (UTC)",
-        "owner": "Ruthie"
+        "intensity": 1,
+        "date": "2017-07-10T12:58:42+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab370546c44436da615a",
+        "id": "5ae23e95da483802f12412ab",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 2,
+        "date": "2018-06-30T15:55:18+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e955adaef79dde1cc0f",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2017-06-08T07:36:33+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e954dcff098d87dacd8",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 1,
+        "date": "2017-09-01T18:03:46+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9512383abe5e5836b1",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2018-05-21T01:00:42+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e955fdd90937c61d1e7",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2018-03-18T17:33:19+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e952e2f9a8dd23226a8",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2018-06-08T03:37:23+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95740e2a4ee7e2e082",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2017-07-24T05:18:24+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95d1823d1b5a566b8f",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 1,
+        "date": "2018-05-23T08:45:18+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9519076f9b79f7e512",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2017-06-09T05:12:21+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e954c06012eb5543f45",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 2,
+        "date": "2017-11-09T17:19:22+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95986cc8b92a91844d",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 1,
+        "date": "2018-05-22T20:00:43+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95e289a8e55840a0dd",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 2,
+        "date": "2017-09-21T04:15:04+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95468fadece4a0c13d",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2018-06-27T20:40:41+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95e82f66ed0d546c84",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2018-03-22T09:59:01+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95debc2d991c94da5a",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 2,
+        "date": "2018-02-09T11:52:45+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e952500a0994da74704",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 2,
+        "date": "2017-11-10T22:05:17+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e954480d88a6b67feff",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 2,
+        "date": "2017-06-13T08:29:30+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e959ffb481b59a959a9",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 1,
+        "date": "2017-11-21T15:51:15+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9539e5a42af105594c",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2017-08-04T15:00:27+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95231ea0aad74efc97",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 2,
+        "date": "2018-04-17T17:11:34+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9527fac2e21f012f92",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 1,
+        "date": "2017-12-03T05:54:08+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e959c709faabb3a256a",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 2,
+        "date": "2017-09-28T20:03:57+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95de32b8d10a116d94",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2017-06-16T14:23:38+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e959f924539108fc044",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 2,
+        "date": "2018-05-01T21:14:54+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95174030c0cef6d760",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2018-02-05T10:37:08+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95ab5590ab3ffb9b66",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 1,
+        "date": "2017-10-14T10:01:04+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e957fd5b107dd6bfb5f",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Sun Sep 11 2011 22:19:41 GMT+0000 (UTC)",
-        "owner": "Christy"
+        "intensity": 1,
+        "date": "2017-08-30T17:33:11+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3781b2f789cf51f59b",
-        "mood": 5,
-        "date": "Wed Mar 06 1985 01:59:18 GMT+0000 (UTC)",
-        "owner": "Harper"
+        "id": "5ae23e957c1de07bc2be25d5",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 2,
+        "date": "2017-11-28T12:25:53+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37963266541150c4e0",
-        "mood": 5,
-        "date": "Tue Mar 14 1978 08:14:09 GMT+0000 (UTC)",
-        "owner": "Harriett"
-    },
-    {
-        "_id": "5a98ab374d073a410041a83a",
-        "mood": 5,
-        "date": "Tue Jan 11 1977 19:06:02 GMT+0000 (UTC)",
-        "owner": "Heidi"
-    },
-    {
-        "_id": "5a98ab3718a7268365882821",
+        "id": "5ae23e95068c7d2a0b493bdf",
+        "owner": "Kyle Foss",
         "mood": 4,
-        "date": "Sat Feb 28 2004 12:32:09 GMT+0000 (UTC)",
-        "owner": "Ilene"
+        "intensity": 1,
+        "date": "2018-02-15T21:20:34+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37f4d3323a98bcd9fe",
-        "mood": 2,
-        "date": "Fri May 25 1979 03:02:41 GMT+0000 (UTC)",
-        "owner": "Aisha"
-    },
-    {
-        "_id": "5a98ab37f031687cda1d73af",
-        "mood": 4,
-        "date": "Sun May 13 2001 09:21:18 GMT+0000 (UTC)",
-        "owner": "Levy"
-    },
-    {
-        "_id": "5a98ab375eb84175db5c8e9b",
-        "mood": 1,
-        "date": "Sun May 18 1997 23:23:39 GMT+0000 (UTC)",
-        "owner": "Laurel"
-    },
-    {
-        "_id": "5a98ab372f26e6a4afa41ed0",
-        "mood": 4,
-        "date": "Thu Mar 20 1997 21:20:23 GMT+0000 (UTC)",
-        "owner": "Kane"
-    },
-    {
-        "_id": "5a98ab376555934b9a1f3c0c",
-        "mood": 1,
-        "date": "Fri Feb 06 1981 20:23:10 GMT+0000 (UTC)",
-        "owner": "Oneill"
-    },
-    {
-        "_id": "5a98ab375b5ce0ac976d729b",
-        "mood": 2,
-        "date": "Sun Aug 27 2000 19:27:53 GMT+0000 (UTC)",
-        "owner": "Paula"
-    },
-    {
-        "_id": "5a98ab376de9c3133720d4c2",
-        "mood": 1,
-        "date": "Fri Nov 17 2017 17:15:18 GMT+0000 (UTC)",
-        "owner": "Richards"
-    },
-    {
-        "_id": "5a98ab37d2b6aa2263d9cc71",
-        "mood": 2,
-        "date": "Tue Mar 08 2005 16:28:50 GMT+0000 (UTC)",
-        "owner": "Patel"
-    },
-    {
-        "_id": "5a98ab377795093090d85aad",
-        "mood": 1,
-        "date": "Wed May 25 1988 04:38:27 GMT+0000 (UTC)",
-        "owner": "Claudia"
-    },
-    {
-        "_id": "5a98ab375629934baaca601e",
-        "mood": 5,
-        "date": "Mon Mar 31 1997 16:52:11 GMT+0000 (UTC)",
-        "owner": "Alyssa"
-    },
-    {
-        "_id": "5a98ab3739e1dcc939536fa2",
-        "mood": 2,
-        "date": "Tue Jan 13 2009 03:28:00 GMT+0000 (UTC)",
-        "owner": "Dean"
-    },
-    {
-        "_id": "5a98ab37bbd2c095119c01f3",
-        "mood": 1,
-        "date": "Tue Apr 24 2012 17:27:23 GMT+0000 (UTC)",
-        "owner": "Mejia"
-    },
-    {
-        "_id": "5a98ab3705449000f16aa9d1",
-        "mood": 1,
-        "date": "Thu Nov 12 1998 08:39:39 GMT+0000 (UTC)",
-        "owner": "Dona"
-    },
-    {
-        "_id": "5a98ab3735897dad92393bf1",
-        "mood": 2,
-        "date": "Wed May 16 2007 17:06:53 GMT+0000 (UTC)",
-        "owner": "Roberta"
-    },
-    {
-        "_id": "5a98ab376d090b7b0d4b5498",
+        "id": "5ae23e95b6cb02b40867ba7d",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Sun Apr 13 1997 16:19:21 GMT+0000 (UTC)",
-        "owner": "Jaclyn"
+        "intensity": 1,
+        "date": "2017-11-03T07:15:04+00:00",
+        "email": "fossx229@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37e7d748bc5271a308",
+        "id": "5ae23e9572c59f3bb961d37c",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2017-11-03T06:18:04+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95a27835cdda4336c5",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 2,
+        "date": "2017-07-02T09:00:54+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9597eb18e60ffd8277",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2018-05-14T15:46:05+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e951932804a296068d3",
+        "owner": "Kyle Foss",
         "mood": 3,
-        "date": "Thu Jul 19 2001 09:20:15 GMT+0000 (UTC)",
-        "owner": "Freda"
+        "intensity": 1,
+        "date": "2018-01-27T23:27:43+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e952b99eb05ea3b6d7c",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2017-06-22T05:40:11+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9583d1fadec12822d7",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 2,
+        "date": "2018-04-05T15:00:54+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e953295850f34ad7be6",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2018-01-14T05:57:58+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95d0eba2f79a6817a4",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2017-08-24T09:51:03+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95d4ceaddb847d0cec",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 2,
+        "date": "2018-01-25T10:36:45+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9595e8d5b38351536d",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2017-11-23T11:51:45+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95036b98f5aadd33c7",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 1,
+        "date": "2017-10-23T16:17:32+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95e1d97dd7bbb54ffe",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 1,
+        "date": "2018-06-03T20:24:56+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e959017c285783ed461",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 2,
+        "date": "2017-12-30T23:56:54+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9549cbc68939cf4565",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 1,
+        "date": "2017-11-27T20:29:46+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9562dbe6d99fbe151f",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2017-09-12T13:34:41+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e956a3e1b3ede33a65c",
+        "owner": "Kyle Foss",
+        "mood": 5,
+        "intensity": 1,
+        "date": "2017-12-06T23:57:01+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e951416f27f1ebda250",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 2,
+        "date": "2018-03-22T07:32:35+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e952f1017888fbbe1d0",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 2,
+        "date": "2017-10-27T00:08:18+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9573e5de0a75875cb4",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 1,
+        "date": "2018-04-03T06:25:13+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e953de6a46b907b2177",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 1,
+        "date": "2017-12-16T17:52:06+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95413421255f184971",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 1,
+        "date": "2018-05-23T14:58:39+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95a7f694c5bd04d2b8",
+        "owner": "Kyle Foss",
+        "mood": 3,
+        "intensity": 2,
+        "date": "2017-10-14T06:44:05+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9519b7ad59945f4439",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 1,
+        "date": "2018-05-15T09:52:46+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95821147d1cc39b351",
+        "owner": "Kyle Foss",
+        "mood": 4,
+        "intensity": 2,
+        "date": "2018-02-14T03:55:58+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e9539dcca799b90a569",
+        "owner": "Kyle Foss",
+        "mood": 1,
+        "intensity": 1,
+        "date": "2018-06-22T00:34:29+00:00",
+        "email": "fossx229@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95e8f0a930aec4050c",
+        "owner": "Kyle Foss",
+        "mood": 2,
+        "intensity": 1,
+        "date": "2018-03-04T20:48:50+00:00",
+        "email": "fossx229@morris.umn.edu"
     }
 ]
