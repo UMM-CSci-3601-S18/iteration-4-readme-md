@@ -1,6 +1,7 @@
 mat-card{
     border-radius: 10px;
     background: linear-gradient(#1a75ff,#ffff99 80%);
+    width: 300px;
 }
 
 mat-expansion-panel{
@@ -16,10 +17,10 @@ mat-expansion-panel{
 .addNewResourceDiv{
     padding: 10px;
 }
+
 #add-icon {
     color: forestgreen;
 }
-
 
 .loginEmoji{
     display: flex;
@@ -29,12 +30,16 @@ mat-expansion-panel{
     height: 256px;
 }
 
-.loginEmojiText {
+.loginEmojiText{
     text-align: center;
     font-size: 24px;
 }
 
-#deleteContact {
+#deleteContact{
     float: right;
     margin-bottom: 10px;
 }
+
+/*#contactNumbers{
+    width: 40%
+}*/

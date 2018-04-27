@@ -1,8 +1,7 @@
-mat-card {
+/*mat-card {
     text-align: center;
     border-radius: 10px;
     background: linear-gradient(#1a75ff,#ffff99 80%);
- /*   #4d94ff */
 
 }
 
@@ -11,17 +10,7 @@ mat-card-content img {
     max-width: 500px;
     padding-bottom: 5%;
     padding-top: 5%;
-}
-
-mat-slider {
-    width: 90%;
-    opacity: .75;
-
-}
-
-mat-slider:hover {
-    opacity: 1;
-}
+}*/
 
 .loginEmoji{
     display: flex;
@@ -29,9 +18,53 @@ mat-slider:hover {
     margin-right: auto;
     width: 256px;
     height: 256px;
+    padding: 32px;
 }
 
 .loginEmojiText {
     text-align: center;
     font-size: 24px;
+}
+
+#main-body {
+    text-align: center;
+}
+
+.headerText{
+    font-size: 200%;
+}
+
+.moodText{
+    margin-top: 0px;
+    font-size: 130%;
+}
+
+#currentEmoji {
+    padding-top: 10px;
+    width: 20%;
+    height: 20%;
+}
+
+#leftEmoji {
+    padding-top: 10px;
+    padding-right: 10px;
+    width: 12%;
+    height: 12%;
+    opacity: 0.5;
+}
+
+#rightEmoji {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 12%;
+    height: 12%;
+    opacity: 0.5;
+}
+
+#submitEmoji {
+    margin-top: 10px;
+}
+
+#emojiNavLeft{
+    margin-right: 40px;
 }

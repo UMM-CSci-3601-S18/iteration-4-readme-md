@@ -1,3 +1,4 @@
+
 import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {ReportsComponent} from "./reports.component";
 import {Observable} from 'rxjs/Observable';
@@ -31,6 +32,7 @@ describe('Reports list', () => {
                 {
                     _id: 'f',
                     owner: 'Nick',
+                    intensity: 1,
                     mood: 3,
                     date: 'd', //date will be created during the test so that it matches what is made in component.addEmoji
                     userId: "nick@gmail.com",
@@ -38,6 +40,7 @@ describe('Reports list', () => {
                 {
                     _id: 'd',
                     owner: 'Roch',
+                    intensity: 1,
                     mood: 4,
                     date: '', //date will be created during the test so that it matches what is made in component.addEmoji
                     userId: "roch@gmail.com",
@@ -45,6 +48,7 @@ describe('Reports list', () => {
                 {
                     _id: 'd',
                     owner: 'Leo',
+                    intensity: 1,
                     mood: 5,
                     date: 'e', //date will be created during the test so that it matches what is made in component.addEmoji
                     userId: "leo@gmail.com",
@@ -177,6 +181,7 @@ describe('Misbehaving Emoji List', () => {
         expect(emojiList.emojis).toBeUndefined();
     });
 });
+
 
 
 
