@@ -4,15 +4,9 @@
  we referred to in the home component.ts file -- Ahnaf -->
 
 <div id="response">
-     <h1>
+     <h1 id="headerText">
          {{generateText(data.response)}}
      </h1>
 
-    <iframe id="responseVideo" [src]="safeURL" frameborder="0" allowfullscreen class="embeddedVideos"></iframe>
+    <iframe class="trustedVideo" id="responseVideo" [src]="this.safeURL" frameborder="0"></iframe>
 </div>
-
-            <!--
-           <iframe id="responseSadVideoFrame" src="randomVideo('saddness')" frameborder="0" allowfullscreen class="video"></iframe>
-
-        -->
-

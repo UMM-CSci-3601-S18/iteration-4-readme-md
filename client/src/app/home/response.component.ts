@@ -8,7 +8,7 @@ import {DomSanitizer} from "@angular/platform-browser";
     templateUrl: 'response.component.html',
     styleUrls: ['./response.component.css'],
 })
-export class ResponseComponent{
+export class ResponseComponent implements OnInit{
 
     //Used for sanitizing URLS.
     public safeURL;
@@ -39,28 +39,30 @@ export class ResponseComponent{
 
                 //Return embed playlist offset to a random video in the playlist.
                 this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M&index=' + rand.toString();
-                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
 
             //Anxious
             case 2:
                 var numVideos = this.getPlaylistSize('PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9');
                 var rand = Math.floor(Math.random() * numVideos);
                 this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9&index=' + rand.toString();
-                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
 
             //Happy
             case 3:
-                var numVideos = this.getPlaylistSize('PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr');
-                var rand = Math.floor(Math.random() * numVideos);
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr&index=' + rand.toString();
-                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+                /*var numVideos = this.getPlaylistSize('PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr');
+                var rand = Math.floor(Math.random() * numVideos);*/
+
+                console.log("GOT HERE!");
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr';
+                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
 
             //Meh
             case 4:
                 var numVideos = this.getPlaylistSize('PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX');
                 var rand = Math.floor(Math.random() * numVideos);
                 this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX&index=' + rand.toString();
-                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
 
             //Sad
             case 5:
@@ -68,7 +70,7 @@ export class ResponseComponent{
                 var rand = Math.floor(Math.random() * numVideos);
 
                 this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu&index=' + rand.toString();
-                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
         }
     }
 
@@ -84,9 +86,10 @@ export class ResponseComponent{
         //Take the results and get the totalResults for the playlist (the size).
         results.subscribe(data =>{
             size = data.pageInfo.totalResults;
+            console.log(size);
         })
 
-        return size;
+        return 1;
     }
 
     generateText(response: number){
@@ -107,6 +110,10 @@ export class ResponseComponent{
             case 5:
                 return ">Wow! That's great!";
         }
+    }
+
+    ngOnInit(){
+        this.safeURL = this.randomVideo(this.data.response);
     }
 }
 
