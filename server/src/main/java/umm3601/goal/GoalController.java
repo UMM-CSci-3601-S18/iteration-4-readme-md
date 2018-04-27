@@ -79,7 +79,8 @@ public class GoalController extends SuperController{
             collection.insertOne(newGoal);
 
             ObjectId id = newGoal.getObjectId("_id");
-            System.err.println("Successfully added new goal [_id=" + id + ", purpose=" + purpose + ", category=" + category + ", name=" + name + ']');
+            System.err.println("Successfully added new goal [_id=" + id + ", purpose=" + purpose + ", category=" + category + ", name=" + name +
+                ", userId=" + userId + ']');
 
             return JSON.serialize(id);
         } catch(MongoException me) {

@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
                     this.loginService.authenticate(user.idToken)
 
                         .then((userId) => {
-                            localStorage.setItem('userId', userId);
+                            localStorage.setItem('userId', userId['$oid']);
 
                             //refreshes after login so that the name of the user can be shown
                             //window.location.reload();

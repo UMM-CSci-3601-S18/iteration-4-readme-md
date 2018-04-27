@@ -13,7 +13,7 @@
                             <button mat-raised-button id="addNewGoalButton" (click)="openDialog()" class="goal-button">
                                 <mat-icon id="add-icon">add</mat-icon>
                                 Add a Goal</button>
-                            <mat-tab-group>
+                            <mat-tab-group *ngIf="goals">
                                 <mat-tab label="Incomplete">
                                     <mat-card class="goals-card"
                                               *ngFor="let goal of this.filterGoals(false)"

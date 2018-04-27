@@ -112,8 +112,6 @@ export class GoalsComponent implements OnInit{
         // Filter by status
         if (searchStatus != null) {
 
-            // for some reason, an error is usually thrown here. not sure why.
-            // the app still works regardless
             this.filteredGoals = this.filteredGoals.filter(goal => {
                 return goal.status === searchStatus;
             });
@@ -134,7 +132,7 @@ export class GoalsComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const goalListObservable: Observable<Goal[]> = this.goalsService.getGoals(this.user.email);
+        const goalListObservable: Observable<Goal[]> = this.goalsService.getGoals(localStorage.getItem('userId'));
         goalListObservable.subscribe(
             goals => {
                 this.goals = goals;
@@ -147,7 +145,7 @@ export class GoalsComponent implements OnInit{
     }
 
     loadService(): void {
-        this.goalsService.getGoals(this.user.email).subscribe(
+        this.goalsService.getGoals(localStorage.getItem('userId')).subscribe(
             goals => {
                 this.goals = goals;
                 this.filteredGoals = this.goals;
