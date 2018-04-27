@@ -49,7 +49,7 @@ describe('Resource list', () => {
                     name: 'Lir Fealladh',
                     body: 'My father',
                     phone: '555-555-5550',
-                    email: 'Lir@Fealladh.com'
+                    userId: 'Lir@Fealladh.com'
 
                 },
                 {
@@ -57,7 +57,7 @@ describe('Resource list', () => {
                     name: 'Reina',
                     body: 'My best friend',
                     phone: '555-555-5551',
-                    email: 'Reina@myfriend.com'
+                    userId: 'Reina@myfriend.com'
 
                 },
                 {
@@ -65,7 +65,7 @@ describe('Resource list', () => {
                     name: 'Suicide Prevention Lifeline',
                     body: 'We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.',
                     phone: '1-800-555-5555',
-                    email: 'preventsuicide@lifeline.org'
+                    userId: 'preventsuicide@lifeline.org'
 
                 }
             ])
