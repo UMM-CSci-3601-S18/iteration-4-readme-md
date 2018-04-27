@@ -84,7 +84,7 @@ public class EmojiRequestHandler {
 
                     System.err.println("Adding new emoji [owner=" + owner + ", mood=" + mood + " intensity=" + intensity +
                         " date=" + date  + " userId=" + userId +']');
-                    return emojiController.addNewEmoji(owner, mood, intensity, date, email);
+                    return emojiController.addNewEmoji(owner, mood, intensity, date, userId);
                 }
                 catch(NullPointerException e)
                 {
