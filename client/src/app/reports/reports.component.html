@@ -13,10 +13,16 @@
                         <input
                             id = "startDate"
                             matInput [matDatepicker]="start"
-                            placeholder="Choose a Start Date"
+                            [value] ="startDate2.value"
+                        >
+
+
+                            <!---
+                            placeholder= "startDate"
                             [(ngModel)]="startDate"
                             (input)="startDate = $event.target.value"
                             disabled>
+                            --->
                         <mat-datepicker-toggle id = "startButton" matSuffix [for]="start" enabled></mat-datepicker-toggle>
                         <mat-datepicker touchUi="true" #start disabled="false"></mat-datepicker>
                     </mat-form-field> &nbsp;
@@ -25,10 +31,14 @@
                         <input
                             id = "endDate"
                             matInput [matDatepicker]="end"
+                            [value] ="endDate2.value"
+                        >
+                            <!---
                             placeholder="Choose an End Date"
                             [(ngModel)]="endDate"
                             (input)="endDate = $event.target.value"
                             disabled>
+                            --->
                         <mat-datepicker-toggle id = "endButton" matSuffix [for]="end" enabled></mat-datepicker-toggle>
                         <mat-datepicker touchUi="true" #end disabled="false"></mat-datepicker>
                     </mat-form-field>

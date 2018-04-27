@@ -5,7 +5,8 @@ import {ReportsService} from "./reports.service";
 import {AuthService, SocialUser} from "angularx-social-login";
 import {environment} from "../../environments/environment";
 import * as Chart from 'chart.js';
-import * as Plotly from 'plotly.js';
+import * as Plotly from 'plotly.js'
+import {FormControl} from '@angular/forms';
 
 @Component({
     selector: 'app-reports-component',
@@ -14,6 +15,8 @@ import * as Plotly from 'plotly.js';
 })
 
 export class ReportsComponent implements OnInit {
+    startDate2 = new FormControl(new Date());
+    endDate2 = new FormControl(new Date());
     startDate;
     endDate;
     getDate;
@@ -156,11 +159,15 @@ export class ReportsComponent implements OnInit {
     }
 
     public getReadableDate(dateString: string): string {
-        if(dateString == '') {
+        if (dateString == '') {
             return '';
         }
         const date = new Date(dateString);
-        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ':'
+
+        return (date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + date.getHours() + ':'
             + date.getMinutes();
+
+
     }
+
 }
