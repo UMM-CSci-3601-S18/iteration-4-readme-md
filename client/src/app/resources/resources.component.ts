@@ -34,7 +34,7 @@ export class ResourcesComponent implements OnInit{
                 name: '',
                 body: '',
                 phone: '',
-                email: this.user.email,
+                userId: localStorage.getItem('userId'),
             };
         const dialogRef = this.dialog.open(AddResourcesComponent, {
             width: '500px',
@@ -81,7 +81,7 @@ export class ResourcesComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources(this.user.email);
+        const resourcesListObservable: Observable<resources[]> = this.resourcesService.getResources(localStorage.getItem('userId'));
         resourcesListObservable.subscribe(
             resources => {
                 this.resources = resources;
@@ -109,7 +109,7 @@ export class ResourcesComponent implements OnInit{
 
 
     loadService(): void {
-        this.resourcesService.getResources(this.user.email).subscribe(
+        this.resourcesService.getResources(localStorage.getItem('userId')).subscribe(
             resources => {
                 this.resources = resources;
                 this.filteredResources = this.resources;
