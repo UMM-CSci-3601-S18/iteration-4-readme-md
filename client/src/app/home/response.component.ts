@@ -1,75 +1,112 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-response.component',
     templateUrl: 'response.component.html',
     styleUrls: ['./response.component.css'],
 })
-export class ResponseComponent {
+export class ResponseComponent{
 
-    // links is an array of different responses we are using when you select an emoji in our home page
-
-    public links: string[] = [
-        'https://www.youtube.com/watch?v=Jyy0ra2WcQQ',
-        'https://www.youtube.com/watch?v=6kVlonPVAjI',
-        'https://www.youtube.com/watch?v=z39iodZOf00',
-        'https://www.youtube.com/watch?v=Yt1JtbhSIMc',
-        'https://www.youtube.com/watch?v=csjhIkKnz4Q',
-        'https://www.youtube.com/watch?v=Orrr7PyaZs4',
-        'https://www.youtube.com/watch?v=uLu6iq0NaqU',
-        'https://www.youtube.com/watch?v=eMHg8sSmKWs',
-        'https://www.youtube.com/watch?v=hJbRpHZr_d0',
-        'https://www.youtube.com/watch?v=Nw2oBIrQGLo',
-        'https://www.youtube.com/watch?v=XyNlqQId-nk',
-        'https://www.youtube.com/watch?v=EtH9Yllzjcc',
-        'https://www.youtube.com/watch?v=BfFi4wba30g',
-        'https://www.youtube.com/watch?v=WxUulGkLu4I',
-        'https://www.youtube.com/watch?v=1JArN6rag8s'
-    ];
-
-    public config: any = [
-
-    ];
+    //Used for sanitizing URLS.
+    public safeURL;
+    public unsafeURL;
 
 
     constructor(
         public dialogRef: MatDialogRef<ResponseComponent>,
         private http: HttpClient,
+        private sanitizer: DomSanitizer,
         @Inject(MAT_DIALOG_DATA) public data: { response: number }) {
-    }
-
-    // getLink is the magic function that randomly chooses one of the links in the array
-    // that we added to the responses.component file to make sure the links are not
-    // repetitive and random everytime
-
-    getLink() : void {
-        var index = Math.floor(Math.random() * this.links.length);
-        window.open(this.links[index]);
-
-        //Make sure dialog box closes after opening link
-        this.onNoClick()
     }
 
     onNoClick(): void {
         this.dialogRef.close();
     }
 
-    randomVideo(){
+    randomVideo(response: number){
+        switch(response)
+        {
+            //Angry
+            case 1:
+                //Get total number of videos from playlist
+                var numVideos = this.getPlaylistSize('PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M');
 
+                //Generate a random integer between 0 and total number of videos from playlist
+                var rand = Math.floor(Math.random() * numVideos);
+
+                //Return embed playlist offset to a random video in the playlist.
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M&index=' + rand.toString();
+                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+
+            //Anxious
+            case 2:
+                var numVideos = this.getPlaylistSize('PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9');
+                var rand = Math.floor(Math.random() * numVideos);
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9&index=' + rand.toString();
+                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+
+            //Happy
+            case 3:
+                var numVideos = this.getPlaylistSize('PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr');
+                var rand = Math.floor(Math.random() * numVideos);
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr&index=' + rand.toString();
+                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+
+            //Meh
+            case 4:
+                var numVideos = this.getPlaylistSize('PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX');
+                var rand = Math.floor(Math.random() * numVideos);
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX&index=' + rand.toString();
+                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+
+            //Sad
+            case 5:
+                var numVideos = this.getPlaylistSize('PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu');
+                var rand = Math.floor(Math.random() * numVideos);
+
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu&index=' + rand.toString();
+                this.safeURL = this.sanitizer.bypassSecurityTrustUrl(this.unsafeURL);
+        }
     }
 
-    getPlaylists(playlistId: string){
+    //Function used for 'true' random videos in a playlist, where playlistId is the id of the youtube playlist.
+    getPlaylistSize(id: string){
 
-        console.log('at least got here')
-        var results = this.http.get<any>('https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu&maxResults=50&part=snippet%2CcontentDetails&key=AIzaSyC6ZtAit2Enk5aih6pqSeX-dMOeIhyC-fI');
-        
+        //Variable to store maxsize, since including it in the subscribe causes the return type to be void.
+        var size;
+
+        //Make a query to the YouTube API to get the playlist information
+        var results = this.http.get<any>('https://www.googleapis.com/youtube/v3/playlistItems?playlistId=' + id + '&maxResults=50&part=snippet%2CcontentDetails&key=AIzaSyC6ZtAit2Enk5aih6pqSeX-dMOeIhyC-fI');
+
+        //Take the results and get the totalResults for the playlist (the size).
         results.subscribe(data =>{
-            var total = data.pageInfo.totalResults;
-            console.log(total);
+            size = data.pageInfo.totalResults;
         })
 
+        return size;
+    }
+
+    generateText(response: number){
+        switch(response)
+        {
+            case 1:
+                return "I'm so sorry to hear that. Do you need help?";
+
+            case 2:
+                return "I'm sorry to hear that.";
+
+            case 3:
+                return "Ok, sounds good."
+
+            case 4:
+                return "I'm glad that you're doing well!"
+
+            case 5:
+                return ">Wow! That's great!";
+        }
     }
 }
 
