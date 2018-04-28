@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-response.component',
@@ -11,9 +11,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class ResponseComponent implements OnInit{
 
     //Used for sanitizing URLS.
-    public safeURL;
-    public unsafeURL;
-
+    public safeURL: SafeResourceUrl;
+    public unsafeURL: string;
 
     constructor(
         public dialogRef: MatDialogRef<ResponseComponent>,
@@ -32,45 +31,39 @@ export class ResponseComponent implements OnInit{
             //Angry
             case 1:
                 //Get total number of videos from playlist
-                var numVideos = this.getPlaylistSize('PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M');
+                //var numVideos = this.getPlaylistSize('PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M');
 
                 //Generate a random integer between 0 and total number of videos from playlist
-                var rand = Math.floor(Math.random() * numVideos);
+                //var rand = Math.floor(Math.random() * numVideos);
 
                 //Return embed playlist offset to a random video in the playlist.
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M&index=' + rand.toString();
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M';
                 this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
+                break;
 
             //Anxious
             case 2:
-                var numVideos = this.getPlaylistSize('PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9');
-                var rand = Math.floor(Math.random() * numVideos);
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9&index=' + rand.toString();
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9';
                 this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
+                break;
 
             //Happy
             case 3:
-                /*var numVideos = this.getPlaylistSize('PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr');
-                var rand = Math.floor(Math.random() * numVideos);*/
-
-                console.log("GOT HERE!");
                 this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr';
                 this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
+                break;
 
             //Meh
             case 4:
-                var numVideos = this.getPlaylistSize('PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX');
-                var rand = Math.floor(Math.random() * numVideos);
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX&index=' + rand.toString();
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX';
                 this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
+                break;
 
             //Sad
             case 5:
-                var numVideos = this.getPlaylistSize('PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu');
-                var rand = Math.floor(Math.random() * numVideos);
-
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu&index=' + rand.toString();
+                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu';
                 this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
+                break;
         }
     }
 
@@ -113,7 +106,9 @@ export class ResponseComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.safeURL = this.randomVideo(this.data.response);
+        console.log("Created window with response of " + this.data.response);
+        console.log("SafeURL is " + this.safeURL);
+        this.randomVideo(this.data.response);
     }
 }
 

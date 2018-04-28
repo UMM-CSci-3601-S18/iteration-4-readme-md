@@ -8,5 +8,5 @@
          {{generateText(data.response)}}
      </h1>
 
-    <iframe class="trustedVideo" id="responseVideo" [src]="this.safeURL" frameborder="0"></iframe>
+    <iframe [src]="safeURL" class="trustedVideo" id="responseVideo" frameborder="0"></iframe>
 </div>
