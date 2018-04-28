@@ -40,6 +40,14 @@ mat-expansion-panel{
     margin-bottom: 10px;
 }
 
+#youtube{
+    width: 312px;
+}
+
+#youtubeTitle, #resourceTitle, #resourceLinksTitle, #contactNumbersTitle{
+    text-align: center;
+}
+
 /*#contactNumbers{
     width: 40%
 }*/
