@@ -25,90 +25,86 @@ export class ResponseComponent implements OnInit{
         this.dialogRef.close();
     }
 
-    randomVideo(response: number){
-        switch(response)
-        {
-            //Angry
-            case 1:
-                //Get total number of videos from playlist
-                //var numVideos = this.getPlaylistSize('PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M');
-
-                //Generate a random integer between 0 and total number of videos from playlist
-                //var rand = Math.floor(Math.random() * numVideos);
-
-                //Return embed playlist offset to a random video in the playlist.
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M';
-                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
-                break;
-
-            //Anxious
-            case 2:
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9';
-                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
-                break;
-
-            //Happy
-            case 3:
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr';
-                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
-                break;
-
-            //Meh
-            case 4:
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX';
-                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
-                break;
-
-            //Sad
-            case 5:
-                this.unsafeURL = 'https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu';
-                this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
-                break;
-        }
+    //This function sets the URL to display to be safe.
+    updateSafeUrl(video_id: string){
+        this.unsafeURL = 'https://www.youtube.com/embed/' + video_id;
+        this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeURL);
     }
 
-    //Function used for 'true' random videos in a playlist, where playlistId is the id of the youtube playlist.
-    getPlaylistSize(id: string){
+    //Function to get random video from a playlist.
+    getRandomVideoInPlaylist(response: number)
+    {
 
-        //Variable to store maxsize, since including it in the subscribe causes the return type to be void.
-        var size;
+        //The ID of the YouTube video we will be getting.
+        var id: string;
+
+        //Change which playlist we are looking at based on response entered.
+        switch(response)
+        {
+            case 1:
+                id = 'PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M';
+                break;
+
+            case 2:
+                id = 'PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9';
+                break;
+
+            case 3:
+                id = 'PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr';
+                break;
+
+            case 4:
+                id = 'PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX';
+                break;
+
+            case 5:
+                id = 'PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu';
+                break;
+        }
 
         //Make a query to the YouTube API to get the playlist information
         var results = this.http.get<any>('https://www.googleapis.com/youtube/v3/playlistItems?playlistId=' + id + '&maxResults=50&part=snippet%2CcontentDetails&key=AIzaSyC6ZtAit2Enk5aih6pqSeX-dMOeIhyC-fI');
 
-        //Take the results and get the totalResults for the playlist (the size).
-        results.subscribe(data =>{
-            size = data.pageInfo.totalResults;
-            console.log(size);
-        })
-
-        return 1;
+        //Take the results and select a random video from within the playlist.
+        results.subscribe(
+            (data) =>
+            {
+                var max = data.pageInfo.totalResults;
+                var rand = Math.floor(Math.random() * (max - 1));
+                var random_video_id = data.items[rand].contentDetails.videoId;
+                this.updateSafeUrl(random_video_id);
+            },
+            (error) =>
+            {
+                console.log("There was an error accessing the Google API. Perhaps daily queries exceeded?")
+            },
+            () =>
+            {
+                //Nothing
+            }
+        );
     }
 
-    generateText(response: number){
+    generateText(response: number)
+    {
         switch(response)
         {
             case 1:
                 return "I'm so sorry to hear that. Do you need help?";
-
             case 2:
                 return "I'm sorry to hear that.";
-
             case 3:
-                return "Ok, sounds good."
-
+                return "Ok, sounds good.";
             case 4:
-                return "I'm glad that you're doing well!"
-
+                return "I'm glad that you're doing well!";
             case 5:
                 return ">Wow! That's great!";
         }
     }
 
-    ngOnInit(){
-        console.log("Created window with response of " + this.data.response);
-        console.log("SafeURL is " + this.safeURL);
-        this.randomVideo(this.data.response);
+    ngOnInit()
+    {
+        this.getRandomVideoInPlaylist(this.data.response);
     }
 }
 
