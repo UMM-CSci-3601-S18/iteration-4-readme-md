@@ -50,15 +50,14 @@ public abstract class SuperController {
             filterDoc = filterDoc.append("email", targetEmail);
         }
 
-
-
         if (queryParams.containsKey("userId")) {
             String targetUserId = (queryParams.get("userId")[0]);
             filterDoc = filterDoc.append("userId", targetUserId);
         }
         else {
             System.out.println("It had no userID");
-            return JSON.serialize("[ ]");
+            String[] arr = {};
+            return JSON.serialize(arr);
         }
 
         if (queryParams.containsKey("subject")) {
