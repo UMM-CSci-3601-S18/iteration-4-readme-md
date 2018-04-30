@@ -9,7 +9,6 @@
         <!-- Only display first name -->
         <h1 class="headerText"><strong>Hello {{emoji.owner.split(" ")[0]}}!<br> How are you feeling today?</strong></h1>
 
-        <div id="test">
         <mat-horizontal-stepper #stepper id="mainPageStepper">
             <mat-step >
                 <p class="headerText" style="font-size: 100%"><i>Swipe left or right to find your feeling.</i></p>
@@ -60,9 +59,6 @@
                 <button mat-button matStepperPrevious>Prev</button>
             </mat-step>
         </mat-horizontal-stepper>
-        </div>
-
-
     </div>
 </div>
 
