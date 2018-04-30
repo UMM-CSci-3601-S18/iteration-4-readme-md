@@ -12,6 +12,10 @@ mat-card-content img {
     padding-top: 5%;
 }*/
 
+mat-horizontal-stepper{
+    background: none;
+}
+
 .loginEmoji{
     display: flex;
     margin-left: auto;
@@ -67,4 +71,9 @@ mat-card-content img {
 
 #emojiNavLeft{
     margin-right: 40px;
+}
+
+#responseVideo{
+    width: 500px;
+    height: 500px;
 }
