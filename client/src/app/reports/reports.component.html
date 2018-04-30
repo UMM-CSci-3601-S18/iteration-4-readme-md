@@ -5,7 +5,6 @@
 
             <div id="pageTitle">
                 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-                <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
                 <mat-divider></mat-divider>
                 <div id="filterDate">
                     <mat-form-field class="start">
@@ -46,13 +45,59 @@
                         <mat-datepicker touchUi="true" #end disabled="false"></mat-datepicker>
                     </mat-form-field>
 
-                    <button mat-raised-button id="filterButton" (click)="this.refreshEmojis()">View</button>
+
                 </div>
             </div>
 
             <div id="tabs">
                 <mat-tab-group #myTabGroup>
                     <mat-tab label="Graph Review">
+                        <div id="graphFilter">
+                            <form>
+                                <label> Which period of entries you want to look at?</label>
+                                <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
+                                    <!--<option id ="Today" selected value="Today">Today</option>-->
+                                    <option id ="This week" selected value="This week">This week</option>
+                                    <option id ="Last week" value="Last week">Last week</option>
+                                    <option id ="Last month" value="Last month">Last month</option>
+                                </select>
+                                <br>
+                            </form>
+                            <br>
+                            <!--<p>Otherwise you could select the date range from below</p>
+                            <div id="filterContents">
+                                <mat-form-field class="start">
+                                    <input
+                                        id = "startDate"
+                                        matInput [matDatepicker]="start"
+                                        placeholder="Choose a Start Date"
+                                        [(ngModel)]="startDate"
+                                        (input)="startDate = $event.target.value">
+                                    <mat-datepicker-toggle id = "startButton" matSuffix [for]="start"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi="true" #start></mat-datepicker>
+                                </mat-form-field> &nbsp;
+
+                                <mat-form-field class="end">
+                                    <input
+                                        id = "endDate"
+                                        matInput [matDatepicker]="end"
+                                        placeholder="Choose an End Date"
+                                        [(ngModel)]="endDate"
+                                        (input)="endDate = $event.target.value">
+                                    <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi="true" #end></mat-datepicker>
+                                </mat-form-field>
+
+                            </div>-->
+                            <button mat-raised-button id="filterButton" (click)="this.filterEmojis(emojiMood, emojiIntensity, startDate, endDate); updateChart()">Update Graph</button>
+                            <br>
+                        </div>
+                        <mat-card> <mat-card-title class="your-summarys-title">Your Emotions</mat-card-title>
+                            <mat-card-subtitle class="your-summarys-title">There are {{totalNumberMoods()}} entries represented</mat-card-subtitle>
+                            <canvas id="myChart" height="auto"></canvas>
+
+
+                        </mat-card>
 
                     </mat-tab>
 
