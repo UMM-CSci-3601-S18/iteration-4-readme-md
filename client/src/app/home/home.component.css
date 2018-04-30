@@ -72,3 +72,8 @@ mat-horizontal-stepper{
 #emojiNavLeft{
     margin-right: 40px;
 }
+
+#responseVideo{
+    width: 500px;
+    height: 500px;
+}
