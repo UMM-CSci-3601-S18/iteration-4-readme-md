@@ -26,6 +26,10 @@ export class AppComponent implements OnInit {
             return;
         }
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+            .then(()=> {
+                //refreshes after login so that the name of the user can be shown
+                window.location.reload();
+            })
             .catch((err) => {
 
                 // if an error occurs, print it out and clear the data from this.user
@@ -59,8 +63,6 @@ export class AppComponent implements OnInit {
                         .then((userId) => {
                             localStorage.setItem('userId', userId['$oid']);
 
-                            //refreshes after login so that the name of the user can be shown
-                            //window.location.reload();
                             console.log(this.user.name + ' signed in.');
                             this.buttonText = 'Sign Out';
                         })

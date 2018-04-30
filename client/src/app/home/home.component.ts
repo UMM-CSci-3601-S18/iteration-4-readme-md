@@ -17,7 +17,6 @@ import {environment} from "../../environments/environment";
 export class HomeComponent implements OnInit {
 
     public emoji: Emoji = {_id: '', owner: '', date: '', mood: 3, intensity: 1, userId: localStorage.getItem('userId')};
-    public email: string = localStorage.getItem('email');
     public user: SocialUser;
     public name: string;
 
