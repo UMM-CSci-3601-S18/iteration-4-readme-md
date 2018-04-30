@@ -106,8 +106,8 @@ public class JournalControllerSpec extends ControllerSuperSpec {
     public void getNoJournals() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = journalController.getItems(emptyMap);
-
-        assertEquals("Should be 0 journals", jsonResult, JSON.serialize("[ ]"));
+        BsonArray docs = parseJsonArray(jsonResult);
+        assertEquals("Should be 0 journals", 0, docs.size());
     }
 
     @Test
