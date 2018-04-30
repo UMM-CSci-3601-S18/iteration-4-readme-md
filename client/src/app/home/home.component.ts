@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
     addEmoji(): void {
 
         const date = new Date();
-        console.log(date.toLocaleTimeString());
         this.emoji.date = date.toString();
         this.emoji.owner = this.user.name;
         this.emoji.email = this.user.email;

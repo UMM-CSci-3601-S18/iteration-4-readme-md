@@ -15,10 +15,10 @@ import {FormControl} from '@angular/forms';
 })
 
 export class ReportsComponent implements OnInit {
-    startDate2 = new FormControl(new Date());
-    endDate2 = new FormControl(new Date());
-    startDate;
-    endDate;
+    startDate = new Date();
+    endDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 *1000);
+    startDate2 = new FormControl(this.startDate);
+    endDate2 = new FormControl(this.endDate);
     getDate;
 
     canvas: any;
@@ -71,9 +71,11 @@ export class ReportsComponent implements OnInit {
 
 
 
-    public filterEmojis(searchMood: number, searchIntensity: number): Emoji[] {
+    public filterEmojis(searchMood: number, searchIntensity: number, startDate: string, endDate: string): Emoji[] {
 
         this.filteredEmojis = this.emojis;
+        console.log("this is the start date passed in " + this.startDate)
+        console.log("this is the end date passed in " + this.endDate)
 
         // Filter by mood
         if (searchMood == null) {
@@ -100,6 +102,29 @@ export class ReportsComponent implements OnInit {
 
         }
 
+        // Filter by startDate
+        if (startDate != null) {
+
+            this.filteredEmojis = this.filteredEmojis.filter(summary => {
+                console.log("this is the date start:")
+                console.log(summary.date)
+                this.getDate = summary.date
+                return this.getDate >= this.startDate;
+            });
+        }
+
+        // Filter by endDate
+        if (endDate != null) {
+            this.filteredEmojis = this.filteredEmojis.filter(summary => {
+                console.log("this is the date:")
+                console.log(summary.date)
+                this.getDate = summary.date;
+                return this.getDate <= this.endDate;
+            });
+        }
+
+
+
 
         return this.filteredEmojis;
     }
@@ -116,11 +141,11 @@ export class ReportsComponent implements OnInit {
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
         //if (this.inputType ==
-        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email,this.startDate, this.endDate);
+        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email);
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;
-                this.filterEmojis(this.emojiMood,this.emojiIntensity);
+                this.filterEmojis(this.emojiMood,this.emojiIntensity, this.startDate.toString(), this.endDate.toString());
             },
             err => {
                 console.log(err);
@@ -130,6 +155,7 @@ export class ReportsComponent implements OnInit {
 
 
     ngOnInit(): void {
+
 
 
 
