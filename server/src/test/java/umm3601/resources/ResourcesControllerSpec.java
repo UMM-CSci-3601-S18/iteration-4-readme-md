@@ -33,21 +33,21 @@ public class ResourcesControllerSpec extends ControllerSuperSpec{
             "                    name: \"Lir Fealladh\",\n" +
             "                    body: \"My Father\",\n" +
             "                    phone: \"555-555-5550\",\n" +
-            "                    email: \"Lir@Fealladh.com\",\n" +
+            "                    userId: \"Lir@Fealladh.com\",\n" +
             "                }"));
         testResource.add(Document.parse("{\n" +
             "                    _id: \"5ab2bc37bc8681f8f0ddf797\",\n" +
             "                    name: \"Reina\",\n" +
             "                    body: \"My best friend\",\n" +
             "                    phone: \"555-555-5551\",\n" +
-            "                    email: \"Reina@myfriend.com\",\n" +
+            "                    userId: \"Reina@myfriend.com\",\n" +
             "                }"));
         testResource.add(Document.parse("{\n" +
             "                    _id: \"5ab2bc370290adc56f8065fc\",\n" +
             "                    name: \"Suicide Prevention Lifeline\",\n" +
             "                    body: \"We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.\",\n" +
             "                    phone: \"1-800-555-5555\",\n" +
-            "                    email: \"preventsuicide@lifeline.org\",\n" +
+            "                    userId: \"preventsuicide@lifeline.org\",\n" +
             "                }"));
 
         floraId = new ObjectId();
@@ -68,32 +68,20 @@ public class ResourcesControllerSpec extends ControllerSuperSpec{
         return ((BsonString) doc.get("name")).getValue();
     }
 
-    private static String getEmail(BsonValue value) {
+    private static String getUserId(BsonValue value) {
         BsonDocument doc = value.asDocument();
-        return ((BsonString) doc.get("email")).getValue();
+        return ((BsonString) doc.get("userId")).getValue();
     }
 
     @Test
-    public void getAllResources() {
+    public void getNoResources() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = resourceController.getItems(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 4 resources", 4, docs.size());
-        List<String> names = docs
-            .stream()
-            .map(ResourcesControllerSpec::getName)
-            .sorted()
-            .collect(Collectors.toList());
-        List<String> expectedNames = Arrays.asList("Flora Hull", "Lir Fealladh", "Reina", "Suicide Prevention Lifeline");
-        assertEquals("Names should match", expectedNames, names);
-       /* List<String> emails = docs
-            .stream()
-            .map(ResourcesControllerSpec::getEmail)
-            .sorted()
-            .collect(Collectors.toList());
-        List<String> expectedEmails = Arrays.asList("florahull@flowershopquestionmark.net", "Lir@Fealladh.com", "preventsuicide@lifeline.org", "Reina@myfriend.com");
-        assertEquals("Emails should match", expectedEmails, emails);*/
+        // returns nothing when no userId is given
+        assertEquals("Should be 0 resources", 0, docs.size());
+
     }
 
     @Test
@@ -113,16 +101,32 @@ public class ResourcesControllerSpec extends ControllerSuperSpec{
 
         assertNotNull("Add new resource should return true when an resource is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("Rik", new String[]{"Rik"});
+        argMap.put("userId", new String[]{"rik12365@gmail.com"});
         String jsonResult = resourceController.getItems(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
         List<String> email = docs
             .stream()
-            .map(ResourcesControllerSpec::getEmail)
+            .map(ResourcesControllerSpec::getName)
             .sorted()
             .collect(Collectors.toList());
-        /*assertEquals("Should return the owner of the new resource", "rik12365@gmail.com", email.get(1));*/
+        assertEquals("Should return the owner of the new resource", "Rik", email.get(0));
+    }
+
+    @Test
+    public void deleteResourceTest() {
+        String flora = floraId.toHexString();
+
+        String jsonResult = resourceController.getItem(flora);
+        // should exist
+        Document resource = Document.parse(jsonResult);
+        assertEquals("Resource should exist", "Flora Hull", resource.getString("name"));
+
+        resourceController.deleteResource(flora);
+
+        jsonResult = resourceController.getItem(flora);
+        // should not exist
+        assertNull(jsonResult);
     }
 
    /* Future iteration test for filtering resources by name if so desired.
