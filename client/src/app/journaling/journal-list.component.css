@@ -85,3 +85,15 @@ mat-card{
 #view{
     max-height: 55%;
 }
+
+@media only screen and (max-width: 500px) {
+    #view{
+        float: none;
+    }
+
+    #select{
+        float: none;
+        max-height: 150px;
+        scroll-overflow: auto;
+    }
+}

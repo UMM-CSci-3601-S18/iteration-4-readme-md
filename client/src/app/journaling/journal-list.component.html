@@ -21,7 +21,7 @@
             </mat-card>
 
             <mat-card  id="view" *ngIf="selectedJournal">
-                <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
+                <mat-card-title>{{selectedJournal.subject.slice(0,100)}}</mat-card-title>
                 <mat-card-subtitle>{{getReadableDate(selectedJournal.date)}}</mat-card-subtitle>
                 <mat-card-content>
                     <p>{{selectedJournal.body}}</p>
