@@ -1,13 +1,12 @@
-<!--
-&lt;!&ndash;Don't allow user to do anything without logging in! &ndash;&gt;
+<!--Don't allow user to do anything without logging in! -->
 <div *ngIf="user; else promptLogin">
 
-    &lt;!&ndash; Main Page &ndash;&gt;
+    <!-- Main Page -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <div id="main-body">
 
-        &lt;!&ndash; Only display first name &ndash;&gt;
+        <!-- Only display first name -->
         <h1 class="headerText"><strong>Hello {{emoji.owner.split(" ")[0]}}!<br> How are you feeling today?</strong></h1>
 
         <mat-horizontal-stepper #stepper id="mainPageStepper">
@@ -15,7 +14,7 @@
                 <p class="headerText" style="font-size: 100%"><i>Swipe left or right to find your feeling.</i></p>
                 <p class="headerText" style="font-size: 100%"><i>Up or down to choose intensity.</i></p>
 
-                &lt;!&ndash; Control Gestures &ndash;&gt;
+                <!-- Control Gestures -->
                 <div class="swipe-box"
                      (swipeleft)="emoji.mood = updateEmojiMood(1, emoji.mood, true); emoji.intensity = 1"
                      (swiperight)="emoji.mood = updateEmojiMood(-1, emoji.mood, true); emoji.intensity = 1"
@@ -23,13 +22,13 @@
                      (swipedown)="emoji.intensity = updateEmojiIntensity(1, emoji.intensity, emoji.mood)"
 
                 >
-                    &lt;!&ndash; Emoji to the left &ndash;&gt;
+                    <!-- Emoji to the left -->
                     <img draggable="false" id="leftEmoji" src="assets/Emojis/{{updateEmojiMood(-1, emoji.mood, false)}}/1.png">
 
-                    &lt;!&ndash; Current Emoji being displayed on screen. Is NOT draggable. &ndash;&gt;
+                    <!-- Current Emoji being displayed on screen. Is NOT draggable. -->
                     <img draggable="false" id="currentEmoji" src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png">
 
-                    &lt;!&ndash; Emoji to the right &ndash;&gt;
+                    <!-- Emoji to the right -->
                     <img draggable="false" id="rightEmoji" src="assets/Emojis/{{updateEmojiMood(1, emoji.mood, false)}}/1.png">
 
                 </div>
@@ -63,10 +62,9 @@
     </div>
 </div>
 
-&lt;!&ndash; What to display if the user isn't logged in &ndash;&gt;
+<!-- What to display if the user isn't logged in -->
 <ng-template #promptLogin>
     <img class="loginEmoji" src="https://image.flaticon.com/icons/svg/260/260205.svg" alt="Sunshine Journal">
     <p class="loginEmojiText">Please sign in with your google account to access Sunshine Journal</p>
 </ng-template>
 
--->
