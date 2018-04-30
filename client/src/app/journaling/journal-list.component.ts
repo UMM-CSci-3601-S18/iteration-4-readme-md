@@ -47,8 +47,9 @@ export class JournalListComponent implements OnInit {
         }
     }
 
-
-
+    selectJournal(select: Journal): void {
+        this.selectedJournal = select;
+    }
 
     openDialog(): void {
         const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
@@ -223,11 +224,6 @@ export class JournalListComponent implements OnInit {
             };
         }
         this.refreshJournals();
-        /*this.generateRandomPrompt();*/
     }
 
-
-    /*generateRandomPrompt(): void {
-        this.prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
-    }*/
 }
