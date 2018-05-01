@@ -213,7 +213,7 @@ export class ReportsComponent implements OnInit {
         var today = new Date();
         var first = today.getDate() - today.getDay();
         var firstDay = new Date(today.setDate(first));
-        //var theDay = this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
+        //var theDay =Last month this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
         days.push(firstDay.getTime());
         var nextDay;
         for(var i=1; i<7; i++){
@@ -624,6 +624,27 @@ export class ReportsComponent implements OnInit {
                 }
             });
 
+        } else if (this.inputType == "Today"){
+
+            let test1 = {
+                "label": "Worried",
+                "data": [{
+                    x: 0,
+                    y: 0
+                }],
+                "backgroundColor":"rgb(204, 0, 204)",
+            };
+
+
+
+            this.myChart = new Chart(this.ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        test1,
+                    ]
+                },
+            });
         }
 
     }
@@ -751,36 +772,9 @@ export class ReportsComponent implements OnInit {
             }
         });
 
-        /*var xlabel = this.filterGraphForHour();
-
-        this.myChart = new Chart(this.ctx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Scatter Dataset',
-                    data: [{
-                        x: xlabel[0],
-                        y: 0
-                    }, {
-                        x: xlabel[1],
-                        y: 10
-                    }, {
-                        x: xlabel[2],
-                        y: -10
-                    }]
-                }]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        type: 'linear',
-                        position: 'bottom'
-                    }]
-                }
-            }
-        });
-*/
     }
+
+
     ngAfterViewInit(): void {
         this.buildChart();
     }
