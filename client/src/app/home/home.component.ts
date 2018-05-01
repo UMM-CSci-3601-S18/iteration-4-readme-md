@@ -97,35 +97,6 @@ export class HomeComponent implements OnInit {
         return null;
     }
 
-    parseSwipeDirection(mood: number){
-        if(mood < this.lastMood) {
-            if(mood == 1 && this.lastMood == 5) {
-                return "right";
-            }
-            else if(mood == 5 && this.lastMood == 1) {
-                return "left";
-            }
-            else{
-                return "left";
-            }
-        }
-        else if(mood == this.lastMood) {
-            return "none";
-        }
-        else {
-            if(mood == 1 && this.lastMood == 5) {
-                return "right";
-            }
-            else if(mood == 5 && this.lastMood == 1) {
-                return "left";
-            }
-            else{
-                return "right"
-            }
-        }
-
-    }
-
     // This function pertains to intensity carousel. It allows the value of emoji.intensity to
     // 'wrap around', but due to variable amounts of intensities across emotions, keeps track of
     // which only have 2 total intensities, and 3 total intensities.
