@@ -35,7 +35,7 @@
 
 <mat-card id="contactNumbers">
     <mat-card-content class="contact-numbers">
-        <mat-card-title class="contact-numbers-title"><i class="material-icons">phone_forwarded</i><mat-icon class="little-phone-icon">phone</mat-icon>Contact Numbers</mat-card-title>
+        <mat-card-title class="contact-numbers-title" id="contactNumbersTitle"><!--<i class="material-icons">phone_forwarded</i>--><!--<mat-icon class="little-phone-icon">phone</mat-icon>-->Contact Numbers</mat-card-title>
         <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
             to have support. It's always okay to have someone to talk to</mat-card-subtitle>
 
@@ -63,7 +63,10 @@
             <br>
             <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 775-784-8090</mat-panel-description>
         </mat-expansion-panel>
-
+            <br>
+            <br>
+            <br>
+        <mat-card-subtitle>Texting:</mat-card-subtitle>
         <mat-expansion-panel id="crisis-text-line" #elem class="phone-numbers-to-call">
             <mat-expansion-panel-header>
                 <mat-panel-title class="hotline-company-name">Crisis Text Line</mat-panel-title>
@@ -80,7 +83,7 @@
 
 <mat-card id="ResourceLinks">
     <mat-card-content class="resource-links">
-        <mat-card-title class="resource-links-title">Resource Links</mat-card-title>
+        <mat-card-title class="resource-links-title" id="resourceLinksTitle">Resource Links</mat-card-title>
         <mat-card-subtitle>Some possibly useful links to resources</mat-card-subtitle>
 
         <mat-expansion-panel id="breating-exercises" #elem class="resource-links">
@@ -134,11 +137,11 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card>
-    <mat-card-title>YouTube Playlists</mat-card-title>
+<mat-card id="youtube">
+    <mat-card-title id="youtubeTitle">Video Playlist</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
-        <iframe width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe id="playlist" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <!--<mat-list>
             <a mat-list-item *ngFor="let video of videos"
                class="video link"

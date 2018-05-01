@@ -37,7 +37,7 @@ mat-card{
 
 .addNewJournalButton{
     padding-left: 10px;
-    float: left;
+    float: right;
 }
 
 .matFormFieldSubject{
@@ -75,4 +75,25 @@ mat-card{
 
 #journalButtons{
     padding: 10px;
+}
+
+#select{
+    max-height: 55%;
+    float: left;
+}
+
+#view{
+    max-height: 55%;
+}
+
+@media only screen and (max-width: 500px) {
+    #view{
+        float: none;
+    }
+
+    #select{
+        float: none;
+        max-height: 150px;
+        scroll-overflow: auto;
+    }
 }
