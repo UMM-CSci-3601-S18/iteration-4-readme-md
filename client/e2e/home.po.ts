@@ -12,9 +12,7 @@ export class HomePage {
     //We have added ids specifically for each of the items on the menu bar for E2E tests to r
     //recognize where to highlight and select:
     // Journaling's id is journal Resources's id is rsrc Reports's id is rep //
-
     // This is where the nav bar E2E tests funcitons are created.
-
     static GoToNavMenu(){
         const input = element (by.id('navBar'));
         input.click();
@@ -34,7 +32,6 @@ export class HomePage {
     }
 
     // This is where the homepage E2E test funcitons are created
-
     static typeAName(name: string) {
         const input = element(by.id('inputName'));
         input.click();
@@ -42,7 +39,6 @@ export class HomePage {
     }
 
     // This is where the Insert Emoji (Your mood) E2E test funcitons are created
-
     static selectTheSlider(){
         const input = element(by.css('mat-slider.slider'));
         input.click();
@@ -69,9 +65,40 @@ export class HomePage {
         return element(by.buttonText('Submit')).click();
     }
 
+    clickNavLeftEmojiButton() {
+        const input = element(by.id('emojiNavLeft'));
+        input.click();
+    }
 
+    clickNavRightEmojiButton() {
+        const input = element(by.id('emojiNavRight'));
+        input.click();
+    }
 
+    clickNavDownEmojiButton() {
+        const input = element(by.id('emojiNavDown'));
+        input.click();
+    }
 
+    clickNavUpEmojiButton() {
+        const input = element(by.id('emojiNavUp'));
+        input.click();
+    }
+
+    addNewResponseLink(name: string, link: string) {
+        const input = element(by.id('responseAdd'));
+        input.click();
+        const subjectInput = element(by.id('nameField'));
+        subjectInput.click();
+        subjectInput.sendKeys(name);
+        const bodyInput = element(by.id('linkField'));
+        bodyInput.click();
+        bodyInput.sendKeys(link);
+        const button = element(by.css('#confirmAddResponseButton'));
+        const buttonWasThere = button.isDisplayed();
+        button.click();
+        return buttonWasThere;
+    }
 
     // http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/
     highlightElement(byObject) {
@@ -113,7 +140,7 @@ export class HomePage {
         input.click();
         input.sendKeys(name);
     }
-        getUniqueOwner() {
+    getUniqueOwner() {
         const owner = element(by.id('test')).getText();
         this.highlightElement(by.id('test'));
 

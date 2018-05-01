@@ -78,6 +78,7 @@ export function provideConfig() {
         JournalListService,
         ResourcesService,
         LoginService,
+        HttpClientModule,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
         {

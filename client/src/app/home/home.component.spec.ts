@@ -1,5 +1,3 @@
-/*
-
 import {TestBed, ComponentFixture, async} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
 import {DebugElement} from '@angular/core';
@@ -12,6 +10,8 @@ import {Observable} from "rxjs/Observable";
 import {FormsModule} from "@angular/forms";
 import {HomeService} from "./home.service";
 import {AuthService, SocialUser} from "angularx-social-login";
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('Adding an emoji', () => {
 
@@ -22,8 +22,8 @@ describe('Adding an emoji', () => {
     const newEmoji: Emoji = {
         _id: '',
         owner: 'test dummy',
-        intensity: 1,
         mood: 3,
+        intensity: 1,
         date: '', //date will be created during the test so that it matches what is made in component.addEmoji
         email: '',
     };
@@ -76,20 +76,20 @@ describe('Adding an emoji', () => {
             )
         };
 
-        mockMatDialog = {
+        /*mockMatDialog = {
             open: () => {
                 return {afterClosed: () => {return}  };
             }
-        };
+        };*/
 
         TestBed.configureTestingModule({
-            imports: [FormsModule, CustomModule],
+            imports: [FormsModule, CustomModule, HttpClientTestingModule],
             declarations: [HomeComponent], // declare the test component
             providers: [
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
                 {provide: MatDialog, useValue: mockMatDialog},
                 {provide: HomeService, useValue: homeServiceStub},
-                {provide: AuthService, useValue: authServiceStub}]
+                {provide: AuthService, useValue: authServiceStub},]
         });
 
     });
@@ -106,9 +106,9 @@ describe('Adding an emoji', () => {
         expect(calledEmoji).toBeNull();
 
         component.emoji._id = newEmoji._id;
-        component.emoji.intensity = newEmoji.intensity;
-        component.emoji.mood = newEmoji.mood;
         component.emoji.owner = newEmoji.owner;
+        component.emoji.mood = newEmoji.mood;
+        component.emoji.intensity = newEmoji.intensity;
         const date = new Date();
         newEmoji.date = date.toString(); //set date for new emoji right before calling the method
 
@@ -120,16 +120,17 @@ describe('Adding an emoji', () => {
 
     it('parsemoodintensity', () =>{
         expect(component.parseEmotionIntensity(1, 1)).toEqual("Frustrated");
+        expect(component.parseEmotionIntensity(1, 2)).toEqual("Angry");
         expect(component.parseEmotionIntensity(2, 1)).toEqual("Anxious");
+        expect(component.parseEmotionIntensity(2, 2)).toEqual("Worried");
         expect(component.parseEmotionIntensity(3, 1)).toEqual("Happy");
         expect(component.parseEmotionIntensity(3, 2)).toEqual("Content");
+        expect(component.parseEmotionIntensity(3, 3)).toEqual("Ecstatic");
         expect(component.parseEmotionIntensity(4, 1)).toEqual("Meh");
         expect(component.parseEmotionIntensity(4, 2)).toEqual("Bleh");
         expect(component.parseEmotionIntensity(5, 1)).toEqual("Unhappy");
         expect(component.parseEmotionIntensity(5, 2)).toEqual("Sad");
+        expect(component.parseEmotionIntensity(5, 3)).toEqual("Miserable");
     })
 
-
 });
-
-*/
