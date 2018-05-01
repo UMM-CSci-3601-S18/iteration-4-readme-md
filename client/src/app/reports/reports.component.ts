@@ -213,12 +213,12 @@ export class ReportsComponent implements OnInit {
         var today = new Date();
         var first = today.getDate() - today.getDay();
         var firstDay = new Date(today.setDate(first));
-        var theDay = this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
-        days.push(theDay);
+        //var theDay = this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
+        days.push(firstDay.getTime());
         var nextDay;
         for(var i=1; i<7; i++){
             nextDay = new Date(today.setDate(today.getDate()+1));
-            days.push(this.getRightFormForDate(nextDay.getDate(), nextDay.getMonth(), nextDay.getFullYear()));
+            days.push(nextDay.getTime());
         }
         return days;
     }
@@ -1296,9 +1296,25 @@ export class ReportsComponent implements OnInit {
                 ]
             },
             options: {
+
                 responsive: true,
                 maintainAspectRation: false,
                 scales: {
+                    xAxes:[{
+                        type: 'time',
+
+                        time: {
+                            unit: 'day',
+                            unitStepSize: 1,
+                            tooltipFormat: "MMM D",
+                            round: 'day',
+                            displayFormats: {
+                                day: 'MMM D'
+                            },
+
+                        },
+
+                    }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
