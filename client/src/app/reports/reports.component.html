@@ -13,17 +13,10 @@
                             matInput [matDatepicker]="start"
                             [value] ="startDate2.value"
                             (input)="startDate = $event.target.value"
-
-
-                        >
-
-
-                            <!---
                             placeholder= "startDate"
                             [(ngModel)]="startDate"
                             (input)="startDate = $event.target.value"
                             disabled>
-                            --->
                         <mat-datepicker-toggle id = "startButton" matSuffix [for]="start" enabled></mat-datepicker-toggle>
                         <mat-datepicker touchUi="true" #start disabled="false"></mat-datepicker>
                     </mat-form-field> &nbsp;
@@ -34,14 +27,11 @@
                             matInput [matDatepicker]="end"
                             [value] ="endDate2.value"
                             (input)="endDate = $event.target.value"
-                        >
-                            <!---
                             placeholder="Choose an End Date"
                             [(ngModel)]="endDate"
                             (input)="endDate = $event.target.value"
                             disabled>
-                            --->
-                        <mat-datepicker-toggle id = "endButton" matSuffix [for]="end" enabled></mat-datepicker-toggle>
+                        <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
                         <mat-datepicker touchUi="true" #end disabled="false"></mat-datepicker>
                     </mat-form-field>
 
@@ -57,10 +47,12 @@
                                 <label> Which period of entries you want to look at?</label>
                                 <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
                                     <!--<option id ="Today" selected value="Today">Today</option>-->
+                                    <option id ="Today" value="Today">Today</option>
                                     <option id ="This week" selected value="This week">This week</option>
                                     <option id ="Last week" value="Last week">Last week</option>
                                     <option id ="Last month" value="Last month">Last month</option>
-                                    <option id ="Today" value="Today">Today</option>
+                                    <option id ="Date Range" value="Date Range">Date Range</option>
+
                                 </select>
                                 <br>
                             </form>
@@ -118,7 +110,7 @@
                             <mat-card-content>
                                 <mat-list *ngIf="emojis; else emojiError">
                                     <mat-list-item #elem class="emoji" [id]="emoji._id"
-                                                   *ngFor="let emoji of this.filterEmojis(emojiMood,emojiIntensity)">
+                                                   *ngFor="let emoji of this.filterEmojis(emojiMood,emojiIntensity, startDate, endDate)">
                                         <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
                                         <img matListAvatar src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png"
                                              style="width: 48px; height: 48px">

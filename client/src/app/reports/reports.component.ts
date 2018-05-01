@@ -15,8 +15,14 @@ import {FormControl} from '@angular/forms';
 })
 
 export class ReportsComponent implements OnInit {
-    startDate = new Date(new Date().getTime()-(7 * 24 * 60 * 60 *1000));
-    endDate = new Date()
+    today = new Date();
+    day = this.today.getDate();
+    month = this.today.getMonth();
+    year = this.today.getFullYear();
+
+    theDay = new Date(this.year,this.month,this.day);
+    startDate = new Date(this.year,this.month,this.day);
+    endDate = new Date(this.theDay.setDate(this.theDay.getDate()+1));
     startDate2 = new FormControl(this.startDate);
     endDate2 = new FormControl(this.endDate);
     getDate;
@@ -68,87 +74,69 @@ export class ReportsComponent implements OnInit {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
+        filterGraph(weekday, filterMood): number {
+            var filterData = this.filteredEmojis;
 
-    filterGraph(weekday, filterMood): number {
-        var filterData;
 
-        var thisWeekDate = this.getThisWeekDate();
-        var lastWeekDate = this.getLastWeekDate();
+            // Filter by weekday
+            if (this.inputType == "Last month"){
+                filterData = filterData.filter(summary => {
+                    this.getDate = new Date(summary.date);
+                    return this.getDate.getDate() == weekday;
+                });
+            } else if (this.inputType == "Date Range"){
+                filterData = filterData.filter(summary => {
+                    this.getDate = new Date(summary.date);
+                    return this.getDate.getDate() == weekday;
+                });
+                filterData = filterData.filter(summary => {
+                    this.getDate = new Date(summary.date);
+                    return this.getDate.getDay() == weekday;
+                });
+            }
 
-        if (this.inputType == "This week"){
-            var today = new Date();
-            var first = today.getDate() - today.getDay();
-            this.startDate = new Date(today.setDate(first));
-            this.endDate = new Date(today.setDate(today.getDate()+6));
-            filterData = this.filterEmojis(this.emojiMood, this.emojiIntensity, this.startDate, this.endDate);
-        } else if (this.inputType == "Last week"){
-            var today = new Date();
-            var first = today.getDate() - today.getDay() - 7;
-            this.startDate = new Date(today.setDate(first));
-            this.endDate = new Date(today.setDate(today.getDate()+6));
-            filterData = this.filterEmojis(this.emojiMood, this.emojiIntensity, this.startDate, this.endDate);
-        } else if (this.inputType == "Last month"){
-            var today = new Date();
-            var firstdayCurr = new Date(today.setDate(1));
-            this.endDate = new Date(today.setDate(today.getDate()-1));
-            var count = today.getDate()-1;
-            this.startDate = new Date(today.setDate(today.getDate()-count));
-            filterData = this.filterEmojis(this.emojiMood, this.emojiIntensity, this.startDate, this.endDate);
-        } else {
-            filterData = this.filterEmojis(this.emojiMood, this.emojiIntensity, this.startDate, this.endDate);
+            // Filter by mood
+            filterData = filterData.filter(emoji => {
+                return !filterMood || emoji.mood == filterMood;
+            });
+
+            return filterData.length;
         }
 
-        // Filter by weekday
-        if (this.inputType == "Last month"){
-            filterData = filterData.filter(summary => {
-                this.getDate = new Date(summary.date);
-                return this.getDate.getDate() == weekday;
-            });
-        } else {
 
 
-            filterData = filterData.filter(summary => {
-                this.getDate = new Date(summary.date);
-                return this.getDate.getDay() == weekday;
-            });
-        }
-
-        // Filter by mood
-
-        filterData = filterData.filter(emoji => {
-            return !filterMood || emoji.mood == filterMood;
-        });
-
-        return filterData.length;
-
-    }
-
-    public filterEmojis(searchMood: number, searchIntensity: number, startDate: Date, endDate: Date): Emoji[] {
+    public filterEmojis(searchMood: number, searchIntensity: number, searchStartDate: any, searchEndDate: any): Emoji[] {
 
         this.filteredEmojis = this.emojis;
         console.log("this is the start date passed in " + this.startDate)
         console.log("this is the end date passed in " + this.endDate)
 
+        var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth();
+        var year = today.getFullYear();
+        var theDay = new Date(year,month,day);
 
-        if (startDate != null) {
-
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                this.getDate = new Date(emoji.date);
-                return this.getDate >= this.startDate;
-            });
+        if (this.inputType == "This week") {
+            var first = theDay.getDate() - theDay.getDay();
+            this.startDate = new Date(theDay.setDate(first));
+            this.endDate = new Date(theDay.setDate(theDay.getDate() + 6));
+        } else if (this.inputType == "Last week") {
+            var first = theDay.getDate() - theDay.getDay()-7;
+            this.startDate = new Date(theDay.setDate(first));
+            this.endDate = new Date(theDay.setDate(theDay.getDate() + 6));
+        } else if (this.inputType == "Last month") {
+            theDay.setDate(1);
+            this.endDate = new Date(theDay.setDate(theDay.getDate() - 1));
+            var count = theDay.getDate() - 1;
+            this.startDate = new Date(theDay.setDate(theDay.getDate() - count));
+        }  else if (this.inputType == "Today") {
+            this.startDate = new Date(year,month,day);
+            this.endDate = new Date(theDay.setDate(theDay.getDate()+1));
         }
 
-        // Filter by endDate
-        if (endDate != null) {
 
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                this.getDate = new Date(emoji.date);
-                return this.getDate <= this.endDate;
-            });
-        }
-
-
-        // Filter by mood
+       // Filter by mood
         if (searchMood == null) {
                 this.filteredEmojis = this.filteredEmojis.filter(emoji => {
                     return true;
@@ -171,42 +159,37 @@ export class ReportsComponent implements OnInit {
                 this.filteredEmojis = this.filteredEmojis.filter(emoji => {
                     return !searchIntensity || searchIntensity == emoji.intensity;
                 });
-
-
         }
 
         // Filter by startDate
-        // if (startDate != null) {
-        //
-        //     this.filteredEmojis = this.filteredEmojis.filter(summary => {
-        //         console.log("here1")
-        //
-        //         console.log("dsfdsfsdf1 " + new Date(Date.parse(summary.date)));
-        //         return new Date(summary.date) >= startDate;
-        //     });
-        // }
-        //
-        // // Filter by endDate
-        // if (endDate != null) {
-        //     this.filteredEmojis = this.filteredEmojis.filter(summary => {
-        //         console.log("here2")
-        //
-        //         console.log("dsfdsfsdf2 " + new Date(Date.parse(summary.date)));
-        //
-        //         return new Date(summary.date) <= startDate;
-        //     });
-        // }
+        if (searchStartDate != null) {
+
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                this.getDate = new Date(emoji.date);
+                return this.getDate >= searchStartDate;
+            });
+        }
+
+        // Filter by endDate
+        if (searchEndDate != null) {
+
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                this.getDate = new Date(emoji.date);
+                return this.getDate <= searchEndDate;
+            });
+        }
+
 
 
         return this.filteredEmojis;
     }
 
-    getRightFormForDate(date: number, month: number, year: number){
+    /*getRightFormForDate(date: number, month: number, year: number){
         let mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let mon = mons[month];
         var rightForm = mon+' '+date+' '+year;
         return rightForm;
-    }
+    }*/
 
     getThisWeekDate(){
         var days = [];
@@ -244,6 +227,7 @@ export class ReportsComponent implements OnInit {
         var days = [];
         var today = new Date();
         var firstdayCurr = new Date(today.setDate(1));
+
         var lastday = new Date(today.setDate(today.getDate()-1));
         //var theDay = this.getRightFormForDate(lastday.getDate(), lastday.getMonth(), lastday.getFullYear())
         days.push(lastday.getTime());
@@ -645,6 +629,8 @@ export class ReportsComponent implements OnInit {
                     ]
                 },
             });
+        } else if (this.inputType == "Date Range"){
+
         }
 
     }
