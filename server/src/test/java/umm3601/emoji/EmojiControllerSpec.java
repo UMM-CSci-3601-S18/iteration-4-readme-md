@@ -149,27 +149,7 @@ public class EmojiControllerSpec {
 
     }
 
-    @Test
-    public void getEmojisByDate(){
-        Map<String, String[]> argMap = new HashMap<>();
-
-        argMap.put("date", new String[] { "Wed Mar 1 2018 7:35:02 GMT-05000,Wed Mar 3 2018 12:02:21 GMT-0500" });
-
-        String jsonResult = emojiController.getItems(argMap);
-
-        BsonArray docs = parseJsonArray(jsonResult);
-        assertEquals("Should be two emotion entries", 2, docs.size());
-
-        List<String> name = docs
-            .stream()
-            .map(EmojiControllerSpec::getOwner)
-            .sorted()
-            .collect(Collectors.toList());
-        List<String> expectedName = Arrays.asList("Ahnaf", "Chuck");
-        assertEquals("Names should match", expectedName, name);
-
-
-    }
+    
 
 
 
