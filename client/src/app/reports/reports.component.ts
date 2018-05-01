@@ -78,7 +78,7 @@ export class ReportsComponent implements OnInit {
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email);
+        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(localStorage.getItem('userId'));
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;

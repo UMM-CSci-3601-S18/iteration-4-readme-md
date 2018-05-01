@@ -14,7 +14,7 @@ describe('Resource list service: ', () => {
             name: 'Lir Fealladh',
             body: 'My farther',
             phone: '555-555-5550',
-            email: 'Lir@Fealladh.com'
+            userId: 'Lir@Fealladh.com'
 
         },
         {
@@ -22,7 +22,7 @@ describe('Resource list service: ', () => {
             name: 'Reina',
             body: 'My best friend',
             phone: '555-555-5551',
-            email: 'Reina@myfriend.com'
+            userId: 'Reina@myfriend.com'
 
         },
         {
@@ -30,7 +30,7 @@ describe('Resource list service: ', () => {
             name: 'Suicide Prevention Lifeline',
             body: 'We can all help prevent suicide. The Lifeline provides 24/7, free and confidential support for people in distress, prevention and crisis resources for you or your loved ones, and best practices for professionals.',
             phone: '1-800-555-5555',
-            email: 'preventsuicide@lifeline.org'
+            userId: 'preventsuicide@lifeline.org'
 
         }
     ];
@@ -79,7 +79,7 @@ describe('Resource list service: ', () => {
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(resourcesService.baseUrl + '?email=');
+        const req = httpTestingController.expectOne(resourcesService.baseUrl + '?userId=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
@@ -108,7 +108,7 @@ describe('Resource list service: ', () => {
             name: 'Bryon',
             body: "My Other Best Friend",
             phone: "555-555-5552",
-            email: "bryonotherbestfriend.gov",
+            userId: "bryonotherbestfriend.gov",
         };
 
         resourcesService.addResources(newResource).subscribe(

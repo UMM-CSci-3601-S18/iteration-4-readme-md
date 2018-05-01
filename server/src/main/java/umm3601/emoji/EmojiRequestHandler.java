@@ -77,16 +77,14 @@ public class EmojiRequestHandler {
                     BasicDBObject dbO = (BasicDBObject) o;
 
                     String owner = dbO.getString("owner");
-                    //For some reason age is a string right now, caused by angular.
-                    //This is a problem and should not be this way but here ya go
                     int mood = dbO.getInt("mood");
                     int intensity = dbO.getInt("intensity");
                     String date = dbO.getString("date");
-                    String email = dbO.getString("email");
+                    String userId = dbO.getString("userId");
 
                     System.err.println("Adding new emoji [owner=" + owner + ", mood=" + mood + " intensity=" + intensity +
-                        " date=" + date  + " email=" + email +']');
-                    return emojiController.addNewEmoji(owner, mood, intensity, date, email);
+                        " date=" + date  + " userId=" + userId +']');
+                    return emojiController.addNewEmoji(owner, mood, intensity, date, userId);
                 }
                 catch(NullPointerException e)
                 {

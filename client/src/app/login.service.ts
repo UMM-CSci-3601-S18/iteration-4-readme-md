@@ -13,13 +13,13 @@ export class LoginService {
 
     // Sends a request to google's endpoint with the authentication token.
     // Returns a promise for a json response
-    authenticate(authToken: string): Promise<AuthResponse> {
+    authenticate(authToken: string): Promise<string> {
 
         //return a promise instead of using a callback
         return new Promise((resolve, reject) => {
-            this.http.get<AuthResponse>('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + authToken).subscribe(
-                authResponse => {
-                    resolve(authResponse);
+            this.http.post<string>(environment.API_URL + 'login', {code: authToken}).subscribe(
+                userId => {
+                    resolve(userId);
                 },
                 err => {
                     console.log(err);

@@ -3,5 +3,5 @@ export interface resources {
     name: string;
     body: string;
     phone: string;
-    email: string;
+    userId: string;
 }

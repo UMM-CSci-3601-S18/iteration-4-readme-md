@@ -35,7 +35,7 @@ describe('Reports list', () => {
                     intensity: 1,
                     mood: 3,
                     date: 'd', //date will be created during the test so that it matches what is made in component.addEmoji
-                    email: "nick@gmail.com",
+                    userId: "nick@gmail.com",
                 },
                 {
                     _id: 'd',
@@ -43,7 +43,7 @@ describe('Reports list', () => {
                     intensity: 1,
                     mood: 4,
                     date: '', //date will be created during the test so that it matches what is made in component.addEmoji
-                    email: "roch@gmail.com",
+                    userId: "roch@gmail.com",
                 },
                 {
                     _id: 'd',
@@ -51,7 +51,7 @@ describe('Reports list', () => {
                     intensity: 1,
                     mood: 5,
                     date: 'e', //date will be created during the test so that it matches what is made in component.addEmoji
-                    email: "leo@gmail.com",
+                    userId: "leo@gmail.com",
                 }
             ])
         };

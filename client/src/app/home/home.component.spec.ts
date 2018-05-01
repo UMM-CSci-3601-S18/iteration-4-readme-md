@@ -25,7 +25,7 @@ describe('Adding an emoji', () => {
         mood: 3,
         intensity: 1,
         date: '', //date will be created during the test so that it matches what is made in component.addEmoji
-        email: '',
+        userId: '',
     };
 
     const newId = 'nick_id';
@@ -59,6 +59,9 @@ describe('Adding an emoji', () => {
                 });
             }
         };
+
+        // set usedId to empty string for testing purposes
+        localStorage.setItem('userId', '');
 
         authServiceStub = {
             authState: Observable.of(

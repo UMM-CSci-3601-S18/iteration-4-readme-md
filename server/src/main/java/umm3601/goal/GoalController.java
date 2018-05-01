@@ -63,14 +63,14 @@ public class GoalController extends SuperController{
 //    }
 
 
-    public String addNewGoal(String purpose, String category, String name , Boolean status, String email) {
+    public String addNewGoal(String purpose, String category, String name , Boolean status, String userId) {
 
         Document newGoal = new Document();
         newGoal.append("purpose", purpose);
         newGoal.append("category", category);
         newGoal.append("name", name);
         newGoal.append("status", status);
-        newGoal.append("email", email);
+        newGoal.append("userId", userId);
 
 
 
@@ -79,7 +79,8 @@ public class GoalController extends SuperController{
             collection.insertOne(newGoal);
 
             ObjectId id = newGoal.getObjectId("_id");
-            System.err.println("Successfully added new goal [_id=" + id + ", purpose=" + purpose + ", category=" + category + ", name=" + name + ']');
+            System.err.println("Successfully added new goal [_id=" + id + ", purpose=" + purpose + ", category=" + category + ", name=" + name +
+                ", userId=" + userId + ']');
 
             return JSON.serialize(id);
         } catch(MongoException me) {

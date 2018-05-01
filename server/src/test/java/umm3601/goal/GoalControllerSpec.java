@@ -84,19 +84,13 @@ public class GoalControllerSpec {
     }
 
     @Test
-    public void getAllGoals() {
+    public void getNoGoals() {
         Map<String, String[]> emptyMap = new HashMap<>();
         String jsonResult = goalController.getItems(emptyMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 4 goals", 4, docs.size());
-        List<String> goals = docs
-            .stream()
-            .map(GoalControllerSpec::getPurpose)
-            .sorted()
-            .collect(Collectors.toList());
-        List<String> expectedNames = Arrays.asList("Cleaner kitchen", "Get fatter", "Improve relationship", "To have a better environment");
-        assertEquals("Goals should match", expectedNames, goals);
+        assertEquals("Should be 0 goals", 0, docs.size());
+
     }
 
 //    @Test
@@ -132,6 +126,7 @@ public class GoalControllerSpec {
 
         assertNotNull("Add new goal should return true when goal is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
+        argMap.put("userId", new String[]{"test@gmail.com"});
         String jsonResult = goalController.getItems(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
@@ -143,32 +138,30 @@ public class GoalControllerSpec {
         // name.get(0) says to get the name of the first person in the database,
         // so "Bob" will probably always be first because it is sorted alphabetically.
         // 3/4/18: Not necessarily: it is likely that that is how they're stored but we don't know. Find a different way of doing this.
-        assertEquals("Should return purpose of new goal", "Self defense from Bobs", purpose.get(3));
+        assertEquals("Should return purpose of new goal", "Self defense from Bobs", purpose.get(0));
     }
 
     @Test
     public void editGoalTest() {
         String newId = goalController.editGoal("5ab53a8907d923f68d03e1a3", "To have a better environment", "Family", "Hug KK", true);
         assertNotNull("Edit goal should return true when goal is edited,", newId);
-        Map<String, String[]> argMap = new HashMap<>();
-        String jsonResult = goalController.getItems(argMap);
-        BsonArray docs = parseJsonArray(jsonResult);
-        List<String> purpose = docs
-            .stream()
-            .map(GoalControllerSpec::getPurpose)
-            .sorted()
-            .collect(Collectors.toList());
-        assertEquals("Should return purpose of edited goal", "To have a better environment", purpose.get(3));
     }
 
     @Test
     public void deleteGoalTest(){
         System.out.println("HuntersID " + huntersID.toHexString());
+
+        String jsonResult = goalController.getItem(huntersID.toHexString());
+        // should exist
+        Document goal = Document.parse(jsonResult);
+        assertEquals("Resource should exist", "Call mom", goal.getString("name"));
+
         goalController.deleteGoal(huntersID.toHexString());
-        Map<String, String[]> argMap = new HashMap<>();
-        String jsonResult = goalController.getItems(argMap);
-        BsonArray docs = parseJsonArray(jsonResult);
-        assertEquals("Should be 3 goals", 3, docs.size());
+
+
+        jsonResult = goalController.getItem(huntersID.toHexString());
+        // should not exist
+        assertNull(jsonResult);
 
 //        //Adding new goal
 //        //Then deleting newly added goal and see if it still works

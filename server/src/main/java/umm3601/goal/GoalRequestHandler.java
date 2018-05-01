@@ -81,11 +81,11 @@ public class GoalRequestHandler {
                     String category = dbO.getString("category");
                     String name = dbO.getString("name");
                     Boolean status = dbO.getBoolean("status");
-                    String email = dbO.getString("email");
+                    String userId = dbO.getString("userId");
 
 //
 //                    System.err.println("Adding new emoji [owner=" + owner + ", mood=" + mood + " date=" + date  + ']');
-                    return goalController.addNewGoal(purpose, category, name, status, email);
+                    return goalController.addNewGoal(purpose, category, name, status, userId);
                 }
                 catch(NullPointerException e)
                 {
