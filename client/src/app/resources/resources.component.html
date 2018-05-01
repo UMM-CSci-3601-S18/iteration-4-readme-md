@@ -39,45 +39,28 @@
         <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
             to have support. It's always okay to have someone to talk to</mat-card-subtitle>
 
-        <mat-expansion-panel id="suicide-prevention-lifeline" #elem class="contact-numbers-to-call">
-            <mat-expansion-panel-header>
+        <!--<mat-header-cell id="suicide-prevention-lifeline" #elem class="contact-numbers-to-call">-->
+            <h4 mat-line>
                 <mat-panel-title class="hotline-company-name">Suicide Prevention Lifeline</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>We can all help prevent suicide. The Lifeline provides 24/7,
-                free and confidential support for people in distress, prevention and crisis
-                resources for you or your loved ones, and best practices
-                for professionals.</mat-panel-description>
-            <br>
-            <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 1-800-273-8255</mat-panel-description>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel id="crisis-hotline" #elem class="contact-numbers-to-call">
-            <mat-expansion-panel-header>
+            </h4>
+            <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon><a href="tel: 1-800-273-8255">1-800-273-8255</a></mat-panel-description>
+        <!--</mat-header-cell>-->
+                <br>
+        <!--<mat-expansion-panel id="crisis-hotline" #elem class="contact-numbers-to-call">-->
+            <h4 mat-line>
                 <mat-panel-title class="hotline-company-name">Crisis Hotline</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>Crisis Call Center’s 24-hour crisis line often
-                serves as the first point of contact for individuals who are seeking
-                help, support, and information. Crisis can affect anyone at any time.
-                The need for emotional support or referral assistance is something most
-                individuals encounter at some point in their lives.</mat-panel-description>
+            </h4>
+        <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon><a href="tel: 775-784-8090">775-784-8090</a></mat-panel-description>
+        <!--</mat-expansion-panel>-->
             <br>
-            <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 775-784-8090</mat-panel-description>
-        </mat-expansion-panel>
-            <br>
-            <br>
-            <br>
-        <mat-card-subtitle>Texting:</mat-card-subtitle>
-        <mat-expansion-panel id="crisis-text-line" #elem class="phone-numbers-to-call">
-            <mat-expansion-panel-header>
+
+<!--        <mat-expansion-panel id="crisis-text-line" #elem class="phone-numbers-to-call">-->
+            <h4 mat-line>
                 <mat-panel-title class="hotline-company-name">Crisis Text Line</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>Free, 24/7 support for people in crisis. Every texter
-                is connected with a Crisis Counselor, a real-life human being trained to
-                bring texters from a hot moment to a cool calm through active listening
-                and collaborative problem solving. All of our Crisis Counselors are volunteers,
-                donating their time to helping people in crisis.</mat-panel-description>
+            </h4>
+            <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">textsms</mat-icon><a href="sms: 741741">741741</a></mat-panel-description>
             <br>
-        </mat-expansion-panel>
+        <!--</mat-expansion-panel>-->
     </mat-card-content>
 </mat-card>
 
@@ -102,6 +85,7 @@
                 Square Breathing Technique Video
             </a>
         </mat-expansion-panel>
+        <br>
         <mat-expansion-panel id="anger-management-information" #elem class="resource-links">
             <mat-expansion-panel-header>
                 <mat-panel-title class="anger-management-information">Anger Management Information</mat-panel-title>
@@ -114,6 +98,7 @@
             <a href="https://www.webmd.com/mental-health/anger-management#1" target="_blank"
                style="text-decoration: none; border-bottom: none; /*color: #black*/">Mental Health and Anger Management</a>
         </mat-expansion-panel>
+        <br>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title class="general-links">Some generally useful links</mat-panel-title>
@@ -140,21 +125,24 @@
 <mat-card id="youtube">
     <mat-card-title id="youtubeTitle">Video Playlist</mat-card-title>
     <mat-divider></mat-divider>
-    <mat-card-content>
-        <iframe id="playlist" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <!--<mat-list>
-            <a mat-list-item *ngFor="let video of videos"
-               class="video link"
-               target="_blank"
-               href="{{video.url}}"
-               <button mat-icon-button class="playButton">
-                   <mat-icon matTooltip="Play" class="playIcon">play_arrow</mat-icon>
-               </button>
-               <h4 mat-line>{{video.name}}</h4>
-               <p mat-line>{{video.subname}}</p>
-            </a>
-        </mat-list>-->
-    </mat-card-content>
+    <mat-expansion-panel>
+        <mat-step label="Happy Playlist">
+        <iframe id="playlistHappy" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </mat-step>
+            <mat-step label="Meh Playlist">
+                <iframe id="playlistMeh" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </mat-step>
+            <mat-step label="Unhappy Playlist">
+                <iframe id="playlistUnhappy" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </mat-step>
+            <mat-step label="Frustrated Playlist">
+                <iframe id="playlistFrustrated" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </mat-step>
+            <mat-step label="Anxious Playlist">
+                <iframe id="playlistAnxious" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </mat-step>
+        <button mat-raised-button matStepperNext id="nextPlaylist" color="primary" type="button">Next</button>
+    </mat-expansion-panel>
 </mat-card>
 </div>
 </div>
