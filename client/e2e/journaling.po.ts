@@ -39,7 +39,7 @@ export class JournalingPage {
     }
 
     getJournalText(search: string) {
-        const card = element(by.cssContainingText('.mat-expansion-panel-header-title', search));
+        const card = element(by.cssContainingText('.mat-card-title', search));
         return card.getText();
     }
 
@@ -50,9 +50,8 @@ export class JournalingPage {
         subjectInput.sendKeys(search);
         //
         // //click journal
-        const journal = element(by.cssContainingText('.mat-expansion-panel-header-title',search));
+        const journal = element(by.cssContainingText('.mat-list-item',search));
         journal.click();
-
     }
 
 
