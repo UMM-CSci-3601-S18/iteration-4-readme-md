@@ -16,7 +16,7 @@ browser.driver.controlFlow().execute = function () {
     return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-fdescribe('', () => {
+describe('', () => {
     let page: HomePage;
 
     beforeEach(() => {
