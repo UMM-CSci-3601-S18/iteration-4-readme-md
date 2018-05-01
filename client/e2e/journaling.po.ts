@@ -7,8 +7,6 @@ export class JournalingPage {
     }
 
     addNewJournal(subject: string, body: string) {
-        const tabinput = element(by.id('md-tab-label-0-1'));
-        tabinput.click();
         const input = element(by.id('addNewJournal'));
         input.click();
         const subjectInput = element(by.id('subjectField'));
@@ -46,9 +44,6 @@ export class JournalingPage {
     }
 
     selectJournal(search: string){
-        const input = element(by.id('md-tab-label-0-0'));
-        input.click();
-
         // //search for journal
         const subjectInput = element(by.id('journalSubject'));
         subjectInput.click();
