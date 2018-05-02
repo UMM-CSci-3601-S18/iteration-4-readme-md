@@ -79,6 +79,42 @@ export class ReportsComponent implements OnInit {
             return filterData.length;
         }
 
+        filterForScatter(){
+            var filterData;
+            var xVal = []; // this will contain the date info
+            var yVal = []; // this will contain the intensity info
+            var data = [];
+            data[0] = []; // frustrated_array
+            data[1] = []; // worried_array
+            data[2] = []; // happy_array
+            data[3] = []; // meh_array
+            data[4] = []; // unhappy_array
+            // this will be the final return data array
+
+            // Filter by mood
+            for (var i = 1; i < 6; i++){
+                filterData = this.filteredEmojis;
+                var searchMood = i;
+                filterData = filterData.filter(emoji => {
+                    return !searchMood || searchMood == emoji.mood;
+                })
+                for (var j =0; j < filterData.length; j++){
+                    var theDay = new Date(filterData[j].date);
+                    xVal.push(theDay.getTime());
+                    yVal.push(filterData[j].intensity);
+                }
+                for(var k = 0; k < xVal.length; k++){
+                    var obj = {x:xVal[k],y:yVal[k]};
+                    data[i-1].push(obj);
+                }
+                xVal = [];
+                yVal = [];
+            }
+
+            return data;
+
+        }
+
 
 
     public filterEmojis(searchMood: number, searchIntensity: number, searchStartDate: any, searchEndDate: any): Emoji[] {
@@ -708,14 +744,54 @@ export class ReportsComponent implements OnInit {
         this.canvas = document.getElementById("myChart");
         this.ctx = this.canvas;
 
-        let test1 = {
-            "label": "Worried",
-            "data": [{
-                x: 0,
-                y: 0
-            }],
+        var showData = this.filterForScatter();
+
+
+        let frustrated_data = {
+            "label": "Frustrated",
+            "data": showData[0],
             "backgroundColor":"rgb(204, 0, 204)",
+            "fill":false,
+            "showLine":false,
+            "pointRadius": 5,
         };
+
+        let worried_data = {
+            "label": "Worried",
+            "data": showData[1],
+            "backgroundColor":"rgb(204, 204, 0)",
+            "fill":false,
+            "showLine":false,
+            "pointRadius": 5,
+        };
+
+        let happy_data = {
+            "label": "Happy",
+            "data": showData[2],
+            "backgroundColor":"rgb(0, 204, 204)",
+            "fill":false,
+            "showLine":false,
+            "pointRadius": 5,
+        };
+
+        let meh_data = {
+            "label": "Meh",
+            "data": showData[3],
+            "backgroundColor":"rgb(204, 204, 204)",
+            "fill":false,
+            "showLine":false,
+            "pointRadius": 5,
+        };
+
+        let unhappy_data = {
+            "label": "Unhappy",
+            "data": showData[4],
+            "backgroundColor":"rgb(0, 0, 204)",
+            "fill":false,
+            "showLine":false,
+            "pointRadius": 5,
+        };
+
 
 
 
@@ -723,9 +799,35 @@ export class ReportsComponent implements OnInit {
             type: 'scatter',
             data: {
                 datasets: [
-                    test1,
+                    frustrated_data,
+                    worried_data,
+                    happy_data,
+                    meh_data,
+                    unhappy_data
                 ]
             },
+            options:{
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        distribution: 'linear',
+                        time:{
+                           unit: 'minute',
+                            unitStepSize: 60,
+                           //tooltipFormat: "hh:mm:ss",
+                           //round: 'hour',
+                           displayFormats: {
+                               minute: 'h:mm a',
+                           },
+                       }
+                    }],
+                    yAxes: [{
+                        ticks:{
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
         });
 
 
