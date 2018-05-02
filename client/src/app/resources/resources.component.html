@@ -1,162 +1,186 @@
 <div *ngIf="user; else promptLogin">
-<div layout="row" layout-sm="column" layout-xs="column">
+    <div layout="row" layout-sm="column" layout-xs="column">
 
-<!-- Contact Phone numbers card is being inserted here-->
-<mat-card id="yourContacts">
-    <mat-card-content class="addedResources" id="addedResources">
-        <mat-card-title id="resourceTitle">Your Contacts</mat-card-title>
-        <mat-divider></mat-divider>
+        <!-- Contact Phone numbers card is being inserted here-->
+        <mat-card id="yourContacts">
+            <mat-card-content class="addedResources" id="addedResources">
+                <mat-card-title id="resourceTitle">Your Contacts</mat-card-title>
+                <mat-divider></mat-divider>
 
-        <mat-accordion *ngIf="resources; else resourcesError" >
-            <mat-expansion-panel #elem class="resources" *ngFor="let resource of resources">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>{{resource.name}}</mat-panel-title>
-                    <mat-panel-description >{{resource.phone}}</mat-panel-description>
-                </mat-expansion-panel-header>
-                <mat-panel-description >{{resource.body}}</mat-panel-description>
-                <button id = "deleteContact" mat-raised-button color="accent" (click)="deleteResource(resource._id['$oid'])">Delete Contact</button>
-            </mat-expansion-panel>
-        </mat-accordion>
+                <mat-accordion *ngIf="resources; else resourcesError" >
+                    <mat-expansion-panel #elem class="resources" *ngFor="let resource of resources">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>{{resource.name}}</mat-panel-title>
+                            <mat-panel-description >{{resource.phone}}</mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-panel-description >{{resource.body}}</mat-panel-description>
+                        <button id = "deleteContact" mat-raised-button color="accent" (click)="deleteResource(resource._id['$oid'])">Delete Contact</button>
+                    </mat-expansion-panel>
+                </mat-accordion>
 
-        <ng-template #resourcesError>
-            <mat-error>
-                There was a problem loading the data. Possibly the server is down or perhaps there are network
-                issues.
-            </mat-error>
-            <mat-error>
-                Please wait a bit and try again or start the server.
-            </mat-error>
-        </ng-template>
-    </mat-card-content>
-    <div class="addNewResourceDiv">
-        <button id = "addNewContact" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add a Contact</button>
+                <ng-template #resourcesError>
+                    <mat-error>
+                        There was a problem loading the data. Possibly the server is down or perhaps there are network
+                        issues.
+                    </mat-error>
+                    <mat-error>
+                        Please wait a bit and try again or start the server.
+                    </mat-error>
+                </ng-template>
+            </mat-card-content>
+            <div class="addNewResourceDiv">
+                <button id = "addNewContact" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add a Contact</button>
+            </div>
+        </mat-card>
+
+        <mat-card id="contactNumbers">
+            <mat-card-content class="contact-numbers">
+                <mat-card-title class="contact-numbers-title" id="contactNumbersTitle"><!--<i class="material-icons">phone_forwarded</i>--><!--<mat-icon class="little-phone-icon">phone</mat-icon>-->Contact Numbers</mat-card-title>
+                <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
+                    to have support. It's always okay to have someone to talk to</mat-card-subtitle>
+
+                <!--<mat-header-cell id="suicide-prevention-lifeline" #elem class="contact-numbers-to-call">-->
+                <h4 mat-line>
+                    <mat-panel-title class="hotline-company-name">Suicide Prevention Lifeline</mat-panel-title>
+                </h4>
+                <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon><a href="tel: 1-800-273-8255">1-800-273-8255</a></mat-panel-description>
+                <!--</mat-header-cell>-->
+                <br>
+                <!--<mat-expansion-panel id="crisis-hotline" #elem class="contact-numbers-to-call">-->
+                <h4 mat-line>
+                    <mat-panel-title class="hotline-company-name">Crisis Hotline</mat-panel-title>
+                </h4>
+                <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon><a href="tel: 775-784-8090">775-784-8090</a></mat-panel-description>
+                <!--</mat-expansion-panel>-->
+                <br>
+
+                <!--        <mat-expansion-panel id="crisis-text-line" #elem class="phone-numbers-to-call">-->
+                <h4 mat-line>
+                    <mat-panel-title class="hotline-company-name">Crisis Text Line</mat-panel-title>
+                </h4>
+                <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">textsms</mat-icon><a href="sms: 741741">741741</a></mat-panel-description>
+                <br>
+                <!--</mat-expansion-panel>-->
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card id="ResourceLinks">
+            <mat-card-content class="resource-links">
+                <mat-card-title class="resource-links-title" id="resourceLinksTitle">Resource Links</mat-card-title>
+                <mat-card-subtitle>Some possibly useful links to resources</mat-card-subtitle>
+
+                <mat-expansion-panel id="breating-exercises" #elem class="resource-links">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="breathing-exercise-links">Breathing Exercises</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-panel-description>A few links to breathing exercises to try</mat-panel-description>
+                    <br>
+                    <a href="http://www.livingbydesignonline.com/ananga-living-by-design-blog/2009/6/9/5-anti-stress-breathing-techniques-to-help-you-feel-calm-any.html"
+                       target="_blank" style="text-decoration: none; border-bottom: 1px transparent; /*color: #black*/">5 Anti Stress Breathing techniques</a>
+                    <br>
+                    <a href="https://psychcentral.com/blog/4-breathing-exercises-to-reduce-your-stress-right-now/" target="_blank"
+                       style="text-decoration: none; border-bottom: 1px transparent; /*color: #black;*/">4 Breathing Exercises to Reduce Your Stress</a>
+                    <br>
+                    <a href="https://www.youtube.com/watch?v=mgzhKW08bMQ" target="_blank" style="text-decoration: none; border-bottom: 1px transparent; /*color: #black;*/">
+                        Square Breathing Technique Video
+                    </a>
+                </mat-expansion-panel>
+                <br>
+                <mat-expansion-panel id="anger-management-information" #elem class="resource-links">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="anger-management-information">Anger Management Information</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-panel-description>Some links on anger management</mat-panel-description>
+                    <br>
+                    <a href="https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/anger-management/art-20045434?pg=1" target="_blank"
+                       style="text-decoration: none; border-bottom: none; /*color: #black*/">10 tips to tame your temper Mayo Clinic</a>
+                    <br>
+                    <a href="https://www.webmd.com/mental-health/anger-management#1" target="_blank"
+                       style="text-decoration: none; border-bottom: none; /*color: #black*/">Mental Health and Anger Management</a>
+                </mat-expansion-panel>
+                <br>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="general-links">Some generally useful links</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a href="https://www.youtube.com/watch?v=hFcQpNr_KA4" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
+                        Ted Talk Video: Breath -- five minutes can change your life
+                    </a>
+                    <br>
+                    <a href="https://www.youtube.com/watch?v=8-JXOnFOXQk" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
+                        Video: Brené Brown: Why Your Critics Aren't The Ones Who Count
+                    </a>
+                    <br>
+                    <a href="https://www.youtube.com/watch?v=sXSjc-pbXk4" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
+                        Video: The Power of Vulnerability - Brene Brown
+                    </a>
+                    <br>
+                    <a href="https://www.youtube.com/watch?v=s6xb4H5ueKs" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
+                        PBS Video: THE GIFTS OF IMPERFECTION: LIVING WITH COURAGE, COMPASSION AND CONNECTION
+                    </a>
+                </mat-expansion-panel>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card id="youtube">
+            <mat-card-title id="youtubeTitle">Video Playlist</mat-card-title>
+            <mat-divider></mat-divider>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Happy Playlist</mat-panel-title>
+                    </mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <iframe id="playlistHappy" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </mat-panel-description>
+                </mat-expansion-panel>
+
+            <br>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Meh Playlist</mat-panel-title>
+                    </mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <iframe id="playlistMeh" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </mat-panel-description>
+                </mat-expansion-panel>
+
+            <br>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Unhappy Playlist</mat-panel-title>
+                    </mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <iframe id="playlistUnhappy" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </mat-panel-description>
+                </mat-expansion-panel>
+
+            <br>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Frustrated Playlist</mat-panel-title>
+                    </mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <iframe id="playlistFrustrated" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </mat-panel-description>
+                </mat-expansion-panel>
+
+            <br>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Anxious Playlist</mat-panel-title>
+                    </mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <iframe id="playlistAnxious" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </mat-panel-description>
+                </mat-expansion-panel>
+
+        </mat-card>
     </div>
-</mat-card>
-
-<mat-card id="contactNumbers">
-    <mat-card-content class="contact-numbers">
-        <mat-card-title class="contact-numbers-title" id="contactNumbersTitle"><!--<i class="material-icons">phone_forwarded</i>--><!--<mat-icon class="little-phone-icon">phone</mat-icon>-->Contact Numbers</mat-card-title>
-        <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
-            to have support. It's always okay to have someone to talk to</mat-card-subtitle>
-
-        <mat-expansion-panel id="suicide-prevention-lifeline" #elem class="contact-numbers-to-call">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="hotline-company-name">Suicide Prevention Lifeline</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>We can all help prevent suicide. The Lifeline provides 24/7,
-                free and confidential support for people in distress, prevention and crisis
-                resources for you or your loved ones, and best practices
-                for professionals.</mat-panel-description>
-            <br>
-            <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 1-800-273-8255</mat-panel-description>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel id="crisis-hotline" #elem class="contact-numbers-to-call">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="hotline-company-name">Crisis Hotline</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>Crisis Call Center’s 24-hour crisis line often
-                serves as the first point of contact for individuals who are seeking
-                help, support, and information. Crisis can affect anyone at any time.
-                The need for emotional support or referral assistance is something most
-                individuals encounter at some point in their lives.</mat-panel-description>
-            <br>
-            <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon> 775-784-8090</mat-panel-description>
-        </mat-expansion-panel>
-            <br>
-            <br>
-            <br>
-        <mat-card-subtitle>Texting:</mat-card-subtitle>
-        <mat-expansion-panel id="crisis-text-line" #elem class="phone-numbers-to-call">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="hotline-company-name">Crisis Text Line</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>Free, 24/7 support for people in crisis. Every texter
-                is connected with a Crisis Counselor, a real-life human being trained to
-                bring texters from a hot moment to a cool calm through active listening
-                and collaborative problem solving. All of our Crisis Counselors are volunteers,
-                donating their time to helping people in crisis.</mat-panel-description>
-            <br>
-        </mat-expansion-panel>
-    </mat-card-content>
-</mat-card>
-
-<mat-card id="ResourceLinks">
-    <mat-card-content class="resource-links">
-        <mat-card-title class="resource-links-title" id="resourceLinksTitle">Resource Links</mat-card-title>
-        <mat-card-subtitle>Some possibly useful links to resources</mat-card-subtitle>
-
-        <mat-expansion-panel id="breating-exercises" #elem class="resource-links">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="breathing-exercise-links">Breathing Exercises</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>A few links to breathing exercises to try</mat-panel-description>
-            <br>
-            <a href="http://www.livingbydesignonline.com/ananga-living-by-design-blog/2009/6/9/5-anti-stress-breathing-techniques-to-help-you-feel-calm-any.html"
-               target="_blank" style="text-decoration: none; border-bottom: 1px transparent; /*color: #black*/">5 Anti Stress Breathing techniques</a>
-            <br>
-            <a href="https://psychcentral.com/blog/4-breathing-exercises-to-reduce-your-stress-right-now/" target="_blank"
-               style="text-decoration: none; border-bottom: 1px transparent; /*color: #black;*/">4 Breathing Exercises to Reduce Your Stress</a>
-            <br>
-            <a href="https://www.youtube.com/watch?v=mgzhKW08bMQ" target="_blank" style="text-decoration: none; border-bottom: 1px transparent; /*color: #black;*/">
-                Square Breathing Technique Video
-            </a>
-        </mat-expansion-panel>
-        <mat-expansion-panel id="anger-management-information" #elem class="resource-links">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="anger-management-information">Anger Management Information</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>Some links on anger management</mat-panel-description>
-            <br>
-            <a href="https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/anger-management/art-20045434?pg=1" target="_blank"
-               style="text-decoration: none; border-bottom: none; /*color: #black*/">10 tips to tame your temper Mayo Clinic</a>
-            <br>
-            <a href="https://www.webmd.com/mental-health/anger-management#1" target="_blank"
-               style="text-decoration: none; border-bottom: none; /*color: #black*/">Mental Health and Anger Management</a>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title class="general-links">Some generally useful links</mat-panel-title>
-            </mat-expansion-panel-header>
-            <a href="https://www.youtube.com/watch?v=hFcQpNr_KA4" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
-                Ted Talk Video: Breath -- five minutes can change your life
-            </a>
-            <br>
-            <a href="https://www.youtube.com/watch?v=8-JXOnFOXQk" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
-                Video: Brené Brown: Why Your Critics Aren't The Ones Who Count
-            </a>
-            <br>
-            <a href="https://www.youtube.com/watch?v=sXSjc-pbXk4" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
-                Video: The Power of Vulnerability - Brene Brown
-            </a>
-            <br>
-            <a href="https://www.youtube.com/watch?v=s6xb4H5ueKs" target="_blank" style="text-decoration: none; border-bottom: none; /*color: #black*/">
-                PBS Video: THE GIFTS OF IMPERFECTION: LIVING WITH COURAGE, COMPASSION AND CONNECTION
-            </a>
-        </mat-expansion-panel>
-    </mat-card-content>
-</mat-card>
-
-<mat-card id="youtube">
-    <mat-card-title id="youtubeTitle">Video Playlist</mat-card-title>
-    <mat-divider></mat-divider>
-    <mat-card-content>
-        <iframe id="playlist" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PL8-vfys6KW5ZCqjfBtZxh5b5nnXvFShcv" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <!--<mat-list>
-            <a mat-list-item *ngFor="let video of videos"
-               class="video link"
-               target="_blank"
-               href="{{video.url}}"
-               <button mat-icon-button class="playButton">
-                   <mat-icon matTooltip="Play" class="playIcon">play_arrow</mat-icon>
-               </button>
-               <h4 mat-line>{{video.name}}</h4>
-               <p mat-line>{{video.subname}}</p>
-            </a>
-        </mat-list>-->
-    </mat-card-content>
-</mat-card>
-</div>
 </div>
 
 <ng-template #promptLogin>
