@@ -53,31 +53,31 @@ export class ReportsComponent implements OnInit {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
-    filterGraph(weekday, filterMood): number {
-        console.log("this is wright");
-        var filterData = this.filteredEmojis;
+        filterGraph(weekday, filterMood): number {
+            console.log("this is wright");
+            var filterData = this.filteredEmojis;
 
 
-        // Filter by weekday
-        if (this.inputType == "Last month"){
+            // Filter by weekday
+            if (this.inputType == "Last month"){
+                filterData = filterData.filter(emoji => {
+                    this.getDate = new Date(emoji.date);
+                    return this.getDate.getDate() == weekday;
+                });
+            } else {
+                filterData = filterData.filter(emoji => {
+                    this.getDate = new Date(emoji.date);
+                    return this.getDate.getDay() == weekday;
+                });
+            }
+
+            // Filter by mood
             filterData = filterData.filter(emoji => {
-                this.getDate = new Date(emoji.date);
-                return this.getDate.getDate() == weekday;
+                return !filterMood || emoji.mood == filterMood;
             });
-        } else {
-            filterData = filterData.filter(emoji => {
-                this.getDate = new Date(emoji.date);
-                return this.getDate.getDay() == weekday;
-            });
+
+            return filterData.length;
         }
-
-        // Filter by mood
-        filterData = filterData.filter(emoji => {
-            return !filterMood || emoji.mood == filterMood;
-        });
-
-        return filterData.length;
-    }
 
 
 
@@ -110,42 +110,42 @@ export class ReportsComponent implements OnInit {
         }
 
 
-        // Filter by mood
+       // Filter by mood
         if (searchMood == null) {
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return true;
-            });
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return true;
+                });
 
-        } else{
+            } else{
 
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchMood || searchMood == emoji.mood;
-            })
-        }
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return !searchMood || searchMood == emoji.mood;
+                })
+            }
 
         // Filter by Intensity
         if (searchIntensity == null) {
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return true;
-            });
-        }
-        else {
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchIntensity || searchIntensity == emoji.intensity;
-            });
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return true;
+                });
+            }
+            else {
+                this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                    return !searchIntensity || searchIntensity == emoji.intensity;
+                });
         }
 
         // Filter by startDate
         this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-            this.getDate = new Date(emoji.date);
-            return this.getDate >= searchStartDate;
-        });
+                this.getDate = new Date(emoji.date);
+                return this.getDate >= searchStartDate;
+            });
 
         // Filter by endDate
         this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-            this.getDate = new Date(emoji.date);
-            return this.getDate <= searchEndDate;
-        });
+                this.getDate = new Date(emoji.date);
+                return this.getDate <= searchEndDate;
+            });
 
 
         return this.filteredEmojis;
