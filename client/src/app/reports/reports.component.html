@@ -16,7 +16,6 @@
                             <form>
                                 <label> Which period of entries you want to look at?</label>
                                 <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
-                                    <!--<option id ="Today" selected value="Today">Today</option>-->
                                     <option id ="Today" selected value="Today">Today</option>
                                     <option id ="This week" value="This week">This week</option>
                                     <option id ="Last week" value="Last week">Last week</option>
@@ -28,31 +27,6 @@
                                 <br>
                             </form>
                             <br>
-                            <!--<p>Otherwise you could select the date range from below</p>
-                            <div id="filterContents">
-                                <mat-form-field class="start">
-                                    <input
-                                        id = "startDate"
-                                        matInput [matDatepicker]="start"
-                                        placeholder="Choose a Start Date"
-                                        [(ngModel)]="startDate"
-                                        (input)="startDate = $event.target.value">
-                                    <mat-datepicker-toggle id = "startButton" matSuffix [for]="start"></mat-datepicker-toggle>
-                                    <mat-datepicker touchUi="true" #start></mat-datepicker>
-                                </mat-form-field> &nbsp;
-
-                                <mat-form-field class="end">
-                                    <input
-                                        id = "endDate"
-                                        matInput [matDatepicker]="end"
-                                        placeholder="Choose an End Date"
-                                        [(ngModel)]="endDate"
-                                        (input)="endDate = $event.target.value">
-                                    <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
-                                    <mat-datepicker touchUi="true" #end></mat-datepicker>
-                                </mat-form-field>
-
-                            </div>-->
                             <button mat-raised-button id="filterButton" (click)="this.filterEmojis(emojiMood, emojiIntensity, startDate, endDate); updateChart()">Update Graph</button>
                             <br>
                         </div>
