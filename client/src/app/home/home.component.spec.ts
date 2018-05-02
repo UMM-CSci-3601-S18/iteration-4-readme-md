@@ -121,7 +121,7 @@ describe('Adding an emoji', () => {
     });
 
 
-    it('parsemoodintensity', () =>{
+    it('tests parsemoodintensity', () =>{
         expect(component.parseEmotionIntensity(1, 1)).toEqual("Frustrated");
         expect(component.parseEmotionIntensity(1, 2)).toEqual("Angry");
         expect(component.parseEmotionIntensity(2, 1)).toEqual("Anxious");
@@ -134,6 +134,39 @@ describe('Adding an emoji', () => {
         expect(component.parseEmotionIntensity(5, 1)).toEqual("Unhappy");
         expect(component.parseEmotionIntensity(5, 2)).toEqual("Sad");
         expect(component.parseEmotionIntensity(5, 3)).toEqual("Miserable");
-    })
+    });
+
+    it('tests updateEmojiIntensity', () => {
+
+        //This tests the 'wrap' feature of the emoji carousel's intensity swipe. (Max 2 Intensities)
+        expect(component.updateEmojiIntensity(1, 1, 1)).toEqual(2);
+        expect(component.updateEmojiIntensity(1, 2, 1)).toEqual(1);
+        expect(component.updateEmojiIntensity(-1, 1, 1)).toEqual(2);
+        expect(component.updateEmojiIntensity(-1, 2, 1)).toEqual(1);
+
+        //This also tests the 'wrap' feature of the emoji carousel's intensity swipe. (Max 3 Intensities)
+        expect(component.updateEmojiIntensity(1, 1, 5)).toEqual(2);
+        expect(component.updateEmojiIntensity(1, 2, 5)).toEqual(3);
+        expect(component.updateEmojiIntensity(1, 3, 5)).toEqual(1);
+        expect(component.updateEmojiIntensity(-1, 3, 5)).toEqual(2);
+        expect(component.updateEmojiIntensity(-1, 1, 5)).toEqual(3);
+        expect(component.updateEmojiIntensity(-1, 2, 5)).toEqual(1);
+    });
+
+    it('tests updateEmojiMood', () => {
+
+        //This tests the 'wrap' feature of the emoji carousel's intensity swipe. (Max 2 Intensities)
+        expect(component.updateEmojiMood(1, 1, true)).toEqual(2);
+        expect(component.updateEmojiMood(1, 2, true)).toEqual(3);
+        expect(component.updateEmojiMood(1, 3, true)).toEqual(4);
+        expect(component.updateEmojiMood(1, 4, true)).toEqual(5);
+        expect(component.updateEmojiMood(1, 5, true)).toEqual(1);
+
+        expect(component.updateEmojiMood(-1, 5, true)).toEqual(4);
+        expect(component.updateEmojiMood(-1, 4, true)).toEqual(3);
+        expect(component.updateEmojiMood(-1, 3, true)).toEqual(2);
+        expect(component.updateEmojiMood(-1, 2, true)).toEqual(1);
+        expect(component.updateEmojiMood(-1, 1, true)).toEqual(5);
+    });
 
 });

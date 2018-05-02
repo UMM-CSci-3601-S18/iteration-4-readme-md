@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Emoji} from '../emoji';
 import {HomeService} from "./home.service";
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {ResponseComponent} from "./response.component";
 import {AuthService, SocialUser} from "angularx-social-login";
 import {environment} from "../../environments/environment";
 import {HttpClient} from '@angular/common/http';
@@ -39,14 +38,6 @@ export class HomeComponent implements OnInit {
     openSnackBar(message: string, action: string) {
         this.snackBar.open(message, action, {
             duration: 5000,
-        });
-    }
-
-    openDialog(): void {
-        const response = this.emoji.mood;
-        const dialogRef = this.dialog.open(ResponseComponent, {
-            width: '500px',
-            data: { response }
         });
     }
 
@@ -104,35 +95,6 @@ export class HomeComponent implements OnInit {
 
         // If for some reason it gets here..
         return null;
-    }
-
-    parseSwipeDirection(mood: number){
-        if(mood < this.lastMood) {
-            if(mood == 1 && this.lastMood == 5) {
-                return "right";
-            }
-            else if(mood == 5 && this.lastMood == 1) {
-                return "left";
-            }
-            else{
-                return "left";
-            }
-        }
-        else if(mood == this.lastMood) {
-            return "none";
-        }
-        else {
-            if(mood == 1 && this.lastMood == 5) {
-                return "right";
-            }
-            else if(mood == 5 && this.lastMood == 1) {
-                return "left";
-            }
-            else{
-                return "right"
-            }
-        }
-
     }
 
     // This function pertains to intensity carousel. It allows the value of emoji.intensity to
@@ -284,6 +246,27 @@ export class HomeComponent implements OnInit {
             case 5:
                 return ">Wow! That's great!";
         }
+    }
+
+    iframeMod(dim: string){
+
+        var size = window.innerWidth;
+
+        if(dim == 'width')
+        {
+            //If Computer
+            if(size > 800){return 768}
+            //If Mobile
+            else{return 384}
+        }
+        else
+        {
+            //If Computer
+            if(size > 800){return 432}
+            //If Mobile
+            else{return 216}
+        }
+
     }
 
 }
