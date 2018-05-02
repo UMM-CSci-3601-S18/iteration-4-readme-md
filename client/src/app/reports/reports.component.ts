@@ -42,27 +42,6 @@ export class ReportsComponent implements OnInit {
 
     private highlightedID: {'$oid': string} = { '$oid': '' };
 
-
-    /*// These are public so that tests can reference them (.spec.ts)
-    public emojis: Emoji[];
-    public filteredEmojis: Emoji[];
-    public user: SocialUser;
-    // These are the target values used in searching.
-    // We should rename them to make that clearer.
-    public emojiOwner: string;
-    public emojiMood: any;
-
-    moods = [+ '&date=' + startDate + ',' + endDate
-        {value: 'Anxious', viewValue:1},
-        {value: 5, viewValue:2},
-        {value: 'down', viewValue:3},
-        {value: 4, viewValue:4},
-        {value: 3, viewValue:5},
-        {value: 'radiant', viewValue:6},
-    ]*/
-
-
-
     // Inject the EmojiListService into this component.
     constructor(public reportsService: ReportsService, public authService: AuthService) {
 
@@ -74,42 +53,37 @@ export class ReportsComponent implements OnInit {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
-        filterGraph(weekday, filterMood): number {
-            var filterData = this.filteredEmojis;
+    filterGraph(weekday, filterMood): number {
+        console.log("this is wright");
+        var filterData = this.filteredEmojis;
 
 
-            // Filter by weekday
-            if (this.inputType == "Last month"){
-                filterData = filterData.filter(summary => {
-                    this.getDate = new Date(summary.date);
-                    return this.getDate.getDate() == weekday;
-                });
-            } else if (this.inputType == "Date Range"){
-                filterData = filterData.filter(summary => {
-                    this.getDate = new Date(summary.date);
-                    return this.getDate.getDate() == weekday;
-                });
-                filterData = filterData.filter(summary => {
-                    this.getDate = new Date(summary.date);
-                    return this.getDate.getDay() == weekday;
-                });
-            }
-
-            // Filter by mood
+        // Filter by weekday
+        if (this.inputType == "Last month"){
             filterData = filterData.filter(emoji => {
-                return !filterMood || emoji.mood == filterMood;
+                this.getDate = new Date(emoji.date);
+                return this.getDate.getDate() == weekday;
             });
-
-            return filterData.length;
+        } else {
+            filterData = filterData.filter(emoji => {
+                this.getDate = new Date(emoji.date);
+                return this.getDate.getDay() == weekday;
+            });
         }
+
+        // Filter by mood
+        filterData = filterData.filter(emoji => {
+            return !filterMood || emoji.mood == filterMood;
+        });
+
+        return filterData.length;
+    }
 
 
 
     public filterEmojis(searchMood: number, searchIntensity: number, searchStartDate: any, searchEndDate: any): Emoji[] {
 
         this.filteredEmojis = this.emojis;
-        console.log("this is the start date passed in " + this.startDate)
-        console.log("this is the end date passed in " + this.endDate)
 
         var today = new Date();
         var day = today.getDate();
@@ -119,66 +93,59 @@ export class ReportsComponent implements OnInit {
 
         if (this.inputType == "This week") {
             var first = theDay.getDate() - theDay.getDay();
-            this.startDate = new Date(theDay.setDate(first));
-            this.endDate = new Date(theDay.setDate(theDay.getDate() + 6));
+            searchStartDate = new Date(theDay.setDate(first));
+            searchEndDate = new Date(theDay.setDate(theDay.getDate() + 6));
         } else if (this.inputType == "Last week") {
             var first = theDay.getDate() - theDay.getDay()-7;
-            this.startDate = new Date(theDay.setDate(first));
-            this.endDate = new Date(theDay.setDate(theDay.getDate() + 6));
+            searchStartDate = new Date(theDay.setDate(first));
+            searchEndDate = new Date(theDay.setDate(theDay.getDate() + 6));
         } else if (this.inputType == "Last month") {
             theDay.setDate(1);
-            this.endDate = new Date(theDay.setDate(theDay.getDate() - 1));
+            searchEndDate = new Date(theDay.setDate(theDay.getDate() - 1));
             var count = theDay.getDate() - 1;
-            this.startDate = new Date(theDay.setDate(theDay.getDate() - count));
+            searchStartDate = new Date(theDay.setDate(theDay.getDate() - count));
         }  else if (this.inputType == "Today") {
-            this.startDate = new Date(year,month,day);
-            this.endDate = new Date(theDay.setDate(theDay.getDate()+1));
+            searchStartDate = new Date(year,month,day);
+            searchEndDate = new Date(theDay.setDate(theDay.getDate()+1));
         }
 
 
-       // // Filter by mood
-       //  if (searchMood == null) {
-       //          this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-       //              return true;
-       //          });
-       //
-       //      } else{
-       //
-       //          this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-       //              return !searchMood || searchMood == emoji.mood;
-       //          })
-       //      }
-       //
-       //  // Filter by Intensity
-       //  if (searchIntensity == null) {
-       //          this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-       //              return true;
-       //          });
-       //      }
-       //      else {
-       //          this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-       //              return !searchIntensity || searchIntensity == emoji.intensity;
-       //          });
-       //  }
-       //
-       //  // Filter by startDate
-       //  if (searchStartDate != null) {
-       //
-       //      this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-       //          this.getDate = new Date(emoji.date);
-       //          return this.getDate >= searchStartDate;
-       //      });
-       //  }
-       //
-       //  // Filter by endDate
-       //  if (searchEndDate != null) {
-       //
-       //      this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-       //          this.getDate = new Date(emoji.date);
-       //          return this.getDate <= searchEndDate;
-       //      });
-       //  }
+        // Filter by mood
+        if (searchMood == null) {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return true;
+            });
 
+        } else{
+
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return !searchMood || searchMood == emoji.mood;
+            })
+        }
+
+        // Filter by Intensity
+        if (searchIntensity == null) {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return true;
+            });
+        }
+        else {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return !searchIntensity || searchIntensity == emoji.intensity;
+            });
+        }
+
+        // Filter by startDate
+        this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+            this.getDate = new Date(emoji.date);
+            return this.getDate >= searchStartDate;
+        });
+
+        // Filter by endDate
+        this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+            this.getDate = new Date(emoji.date);
+            return this.getDate <= searchEndDate;
+        });
 
 
         return this.filteredEmojis;
@@ -250,8 +217,126 @@ export class ReportsComponent implements OnInit {
         this.canvas = document.getElementById("myChart");
         this.ctx = this.canvas;
 
+
         if (this.inputType == "This week"){
-           this.buildChart();
+            let happy_weekly_totals = {"label":"Happy",
+                "data":[
+                    this.filterGraph('0', 3),
+
+                    this.filterGraph('1', 3),
+                    console.log("ubdfdsfsdfsdf"),
+                    this.filterGraph('2', 3),
+                    this.filterGraph('3', 3),
+                    this.filterGraph('4', 3),
+                    this.filterGraph('5', 3),
+                    this.filterGraph('6', 3)
+                ],
+                hidden: false,
+                "fill":false,
+                "borderColor":"rgb(0, 204, 0)",
+                "lineTension":0.1};
+
+            let unhappy_weekly_totals = {"label":"Sad",
+                "data":[
+                    this.filterGraph('0', 5),
+                    this.filterGraph('1', 5),
+                    this.filterGraph('2', 5),
+                    this.filterGraph('3', 5),
+                    this.filterGraph('4', 5),
+                    this.filterGraph('5', 5),
+                    this.filterGraph('6', 5)
+                ],
+                hidden: false,
+                "fill":false,
+                "borderColor":"rgb(0, 102, 204)",
+                "lineTension":0.1};
+
+            let meh_weekly_totals = {"label":"Meh",
+                "data":[
+                    this.filterGraph('0', 4),
+                    this.filterGraph('1', 4),
+                    this.filterGraph('2', 4),
+                    this.filterGraph('3', 4),
+                    this.filterGraph('4', 4),
+                    this.filterGraph('5', 4),
+                    this.filterGraph('6', 4)
+                ],
+                hidden: false,
+                "fill":false,
+                "borderColor":"rgb(96, 96, 96)",
+                "lineTension":0.1};
+
+            let frustrated_weekly_totals = {"label":"Mad",
+                "data":[
+                    this.filterGraph('0', 1),
+                    this.filterGraph('1', 1),
+                    this.filterGraph('2', 1),
+                    this.filterGraph('3', 1),
+                    this.filterGraph('4', 1),
+                    this.filterGraph('5', 1),
+                    this.filterGraph('6', 1)
+                ],
+                hidden: false,
+                "fill":false,
+                "borderColor":"rgb(204, 0, 0)",
+                "lineTension":0.1};
+
+            let worried_weekly_totals = {"label":"Worried",
+                "data":[
+                    this.filterGraph('0', 2),
+                    this.filterGraph('1', 2),
+                    this.filterGraph('2', 2),
+                    this.filterGraph('3', 2),
+                    this.filterGraph('4', 2),
+                    this.filterGraph('5', 2),
+                    this.filterGraph('6', 2)
+                ],
+                hidden: false,
+                "fill":false,
+                "borderColor":"rgb(204, 0, 204)",
+                "lineTension":0.1};
+
+            this.myChart = new Chart(this.ctx, {
+                type: 'line',
+                data: {
+                    labels: this.getThisWeekDate(),
+                    datasets: [
+                        happy_weekly_totals,
+                        unhappy_weekly_totals,
+                        meh_weekly_totals,
+                        frustrated_weekly_totals,
+                        worried_weekly_totals,
+                    ]
+                },
+                options: {
+
+                    responsive: true,
+                    maintainAspectRation: false,
+                    scales: {
+                        xAxes:[{
+                            type: 'time',
+
+                            time: {
+                                unit: 'day',
+                                unitStepSize: 1,
+                                tooltipFormat: "MMM D",
+                                round: 'day',
+                                displayFormats: {
+                                    day: 'MMM D'
+                                },
+
+                            },
+
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+
+                            }
+                        }]
+                    }
+                }
+            });
         } else if (this.inputType == "Last week"){
             let happy_weekly_totals = {"label":"Happy",
                 "data":[
@@ -609,28 +694,26 @@ export class ReportsComponent implements OnInit {
             });
 
         } else if (this.inputType == "Today"){
+            this.buildChart();
 
-            let test1 = {
-                "label": "Worried",
-                "data": [{
-                    x: 0,
-                    y: 0
-                }],
-                "backgroundColor":"rgb(204, 0, 204)",
-            };
+        } else if (this.inputType == "Pie"){
+            this.myChart = new Chart (this.ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [ "Blue", "Gray", "Purple", "Yellow", "Black"],
+                        datasets: [{
+                            backgroundColor: [
+                                "#2ecc71",
+                                "#3498db",
+                                "#95a5a6",
+                                "#9b59b6",
+                                "#f1c40f",
 
-
-
-            this.myChart = new Chart(this.ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [
-                        test1,
-                    ]
-                },
-            });
-        } else if (this.inputType == "Date Range"){
-
+                            ],
+                            data: [this.filterEmojis(1, null, "", "").length, this.filterEmojis(2, null, "", "").length, this.filterEmojis(3, null, "", "").length, this.filterEmojis(4, null, "", "").length, this.filterEmojis(5, null, "", "").length]
+                        }]
+                    }
+                });
         }
 
     }
@@ -641,122 +724,28 @@ export class ReportsComponent implements OnInit {
         this.canvas = document.getElementById("myChart");
         this.ctx = this.canvas;
 
-        let happy_weekly_totals = {"label":"Happy",
-            "data":[
-                this.filterGraph('0', 3),
-                this.filterGraph('1', 3),
-                this.filterGraph('2', 3),
-                this.filterGraph('3', 3),
-                this.filterGraph('4', 3),
-                this.filterGraph('5', 3),
-                this.filterGraph('6', 3)
-            ],
-            hidden: false,
-            "fill":false,
-            "borderColor":"rgb(0, 204, 0)",
-            "lineTension":0.1};
+        let test1 = {
+            "label": "Worried",
+            "data": [{
+                x: 0,
+                y: 0
+            }],
+            "backgroundColor":"rgb(204, 0, 204)",
+        };
 
-        let unhappy_weekly_totals = {"label":"Sad",
-            "data":[
-                this.filterGraph('0', 5),
-                this.filterGraph('1', 5),
-                this.filterGraph('2', 5),
-                this.filterGraph('3', 5),
-                this.filterGraph('4', 5),
-                this.filterGraph('5', 5),
-                this.filterGraph('6', 5)
-            ],
-            hidden: false,
-            "fill":false,
-            "borderColor":"rgb(0, 102, 204)",
-            "lineTension":0.1};
 
-        let meh_weekly_totals = {"label":"Meh",
-            "data":[
-                this.filterGraph('0', 4),
-                this.filterGraph('1', 4),
-                this.filterGraph('2', 4),
-                this.filterGraph('3', 4),
-                this.filterGraph('4', 4),
-                this.filterGraph('5', 4),
-                this.filterGraph('6', 4)
-            ],
-            hidden: false,
-            "fill":false,
-            "borderColor":"rgb(96, 96, 96)",
-            "lineTension":0.1};
-
-        let frustrated_weekly_totals = {"label":"Mad",
-            "data":[
-                this.filterGraph('0', 1),
-                this.filterGraph('1', 1),
-                this.filterGraph('2', 1),
-                this.filterGraph('3', 1),
-                this.filterGraph('4', 1),
-                this.filterGraph('5', 1),
-                this.filterGraph('6', 1)
-            ],
-            hidden: false,
-            "fill":false,
-            "borderColor":"rgb(204, 0, 0)",
-            "lineTension":0.1};
-
-        let worried_weekly_totals = {"label":"Worried",
-            "data":[
-                this.filterGraph('0', 2),
-                this.filterGraph('1', 2),
-                this.filterGraph('2', 2),
-                this.filterGraph('3', 2),
-                this.filterGraph('4', 2),
-                this.filterGraph('5', 2),
-                this.filterGraph('6', 2)
-            ],
-            hidden: false,
-            "fill":false,
-            "borderColor":"rgb(204, 0, 204)",
-            "lineTension":0.1};
 
         this.myChart = new Chart(this.ctx, {
-            type: 'line',
+            type: 'scatter',
             data: {
-                labels: this.getThisWeekDate(),
                 datasets: [
-                    happy_weekly_totals,
-                    unhappy_weekly_totals,
-                    meh_weekly_totals,
-                    frustrated_weekly_totals,
-                    worried_weekly_totals,
+                    test1,
                 ]
             },
-            options: {
-
-                responsive: true,
-                maintainAspectRation: false,
-                scales: {
-                    xAxes:[{
-                        type: 'time',
-
-                        time: {
-                            unit: 'day',
-                            unitStepSize: 1,
-                            tooltipFormat: "MMM D",
-                            round: 'day',
-                            displayFormats: {
-                                day: 'MMM D'
-                            },
-
-                        },
-
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-
-                        }
-                    }]
-                }
-            }
         });
+
+
+
 
     }
 
@@ -779,7 +768,7 @@ export class ReportsComponent implements OnInit {
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;
-                this.filterEmojis(this.emojiMood,this.emojiIntensity, this.startDate, this.endDate);
+                //this.filterEmojis(this.emojiMood,this.emojiIntensity, this.startDate, this.endDate);
             },
             err => {
                 console.log(err);

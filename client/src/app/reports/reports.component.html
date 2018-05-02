@@ -6,37 +6,7 @@
             <div id="pageTitle">
                 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
                 <mat-divider></mat-divider>
-                <div id="filterDate">
-                    <mat-form-field class="start">
-                        <input
-                            id = "startDate"
-                            matInput [matDatepicker]="start"
-                            [value] ="startDate2.value"
-                            (input)="startDate = $event.target.value"
-                            placeholder= "startDate"
-                            [(ngModel)]="startDate"
-                            (input)="startDate = $event.target.value"
-                            disabled>
-                        <mat-datepicker-toggle id = "startButton" matSuffix [for]="start" enabled></mat-datepicker-toggle>
-                        <mat-datepicker touchUi="true" #start disabled="false"></mat-datepicker>
-                    </mat-form-field> &nbsp;
 
-                    <mat-form-field class="end">
-                        <input
-                            id = "endDate"
-                            matInput [matDatepicker]="end"
-                            [value] ="endDate2.value"
-                            (input)="endDate = $event.target.value"
-                            placeholder="Choose an End Date"
-                            [(ngModel)]="endDate"
-                            (input)="endDate = $event.target.value"
-                            disabled>
-                        <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
-                        <mat-datepicker touchUi="true" #end disabled="false"></mat-datepicker>
-                    </mat-form-field>
-
-
-                </div>
             </div>
 
             <div id="tabs">
@@ -52,6 +22,7 @@
                                     <option id ="Last week" value="Last week">Last week</option>
                                     <option id ="Last month" value="Last month">Last month</option>
                                     <option id ="Date Range" value="Date Range">Date Range</option>
+                                    <option id ="Pie" value="Pie">Show all data</option>
 
                                 </select>
                                 <br>
@@ -96,44 +67,83 @@
 
                     <mat-tab label="List Review">
                         <mat-card class="reportscard">
-                            <mat-card-title id="reports-title">Reports
-                                <mat-select id="selector" placeholder="Select Mood" [(value)]="emojiMood">
-                                    <mat-option value="">All Moods</mat-option>
-                                    <mat-option value = 1>Angry</mat-option>
-                                    <mat-option value = 2>Anxious</mat-option>
-                                    <mat-option value = 3>Happy</mat-option>
-                                    <mat-option value = 4>Meh</mat-option>
-                                    <mat-option value = 5>Sad</mat-option>
-                                </mat-select>
-                            </mat-card-title>
-                            <mat-divider></mat-divider>
-                            <mat-card-content>
-                                <mat-list *ngIf="emojis; else emojiError">
-                                    <mat-list-item #elem class="emoji" [id]="emoji._id"
-                                                   *ngFor="let emoji of this.filterEmojis(emojiMood,emojiIntensity, startDate, endDate)">
-                                        <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
-                                        <img matListAvatar src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png"
-                                             style="width: 48px; height: 48px">
+                            <div id="filterDate">
+                                <mat-form-field class="start">
+                                    <input
+                                        id = "startDate"
+                                        matInput [matDatepicker]="start"
+                                        [value] ="startDate2.value"
+                                        (input)="startDate = $event.target.value"
+                                        placeholder= "startDate"
+                                        [(ngModel)]="startDate"
+                                        (input)="startDate = $event.target.value"
+                                        disabled>
+                                    <mat-datepicker-toggle id = "startButton" matSuffix [for]="start" enabled></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi="true" #start disabled="false"></mat-datepicker>
+                                </mat-form-field> &nbsp;
 
-                                        <!--
-                                                                        <mat-panel-title id="test"><img src="assets/Emojis/{{emoji.mood}}.png" style="width: 24px; height: 24px"></mat-panel-title>
-                                        -->
+                                <mat-form-field class="end">
+                                    <input
+                                        id = "endDate"
+                                        matInput [matDatepicker]="end"
+                                        [value] ="endDate2.value"
+                                        (input)="endDate = $event.target.value"
+                                        placeholder="Choose an End Date"
+                                        [(ngModel)]="endDate"
+                                        (input)="endDate = $event.target.value"
+                                        disabled>
+                                    <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi="true" #end disabled="false"></mat-datepicker>
+                                </mat-form-field>
 
-                                        <mat-card-title>{{getReadableDate(emoji.date)}}</mat-card-title>
-                                    </mat-list-item>
-                                </mat-list>
 
-                                <ng-template #emojiError>
-                                    <mat-error>
-                                        There was a problem loading the data. Possibly the server is down or perhaps
-                                        there are network
-                                        issues.
-                                    </mat-error>
-                                    <mat-error>
-                                        Please wait a bit and try again or start the server.
-                                    </mat-error>
-                                </ng-template>
-                            </mat-card-content>
+                            </div>
+                            <mat-tab-group>
+                            <mat-tab label = "List Review" >
+                                <mat-card-title id="reports-title">Reports
+                                    <mat-select id="selector" placeholder="Select Mood" [(value)]="emojiMood">
+                                        <mat-option value="">All Moods</mat-option>
+                                        <mat-option value = 1>Angry</mat-option>
+                                        <mat-option value = 2>Anxious</mat-option>
+                                        <mat-option value = 3>Happy</mat-option>
+                                        <mat-option value = 4>Meh</mat-option>
+                                        <mat-option value = 5>Sad</mat-option>
+                                    </mat-select>
+                                </mat-card-title>
+                                <mat-divider></mat-divider>
+                                <mat-card-content>
+                                    <mat-list *ngIf="emojis; else emojiError">
+                                        <mat-list-item #elem class="emoji" [id]="emoji._id"
+                                                       *ngFor="let emoji of this.filterEmojis(emojiMood,emojiIntensity, startDate, endDate)">
+                                            <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
+                                            <img matListAvatar src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png"
+                                                 style="width: 48px; height: 48px">
+
+                                            <!--
+                                                                            <mat-panel-title id="test"><img src="assets/Emojis/{{emoji.mood}}.png" style="width: 24px; height: 24px"></mat-panel-title>
+                                            -->
+
+                                            <mat-card-title>{{getReadableDate(emoji.date)}}</mat-card-title>
+                                        </mat-list-item>
+                                    </mat-list>
+
+                                    <ng-template #emojiError>
+                                        <mat-error>
+                                            There was a problem loading the data. Possibly the server is down or perhaps
+                                            there are network
+                                            issues.
+                                        </mat-error>
+                                        <mat-error>
+                                            Please wait a bit and try again or start the server.
+                                        </mat-error>
+                                    </ng-template>
+                                </mat-card-content>
+                            </mat-tab>
+                                <mat-tab label="Pie Chart">
+                                    <canvas id="pie"></canvas>
+                                </mat-tab>
+                </mat-tab-group>
+
                         </mat-card>
                     </mat-tab>
                 </mat-tab-group>
