@@ -16,11 +16,11 @@
                             <form>
                                 <label> Which period of entries you want to look at?</label>
                                 <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
-                                    <option id ="Today" selected value="Today" (click)="this.filterEmojis(emojiMood, emojiIntensity); updateChart()">Today</option>
-                                    <option id ="This week" value="This week" (click)="this.filterEmojis(emojiMood, emojiIntensity); updateChart()">This week</option>
-                                    <option id ="Last week" value="Last week" (click)="this.filterEmojis(emojiMood, emojiIntensity); updateChart()">Last week</option>
-                                    <option id ="Last month" value="Last month" (click)="this.filterEmojis(emojiMood, emojiIntensity); updateChart()">Last month</option>
-                                    <option id ="Show All Data" value="Show All Data" (click)="this.filterEmojis(emojiMood, emojiIntensity); updateChart()">Show all data</option>
+                                    <option id ="Today" selected value="Today" (click)="this.filterEmojis(emojiMood, startDate, endDate); updateChart()">Today</option>
+                                    <option id ="This week" value="This week" (click)="this.filterEmojis(emojiMood, startDate, endDate); updateChart()">This week</option>
+                                    <option id ="Last week" value="Last week" (click)="this.filterEmojis(emojiMood, startDate, endDate); updateChart()">Last week</option>
+                                    <option id ="Last month" value="Last month" (click)="this.filterEmojis(emojiMood, startDate, endDate); updateChart()">Last month</option>
+                                    <option id ="Show All Data" value="Show All Data" (click)="this.filterEmojis(emojiMood, startDate, endDate); updateChart()">Show all data</option>
 
                                 </select>
                                 <br>
@@ -29,7 +29,7 @@
                             <br>
                         </div>
                         <mat-card> <mat-card-title class="your-summarys-title">Your Emotions</mat-card-title>
-                            <mat-card-subtitle class="your-summarys-title">There are {{totalNumberMoods()}} entries represented</mat-card-subtitle>e
+                            <mat-card-subtitle class="your-summarys-title">There are {{totalNumberMoods()}} entries represented</mat-card-subtitle>
                             <canvas id="myChart" height="auto"></canvas>
 
 
@@ -38,7 +38,7 @@
                     </mat-tab>
 
                     <mat-tab label="List Review">
-                        <mat-card class="reportscard">
+                        <mat-card class="reportsCard">
                             <div id="filterDate">
                                 <mat-form-field class="start">
                                     <input
@@ -67,7 +67,7 @@
                                     <mat-datepicker-toggle id = "endButton" matSuffix [for]="end"></mat-datepicker-toggle>
                                     <mat-datepicker touchUi="true" #end disabled="false"></mat-datepicker>
                                 </mat-form-field>
-<p>{{this.startDate}} </p>
+<p>{{this.startDate.getTime()}} </p>
 
                             </div>
                             <mat-tab-group>
@@ -86,7 +86,7 @@
                                 <mat-card-content>
                                     <mat-list *ngIf="emojis; else emojiError">
                                         <mat-list-item #elem class="emoji" [id]="emoji._id"
-                                                       *ngFor="let emoji of this.filterEmojis(emojiMood,emojiIntensity, startDate, endDate)">
+                                                       *ngFor="let emoji of this.filterEmojis(emojiMood, startDate, endDate)">
                                             <!--This gets an emoji image based on the mood that the user input when creating the emoji object-->
                                             <img matListAvatar src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png"
                                                  style="width: 48px; height: 48px">
