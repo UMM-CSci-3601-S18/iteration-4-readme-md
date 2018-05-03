@@ -35,14 +35,10 @@ describe('Tests all functionality that the goals page provides: from viewing pre
         expect(page.getUniqueGoal()).toBe('Go to bed early');
     });
 
-    it('Should click complete button on goal and then click complete tab.', () => {
+    it('Should click complete button on goal and then click complete tab. and delete', () => {
         GoalPage.navigateTo();
         page.clickComplete();
         page.clickCompleteTab();
-    });
-
-    it('Should click delete button on goal.', () => {
-        GoalPage.navigateTo();
         page.clickDelete();
     });
 });

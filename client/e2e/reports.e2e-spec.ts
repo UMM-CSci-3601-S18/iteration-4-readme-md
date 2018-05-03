@@ -12,9 +12,9 @@ describe('Tests reports page functionality: filtering of selected emotions and c
 
     it("Should filter reports by mood",()  => {
        ReportsPage.navigateTo();
-       page.filterReports('Sad');
+       page.filterReports('Angry');
 
-       var exists = page.getEmoji('sad');
+       var exists = page.getEmoji("angry");
        expect(exists).toBe(true);
     });
 })

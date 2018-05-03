@@ -30,7 +30,7 @@ export class GoalPage {
     }
 
     clickDelete() {
-        const element3ToClick = element(by.id('delete'));
+        const element3ToClick = element(by.id('delete2'));
         element3ToClick.click();
     }
 
