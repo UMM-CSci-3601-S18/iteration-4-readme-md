@@ -35,7 +35,7 @@ describe('Reports list', () => {
                     owner: 'Nick',
                     intensity: 1,
                     mood: 3,
-                    date: 'd', //date will be created during the test so that it matches what is made in component.addEmoji
+                    date: '\'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)\'',
                     userId: "nick@gmail.com",
                 },
                 {
@@ -43,7 +43,7 @@ describe('Reports list', () => {
                     owner: 'Roch',
                     intensity: 1,
                     mood: 4,
-                    date: '', //date will be created during the test so that it matches what is made in component.addEmoji
+                    date: 'Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)',
                     userId: "roch@gmail.com",
                 },
                 {
@@ -51,7 +51,7 @@ describe('Reports list', () => {
                     owner: 'Leo',
                     intensity: 1,
                     mood: 5,
-                    date: 'e', //date will be created during the test so that it matches what is made in component.addEmoji
+                    date: 'e',
                     userId: "leo@gmail.com",
                 }
             ])
@@ -137,6 +137,33 @@ fdescribe('Charts', () => {
         authState: Observable<SocialUser>
     };
 
+    let emojiList = [
+        {
+            _id: 'f',
+            owner: 'Nick',
+            mood: 3,
+            date: (new Date('Tue May 14 1974 08:51:10 GMT-0500 (CDT)')).getUTCMilliseconds().toString(),
+            intensity: 3,
+            userId: "nick@gmail.com",
+        },
+        {
+            _id: 'd',
+            owner: 'Roch',
+            mood: 4,
+            date: (new Date()).getUTCMilliseconds().toString(),
+            intensity: 2,
+            userId: "roch@gmail.com",
+        },
+        {
+            _id: 'd',
+            owner: 'Leo',
+            mood: 5,
+            date: (new Date()).getUTCMilliseconds().toString(),
+            intensity: 1,
+            userId: "leo@gmail.com",
+        }
+    ];
+
     beforeEach(() => {
         // stub ReportsService for test purposes
         ReportsListServiceStub = {
@@ -145,7 +172,7 @@ fdescribe('Charts', () => {
                     _id: 'f',
                     owner: 'Nick',
                     mood: 3,
-                    date: 'd', //date will be created during the test so that it matches what is made in component.addEmoji
+                    date: (new Date('Tue May 14 1974 08:51:10 GMT-0500 (CDT)')).getUTCMilliseconds().toString(),
                     intensity: 3,
                     userId: "nick@gmail.com",
                 },
@@ -153,7 +180,7 @@ fdescribe('Charts', () => {
                     _id: 'd',
                     owner: 'Roch',
                     mood: 4,
-                    date: '', //date will be created during the test so that it matches what is made in component.addEmoji
+                    date: (new Date()).getUTCMilliseconds().toString(),
                     intensity: 2,
                     userId: "roch@gmail.com",
                 },
@@ -161,7 +188,7 @@ fdescribe('Charts', () => {
                     _id: 'd',
                     owner: 'Leo',
                     mood: 5,
-                    date: 'e', //date will be created during the test so that it matches what is made in component.addEmoji
+                    date: (new Date()).getUTCMilliseconds().toString(),
                     intensity: 1,
                     userId: "leo@gmail.com",
                 }
@@ -187,8 +214,6 @@ fdescribe('Charts', () => {
         TestBed.configureTestingModule({
             imports: [CustomModule],
             declarations: [ReportsComponent],
-            // providers:    [ UserListService ]  // NO! Don't provide the real service!
-            // Provide a test-double instead
             providers: [{provide: ReportsService, useValue: ReportsListServiceStub},
                 {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
                 {provide: AuthService, useValue: authServiceStub}]
@@ -203,34 +228,24 @@ fdescribe('Charts', () => {
         });
     }));
 
-    it('contains all the emojis', () => {
-        expect(reportsComponent.emojis.length).toBe(3);
+    it('filter graph works correctly', () => {
+        reportsComponent.filteredEmojis = emojiList;
+        reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
+        reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterGraph('06',3)).toEqual(1);
     });
 
-    it('contains a owner named \'Roch\'', () => {
-        expect(reportsComponent.emojis.some((emoji: Emoji) => emoji.owner === 'Nick')).toBe(true);
+    it('filter graph works correctly', () => {
+        reportsComponent.filteredEmojis = emojiList;
+        reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
+        reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
+        reportsComponent.inputType = "Last Month"
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterGraph('06',3)).toEqual(1);
     });
 
-    it('contain a user named \'Jamie\'', () => {
-        expect(reportsComponent.emojis.some((emoji: Emoji) => emoji.owner === 'Roch')).toBe(true);
-    });
 
-    it('doesn\'t contain a user named \'Santa\'', () => {
-        expect(reportsComponent.emojis.some((emoji: Emoji) => emoji.owner === 'Santa')).toBe(false);
-    });
-
-    it('has one emoji with the owner leo', () => {
-        expect(reportsComponent.emojis.filter((emoji: Emoji) => emoji.owner === 'Leo').length).toBe(1);
-    });
-
-    // it('emoji list filters by name', () => {
-    //
-    //     expect(emojiList.filteredEmojis.length).toBe(3);
-    //     emojiList.emojiOwner = 'L';
-    //     emojiList.refreshEmojis().subscribe(() => {
-    //         expect(emojiList.filteredEmojis.length).toBe(1);
-    //     });
-    // });
 
 
 });

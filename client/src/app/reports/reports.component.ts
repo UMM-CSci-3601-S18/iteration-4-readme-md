@@ -21,9 +21,9 @@ export class ReportsComponent implements OnInit {
     year = this.today.getFullYear();
     //difference = (this.today.getTimezoneOffset())*60*1000;
 
-    theDay = new Date(this.year,this.month,this.day);
-    startDate = new Date(this.year,this.month,this.day);
-    endDate = new Date(this.theDay.setDate(this.theDay.getDate()+1));
+    theDay = new Date(this.year, this.month, this.day);
+    startDate = new Date(this.year, this.month, this.day);
+    endDate = new Date(this.theDay.setDate(this.theDay.getDate() + 1));
     startDate2 = new FormControl(this.startDate);
     endDate2 = new FormControl(this.endDate);
     getDate;
@@ -41,7 +41,7 @@ export class ReportsComponent implements OnInit {
     public emojiIntensity: number;
     public inputType;
 
-    private highlightedID: {'$oid': string} = { '$oid': '' };
+    private highlightedID: { '$oid': string } = {'$oid': ''};
 
     // Inject the EmojiListService into this component.
     constructor(public reportsService: ReportsService, public authService: AuthService) {
@@ -64,13 +64,13 @@ export class ReportsComponent implements OnInit {
         return filterData.length;
     }
 
-    filterGraph(weekday, filterMood): number {
+    filterGraph(weekday, filterMood: number): number {
         console.log("this is wright");
         var filterData = this.filteredEmojis;
 
 
         // Filter by weekday
-        if (this.inputType == "Last month"){
+        if (this.inputType == "Last month") {
             filterData = filterData.filter(emoji => {
                 this.getDate = new Date(emoji.date);
                 return this.getDate.getDate() == weekday;
@@ -90,40 +90,40 @@ export class ReportsComponent implements OnInit {
         return filterData.length;
     }
 
-        filterForScatter(){
-            var filterData;
-            var xVal = []; // this will contain the date info
-            var yVal = []; // this will contain the intensity info
-            var data = [];
-            data[0] = []; // frustrated_array
-            data[1] = []; // worried_array
-            data[2] = []; // happy_array
-            data[3] = []; // meh_array
-            data[4] = []; // unhappy_array
-            // this will be the final return data array
+    filterForScatter() {
+        var filterData;
+        var xVal = []; // this will contain the date info
+        var yVal = []; // this will contain the intensity info
+        var data = [];
+        data[0] = []; // frustrated_array
+        data[1] = []; // worried_array
+        data[2] = []; // happy_array
+        data[3] = []; // meh_array
+        data[4] = []; // unhappy_array
+        // this will be the final return data array
 
-            // Filter by mood
-            for (var i = 1; i < 6; i++){
-                filterData = this.filteredEmojis;
-                var searchMood = i;
-                filterData = filterData.filter(emoji => {
-                    return !searchMood || searchMood == emoji.mood;
-                })
-                for (var j =0; j < filterData.length; j++){
-                    xVal.push(filterData[j].date);
-                    yVal.push(filterData[j].intensity);
-                }
-                for(var k = 0; k < xVal.length; k++){
-                    var obj = {x:xVal[k],y:yVal[k]};
-                    data[i-1].push(obj);
-                }
-                xVal = [];
-                yVal = [];
+        // Filter by mood
+        for (var i = 1; i < 6; i++) {
+            filterData = this.filteredEmojis;
+            var searchMood = i;
+            filterData = filterData.filter(emoji => {
+                return !searchMood || searchMood == emoji.mood;
+            })
+            for (var j = 0; j < filterData.length; j++) {
+                xVal.push(filterData[j].date);
+                yVal.push(filterData[j].intensity);
             }
-
-            return data;
-
+            for (var k = 0; k < xVal.length; k++) {
+                var obj = {x: xVal[k], y: yVal[k]};
+                data[i - 1].push(obj);
+            }
+            xVal = [];
+            yVal = [];
         }
+
+        return data;
+
+    }
 
     public filterEmojis(searchMood: number, searchIntensity: number, searchStartDate: any, searchEndDate: any): Emoji[] {
 
@@ -139,14 +139,14 @@ export class ReportsComponent implements OnInit {
         var day = today.getDate();
         var month = today.getMonth();
         var year = today.getFullYear();
-        var theDay = new Date(year,month,day);
+        var theDay = new Date(year, month, day);
 
         if (this.inputType == "This week") {
             var first = theDay.getDate() - theDay.getDay();
             searchStartDate = new Date(theDay.setDate(first));
             searchEndDate = new Date(theDay.setDate(theDay.getDate() + 6));
         } else if (this.inputType == "Last week") {
-            var first = theDay.getDate() - theDay.getDay()-7;
+            var first = theDay.getDate() - theDay.getDay() - 7;
             searchStartDate = new Date(theDay.setDate(first));
             searchEndDate = new Date(theDay.setDate(theDay.getDate() + 6));
         } else if (this.inputType == "Last month") {
@@ -154,9 +154,9 @@ export class ReportsComponent implements OnInit {
             searchEndDate = new Date(theDay.setDate(theDay.getDate() - 1));
             var count = theDay.getDate() - 1;
             searchStartDate = new Date(theDay.setDate(theDay.getDate() - count));
-        }  else if (this.inputType == "Today") {
-            searchStartDate = new Date(year,month,day);
-            searchEndDate = new Date(theDay.setDate(theDay.getDate()+1));
+        } else if (this.inputType == "Today") {
+            searchStartDate = new Date(year, month, day);
+            searchEndDate = new Date(theDay.setDate(theDay.getDate() + 1));
         }
 
 
@@ -166,7 +166,7 @@ export class ReportsComponent implements OnInit {
                 return true;
             });
 
-        } else{
+        } else {
 
             this.filteredEmojis = this.filteredEmojis.filter(emoji => {
                 return !searchMood || searchMood == emoji.mood;
@@ -186,7 +186,7 @@ export class ReportsComponent implements OnInit {
         }
 
         // Filter by date
-        if (this.inputType == "Show All Data"){
+        if (this.inputType == "Show All Data") {
             this.filteredEmojis = this.filteredEmojis.filter(emoji => {
                 return true;
             });
@@ -214,7 +214,7 @@ export class ReportsComponent implements OnInit {
         return rightForm;
     }*/
 
-    getThisWeekDate(){
+    getThisWeekDate() {
         var days = [];
         var today = new Date();
 
@@ -223,14 +223,14 @@ export class ReportsComponent implements OnInit {
         //var theDay =Last month this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
         days.push(firstDay.getTime());
         var nextDay;
-        for(var i=1; i<7; i++){
-            nextDay = new Date(today.setDate(today.getDate()+1));
+        for (var i = 1; i < 7; i++) {
+            nextDay = new Date(today.setDate(today.getDate() + 1));
             days.push(nextDay.getTime());
         }
         return days;
     }
 
-    getLastWeekDate(){
+    getLastWeekDate() {
         var days = [];
         var today = new Date();
         var first = today.getDate() - today.getDay() - 7;
@@ -238,8 +238,8 @@ export class ReportsComponent implements OnInit {
         //var theDay = this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
         days.push(firstDay.getTime());
         var nextDay;
-        for(var i=1; i<7; i++){
-            nextDay = new Date(today.setDate(today.getDate()+1));
+        for (var i = 1; i < 7; i++) {
+            nextDay = new Date(today.setDate(today.getDate() + 1));
             days.push(nextDay.getTime()
                 //this.getRightFormForDate(nextDay.getDate(), nextDay.getMonth(), nextDay.getFullYear())
             );
@@ -247,18 +247,18 @@ export class ReportsComponent implements OnInit {
         return days;
     }
 
-    getLastMonthDate(){
+    getLastMonthDate() {
         var days = [];
         var today = new Date();
         var firstdayCurr = new Date(today.setDate(1));
 
-        var lastday = new Date(today.setDate(today.getDate()-1));
+        var lastday = new Date(today.setDate(today.getDate() - 1));
         //var theDay = this.getRightFormForDate(lastday.getDate(), lastday.getMonth(), lastday.getFullYear())
         days.push(lastday.getTime());
         var preDay;
         var count = today.getDate();
-        for (var i = 1; i < count; i++){
-            preDay = new Date(today.setDate(today.getDate()-1));
+        for (var i = 1; i < count; i++) {
+            preDay = new Date(today.setDate(today.getDate() - 1));
             days.push(preDay.getTime()
                 //this.getRightFormForDate(preDay.getDate(), preDay.getMonth(), preDay.getFullYear())
             );
@@ -267,7 +267,7 @@ export class ReportsComponent implements OnInit {
         return days;
     }
 
-    updateChart(): void{
+    updateChart(): void {
 
         this.myChart.destroy();
 
@@ -275,9 +275,10 @@ export class ReportsComponent implements OnInit {
         this.ctx = this.canvas;
 
 
-        if (this.inputType == "This week"){
-            let happy_weekly_totals = {"label":"Happy",
-                "data":[
+        if (this.inputType == "This week") {
+            let happy_weekly_totals = {
+                "label": "Happy",
+                "data": [
                     this.filterGraph('0', 3),
 
                     this.filterGraph('1', 3),
@@ -289,12 +290,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 3)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(0, 204, 0)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(0, 204, 0)",
+                "lineTension": 0.1
+            };
 
-            let unhappy_weekly_totals = {"label":"Sad",
-                "data":[
+            let unhappy_weekly_totals = {
+                "label": "Sad",
+                "data": [
                     this.filterGraph('0', 5),
                     this.filterGraph('1', 5),
                     this.filterGraph('2', 5),
@@ -304,12 +307,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 5)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(0, 102, 204)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(0, 102, 204)",
+                "lineTension": 0.1
+            };
 
-            let meh_weekly_totals = {"label":"Meh",
-                "data":[
+            let meh_weekly_totals = {
+                "label": "Meh",
+                "data": [
                     this.filterGraph('0', 4),
                     this.filterGraph('1', 4),
                     this.filterGraph('2', 4),
@@ -319,12 +324,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 4)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(96, 96, 96)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(96, 96, 96)",
+                "lineTension": 0.1
+            };
 
-            let frustrated_weekly_totals = {"label":"Mad",
-                "data":[
+            let frustrated_weekly_totals = {
+                "label": "Mad",
+                "data": [
                     this.filterGraph('0', 1),
                     this.filterGraph('1', 1),
                     this.filterGraph('2', 1),
@@ -334,12 +341,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 1)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(204, 0, 0)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(204, 0, 0)",
+                "lineTension": 0.1
+            };
 
-            let worried_weekly_totals = {"label":"Worried",
-                "data":[
+            let worried_weekly_totals = {
+                "label": "Worried",
+                "data": [
                     this.filterGraph('0', 2),
                     this.filterGraph('1', 2),
                     this.filterGraph('2', 2),
@@ -349,9 +358,10 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 2)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(204, 0, 204)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(204, 0, 204)",
+                "lineTension": 0.1
+            };
 
             this.myChart = new Chart(this.ctx, {
                 type: 'line',
@@ -370,7 +380,7 @@ export class ReportsComponent implements OnInit {
                     responsive: true,
                     maintainAspectRation: false,
                     scales: {
-                        xAxes:[{
+                        xAxes: [{
                             type: 'time',
 
                             time: {
@@ -394,9 +404,10 @@ export class ReportsComponent implements OnInit {
                     }
                 }
             });
-        } else if (this.inputType == "Last week"){
-            let happy_weekly_totals = {"label":"Happy",
-                "data":[
+        } else if (this.inputType == "Last week") {
+            let happy_weekly_totals = {
+                "label": "Happy",
+                "data": [
                     this.filterGraph('0', 3),
                     this.filterGraph('1', 3),
                     this.filterGraph('2', 3),
@@ -406,12 +417,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 3)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(0, 204, 0)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(0, 204, 0)",
+                "lineTension": 0.1
+            };
 
-            let unhappy_weekly_totals = {"label":"Sad",
-                "data":[
+            let unhappy_weekly_totals = {
+                "label": "Sad",
+                "data": [
                     this.filterGraph('0', 5),
                     this.filterGraph('1', 5),
                     this.filterGraph('2', 5),
@@ -421,12 +434,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 5)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(0, 102, 204)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(0, 102, 204)",
+                "lineTension": 0.1
+            };
 
-            let meh_weekly_totals = {"label":"Meh",
-                "data":[
+            let meh_weekly_totals = {
+                "label": "Meh",
+                "data": [
                     this.filterGraph('0', 4),
                     this.filterGraph('1', 4),
                     this.filterGraph('2', 4),
@@ -436,12 +451,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 4)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(96, 96, 96)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(96, 96, 96)",
+                "lineTension": 0.1
+            };
 
-            let frustrated_weekly_totals = {"label":"Mad",
-                "data":[
+            let frustrated_weekly_totals = {
+                "label": "Mad",
+                "data": [
                     this.filterGraph('0', 1),
                     this.filterGraph('1', 1),
                     this.filterGraph('2', 1),
@@ -451,12 +468,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 1)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(204, 0, 0)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(204, 0, 0)",
+                "lineTension": 0.1
+            };
 
-            let worried_weekly_totals = {"label":"Worried",
-                "data":[
+            let worried_weekly_totals = {
+                "label": "Worried",
+                "data": [
                     this.filterGraph('0', 2),
                     this.filterGraph('1', 2),
                     this.filterGraph('2', 2),
@@ -466,9 +485,10 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('6', 2)
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(204, 0, 204)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(204, 0, 204)",
+                "lineTension": 0.1
+            };
 
             this.myChart = new Chart(this.ctx, {
                 type: 'line',
@@ -487,7 +507,7 @@ export class ReportsComponent implements OnInit {
                     responsive: true,
                     maintainAspectRation: false,
                     scales: {
-                        xAxes:[{
+                        xAxes: [{
                             type: 'time',
 
                             time: {
@@ -512,9 +532,10 @@ export class ReportsComponent implements OnInit {
                 }
             });
 
-        } else if (this.inputType == "Last month"){
-            let happy_weekly_totals = {"label":"Happy",
-                "data":[
+        } else if (this.inputType == "Last month") {
+            let happy_weekly_totals = {
+                "label": "Happy",
+                "data": [
                     this.filterGraph('1', 3),
                     this.filterGraph('2', 3),
                     this.filterGraph('3', 3),
@@ -548,12 +569,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('31', 3),
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(0, 204, 0)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(0, 204, 0)",
+                "lineTension": 0.1
+            };
 
-            let unhappy_weekly_totals = {"label":"Sad",
-                "data":[
+            let unhappy_weekly_totals = {
+                "label": "Sad",
+                "data": [
                     this.filterGraph('1', 5),
                     this.filterGraph('2', 5),
                     this.filterGraph('3', 5),
@@ -587,12 +610,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('31', 5),
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(0, 102, 204)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(0, 102, 204)",
+                "lineTension": 0.1
+            };
 
-            let meh_weekly_totals = {"label":"Meh",
-                "data":[
+            let meh_weekly_totals = {
+                "label": "Meh",
+                "data": [
                     this.filterGraph('1', 4),
                     this.filterGraph('2', 4),
                     this.filterGraph('3', 4),
@@ -626,12 +651,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('31', 4),
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(96, 96, 96)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(96, 96, 96)",
+                "lineTension": 0.1
+            };
 
-            let frustrated_weekly_totals = {"label":"Angry",
-                "data":[
+            let frustrated_weekly_totals = {
+                "label": "Angry",
+                "data": [
                     this.filterGraph('1', 1),
                     this.filterGraph('2', 1),
                     this.filterGraph('3', 1),
@@ -665,12 +692,14 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('31', 1),
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(204, 0, 0)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(204, 0, 0)",
+                "lineTension": 0.1
+            };
 
-            let worried_weekly_totals = {"label":"Worried",
-                "data":[
+            let worried_weekly_totals = {
+                "label": "Worried",
+                "data": [
                     this.filterGraph('1', 2),
                     this.filterGraph('2', 2),
                     this.filterGraph('3', 2),
@@ -704,9 +733,10 @@ export class ReportsComponent implements OnInit {
                     this.filterGraph('31', 2),
                 ],
                 hidden: false,
-                "fill":false,
-                "borderColor":"rgb(204, 0, 204)",
-                "lineTension":0.1};
+                "fill": false,
+                "borderColor": "rgb(204, 0, 204)",
+                "lineTension": 0.1
+            };
 
             this.myChart = new Chart(this.ctx, {
                 type: 'line',
@@ -725,7 +755,7 @@ export class ReportsComponent implements OnInit {
                     responsive: true,
                     maintainAspectRation: false,
                     scales: {
-                        xAxes:[{
+                        xAxes: [{
                             type: 'time',
 
                             time: {
@@ -750,27 +780,27 @@ export class ReportsComponent implements OnInit {
                 }
             });
 
-        } else if (this.inputType == "Today"){
+        } else if (this.inputType == "Today") {
             this.buildChart();
 
-        } else if (this.inputType == "Show All Data"){
-            this.myChart = new Chart (this.ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: [ "Blue", "Gray", "Purple", "Yellow", "Black"],
-                        datasets: [{
-                            backgroundColor: [
-                                "#2ecc71",
-                                "#3498db",
-                                "#95a5a6",
-                                "#9b59b6",
-                                "#f1c40f",
+        } else if (this.inputType == "Show All Data") {
+            this.myChart = new Chart(this.ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Blue", "Gray", "Purple", "Yellow", "Black"],
+                    datasets: [{
+                        backgroundColor: [
+                            "#2ecc71",
+                            "#3498db",
+                            "#95a5a6",
+                            "#9b59b6",
+                            "#f1c40f",
 
-                            ],
-                            data: [this.filterAllEmotions(1), this.filterAllEmotions(2), this.filterAllEmotions(3), this.filterAllEmotions(4), this.filterAllEmotions(5)]
-                        }]
-                    }
-                });
+                        ],
+                        data: [this.filterAllEmotions(1), this.filterAllEmotions(2), this.filterAllEmotions(3), this.filterAllEmotions(4), this.filterAllEmotions(5)]
+                    }]
+                }
+            });
         }
 
     }
@@ -787,49 +817,47 @@ export class ReportsComponent implements OnInit {
         let frustrated_data = {
             "label": "Frustrated",
             "data": showData[0],
-            "backgroundColor":"rgb(204, 0, 204)",
-            "fill":false,
-            "showLine":false,
+            "backgroundColor": "rgb(204, 0, 204)",
+            "fill": false,
+            "showLine": false,
             "pointRadius": 5,
         };
 
         let worried_data = {
             "label": "Worried",
             "data": showData[1],
-            "backgroundColor":"rgb(204, 204, 0)",
-            "fill":false,
-            "showLine":false,
+            "backgroundColor": "rgb(204, 204, 0)",
+            "fill": false,
+            "showLine": false,
             "pointRadius": 5,
         };
 
         let happy_data = {
             "label": "Happy",
             "data": showData[2],
-            "backgroundColor":"rgb(0, 204, 204)",
-            "fill":false,
-            "showLine":false,
+            "backgroundColor": "rgb(0, 204, 204)",
+            "fill": false,
+            "showLine": false,
             "pointRadius": 5,
         };
 
         let meh_data = {
             "label": "Meh",
             "data": showData[3],
-            "backgroundColor":"rgb(204, 204, 204)",
-            "fill":false,
-            "showLine":false,
+            "backgroundColor": "rgb(204, 204, 204)",
+            "fill": false,
+            "showLine": false,
             "pointRadius": 5,
         };
 
         let unhappy_data = {
             "label": "Unhappy",
             "data": showData[4],
-            "backgroundColor":"rgb(0, 0, 204)",
-            "fill":false,
-            "showLine":false,
+            "backgroundColor": "rgb(0, 0, 204)",
+            "fill": false,
+            "showLine": false,
             "pointRadius": 5,
         };
-
-
 
 
         this.myChart = new Chart(this.ctx, {
@@ -843,31 +871,29 @@ export class ReportsComponent implements OnInit {
                     unhappy_data
                 ]
             },
-            options:{
+            options: {
                 scales: {
                     xAxes: [{
                         type: 'time',
                         distribution: 'linear',
-                        time:{
-                           unit: 'minute',
+                        time: {
+                            unit: 'minute',
                             unitStepSize: 60,
-                           //tooltipFormat: "hh:mm:ss",
-                           //round: 'hour',
-                           displayFormats: {
-                               minute: 'h:mm a',
-                           },
-                       }
+                            //tooltipFormat: "hh:mm:ss",
+                            //round: 'hour',
+                            displayFormats: {
+                                minute: 'h:mm a',
+                            },
+                        }
                     }],
                     yAxes: [{
-                        ticks:{
-                            beginAtZero:true
+                        ticks: {
+                            beginAtZero: true
                         }
                     }]
                 }
             }
         });
-
-
 
 
     }
@@ -876,6 +902,7 @@ export class ReportsComponent implements OnInit {
     ngAfterViewInit(): void {
         this.buildChart();
     }
+
     /**
      * Starts an asynchronous operation to update the emojis list
      *
@@ -887,7 +914,7 @@ export class ReportsComponent implements OnInit {
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
         //if (this.inputType ==
-        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(this.user.email);
+        const emojiListObservable: Observable<Emoji[]> = this.reportsService.getEmojis(localStorage.getItem('userId'));
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;
@@ -902,10 +929,7 @@ export class ReportsComponent implements OnInit {
     ngOnInit(): void {
 
 
-
-
-
-        if(environment.envName != 'e2e') {
+        if (environment.envName != 'e2e') {
             this.authService.authState.subscribe((user) => {
                 this.user = user;
             });
@@ -944,7 +968,8 @@ export class ReportsComponent implements OnInit {
     stringToDate(date: string): any {
         return new Date(date);
     }
-    totalNumberMoods(): number{
+
+    totalNumberMoods(): number {
         return this.filteredEmojis.length;
     }
 
