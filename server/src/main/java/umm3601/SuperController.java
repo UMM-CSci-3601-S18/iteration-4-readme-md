@@ -75,8 +75,25 @@ public abstract class SuperController {
             filterDoc = filterDoc.append("body", contentRegQuery);
         }
 
-        FindIterable<Document> matchingItems = collection.find(filterDoc);
+//        if (queryParams.containsKey("date")) {
+//            String targetContent = (queryParams.get("date")[0]);
+//            String[] arg1 = targetContent.split(",");
+//            String targetStartContent = arg1[0];
+//            String targetEndContent = arg1[1];
+//            Document contentRegQuery = new Document();
+//            contentRegQuery.append("$gte", targetStartContent);
+//            System.out.println(JSON.serialize(contentRegQuery));
+//            contentRegQuery.append("$lte", targetEndContent);
+//            System.out.println(JSON.serialize(contentRegQuery));
+//            filterDoc = filterDoc.append("date", contentRegQuery);
+//            System.out.println("here");
+//            System.out.println(JSON.serialize(filterDoc));
+//        }
 
+       // db.emotions.find({ "date" : {$lte: "Wed Mar 3 2018 12:02:21 GMT-0500",$gte: "Wed Mar 3 2018 12:02:21 GMT-0500"}})
+
+        FindIterable<Document> matchingItems = collection.find(filterDoc);
+System.out.println(JSON.serialize(matchingItems));
         return JSON.serialize(matchingItems);
     }
 }
