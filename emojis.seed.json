@@ -1,583 +1,106 @@
 [
     {
-        "_id": "sad",
-        "mood": 2,
-        "date": "Tue Nov 07 1995 06:30:35 GMT+0000 (UTC)",
-        "owner": "Gross",
-        "email": "sunshine@test.com"
-    },
-    {
-        "_id": "5a98ab37df1d93f364a9e893",
-        "mood": 2,
-        "date": "Thu May 29 2014 07:44:46 GMT+0000 (UTC)",
-        "owner": "Christie"
-    },
-    {
-        "_id": "5a98ab376d39422503725a06",
-        "mood": 2,
-        "date": "Mon Nov 21 1983 15:57:18 GMT+0000 (UTC)",
-        "owner": "Tania"
-    },
-    {
-        "_id": "5a98ab3775eb55d52cd87398",
+        "id": "5ae23e956beb40dfc35097b2",
+        "owner": "Kai Zang",
         "mood": 5,
-        "date": "Fri Aug 08 1997 01:46:48 GMT+0000 (UTC)",
-        "owner": "Elinor"
+        "intensity": 1,
+        "date": "2018-05-03T05:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab376551b24c43a903cb",
+        "id": "5ae23e951149c4c2135c37ca",
+        "owner": "Kai Zang",
         "mood": 3,
-        "date": "Tue Apr 02 2002 13:25:27 GMT+0000 (UTC)",
-        "owner": "Inez",
-        "email": "sunshine@test.com"
+        "intensity": 1,
+        "date": "2018-05-03T06:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37c00223a9d183508a",
+        "id": "5ae23e95b45ece4051a33760",
+        "owner": "Kai Zang",
+        "mood": 3,
+        "intensity": 1,
+        "date": "2018-05-03T07:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
+    },
+    {
+        "id": "5ae23e95eecb3260b74d6641",
+        "owner": "Kai Zang",
         "mood": 4,
-        "date": "Fri May 26 1989 12:09:33 GMT+0000 (UTC)",
-        "owner": "Harvey",
-        "email": "sunshine@test.com"
+        "intensity": 1,
+        "date": "2018-05-03T08:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3718a4a2c2ebf59a18",
-        "mood": 3,
-        "date": "Sat Apr 22 2017 10:15:08 GMT+0000 (UTC)",
-        "owner": "Emily"
-    },
-    {
-        "_id": "5a98ab37073a0e36d0b712c1",
-        "mood": 3,
-        "date": "Mon Jun 12 1989 08:35:52 GMT+0000 (UTC)",
-        "owner": "Janell"
-    },
-    {
-        "_id": "5a98ab372f626d2c526a4d7b",
-        "mood": 3,
-        "date": "Sat Dec 02 1989 03:56:34 GMT+0000 (UTC)",
-        "owner": "Wilkins"
-    },
-    {
-        "_id": "5a98ab37ba14a7dc1f9400fd",
-        "mood": 2,
-        "date": "Mon Dec 12 2005 07:46:44 GMT+0000 (UTC)",
-        "owner": "Yesenia"
-    },
-    {
-        "_id": "5a98ab376daa873c39298750",
-        "mood": 1,
-        "date": "Tue Apr 06 1993 19:09:53 GMT+0000 (UTC)",
-        "owner": "Zimmerman",
-        "email": "sunshine@test.com"
-    },
-    {
-        "_id": "5a98ab374e63cefba95ee9df",
-        "mood": 1,
-        "date": "Mon Aug 10 2015 20:49:36 GMT+0000 (UTC)",
-        "owner": "Tasha"
-    },
-    {
-        "_id": "5a98ab37aaa89d63b84f22f3",
-        "mood": 5,
-        "date": "Wed Jan 15 2003 18:55:24 GMT+0000 (UTC)",
-        "owner": "Kitty",
-        "email": "sunshine@test.com"
-    },
-    {
-        "_id": "5a98ab370c0c989af8c656fb",
-        "mood": 2,
-        "date": "Sun Aug 27 2000 21:37:16 GMT+0000 (UTC)",
-        "owner": "Wilma"
-    },
-    {
-        "_id": "5a98ab37ea7520af5b54149b",
+        "id": "5ae23e955c578af23058228f",
+        "owner": "Kai Zang",
         "mood": 4,
-        "date": "Wed Apr 02 2003 09:16:39 GMT+0000 (UTC)",
-        "owner": "Kathie"
+        "intensity": 2,
+        "date": "2018-05-03T09:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab370ae02bfb2c8128c4",
+        "id": "5ae23e95bfec5003298b9743",
+        "owner": "Kai Zang",
         "mood": 3,
-        "date": "Tue Oct 27 2015 08:28:13 GMT+0000 (UTC)",
-        "owner": "Alberta"
+        "intensity": 1,
+        "date": "2018-05-03T10:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab379a3b62f5aecbcda5",
-        "mood": 3,
-        "date": "Thu Sep 05 2013 17:31:22 GMT+0000 (UTC)",
-        "owner": "Janis"
-    },
-    {
-        "_id": "5a98ab37f1c7864ff76ab420",
-        "mood": 3,
-        "date": "Tue Jun 29 2010 14:24:15 GMT+0000 (UTC)",
-        "owner": "Burris"
-    },
-    {
-        "_id": "5a98ab377ef8a076d9053c6c",
-        "mood": 1,
-        "date": "Tue Dec 09 1997 05:00:39 GMT+0000 (UTC)",
-        "owner": "Farley"
-    },
-    {
-        "_id": "5a98ab371edbff038666d4bb",
+        "id": "5ae23e95e66f51e98b1c94dc",
+        "owner": "Kai Zang",
         "mood": 5,
-        "date": "Thu May 03 1990 15:49:54 GMT+0000 (UTC)",
-        "owner": "Estelle"
+        "intensity": 2,
+        "date": "2018-05-03T11:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37da7a26528d66db8f",
-        "mood": 1,
-        "date": "Mon Mar 25 2002 21:18:18 GMT+0000 (UTC)",
-        "owner": "Earnestine"
+        "id": "5ae23e95667067b684432c5a",
+        "owner": "Kai Zang",
+        "mood": 3,
+        "intensity": 1,
+        "date": "2018-05-03T12:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3738774f676dc2d718",
+        "id": "5ae23e95f7b3b6017fb7c297",
+        "owner": "Kai Zang",
         "mood": 4,
-        "date": "Wed May 26 2010 04:27:53 GMT+0000 (UTC)",
-        "owner": "Kris"
+        "intensity": 2,
+        "date": "2018-05-03T13:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab3792b750093796cd5f",
-        "mood": 5,
-        "date": "Mon Oct 10 1977 19:10:46 GMT+0000 (UTC)",
-        "owner": "Williamson"
-    },
-    {
-        "_id": "5a98ab37d8cdec7276964dfe",
-        "mood": 1,
-        "date": "Sat Feb 27 1988 13:26:49 GMT+0000 (UTC)",
-        "owner": "Jo"
-    },
-    {
-        "_id": "5a98ab37ca5432a83af504b0",
-        "mood": 1,
-        "date": "Fri Mar 09 2012 07:04:07 GMT+0000 (UTC)",
-        "owner": "Parsons"
-    },
-    {
-        "_id": "5a98ab37a5210769711b6d10",
-        "mood": 3,
-        "date": "Thu Mar 16 2017 19:16:55 GMT+0000 (UTC)",
-        "owner": "Lourdes"
-    },
-    {
-        "_id": "5a98ab3771cfd646c60b16ee",
+        "id": "5ae23e95a3704639dae003ed",
+        "owner": "Kai Zang",
         "mood": 4,
-        "date": "Sat Sep 23 1972 17:38:18 GMT+0000 (UTC)",
-        "owner": "Brittney"
+        "intensity": 2,
+        "date": "2018-05-03T14:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab374580120640476dc8",
-        "mood": 5,
-        "date": "Tue May 29 1979 18:19:33 GMT+0000 (UTC)",
-        "owner": "Nolan"
-    },
-    {
-        "_id": "5a98ab37cf415d7c072bc954",
-        "mood": 3,
-        "date": "Thu Jul 19 1990 09:53:31 GMT+0000 (UTC)",
-        "owner": "Contreras"
-    },
-    {
-        "_id": "5a98ab374f09d19047d166f4",
-        "mood": 3,
-        "date": "Tue Jul 21 1992 22:40:55 GMT+0000 (UTC)",
-        "owner": "Bonner"
-    },
-    {
-        "_id": "5a98ab372ba8a78e1c0acb1a",
+        "id": "5ae23e95b8d7ef3a89e8f5a8",
+        "owner": "Kai Zang",
         "mood": 1,
-        "date": "Tue Jul 16 2013 18:15:02 GMT+0000 (UTC)",
-        "owner": "Hilary"
+        "intensity": 1,
+        "date": "2018-05-03T20:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37cabba4142b3aa02a",
-        "mood": 5,
-        "date": "Tue Apr 01 2003 01:00:57 GMT+0000 (UTC)",
-        "owner": "Nanette"
-    },
-    {
-        "_id": "5a98ab37cb8810333895824b",
-        "mood": 4,
-        "date": "Sun Jul 23 1972 10:33:52 GMT+0000 (UTC)",
-        "owner": "Montoya"
-    },
-    {
-        "_id": "5a98ab37ad2ee2177850beb1",
-        "mood": 5,
-        "date": "Tue Aug 31 1982 17:55:02 GMT+0000 (UTC)",
-        "owner": "Solomon"
-    },
-    {
-        "_id": "5a98ab374b60f7710e7a4ac1",
-        "mood": 3,
-        "date": "Mon Feb 06 1984 08:06:37 GMT+0000 (UTC)",
-        "owner": "Ellison"
-    },
-    {
-        "_id": "5a98ab3749b7858be22d30d1",
+        "id": "5ae23e95a0d21e807c2a1664",
+        "owner": "Kai Zang",
         "mood": 1,
-        "date": "Mon Mar 01 1999 15:38:12 GMT+0000 (UTC)",
-        "owner": "Shepherd"
+        "intensity": 1,
+        "date": "2018-05-03T24:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     },
     {
-        "_id": "5a98ab37704831900fc875bd",
-        "mood": 4,
-        "date": "Tue Sep 03 2013 23:28:02 GMT+0000 (UTC)",
-        "owner": "Hammond"
-    },
-    {
-        "_id": "5a98ab3700ca9fc6813e15e7",
-        "mood": 5,
-        "date": "Thu Feb 03 1977 04:12:03 GMT+0000 (UTC)",
-        "owner": "Brewer"
-    },
-    {
-        "_id": "5a98ab370df239e16d568469",
+        "id": "5ae23e956d793da9867d6863",
+        "owner": "Kai Zang",
         "mood": 1,
-        "date": "Fri Dec 02 1977 01:12:39 GMT+0000 (UTC)",
-        "owner": "Cook"
-    },
-    {
-        "_id": "5a98ab371be198ba6ca4e942",
-        "mood": 5,
-        "date": "Mon Jul 17 2017 21:54:32 GMT+0000 (UTC)",
-        "owner": "Brandy"
-    },
-    {
-        "_id": "5a98ab37ced1dff30bfe5c55",
-        "mood": 3,
-        "date": "Tue Feb 07 1984 04:39:31 GMT+0000 (UTC)",
-        "owner": "Fuller"
-    },
-    {
-        "_id": "5a98ab37c2be0d370ac267e9",
-        "mood": 4,
-        "date": "Mon Mar 22 2004 04:58:14 GMT+0000 (UTC)",
-        "owner": "Dolly"
-    },
-    {
-        "_id": "5a98ab37a5479f3ea470f0ce",
-        "mood": 2,
-        "date": "Sun Nov 24 2002 11:02:18 GMT+0000 (UTC)",
-        "owner": "Petersen"
-    },
-    {
-        "_id": "5a98ab37f35c07e8fa2882d0",
-        "mood": 1,
-        "date": "Mon Jun 29 1987 08:11:49 GMT+0000 (UTC)",
-        "owner": "Mindy"
-    },
-    {
-        "_id": "5a98ab37e732348ca665503c",
-        "mood": 3,
-        "date": "Tue Sep 24 1996 03:41:57 GMT+0000 (UTC)",
-        "owner": "Massey"
-    },
-    {
-        "_id": "5a98ab374e46b12e5ff8c60f",
-        "mood": 5,
-        "date": "Sun Mar 03 2013 06:07:01 GMT+0000 (UTC)",
-        "owner": "Gregory"
-    },
-    {
-        "_id": "5a98ab376879fcffcbe7de16",
-        "mood": 4,
-        "date": "Tue Mar 22 2005 01:42:50 GMT+0000 (UTC)",
-        "owner": "Watts"
-    },
-    {
-        "_id": "5a98ab37d976b23fc26aa9fd",
-        "mood": 5,
-        "date": "Thu Jun 08 1995 13:22:00 GMT+0000 (UTC)",
-        "owner": "Patricia"
-    },
-    {
-        "_id": "5a98ab371c67856db447af69",
-        "mood": 1,
-        "date": "Sat May 13 2006 21:25:01 GMT+0000 (UTC)",
-        "owner": "Arnold"
-    },
-    {
-        "_id": "5a98ab376094fee56e7255fd",
-        "mood": 2,
-        "date": "Fri Jan 31 1997 09:46:40 GMT+0000 (UTC)",
-        "owner": "Lucile"
-    },
-    {
-        "_id": "5a98ab37a6c3907eaa36b222",
-        "mood": 4,
-        "date": "Thu Jul 23 1992 17:12:43 GMT+0000 (UTC)",
-        "owner": "Howe"
-    },
-    {
-        "_id": "5a98ab3799b0caed639d10c7",
-        "mood": 2,
-        "date": "Mon Jan 31 1994 02:26:44 GMT+0000 (UTC)",
-        "owner": "Holt"
-    },
-    {
-        "_id": "5a98ab37989e0efadddf80e6",
-        "mood": 1,
-        "date": "Mon Jun 19 1989 13:46:14 GMT+0000 (UTC)",
-        "owner": "Hebert"
-    },
-    {
-        "_id": "5a98ab3744d65fc05cc071b9",
-        "mood": 5,
-        "date": "Sun Jul 23 1978 11:36:26 GMT+0000 (UTC)",
-        "owner": "Briggs"
-    },
-    {
-        "_id": "5a98ab37eb1372e520f4ee87",
-        "mood": 4,
-        "date": "Sun Jul 01 2007 18:56:54 GMT+0000 (UTC)",
-        "owner": "Marietta"
-    },
-    {
-        "_id": "5a98ab37e5fad202ab73b0bc",
-        "mood": 2,
-        "date": "Tue Dec 14 1971 05:58:06 GMT+0000 (UTC)",
-        "owner": "Booker"
-    },
-    {
-        "_id": "5a98ab37ab2d91faac893203",
-        "mood": 2,
-        "date": "Thu Jun 07 1990 17:16:51 GMT+0000 (UTC)",
-        "owner": "Tabatha"
-    },
-    {
-        "_id": "5a98ab373dc191500afcc693",
-        "mood": 1,
-        "date": "Wed Dec 30 1987 15:45:53 GMT+0000 (UTC)",
-        "owner": "Margaret"
-    },
-    {
-        "_id": "5a98ab376a904055b062700c",
-        "mood": 2,
-        "date": "Mon Jan 14 1985 05:01:16 GMT+0000 (UTC)",
-        "owner": "Murray"
-    },
-    {
-        "_id": "5a98ab37c4b168965a770d9f",
-        "mood": 3,
-        "date": "Sat Mar 03 1979 04:50:34 GMT+0000 (UTC)",
-        "owner": "Hendrix"
-    },
-    {
-        "_id": "5a98ab37d25a3fad57041cd0",
-        "mood": 5,
-        "date": "Mon Mar 25 1991 14:10:24 GMT+0000 (UTC)",
-        "owner": "Myers"
-    },
-    {
-        "_id": "5a98ab3778eb26ade48b15d2",
-        "mood": 1,
-        "date": "Mon Jan 19 2004 13:11:22 GMT+0000 (UTC)",
-        "owner": "Shaffer"
-    },
-    {
-        "_id": "5a98ab37a81334fcda9dcc6c",
-        "mood": 2,
-        "date": "Wed Dec 11 1991 07:43:59 GMT+0000 (UTC)",
-        "owner": "Esmeralda"
-    },
-    {
-        "_id": "5a98ab3709af5de58e4e1297",
-        "mood": 3,
-        "date": "Sat Jun 22 1985 02:05:29 GMT+0000 (UTC)",
-        "owner": "Gutierrez"
-    },
-    {
-        "_id": "5a98ab37f7b840380fa8c312",
-        "mood": 3,
-        "date": "Wed Jul 15 2009 11:41:47 GMT+0000 (UTC)",
-        "owner": "Jeanine"
-    },
-    {
-        "_id": "5a98ab3763e8e5fbd3188a21",
-        "mood": 3,
-        "date": "Fri Mar 07 1997 20:38:14 GMT+0000 (UTC)",
-        "owner": "Guadalupe"
-    },
-    {
-        "_id": "5a98ab3758b6f01a44ca32a4",
-        "mood": 2,
-        "date": "Thu Jul 30 1992 09:17:47 GMT+0000 (UTC)",
-        "owner": "Downs"
-    },
-    {
-        "_id": "5a98ab37b126fbe1333ee590",
-        "mood": 3,
-        "date": "Sat Oct 09 2004 23:51:32 GMT+0000 (UTC)",
-        "owner": "Petty"
-    },
-    {
-        "_id": "5a98ab37ec2c5be333288a21",
-        "mood": 5,
-        "date": "Sat Oct 21 2006 11:30:32 GMT+0000 (UTC)",
-        "owner": "Lott"
-    },
-    {
-        "_id": "5a98ab37d9b31348a7ca4651",
-        "mood": 3,
-        "date": "Fri Aug 12 1988 03:57:53 GMT+0000 (UTC)",
-        "owner": "Cecile"
-    },
-    {
-        "_id": "5a98ab37fe0aaedacf87ee79",
-        "mood": 2,
-        "date": "Wed Jun 29 1983 13:07:58 GMT+0000 (UTC)",
-        "owner": "Allie"
-    },
-    {
-        "_id": "5a98ab37ccbc60161b0d7446",
-        "mood": 4,
-        "date": "Sun Feb 18 1973 04:25:09 GMT+0000 (UTC)",
-        "owner": "Davidson"
-    },
-    {
-        "_id": "5a98ab37a13e488921ca31f1",
-        "mood": 1,
-        "date": "Fri Nov 28 2003 01:09:25 GMT+0000 (UTC)",
-        "owner": "Rosanne"
-    },
-    {
-        "_id": "5a98ab37136bf948999a91ed",
-        "mood": 5,
-        "date": "Fri Sep 24 1971 06:39:55 GMT+0000 (UTC)",
-        "owner": "Wolf"
-    },
-    {
-        "_id": "5a98ab3736ba3d2141ea3066",
-        "mood": 4,
-        "date": "Thu Apr 08 2010 18:10:10 GMT+0000 (UTC)",
-        "owner": "Ruthie"
-    },
-    {
-        "_id": "5a98ab370546c44436da615a",
-        "mood": 3,
-        "date": "Sun Sep 11 2011 22:19:41 GMT+0000 (UTC)",
-        "owner": "Christy"
-    },
-    {
-        "_id": "5a98ab3781b2f789cf51f59b",
-        "mood": 5,
-        "date": "Wed Mar 06 1985 01:59:18 GMT+0000 (UTC)",
-        "owner": "Harper"
-    },
-    {
-        "_id": "5a98ab37963266541150c4e0",
-        "mood": 5,
-        "date": "Tue Mar 14 1978 08:14:09 GMT+0000 (UTC)",
-        "owner": "Harriett"
-    },
-    {
-        "_id": "5a98ab374d073a410041a83a",
-        "mood": 5,
-        "date": "Tue Jan 11 1977 19:06:02 GMT+0000 (UTC)",
-        "owner": "Heidi"
-    },
-    {
-        "_id": "5a98ab3718a7268365882821",
-        "mood": 4,
-        "date": "Sat Feb 28 2004 12:32:09 GMT+0000 (UTC)",
-        "owner": "Ilene"
-    },
-    {
-        "_id": "5a98ab37f4d3323a98bcd9fe",
-        "mood": 2,
-        "date": "Fri May 25 1979 03:02:41 GMT+0000 (UTC)",
-        "owner": "Aisha"
-    },
-    {
-        "_id": "5a98ab37f031687cda1d73af",
-        "mood": 4,
-        "date": "Sun May 13 2001 09:21:18 GMT+0000 (UTC)",
-        "owner": "Levy"
-    },
-    {
-        "_id": "5a98ab375eb84175db5c8e9b",
-        "mood": 1,
-        "date": "Sun May 18 1997 23:23:39 GMT+0000 (UTC)",
-        "owner": "Laurel"
-    },
-    {
-        "_id": "5a98ab372f26e6a4afa41ed0",
-        "mood": 4,
-        "date": "Thu Mar 20 1997 21:20:23 GMT+0000 (UTC)",
-        "owner": "Kane"
-    },
-    {
-        "_id": "5a98ab376555934b9a1f3c0c",
-        "mood": 1,
-        "date": "Fri Feb 06 1981 20:23:10 GMT+0000 (UTC)",
-        "owner": "Oneill"
-    },
-    {
-        "_id": "5a98ab375b5ce0ac976d729b",
-        "mood": 2,
-        "date": "Sun Aug 27 2000 19:27:53 GMT+0000 (UTC)",
-        "owner": "Paula"
-    },
-    {
-        "_id": "5a98ab376de9c3133720d4c2",
-        "mood": 1,
-        "date": "Fri Nov 17 2017 17:15:18 GMT+0000 (UTC)",
-        "owner": "Richards"
-    },
-    {
-        "_id": "5a98ab37d2b6aa2263d9cc71",
-        "mood": 2,
-        "date": "Tue Mar 08 2005 16:28:50 GMT+0000 (UTC)",
-        "owner": "Patel"
-    },
-    {
-        "_id": "5a98ab377795093090d85aad",
-        "mood": 1,
-        "date": "Wed May 25 1988 04:38:27 GMT+0000 (UTC)",
-        "owner": "Claudia"
-    },
-    {
-        "_id": "5a98ab375629934baaca601e",
-        "mood": 5,
-        "date": "Mon Mar 31 1997 16:52:11 GMT+0000 (UTC)",
-        "owner": "Alyssa"
-    },
-    {
-        "_id": "5a98ab3739e1dcc939536fa2",
-        "mood": 2,
-        "date": "Tue Jan 13 2009 03:28:00 GMT+0000 (UTC)",
-        "owner": "Dean"
-    },
-    {
-        "_id": "5a98ab37bbd2c095119c01f3",
-        "mood": 1,
-        "date": "Tue Apr 24 2012 17:27:23 GMT+0000 (UTC)",
-        "owner": "Mejia"
-    },
-    {
-        "_id": "5a98ab3705449000f16aa9d1",
-        "mood": 1,
-        "date": "Thu Nov 12 1998 08:39:39 GMT+0000 (UTC)",
-        "owner": "Dona"
-    },
-    {
-        "_id": "5a98ab3735897dad92393bf1",
-        "mood": 2,
-        "date": "Wed May 16 2007 17:06:53 GMT+0000 (UTC)",
-        "owner": "Roberta"
-    },
-    {
-        "_id": "5a98ab376d090b7b0d4b5498",
-        "mood": 3,
-        "date": "Sun Apr 13 1997 16:19:21 GMT+0000 (UTC)",
-        "owner": "Jaclyn"
-    },
-    {
-        "_id": "5a98ab37e7d748bc5271a308",
-        "mood": 3,
-        "date": "Thu Jul 19 2001 09:20:15 GMT+0000 (UTC)",
-        "owner": "Freda"
+        "intensity": 1,
+        "date": "2018-05-03T04:30:00+00:00",
+        "email": "zangx040@morris.umn.edu"
     }
 ]
