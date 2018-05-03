@@ -120,7 +120,7 @@ describe('Reports list', () => {
     }));
 
     it('contains all the emojis', () => {
-        expect(emojiList.emojis.length).toBe(3);
+        expect(emojiList.emojis.length).toBe(6);
     });
 
     it('contains a owner named \'Roch\'', () => {
@@ -143,7 +143,7 @@ describe('Reports list', () => {
 
 });
 
-fdescribe('Charts', () => {
+describe('Charts', () => {
 
     let reportsComponent: ReportsComponent;
     let fixture: ComponentFixture<ReportsComponent>;

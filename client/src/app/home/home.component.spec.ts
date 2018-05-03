@@ -113,7 +113,7 @@ describe('Adding an emoji', () => {
         component.emoji.mood = newEmoji.mood;
         component.emoji.intensity = newEmoji.intensity;
         const date = new Date();
-        newEmoji.date = date.toString(); //set date for new emoji right before calling the method
+        newEmoji.date = date.getTime().toString(); //set date for new emoji right before calling the method
 
         component.addEmoji(); //date for component.emoji is set within this method
 
