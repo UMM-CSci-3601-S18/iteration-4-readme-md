@@ -240,13 +240,14 @@ export class HomeComponent implements OnInit {
             case 1:
                 return "I'm so sorry to hear that. Do you need help?";
             case 2:
-                return "I'm sorry to hear that.";
+                return "I'm so sorry to hear that. Do you need help?";
             case 3:
-                return "Ok, sounds good.";
+                return "Wow! That's great!";
             case 4:
-                return "I'm glad that you're doing well!";
+                return "Ok, sounds good.";
             case 5:
-                return ">Wow! That's great!";
+                return "I'm sorry to hear that.";
+
         }
     }
 
