@@ -16,3 +16,14 @@ body{
     flex: 1 1 ;
 }
 
+#home{
+    position: fixed;
+    left: 20px;
+}
+
+#menu{
+    position: fixed;
+    left:0px;
+}
+
+
