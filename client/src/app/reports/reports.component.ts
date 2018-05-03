@@ -19,7 +19,7 @@ export class ReportsComponent implements OnInit {
     day = this.today.getDate();
     month = this.today.getMonth();
     year = this.today.getFullYear();
-    //difference = (this.today.getTimezoneOffset())*60*1000;
+
 
     theDay = new Date(this.year, this.month, this.day);
     startDate = new Date(this.year, this.month, this.day);
@@ -161,11 +161,13 @@ export class ReportsComponent implements OnInit {
                 return true;
             });
         } else {
+
             this.filteredEmojis = this.filteredEmojis.filter(emoji => {
                 this.getDate = parseInt(emoji.date);
                 return this.getDate <= searchEndDate;
             });
         }
+
 
         return this.filteredEmojis;
     }

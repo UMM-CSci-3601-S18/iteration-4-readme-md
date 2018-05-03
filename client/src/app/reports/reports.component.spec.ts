@@ -139,14 +139,6 @@ describe('Reports list', () => {
         expect(emojiList.emojis.filter((emoji: Emoji) => emoji.owner === 'Leo').length).toBe(1);
     });
 
-    // it('emoji list filters by name', () => {
-    //
-    //     expect(emojiList.filteredEmojis.length).toBe(3);
-    //     emojiList.emojiOwner = 'L';
-    //     emojiList.refreshEmojis().subscribe(() => {
-    //         expect(emojiList.filteredEmojis.length).toBe(1);
-    //     });
-    // });
 
 
 });
@@ -260,14 +252,18 @@ fdescribe('Charts', () => {
         reportsComponent.filteredEmojis = emojiList;
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
         expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDate()+1, 5)).toEqual(1);
+
         reportsComponent.filteredEmojis = emojiList;
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
         expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDate()+1, 4)).toEqual(1);
+
         reportsComponent.filteredEmojis = emojiList;
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
         expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDate()+1, 3)).toEqual(1);
+
         reportsComponent.filteredEmojis = emojiList;
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
+
         reportsComponent.inputType == "Last month"
         expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDay(), 3)).toEqual(1);
 
@@ -275,54 +271,75 @@ fdescribe('Charts', () => {
 
     });
 
-    // it('filter all emotions works correctly', () => {
-    //
-    //     reportsComponent.filteredEmojis = emojiList;
-    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
-    //     expect(reportsComponent.filterAllEmotions(3)).toEqual(1);
-    //     reportsComponent.filteredEmojis = emojiList;
-    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
-    //     expect(reportsComponent.filterAllEmotions(4)).toEqual(1);
-    //     reportsComponent.filteredEmojis = emojiList;
-    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
-    //     expect(reportsComponent.filterAllEmotions(5)).toEqual(1);
-    //
-    //
-    // });
+    it('filter emojis works correctly', () => {
 
-    //it('filter graph works correctly', () => {
-    //     reportsComponent.filteredEmojis = emojiList;
-    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
-    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
-    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
-    //     expect(reportsComponent.filterEmojis(3,'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)', 'Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)').length).toEqual(reportsComponent.filteredEmojis.length);
-    // });
-    //
-    // it('filter graph works correctly', () => {
-    //     reportsComponent.filteredEmojis = emojiList;
-    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
-    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
-    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
-    //     expect(reportsComponent.filterEmojis(4,'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)', 'Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)').length).toEqual(reportsComponent.filteredEmojis.length);
-    // });
-    //
-    // it('filter graph works correctly', () => {
-    //     reportsComponent.filteredEmojis = emojiList;
-    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
-    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
-    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
-    //     expect(reportsComponent.filterEmojis(5,'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)', 'Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)').length).toEqual(reportsComponent.filteredEmojis.length);
-    // });
+        reportsComponent.filteredEmojis = emojiList;
+        reportsComponent.inputType == "Last month"
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojis(3).length).toEqual(1);
+
+        reportsComponent.filteredEmojis = emojiList;
+        reportsComponent.inputType == "Last week"
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojis(3).length).toEqual(1);
+
+        reportsComponent.filteredEmojis = emojiList;
+        reportsComponent.inputType =="This week"
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojis(3).length).toEqual(1);
+
+        reportsComponent.filteredEmojis = emojiList;
+        reportsComponent.inputType == "Today"
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojis(3).length).toEqual(1);
+
+        reportsComponent.filteredEmojis = emojiList;
+        reportsComponent.inputType == "Show All Data"
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojis(3).length).toEqual(1);
+    });
+
+    it('filter emojis by date works correctly', () => {
+
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojisByDate(3, parseInt(reportsComponent.filteredEmojis[0].date), parseInt(reportsComponent.filteredEmojis[1].date)+600000));
+
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojisByDate(4, parseInt(reportsComponent.filteredEmojis[1].date), null).length).toEqual(1);
 
 
-    // it('filter graph works correctly', () => {
-    //     reportsComponent.filteredEmojis = emojiList;
-    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
-    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
-    //     reportsComponent.inputType = "Last Month"
-    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
-    //     expect(reportsComponent.filterGraph('06',3)).toEqual(1);
-    // });
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojisByDate(4, null, parseInt(reportsComponent.filteredEmojis[1].date)+600000).length).toEqual(1);
+
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterEmojisByDate(null, null, null).length).toEqual(3);
+
+
+    });
+
+    it('filter all emotions', () => {
+
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterAllEmotions(3)).toEqual(1);
+
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterAllEmotions(4)).toEqual(1);
+
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterAllEmotions(5)).toEqual(1);
+
+
+
+
+    });
+
 
 
 
