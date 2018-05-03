@@ -173,24 +173,24 @@ public class JournalControllerSpec extends ControllerSuperSpec {
 
     }
 // this test breaks and I don't know why
-//    @Test
-//    public void addJournalTest() {
-//        String newId = journalController.addNewJournal("I ate all my food", "I'm sad", "4cb56a89541a2d783595012c");
-//        assertNotNull("Add new journals should return true,", newId);
-//        Map<String, String[]> argMap = new HashMap<>();
-//        argMap.put("userId", new String[]{"4cb56a89541a2d783595012c"});
-//        argMap.put("body", new String[]{"I'm sad"});
-//        String jsonResult = journalController.getItems(argMap);
-//        BsonArray docs = parseJsonArray(jsonResult);
-//
-//        List<String> journals = docs
-//            .stream()
-//            .map(JournalControllerSpec::getBody)
-//            .sorted()
-//            .collect(Collectors.toList());
-//        System.out.println(journals);
-//        assertEquals("Should return subject of new journal", "I ate all my food", journals.get(0));
-//    }
+    @Test
+    public void addJournalTest() {
+        String newId = journalController.addNewJournal("I ate all my food", "I'm sad", "4cb56a89541a2d783595012c");
+        assertNotNull("Add new journals should return true,", newId);
+        Map<String, String[]> argMap = new HashMap<>();
+        argMap.put("userId", new String[]{"4cb56a89541a2d783595012c"});
+        argMap.put("body", new String[]{"I'm sad"});
+        String jsonResult = journalController.getItems(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+
+        List<String> journals = docs
+            .stream()
+            .map(JournalControllerSpec::getBody)
+            .sorted()
+            .collect(Collectors.toList());
+        System.out.println(journals);
+        assertEquals("Should return body of new journal", "I'm sad", journals.get(0));
+    }
 
     @Test
     public void editJournalTest() {
@@ -207,6 +207,23 @@ public class JournalControllerSpec extends ControllerSuperSpec {
             .collect(Collectors.toList());
         List<String> expectedSubjects = Arrays.asList("It's Friday");
         assertEquals("Subjects should match", expectedSubjects, subjects);
+    }
+
+    @Test
+    public void deleteJournalTest() {
+        System.out.println("SamsId " + samsId.toHexString());
+
+        String jsonResult = journalController.getItem(samsId.toHexString());
+        // should exist
+        Document journal = Document.parse(jsonResult);
+        assertEquals("Journal should exist", "Food", journal.getString("subject"));
+
+        journalController.deleteJournal(samsId.toHexString());
+
+
+        jsonResult = journalController.getItem(samsId.toHexString());
+        // should not exist
+        assertNull(jsonResult);
     }
 
 
