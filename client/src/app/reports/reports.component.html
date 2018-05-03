@@ -11,7 +11,7 @@
 
             <div id="tabs">
                 <mat-tab-group #myTabGroup>
-                    <mat-tab label="Graph Review">
+                    <mat-tab id="graphReview" label="Graph Review">
                         <div id="graphFilter">
                             <form>
                                 <br>
@@ -38,7 +38,7 @@
 
                     </mat-tab>
 
-                    <mat-tab label="List Review">
+                    <mat-tab id="listReview" label="List Review">
                         <mat-card class="reportsCard">
                             <br>
                             <br>
@@ -72,7 +72,7 @@
                                 </mat-form-field>
                             </div>
                             <mat-tab-group (selectChange)="tabChanged($event)">
-                            <mat-tab label = "List Review" >
+                            <mat-tab id="listReviewTab" label = "List Review" >
                                 <mat-card-title id="reports-title">Reports
                                     <mat-select id="selector" placeholder="Select Mood" [(value)]="emojiMood">
                                         <mat-option value = "">All moods</mat-option>
@@ -112,7 +112,7 @@
                                     </ng-template>
                                 </mat-card-content>
                             </mat-tab>
-                                <mat-tab label="Pie Chart" *ngIf="!(emojiMood === '1' || emojiMood === '2' || emojiMood === '3' || emojiMood === '4' || emojiMood === '5')">
+                                <mat-tab id="pieChart" label="Pie Chart" *ngIf="!(emojiMood === '1' || emojiMood === '2' || emojiMood === '3' || emojiMood === '4' || emojiMood === '5')">
                                     <canvas id="Pie"></canvas>
                                 </mat-tab>
                 </mat-tab-group>
