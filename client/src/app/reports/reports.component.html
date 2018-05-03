@@ -14,6 +14,7 @@
                     <mat-tab label="Graph Review">
                         <div id="graphFilter">
                             <form>
+                                <br>
                                 <label> Which period of entries you want to look at?</label>
                                 <select name="dropdown" id="labelType" #input placeholder="Show entries by hour or day?" (input)="inputType = $event.target.value">
                                     <option id ="Today" selected value="Today" (click)="this.filterEmojis(emojiMood); updateChart()">Today</option>
@@ -21,8 +22,8 @@
                                     <option id ="Last week" value="Last week" (click)="this.filterEmojis(emojiMood); updateChart()">Last week</option>
                                     <option id ="Last month" value="Last month" (click)="this.filterEmojis(emojiMood); updateChart()">Last month</option>
                                     <option id ="Show All Data" value="Show All Data" (click)="this.filterEmojis(emojiMood); updateChart()">Show all data</option>
-
                                 </select>
+                                <button mat-raised-button id="submit" (click)="this.filterEmojis(emojiMood); updateChart()" color="primary">Submit</button>
                                 <br>
                             </form>
                             <br>
@@ -48,7 +49,7 @@
                                         matInput [matDatepicker]="start"
                                         [value] ="startDate2.value"
                                         (input)="startDate = $event.target.value"
-                                        placeholder= "startDate"
+                                        placeholder= "Choose a Start Date"
                                         [(ngModel)]="startDate"
                                         (input)="startDate = $event.target.value"
                                         disabled>
