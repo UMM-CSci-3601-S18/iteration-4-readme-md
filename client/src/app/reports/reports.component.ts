@@ -19,6 +19,7 @@ export class ReportsComponent implements OnInit {
     day = this.today.getDate();
     month = this.today.getMonth();
     year = this.today.getFullYear();
+    //difference = (this.today.getTimezoneOffset())*60*1000;
 
     theDay = new Date(this.year,this.month,this.day);
     startDate = new Date(this.year,this.month,this.day);
@@ -53,6 +54,16 @@ export class ReportsComponent implements OnInit {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
+    filterAllEmotions(filterMood): number {
+        var filterData = this.filteredEmojis;
+        // Filter by mood
+        filterData = filterData.filter(emoji => {
+            return !filterMood || emoji.mood == filterMood;
+        });
+
+        return filterData.length;
+    }
+
     filterGraph(weekday, filterMood): number {
         console.log("this is wright");
         var filterData = this.filteredEmojis;
@@ -61,7 +72,7 @@ export class ReportsComponent implements OnInit {
         // Filter by weekday
         if (this.inputType == "Last month"){
             filterData = filterData.filter(emoji => {
-                this.getDate = new Date(emoji.date);
+                this.getDate = new Date(setTime(emoji.date));
                 return this.getDate.getDate() == weekday;
             });
         } else {
@@ -115,11 +126,21 @@ export class ReportsComponent implements OnInit {
 
         }
 
+public converDate(): void {
 
+
+
+}
 
     public filterEmojis(searchMood: number, searchIntensity: number, searchStartDate: any, searchEndDate: any): Emoji[] {
 
         this.filteredEmojis = this.emojis;
+
+        for (var i = 0; i < this.filteredEmojis.length; i++){
+            var date = new Date();
+            date.setTime(parseInt(this.filteredEmojis[i].date));
+            this.filteredEmojis[i].date = date;
+        }
 
         var today = new Date();
         var day = today.getDate();
@@ -197,6 +218,7 @@ export class ReportsComponent implements OnInit {
     getThisWeekDate(){
         var days = [];
         var today = new Date();
+
         var first = today.getDate() - today.getDay();
         var firstDay = new Date(today.setDate(first));
         //var theDay =Last month this.getRightFormForDate(firstDay.getDate(), firstDay.getMonth(), firstDay.getFullYear());
@@ -746,7 +768,7 @@ export class ReportsComponent implements OnInit {
                                 "#f1c40f",
 
                             ],
-                            data: [this.filterEmojis(1, null, "", "").length, this.filterEmojis(2, null, "", "").length, this.filterEmojis(3, null, "", "").length, this.filterEmojis(4, null, "", "").length, this.filterEmojis(5, null, "", "").length]
+                            data: [this.filterAllEmotions(1), this.filterAllEmotions(2), this.filterAllEmotions(3), this.filterAllEmotions(4), this.filterAllEmotions(5)]
                         }]
                     }
                 });
@@ -870,7 +892,6 @@ export class ReportsComponent implements OnInit {
         emojiListObservable.subscribe(
             emojis => {
                 this.emojis = emojis;
-                //this.filterEmojis(this.emojiMood,this.emojiIntensity, this.startDate, this.endDate);
             },
             err => {
                 console.log(err);
