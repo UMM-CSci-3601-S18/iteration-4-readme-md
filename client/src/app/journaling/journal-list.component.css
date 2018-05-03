@@ -1,7 +1,9 @@
 mat-card{
     overflow: auto;
     border-radius: 10px;
-    background: linear-gradient(#1a75ff,#ffff99 80%);
+    background-color: #F1FEC6;
+
+
 }
 
 .loginEmoji{
@@ -85,12 +87,13 @@ mat-card{
 }
 
 #select{
-    max-height: 55%;
+    max-height: 100%;
     float: left;
 }
 
 #view{
-    max-height: 55%;
+    max-height: 65%;
+    word-wrap: break-word;
 }
 
 #searchjournals{

@@ -1,11 +1,11 @@
 mat-card{
     border-radius: 10px;
-    background: linear-gradient(#1a75ff,#ffff99 80%);
+    background: #F1FEC6;
     width: 300px;
 }
 
 mat-expansion-panel{
-    background: linear-gradient(#ccf2ff,#e6e6e6);
+    background: #B4D2E7;
 }
 
 

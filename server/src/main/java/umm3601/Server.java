@@ -131,15 +131,15 @@ public class Server {
             try {
                 // We can create this later to keep our secret safe
 
-                final String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/client_secret_file.json";
-
-                GoogleClientSecrets clientSecrets =
-                    GoogleClientSecrets.load(
-                        JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+//                final String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/client_secret_file.json";
+//
+//                GoogleClientSecrets clientSecrets =
+//                    GoogleClientSecrets.load(
+//                        JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
 
                 GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
                     // Specify the CLIENT_ID of the app that accesses the backend:
-                    .setAudience(Collections.singletonList(clientSecrets.getDetails().getClientId()))
+                    .setAudience(Collections.singletonList("557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com"))
                     // Or, if multiple clients access the backend:
                     //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
                     .build();
