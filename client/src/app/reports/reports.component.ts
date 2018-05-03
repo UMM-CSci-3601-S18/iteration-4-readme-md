@@ -140,13 +140,21 @@ export class ReportsComponent implements OnInit {
             });
         } else {
             filterData = filterData.filter(emoji => {
+
                 this.getDate = new Date(parseInt(emoji.date));
+
+                console.log(this.getDate.getDay() + " should be this.getDate day")
+                console.log(emoji.date + " this is emoji date")
+                console.log(weekday + " this is weekday")
+                console.log(this.getDate.getDay() == weekday)
                 return this.getDate.getDay() == weekday;
             });
         }
-
+        console.log(filterData.length)
         // Filter by mood
         filterData = filterData.filter(emoji => {
+            console.log(emoji.mood)
+            console.log(filterMood)
             return !filterMood || emoji.mood == filterMood;
         });
 

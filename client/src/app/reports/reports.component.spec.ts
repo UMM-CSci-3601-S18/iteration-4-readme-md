@@ -34,7 +34,34 @@ describe('Reports list', () => {
                     _id: 'f',
                     owner: 'Nick',
                     intensity: 1,
+                    mood: 1,
+                    date: '\'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)\'',
+                    userId: "nick@gmail.com",
+                },
+
+                {
+                    _id: 'f',
+                    owner: 'Nick',
+                    intensity: 1,
+                    mood: 2,
+                    date: '\'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)\'',
+                    userId: "nick@gmail.com",
+                },
+
+                {
+                    _id: 'f',
+                    owner: 'Nick',
+                    intensity: 1,
                     mood: 3,
+                    date: '\'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)\'',
+                    userId: "nick@gmail.com",
+                },
+
+                {
+                    _id: 'f',
+                    owner: 'Nick',
+                    intensity: 1,
+                    mood: 4,
                     date: '\'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)\'',
                     userId: "nick@gmail.com",
                 },
@@ -142,7 +169,7 @@ fdescribe('Charts', () => {
             _id: 'f',
             owner: 'Nick',
             mood: 3,
-            date: (new Date('Tue May 14 1974 08:51:10 GMT-0500 (CDT)')).getUTCMilliseconds().toString(),
+            date: new Date().getTime().toString(),
             intensity: 3,
             userId: "nick@gmail.com",
         },
@@ -150,7 +177,7 @@ fdescribe('Charts', () => {
             _id: 'd',
             owner: 'Roch',
             mood: 4,
-            date: (new Date()).getUTCMilliseconds().toString(),
+            date: new Date().getTime().toString(),
             intensity: 2,
             userId: "roch@gmail.com",
         },
@@ -158,7 +185,7 @@ fdescribe('Charts', () => {
             _id: 'd',
             owner: 'Leo',
             mood: 5,
-            date: (new Date()).getUTCMilliseconds().toString(),
+            date: new Date().getTime().toString(),
             intensity: 1,
             userId: "leo@gmail.com",
         }
@@ -172,7 +199,7 @@ fdescribe('Charts', () => {
                     _id: 'f',
                     owner: 'Nick',
                     mood: 3,
-                    date: (new Date('Tue May 14 1974 08:51:10 GMT-0500 (CDT)')).getUTCMilliseconds().toString(),
+                    date: new Date().getTime().toString(),
                     intensity: 3,
                     userId: "nick@gmail.com",
                 },
@@ -180,7 +207,7 @@ fdescribe('Charts', () => {
                     _id: 'd',
                     owner: 'Roch',
                     mood: 4,
-                    date: (new Date()).getUTCMilliseconds().toString(),
+                    date: new Date().getTime().toString(),
                     intensity: 2,
                     userId: "roch@gmail.com",
                 },
@@ -188,7 +215,7 @@ fdescribe('Charts', () => {
                     _id: 'd',
                     owner: 'Leo',
                     mood: 5,
-                    date: (new Date()).getUTCMilliseconds().toString(),
+                    date: new Date().getTime().toString(),
                     intensity: 1,
                     userId: "leo@gmail.com",
                 }
@@ -229,21 +256,73 @@ fdescribe('Charts', () => {
     }));
 
     it('filter graph works correctly', () => {
+
         reportsComponent.filteredEmojis = emojiList;
-        reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
-        reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
-        expect(reportsComponent.filterEmojis(3,'06', '07')).toEqual(reportsComponent.filteredEmojis);
+        expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDate()+1, 5)).toEqual(1);
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDate()+1, 4)).toEqual(1);
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDate()+1, 3)).toEqual(1);
+        reportsComponent.filteredEmojis = emojiList;
+        expect(reportsComponent.filteredEmojis.length).toEqual(3);
+        reportsComponent.inputType == "Last month"
+        expect(reportsComponent.filterGraph( new Date(new Date().getTime()).getDay(), 3)).toEqual(1);
+
+
+
     });
 
-    it('filter graph works correctly', () => {
-        reportsComponent.filteredEmojis = emojiList;
-        reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
-        reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
-        reportsComponent.inputType = "Last Month"
-        expect(reportsComponent.filteredEmojis.length).toEqual(3);
-        expect(reportsComponent.filterGraph('06',3)).toEqual(1);
-    });
+    // it('filter all emotions works correctly', () => {
+    //
+    //     reportsComponent.filteredEmojis = emojiList;
+    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
+    //     expect(reportsComponent.filterAllEmotions(3)).toEqual(1);
+    //     reportsComponent.filteredEmojis = emojiList;
+    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
+    //     expect(reportsComponent.filterAllEmotions(4)).toEqual(1);
+    //     reportsComponent.filteredEmojis = emojiList;
+    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
+    //     expect(reportsComponent.filterAllEmotions(5)).toEqual(1);
+    //
+    //
+    // });
+
+    //it('filter graph works correctly', () => {
+    //     reportsComponent.filteredEmojis = emojiList;
+    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
+    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
+    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
+    //     expect(reportsComponent.filterEmojis(3,'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)', 'Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)').length).toEqual(reportsComponent.filteredEmojis.length);
+    // });
+    //
+    // it('filter graph works correctly', () => {
+    //     reportsComponent.filteredEmojis = emojiList;
+    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
+    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
+    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
+    //     expect(reportsComponent.filterEmojis(4,'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)', 'Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)').length).toEqual(reportsComponent.filteredEmojis.length);
+    // });
+    //
+    // it('filter graph works correctly', () => {
+    //     reportsComponent.filteredEmojis = emojiList;
+    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
+    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
+    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
+    //     expect(reportsComponent.filterEmojis(5,'Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)', 'Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)').length).toEqual(reportsComponent.filteredEmojis.length);
+    // });
+
+
+    // it('filter graph works correctly', () => {
+    //     reportsComponent.filteredEmojis = emojiList;
+    //     reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
+    //     reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
+    //     reportsComponent.inputType = "Last Month"
+    //     expect(reportsComponent.filteredEmojis.length).toEqual(3);
+    //     expect(reportsComponent.filterGraph('06',3)).toEqual(1);
+    // });
 
 
 
