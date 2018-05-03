@@ -106,9 +106,9 @@ the two values that you saved earlier. It could take up to 24 hours for this to 
 - Use ``cd server/src/main/java/umm3601/`` and type `nano Server.java`.
 - Find your server port (in our case it is 4567). Change ``4567`` to ``80`` then save.
 - Navigate back to your repository.
-- Run `sudo ./build.sh` to build and deploy your project. (the ``sudo`` part is required because connecting to port 80 requires special permission)
+- Run `./build.sh` to build and deploy your project.
 - run ``tmux`` to enter a Tmux session.
-- run ``./3601.sh`` to start your server (**3601.sh** is in the home directory `cd ~`).
+- run ``sudo ./3601.sh`` to start your server (**3601.sh** is in the home directory `cd ~`).  (the ``sudo`` part is required because connecting to port 80 requires special permission)
 - press ``Ctrl + b`` and then ``d`` to *detach* from this Tmux session. It will continue running even after you log out. To reconnect to the Tmux session, log into your droplet and run ``tmux a`` (a for *attach*!)
 
 If you're interested in doing more fun things with Tmux, check out [this](https://gist.github.com/MohamedAlaa/2961058) cheat-sheet. Tmux is a really cool tool, and if you ever plan on doing system administration stuff in the future it's worth getting to know it.
