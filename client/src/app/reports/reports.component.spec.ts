@@ -233,7 +233,7 @@ fdescribe('Charts', () => {
         reportsComponent.startDate = new Date('Fri Apr 06 2018 15:23:28 GMT-0000 (UTC)');
         reportsComponent.endDate = new Date('Sat Apr 07 2018 20:00:00 GMT-0000 (UTC)');
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
-        expect(reportsComponent.filterGraph('06',3)).toEqual(1);
+        expect(reportsComponent.filterEmojis(3,'06', '07')).toEqual(reportsComponent.filteredEmojis);
     });
 
     it('filter graph works correctly', () => {
