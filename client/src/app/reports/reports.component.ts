@@ -5,8 +5,8 @@ import {ReportsService} from "./reports.service";
 import {AuthService, SocialUser} from "angularx-social-login";
 import {environment} from "../../environments/environment";
 import * as Chart from 'chart.js';
-import * as Plotly from 'plotly.js'
 import {FormControl} from '@angular/forms';
+import {MatTabChangeEvent} from '@angular/material';
 
 @Component({
     selector: 'app-reports-component',
@@ -31,6 +31,7 @@ export class ReportsComponent implements OnInit {
     canvas: any;
     ctx: any;
     myChart: any;
+    myPieChart: any;
 
     public emojis: Emoji[];
     public filteredEmojis: Emoji[];
@@ -56,8 +57,8 @@ export class ReportsComponent implements OnInit {
 
 
 
-    // This is the mean filter function
-    public filterEmojis(searchMood: number, searchStartDate: any, searchEndDate: any): Emoji[] {
+    // These are two mean filter functions
+    public filterEmojis(searchMood: number): Emoji[] {
         this.filteredEmojis = this.emojis;
 
         var today = new Date();
@@ -65,6 +66,9 @@ export class ReportsComponent implements OnInit {
         var month = today.getMonth();
         var year = today.getFullYear();
         var theDay = new Date(year, month, day);
+
+        var searchStartDate;
+        var searchEndDate;
 
         if (this.inputType == "This week") {
             var first = theDay.getDate() - theDay.getDay();
@@ -86,6 +90,47 @@ export class ReportsComponent implements OnInit {
             searchStartDate = null;
             searchEndDate = null;
         }
+
+        // Filter by mood
+        if (searchMood == null) {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return true;
+            });
+        } else {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return !searchMood || searchMood == emoji.mood;
+            })
+        }
+
+        // Filter by startDate
+        if (searchStartDate == null) {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return true;
+            });
+        } else {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                this.getDate = parseInt(emoji.date);
+                return this.getDate >= searchStartDate;
+            });
+        }
+
+        // Filter by endDate
+        if (searchEndDate == null) {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return true;
+            });
+        } else {
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                this.getDate = parseInt(emoji.date);
+                return this.getDate <= searchEndDate;
+            });
+        }
+
+        return this.filteredEmojis;
+    }
+
+    public filterEmojisByDate(searchMood: number, searchStartDate: number, searchEndDate: number): Emoji[] {
+        this.filteredEmojis = this.emojis;
 
         // Filter by mood
         if (searchMood == null) {
@@ -374,7 +419,9 @@ export class ReportsComponent implements OnInit {
                         }],
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                stepSize: 1,
+                                min: 0
                             }
                         }]
                     }
@@ -497,7 +544,9 @@ export class ReportsComponent implements OnInit {
                         }],
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                stepSize: 1,
+                                min: 0
                             }
                         }]
                     }
@@ -740,7 +789,9 @@ export class ReportsComponent implements OnInit {
                         }],
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                stepSize: 1,
+                                min: 0
 
                             }
                         }]
@@ -859,10 +910,43 @@ export class ReportsComponent implements OnInit {
                     }],
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true
+                            min: 0,
+                            max: 3,
+                            beginAtZero: true,
+                            stepSize: 1,
                         }
                     }]
                 }
+            }
+        });
+
+    }
+
+    buildPieChart(): void {
+
+        this.canvas = document.getElementById("Pie");
+        this.ctx = this.canvas;
+
+        this.myPieChart = new Chart(this.ctx, {
+            type: 'pie',
+            data: {
+                labels: ["frustrated", "worried", "happy", "meh", "unhappy"],
+                datasets: [{
+                    backgroundColor: [
+                        "#2ecc71",
+                        "#3498db",
+                        "#95a5a6",
+                        "#9b59b6",
+                        "#f1c40f",
+                    ],
+                    data: [
+                        this.filterAllEmotions(1),
+                        this.filterAllEmotions(2),
+                        this.filterAllEmotions(3),
+                        this.filterAllEmotions(4),
+                        this.filterAllEmotions(5)
+                    ]
+                }]
             }
         });
 
@@ -894,6 +978,11 @@ export class ReportsComponent implements OnInit {
             });
         return emojiListObservable;
 
+    }
+
+    public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+        console.log(tabChangeEvent.tab.textLabel);
+        this.buildPieChart()
     }
 
 
