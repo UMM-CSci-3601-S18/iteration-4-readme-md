@@ -43,10 +43,4 @@ describe('Testing all resource page functionality: from checking currently exist
         element(by.id('confirmAddresourcesButton')).click();
     });
 
-    it('should click on the Suicide Prevention Lifeline element, and the correct phone number is on the page', () => {
-        ResourcesPage.navigateTo();
-        ResourcesPage.clickElement('suicide-prevention-lifeline');
-        expect(element(by.binding('1-800-273-8255'))).toBeDefined();
-    });
-
 });
