@@ -164,6 +164,8 @@ export class HomeComponent implements OnInit {
                 idToken: 'testToken',
             };
         }
+        //get a random video from the meh playlist by default
+        this.getRandomVideoInPlaylist(3);
     }
 
 
