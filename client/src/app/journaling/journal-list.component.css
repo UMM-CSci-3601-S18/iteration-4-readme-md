@@ -92,7 +92,8 @@ mat-card{
 }
 
 #view{
-    max-height: 55%;
+    max-height: 65%;
+    word-wrap: break-word;
 }
 
 #searchjournals{
