@@ -72,7 +72,7 @@ export class ReportsComponent implements OnInit {
         // Filter by weekday
         if (this.inputType == "Last month"){
             filterData = filterData.filter(emoji => {
-                this.getDate = new Date(setTime(emoji.date));
+                this.getDate = new Date(emoji.date);
                 return this.getDate.getDate() == weekday;
             });
         } else {
@@ -110,8 +110,7 @@ export class ReportsComponent implements OnInit {
                     return !searchMood || searchMood == emoji.mood;
                 })
                 for (var j =0; j < filterData.length; j++){
-                    var theDay = new Date(filterData[j].date);
-                    xVal.push(theDay.getTime());
+                    xVal.push(filterData[j].date);
                     yVal.push(filterData[j].intensity);
                 }
                 for(var k = 0; k < xVal.length; k++){
@@ -126,21 +125,15 @@ export class ReportsComponent implements OnInit {
 
         }
 
-public converDate(): void {
-
-
-
-}
-
     public filterEmojis(searchMood: number, searchIntensity: number, searchStartDate: any, searchEndDate: any): Emoji[] {
 
         this.filteredEmojis = this.emojis;
 
-        for (var i = 0; i < this.filteredEmojis.length; i++){
+        /*for (var i = 0; i < this.filteredEmojis.length; i++){
             var date = new Date();
             date.setTime(parseInt(this.filteredEmojis[i].date));
-            this.filteredEmojis[i].date = date;
-        }
+            this.filteredEmojis[i].date = date.toString();
+        }*/
 
         var today = new Date();
         var day = today.getDate();
@@ -192,18 +185,24 @@ public converDate(): void {
             });
         }
 
-        // Filter by startDate
-        this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-            this.getDate = new Date(emoji.date);
-            return this.getDate >= searchStartDate;
-        });
+        // Filter by date
+        if (this.inputType == "Show All Data"){
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                return true;
+            });
+        } else {
+            // Filter by startDate
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                this.getDate = new Date(parseInt(emoji.date));
+                return this.getDate >= searchStartDate;
+            });
 
-        // Filter by endDate
-        this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-            this.getDate = new Date(emoji.date);
-            return this.getDate <= searchEndDate;
-        });
-
+            // Filter by endDate
+            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
+                this.getDate = new Date(parseInt(emoji.date));
+                return this.getDate <= searchEndDate;
+            });
+        }
 
         return this.filteredEmojis;
     }
@@ -754,7 +753,7 @@ public converDate(): void {
         } else if (this.inputType == "Today"){
             this.buildChart();
 
-        } else if (this.inputType == "Pie"){
+        } else if (this.inputType == "Show All Data"){
             this.myChart = new Chart (this.ctx, {
                     type: 'pie',
                     data: {
