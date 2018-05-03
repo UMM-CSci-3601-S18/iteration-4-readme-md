@@ -27,8 +27,8 @@ export class HomeService {
     getEmojiById(id: string): Observable<Emoji> {
         return this.http.get<Emoji>(this.emojiUrl + '/' + id);
     }
-    getEmojis(emojiOwner?: string): Observable<Emoji[]> {
-        return this.http.get<Emoji[]>(this.emojiUrl);
+    getEmojis(userId: string): Observable<Emoji[]> {
+        return this.http.get<Emoji[]>(this.emojiUrl + '?userId=' + userId);
     }
 
 

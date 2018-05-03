@@ -16,6 +16,7 @@ import umm3601.user.UserController;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collections;
 
 
 import static spark.Spark.*;
@@ -29,7 +30,7 @@ import org.json.*;
 
 public class Server {
     private static final String databaseName = "dev";
-    private static final int serverPort = 4567;
+    private static final int serverPort = 4567; // change to port 80 on the droplet
 
     public static void main(String[] args) throws IOException {
 
@@ -130,33 +131,39 @@ public class Server {
             try {
                 // We can create this later to keep our secret safe
 
-                final String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/client_secret_file.json";
+//                final String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/client_secret_file.json";
+//
+//                GoogleClientSecrets clientSecrets =
+//                    GoogleClientSecrets.load(
+//                        JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
 
-                GoogleClientSecrets clientSecrets =
-                    GoogleClientSecrets.load(
-                        JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+                GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
+                    // Specify the CLIENT_ID of the app that accesses the backend:
+                    .setAudience(Collections.singletonList("557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com"))
+                    // Or, if multiple clients access the backend:
+                    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+                    .build();
+
+//                GoogleTokenResponse tokenResponse =
+//                    new GoogleAuthorizationCodeTokenRequest(
+//                        new NetHttpTransport(),
+//                        JacksonFactory.getDefaultInstance(),
+//                        "https://www.googleapis.com/oauth2/v4/token",
+//                        clientSecrets.getDetails().getClientId(),
+//
+//                        // Replace clientSecret with the localhost one if testing
+//                        clientSecrets.getDetails().getClientSecret(),
+//                        authCode,
+//                        "http://localhost:9000")
+//                        // Might need to be changed in production?
+//
+//                        // Specify the same redirect URI that you use with your web
+//                        // app. If you don't have a web version of your app, you can
+//                        // specify an empty string.
+//                        .execute();
 
 
-                GoogleTokenResponse tokenResponse =
-                    new GoogleAuthorizationCodeTokenRequest(
-                        new NetHttpTransport(),
-                        JacksonFactory.getDefaultInstance(),
-                        "https://www.googleapis.com/oauth2/v4/token",
-                        clientSecrets.getDetails().getClientId(),
-
-                        // Replace clientSecret with the localhost one if testing
-                        clientSecrets.getDetails().getClientSecret(),
-                        authCode,
-                        "http://localhost:9000")
-                        // Might need to be changed in production?
-
-                        // Specify the same redirect URI that you use with your web
-                        // app. If you don't have a web version of your app, you can
-                        // specify an empty string.
-                        .execute();
-
-
-                GoogleIdToken idToken = tokenResponse.parseIdToken();
+                GoogleIdToken idToken = verifier.verify(authCode);
                 GoogleIdToken.Payload payload = idToken.getPayload();
                 String subjectId = payload.getSubject();  // Use this value as a key to identify a user.
                 String email = payload.getEmail();

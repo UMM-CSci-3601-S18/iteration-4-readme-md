@@ -13,7 +13,7 @@
                             <button mat-raised-button id="addNewGoalButton" (click)="openDialog()" class="goal-button">
                                 <mat-icon id="add-icon">add</mat-icon>
                                 Add a Goal</button>
-                            <mat-tab-group>
+                            <mat-tab-group *ngIf="goals">
                                 <mat-tab label="Incomplete">
                                     <mat-card class="goals-card"
                                               *ngFor="let goal of this.filterGoals(false)"
@@ -39,7 +39,7 @@
                                                         <mat-icon>delete</mat-icon>
                                                     </button>
                                                     <button *ngIf="!goal.status" mat-icon-button id="complete" class="complete-button" class="completeGoal"
-                                                            (click)="goalSatisfied(goal._id['$oid'], goal.purpose, goal.category, goal.name); ">
+                                                            (click)="goalSatisfied(goal);">
                                                         <mat-icon>done</mat-icon>
                                                     </button>
                                                 </div>

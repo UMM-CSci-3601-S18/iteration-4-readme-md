@@ -4,5 +4,5 @@ export interface Goal {
     category: string;
     name: string;
     status: boolean;
-    email: string;
+    userId: string;
 }

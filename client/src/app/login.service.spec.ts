@@ -3,31 +3,15 @@ import {TestBed} from '@angular/core/testing';
 import {HttpClient} from '@angular/common/http';
 import {LoginService} from "./login.service";
 import {AuthResponse} from "./AuthResponse";
+import {environment} from "../environments/environment";
 
 describe('Login service: ', () => {
 
     let loginService: LoginService;
-    let testResponse: AuthResponse;
+    let testResponse: string;
     let testErr: ErrorEvent = new ErrorEvent('Invalid Token');
 
-    testResponse = {
-
-        iss: '',
-        sub: '',
-        azp: '',
-        aud: '',
-        iat: '',
-        exp: '',
-
-        email: '',
-        email_verified: true,
-        name : 'test dummy',
-        picture: '',
-        given_name: '',
-        family_name: '',
-        locale: '',
-
-    };
+    testResponse = 'test_userId';
 
     // These are used to mock the HTTP requests so that we (a) don't have to
     // have the server running and (b) we can check exactly which HTTP
@@ -62,14 +46,18 @@ describe('Login service: ', () => {
         // This happens when we call req.flush(testResponse) a few lines
         // down.
         loginService.authenticate('testToken')
-            .then((authResponse) => {
-                expect(authResponse).toBe(testResponse)
+            .then((userId) => {
+                expect(userId).toBe(testResponse)
             });
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=testToken');
-        // Check that the request made to that URL was a GET request.
-        expect(req.request.method).toEqual('GET');
+        const req = httpTestingController.expectOne(environment.API_URL + 'login');
+        // Check that the request made to that URL was a POST request.
+        expect(req.request.method).toEqual('POST');
+
+        // Check that the body of the request contains the id token
+        expect(req.request.body).toEqual({code: 'testToken'});
+
         // Specify the content of the response to that request. This
         // triggers the subscribe above, which leads to that check
         // actually being performed.
@@ -84,9 +72,13 @@ describe('Login service: ', () => {
                 expect(err).toBeDefined()
             });
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=badTestToken');
+        const req = httpTestingController.expectOne(environment.API_URL + 'login');
         // Check that the request made to that URL was a GET request.
-        expect(req.request.method).toEqual('GET');
+        expect(req.request.method).toEqual('POST');
+
+        // Check that the body of the request contains the id token
+        expect(req.request.body).toEqual({code: 'badTestToken'});
+
         // Specify the content of the response to that request. This
         // triggers the subscribe above, which leads to that check
         // actually being performed.

@@ -18,7 +18,7 @@ describe('Goal  service: ', () => {
             category: "Health",
             name: 'Eat all the cookies',
             status:true,
-            email: "brittany@gmail.com",
+            userId: "brittany@gmail.com",
         },
         {
             _id: "5aa0b36e50d6094af8e91aba",
@@ -26,7 +26,7 @@ describe('Goal  service: ', () => {
             category: "Family",
             name: 'I need to call my mom',
             status:false ,
-            email: "cathleen@gmail.com",
+            userId: "cathleen@gmail.com",
         },
         {
             _id: "5aa0b36e3f417437ce3c502a",
@@ -34,7 +34,7 @@ describe('Goal  service: ', () => {
             category: 'Family',
             name: 'Call Dad',
             status: true,
-            email: "martinez@gmail.com",
+            userId: "martinez@gmail.com",
         },
     ];
     const mGoals: Goal[] = testGoals.filter(goal =>
@@ -81,7 +81,7 @@ describe('Goal  service: ', () => {
         );
 
         // Specify that (exactly) one request will be made to the specified URL.
-        const req = httpTestingController.expectOne(goalService.baseUrl + '?email=');
+        const req = httpTestingController.expectOne(goalService.baseUrl + '?userId=');
         // Check that the request made to that URL was a GET request.
         expect(req.request.method).toEqual('GET');
         // Specify the content of the response to that request. This
@@ -123,7 +123,7 @@ describe('Goal  service: ', () => {
                 category: "Study",
                 name: "Study for math",
                 status: false,
-                email: "enid@gmail.com",
+                userId: "enid@gmail.com",
             };
 
         goalService.addGoal(newGoal).subscribe(
@@ -149,7 +149,7 @@ describe('Goal  service: ', () => {
             category: "Study",
             name: "Study for math",
             status: false,
-            email: "enid@gmail.com",
+            userId: "enid@gmail.com",
         };
 
         goalService.editGoal(editGoal).subscribe(

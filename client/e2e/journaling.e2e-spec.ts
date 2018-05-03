@@ -31,13 +31,13 @@ describe('Tests all functionality on the journaling page: from creating journals
     it('Should be able view a journal entry', () => {
         JournalingPage.navigateTo();
 
-        page.selectJournal("Brittany");
-        expect(page.getJournalText('Brittany')).toContain('Brittany');
+        page.selectJournal("I love CSci");
+        expect(page.getJournalText('I love CSci')).toContain('I love CSci');
     });
 
     it('Should be able to edit a journal entry', ()=> {
         JournalingPage.navigateTo();
-        page.selectJournal("Brittany");
+        page.selectJournal("I love CSci");
         var buttonExisted = page.editJournal('Wow', 'Big wow');
         expect(buttonExisted).toBe(true);
     });

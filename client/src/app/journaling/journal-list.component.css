@@ -1,7 +1,9 @@
 mat-card{
     overflow: auto;
     border-radius: 10px;
-    background: linear-gradient(#1a75ff,#ffff99 80%);
+    background-color: #F1FEC6;
+
+
 }
 
 .loginEmoji{
@@ -21,8 +23,14 @@ mat-card{
     float: left;
     display: block;
     width: 200px;
-    height: 200px;
+    height: 500px;
     padding: 20px;
+    font-size: 20px;
+    background-color: lightcyan;
+
+}
+
+#message {
     font-size: 20px;
     background-color: lightcyan;
 }
@@ -37,7 +45,7 @@ mat-card{
 
 .addNewJournalButton{
     padding-left: 10px;
-    float: left;
+    float: right;
 }
 
 .matFormFieldSubject{
@@ -62,6 +70,7 @@ mat-card{
 
 #addNewJournal{
     background-color: lightcyan;
+    float: right;
 }
 
 #editJournal{
@@ -75,4 +84,32 @@ mat-card{
 
 #journalButtons{
     padding: 10px;
+}
+
+#select{
+    max-height: 100%;
+    float: left;
+}
+
+#view{
+    max-height: 65%;
+    word-wrap: break-word;
+}
+
+#searchjournals{
+    scroll-overflow: auto;
+}
+
+@media only screen and (max-width: 500px) {
+    #view{
+        float: none;
+    }
+
+    #select{
+        float: none;
+        max-height: 150px;
+    }
+    #addNewJournal{
+        float: right;
+    }
 }

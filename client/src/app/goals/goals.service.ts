@@ -28,8 +28,8 @@ export class GoalsService {
         return this.http.get<Goal>(this.baseUrl + '/' + id);
     }
 
-    getGoals(userEmail: string): Observable<Goal[]> {
-        return this.http.get<Goal[]>(this.baseUrl + '?email=' + userEmail);
+    getGoals(userId: string): Observable<Goal[]> {
+        return this.http.get<Goal[]>(this.baseUrl + '?userId=' + userId);
     }
 
     editGoal(editedGoal: Goal): Observable<{'$oid': string}> {

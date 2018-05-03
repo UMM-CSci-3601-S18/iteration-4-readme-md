@@ -14,13 +14,8 @@ export class ReportsService {
     }
 
 
-
-
-    getEmojis(userEmail: string, ): Observable<Emoji[]> {
-        // if (startDate == null && endDate == null){
-            return this.http.get<Emoji[]>(this.baseUrl + '?email=' + userEmail);
-        // } else{
-        //     return this.http.get<Emoji[]>(this.baseUrl + '?email=' + userEmail + '&date=' + startDate + ',' + endDate);
-        // }
+    getEmojis(userId: string): Observable<Emoji[]> {
+        return this.http.get<Emoji[]>(this.baseUrl + '?userId=' + userId);
     }
+
 }

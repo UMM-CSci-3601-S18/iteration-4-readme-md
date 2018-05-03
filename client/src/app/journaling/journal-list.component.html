@@ -6,14 +6,41 @@
                 &lt;!&ndash;<button id="selectJournal" mat-raised-button (click)="openDialogSelect()">Select a Journal Entry</button>
                 <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>&ndash;&gt;
             </div>-->
+            <!--<mat-card>
+                <mat-card-title>Journals</mat-card-title>
+                <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
+            </mat-card>-->
 
-            <mat-card class="matCardMain">
+            <h1>Journals<button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button></h1>
+            <div></div>
+            <mat-card id="select" *ngIf="journals; else journalsError">
+                <mat-form-field class="matFormFieldSubject">
+                    <input matInput id="journalSubject" #input type="text" placeholder="Search" (input)="journalSearch = $event.target.value">
+                </mat-form-field>
+
+                <mat-nav-list id="searchJournals" *ngFor="let journal of this.filterJournals(journalSearch)">
+                    <mat-list-item id = "journal.id" (click)="selectJournal(journal)">
+                        {{getReadableDate(journal.date)}} <br> {{journal.subject.slice(0, 50)}}
+                    </mat-list-item>
+                </mat-nav-list>
+            </mat-card>
+
+            <mat-card  id="view" *ngIf="selectedJournal; else journalMessage">
+                <mat-card-title>{{selectedJournal.subject.slice(0,100)}}</mat-card-title>
+                <mat-card-subtitle>{{getReadableDate(selectedJournal.date)}}</mat-card-subtitle>
+                <mat-card-content>
+                    <p>{{selectedJournal.body}}</p>
+                    <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
+                    <button id="deleteJournal" mat-raised-button (click)="deleteJournal(selectedJournal._id['$oid'])">Delete Journal</button>
+                </mat-card-content>
+            </mat-card>
+
+
+            <!--<mat-card class="matCardMain">
                 <mat-card-title id="journal-list-title">Journals</mat-card-title>
                 <mat-card-subtitle>Add a new journal entry or click "Select a Journal Entry" to view a previous one.</mat-card-subtitle>
                 <mat-divider></mat-divider>
 
-                <mat-tab-group>
-                    <mat-tab id= "selectjournaltab" label="Select Journal">
                         <mat-form-field class="matFormFieldSubject">
                             <input matInput id="journalSubject" #input type="text" placeholder="Search" (input)="journalSearch = $event.target.value">
                         </mat-form-field>
@@ -33,13 +60,7 @@
                     </mat-tab>
 
 
-                    <mat-tab id="addjournaltab" label="Add Journal">
-                        <button id="addNewJournal" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add A New Journal</button>
-
-                    </mat-tab>
-                </mat-tab-group>
-
-                <!--<div *ngIf="selectedJournal">
+                &lt;!&ndash;<div *ngIf="selectedJournal">
                     <mat-card-title>{{selectedJournal.subject}}</mat-card-title>
                     <mat-card-subtitle>{{getReadableDate()}}</mat-card-subtitle>
                     <mat-card-content>
@@ -47,10 +68,9 @@
                         <button id="editJournal" mat-raised-button (click)="openDialogReview(selectedJournal)">Edit Journal</button>
                         <button id="deleteJournal" mat-raised-button (click)="deleteJournal(selectedJournal._id['$oid'])">Delete Journal</button>
                     </mat-card-content>
-                </div>-->
+                </div>&ndash;&gt;
 
-            </mat-card>
-
+            </mat-card>-->
 
             <ng-template #journalsError>
                 <mat-error>
@@ -62,6 +82,13 @@
                 </mat-error>
             </ng-template>
 
+            <ng-template #journalMessage>
+                <mat-card id="message">
+                    <mat-card-title>
+                        <i>Select a Journal</i>
+                    </mat-card-title>
+                </mat-card>
+            </ng-template>
         </div>
     </div>
 

@@ -12,6 +12,14 @@ mat-card-content img {
     padding-top: 5%;
 }*/
 
+.body .html{
+    background-color:#B3FFFC;
+}
+
+mat-horizontal-stepper{
+    background: none;
+}
+
 .loginEmoji{
     display: flex;
     margin-left: auto;
@@ -41,26 +49,33 @@ mat-card-content img {
 
 #currentEmoji {
     padding-top: 10px;
-    width: 25%;
-    height: 25%;
+    width: 17.5%;
+    height: 17.5%;
 }
 
 #leftEmoji {
     padding-top: 10px;
     padding-right: 10px;
-    width: 15%;
-    height: 15%;
+    width: 11%;
+    height: 11%;
     opacity: 0.5;
 }
 
 #rightEmoji {
     padding-top: 10px;
     padding-left: 10px;
-    width: 15%;
-    height: 15%;
+    width: 11%;
+    height: 11%;
     opacity: 0.5;
 }
 
 #submitEmoji {
     margin-top: 10px;
 }
+
+#emojiNavLeft{
+    margin-right: 40px;
+}
+
+
+

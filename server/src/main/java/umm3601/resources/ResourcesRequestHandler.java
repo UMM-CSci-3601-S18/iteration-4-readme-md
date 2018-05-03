@@ -82,12 +82,12 @@ public class ResourcesRequestHandler {
                     String name = dbO.getString("name");
                     String body = dbO.getString("body");
                     String phone = dbO.getString("phone");
-                    String email = dbO.getString("email");
+                    String userId = dbO.getString("userId");
 
 
 //
-//                    System.err.println("Adding new resource [id=" + id + ", name=" + name + " phonenumber=" + phonenumber + "email" + email  + ']');
-                    return resourcesController.addNewResources(name, body, phone, email).toString();
+//                    System.err.println("Adding new resource [id=" + id + ", name=" + name + " phonenumber=" + phonenumber + "userId" + userId  + ']');
+                    return resourcesController.addNewResources(name, body, phone, userId).toString();
                 }
                 catch(NullPointerException e)
                 {

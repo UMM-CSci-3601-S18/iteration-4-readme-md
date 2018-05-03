@@ -26,24 +26,10 @@ export class AppComponent implements OnInit {
             return;
         }
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-        // once the user signs in, authenticate it
-            .then((user) => {
-                return this.loginService.authenticate(user.idToken);
+            .then(()=> {
+                //refreshes after login so that the name of the user can be shown
+                window.location.reload();
             })
-
-            .then((authResponse) => {
-                // check that our client id is within the response from google
-                if (authResponse.aud != '557763158088-rb4bkc622e0lkc5tnksua58b187n3r33.apps.googleusercontent.com') {
-                    console.log('Error: login response did not contain our app\'s client ID');
-                    this.signOut();
-                } else {
-                    //refreshes after login so that the name of the user can be shown
-                    window.location.reload();
-                    console.log(authResponse.name + ' signed in.');
-                }
-
-            })
-
             .catch((err) => {
 
                 // if an error occurs, print it out and clear the data from this.user
@@ -54,8 +40,7 @@ export class AppComponent implements OnInit {
 
     signOut(): void {
         this.authService.signOut()
-
-            .then((res) => {
+            .then(() => {
                 console.log('Signed out.');
                 return;
             })
@@ -72,12 +57,27 @@ export class AppComponent implements OnInit {
 
                 this.loggedIn = (this.user != null);
                 if(this.loggedIn) {
-                    this.buttonText = 'Sign Out';
+                    // once the user signs in, authenticate it
+                    this.loginService.authenticate(user.idToken)
+
+                        .then((userId) => {
+                            localStorage.setItem('userId', userId['$oid']);
+
+                            console.log(this.user.name + ' signed in.');
+                            this.buttonText = 'Sign Out';
+                        })
+                        .catch((err) => {
+
+                            // if an error occurs, print it out and clear the data from this.user
+                            console.log(err);
+                            this.signOut();
+                        });
                 }
                 else {
                     this.buttonText = 'Sign In';
                 }
             });
+
         }
         else {
             // run this code during e2e testing
@@ -95,6 +95,7 @@ export class AppComponent implements OnInit {
             };
             this.buttonText = 'Sign Out';
             this.loggedIn = true;
+            localStorage.setItem('userId', 'testUserId');
         }
 
     }

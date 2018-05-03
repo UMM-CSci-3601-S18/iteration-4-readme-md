@@ -39,7 +39,7 @@ describe('Goal list', () => {
                     category: "Health",
                     name: "test",
                     status:true,
-                    email: "brittany@gmail.com",
+                    userId: "brittany@gmail.com",
                 },
                 {
                     _id: "5aa0b36e50d6094af8e91aba",
@@ -47,7 +47,7 @@ describe('Goal list', () => {
                     category: "Health",
                     name: "test2",
                     status: false,
-                    email: "cathleen@gmail.com",
+                    userId: "cathleen@gmail.com",
                 },
                 {
                     _id: "5aa0b36e3f417437ce3c502a",
@@ -55,7 +55,7 @@ describe('Goal list', () => {
                     category: "Chores",
                     name: "test3",
                     status: true,
-                    email: "martinez@gmail.com",
+                    userId: "martinez@gmail.com",
                 }
             ])
         };
@@ -198,7 +198,7 @@ describe('Goals Mat Dialogs', () => {
         category: "Activity",
         name: "test",
         status: false,
-        email: "enid@gmail.com",
+        userId: "enid@gmail.com",
     };
     const newId = 'enid_id';
 

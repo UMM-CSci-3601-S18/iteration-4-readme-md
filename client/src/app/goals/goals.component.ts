@@ -7,6 +7,8 @@ import {AddGoalComponent} from "./add-goals.component";
 import {MatSnackBar} from '@angular/material';
 import {AuthService, SocialUser} from "angularx-social-login";
 import {environment} from "../../environments/environment";
+import {isNullOrUndefined} from "util";
+
 @Component({
     selector: 'app-goals-component',
     templateUrl: './goals.component.html',
@@ -50,7 +52,7 @@ export class GoalsComponent implements OnInit{
             category: '',
             name: '',
             status: false,
-            email: this.user.email,
+            userId: localStorage.getItem('userId'),
             };
         const dialogRef = this.dialog.open(AddGoalComponent, {
             width: '500px',
@@ -84,8 +86,8 @@ export class GoalsComponent implements OnInit{
         );
     }
 
-    goalSatisfied(_id: string, thePurpose: string, theCategory: string, theName, email: string,) {
-        const updatedGoal: Goal = {_id: _id, purpose: thePurpose, category: theCategory, name: theName, status: true, email: email};
+    goalSatisfied(goal: Goal) {
+        const updatedGoal: Goal = {_id: goal._id, purpose: goal.purpose, category: goal.category, name: goal.name, status: true, userId: goal.userId};
         this.goalsService.editGoal(updatedGoal).subscribe(
             editGoalsResult => {
                 this.highlightedID = editGoalsResult;
@@ -115,9 +117,6 @@ export class GoalsComponent implements OnInit{
             });
         }
 
-
-
-
         return this.filteredGoals;
     }
 
@@ -133,7 +132,7 @@ export class GoalsComponent implements OnInit{
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
 
-        const goalListObservable: Observable<Goal[]> = this.goalsService.getGoals(this.user.email);
+        const goalListObservable: Observable<Goal[]> = this.goalsService.getGoals(localStorage.getItem('userId'));
         goalListObservable.subscribe(
             goals => {
                 this.goals = goals;
@@ -146,7 +145,7 @@ export class GoalsComponent implements OnInit{
     }
 
     loadService(): void {
-        this.goalsService.getGoals(this.user.email).subscribe(
+        this.goalsService.getGoals(localStorage.getItem('userId')).subscribe(
             goals => {
                 this.goals = goals;
                 this.filteredGoals = this.goals;

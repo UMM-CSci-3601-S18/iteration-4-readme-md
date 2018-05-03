@@ -37,21 +37,21 @@ describe('Select Journal', () => {
                     subject: "York",
                     body: "You can do it",
                     date: "Sun Feb 04 1979 13:35:46 GMT-0600 (CST)",
-                    email: "york@fake.com"
+                    userId: "york@fake.com"
                 },
                 {
                     _id: "5aa0b36ef2d33e651859bd70",
                     subject: "Sutton",
                     body: "There you go",
                     date: "Sun Oct 28 2012 03:04:31 GMT-0500 (CDT)",
-                    email: "sutton@fakeemail.com"
+                    userId: "sutton@fakeemail.com"
                 },
                 {
                     _id: "5aa0b36e5c1d05d2cb0460a4",
                     subject: "Madelyn",
                     body: "There you go",
                     date: "Thu Sep 25 2003 14:45:37 GMT-0500 (CDT)",
-                    email: "madelyn@madelyn.com"
+                    userId: "madelyn@madelyn.com"
                 }
             ])
         };
@@ -192,7 +192,7 @@ describe('Select Journal', () => {
         subject: "Pennington",
         body: "Get it done",
         date: "Sun Feb 07 1982 22:41:23 GMT-0600 (CST)",
-        email: "pennington@pennington.com"
+        userId: "pennington@pennington.com"
     };
     const newId = 'pennington_id';
 

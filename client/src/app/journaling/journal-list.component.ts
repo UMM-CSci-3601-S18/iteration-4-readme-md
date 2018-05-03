@@ -47,11 +47,12 @@ export class JournalListComponent implements OnInit {
         }
     }
 
-
-
+    selectJournal(select: Journal): void {
+        this.selectedJournal = select;
+    }
 
     openDialog(): void {
-        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
+        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', userId: localStorage.getItem('userId')};
         const dialogRef = this.dialog.open(AddJournalComponent, {
             width: '500px',
             data: { journal: newJournal }
@@ -71,19 +72,19 @@ export class JournalListComponent implements OnInit {
         });
     }
 
-    /*openDialogSelect(): void {
-        const newJournal: Journal = {_id: '', subject: '', body: '', date: '', email: this.user.email};
-        const dialogRef = this.dialog.open(SelectJournalComponent, {
-            width: '500px',
-            data: { journal: newJournal }
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            if(result != null) {
-                this.selectedJournal = result;
-            }
-        });
-    }*/
-
+    // openDialogSelect(): void {
+    //     const newJournal: Journal = {_id: '', subject: '', body: '', date: '', userId: localStorage.getItem('userId')};
+    //     const dialogRef = this.dialog.open(SelectJournalComponent, {
+    //         width: '500px',
+    //         data: { journal: newJournal }
+    //     });
+    //
+    //     dialogRef.afterClosed().subscribe(result => {
+    //         if(result != null) {
+    //             this.selectedJournal = result;
+    //         }
+    //     });
+    // }
 
 
     openDialogReview(editJournal: Journal): void {
@@ -127,7 +128,7 @@ export class JournalListComponent implements OnInit {
     }
 
     loadService(): void {
-        this.journalListService.getJournals(this.user.email).subscribe(
+        this.journalListService.getJournals(localStorage.getItem('userId')).subscribe(
             journals => {
                 this.journals = journals;
                 this.filteredJournals = this.journals;
@@ -174,7 +175,7 @@ export class JournalListComponent implements OnInit {
         //
         // Subscribe waits until the data is fully downloaded, then
         // performs an action on it (the first lambda)
-        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals(this.user.email);
+        const journalListObservable: Observable<Journal[]> = this.journalListService.getJournals(localStorage.getItem('userId'));
         journalListObservable.subscribe(
             journals => {
                 this.journals = journals;
@@ -223,11 +224,6 @@ export class JournalListComponent implements OnInit {
             };
         }
         this.refreshJournals();
-        /*this.generateRandomPrompt();*/
     }
 
-
-    /*generateRandomPrompt(): void {
-        this.prompt = this.prompts[Math.floor(Math.random() * this.prompts.length)];
-    }*/
 }

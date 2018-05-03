@@ -14,8 +14,8 @@ export class JournalListService {
     constructor(private http: HttpClient) {
     }
 
-    getJournals(userEmail: string): Observable<Journal[]> {
-        return this.http.get<Journal[]>(this.baseUrl + '?email=' + userEmail);
+    getJournals(userId: string): Observable<Journal[]> {
+        return this.http.get<Journal[]>(this.baseUrl + '?userId=' + userId);
     }
 
     getJournalById(id: string): Observable<Journal> {

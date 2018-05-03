@@ -38,9 +38,9 @@ export class ResourcesService {
     }
     */
 
-    getResources(userEmail: string): Observable<resources[]> {
+    getResources(userId: string): Observable<resources[]> {
 
-        return this.http.get<resources[]>(this.baseUrl + '?email=' + userEmail);
+        return this.http.get<resources[]>(this.baseUrl + '?userId=' + userId);
     }
 
 

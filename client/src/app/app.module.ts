@@ -11,7 +11,6 @@ import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {ResourcesComponent} from "./resources/resources.component";
 import {CustomModule} from './custom.module';
-import {ResponseComponent} from "./home/response.component";
 import {ReportsComponent} from "./reports/reports.component";
 import {ReportsService} from "./reports/reports.service";
 import {ResourcesService} from "./resources/resources.service";
@@ -57,7 +56,6 @@ export function provideConfig() {
         AppComponent,
         HomeComponent,
         ResourcesComponent,
-        ResponseComponent,
         ReportsComponent,
         JournalListComponent,
         AddJournalComponent,
@@ -78,6 +76,7 @@ export function provideConfig() {
         JournalListService,
         ResourcesService,
         LoginService,
+        HttpClientModule,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
         {
@@ -86,7 +85,6 @@ export function provideConfig() {
         }
     ],
     entryComponents: [
-        ResponseComponent,
         AddGoalComponent,
         AddJournalComponent,
         EditJournalComponent,

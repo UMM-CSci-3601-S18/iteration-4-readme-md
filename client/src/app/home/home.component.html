@@ -3,47 +3,61 @@
 
     <!-- Main Page -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     <div id="main-body">
 
         <!-- Only display first name -->
-        <h1 class="headerText"><strong>Hello {{emoji.owner.split(" ")[0]}}!<br> How are you feeling today?</strong></h1>
-        <p class="headerText" style="font-size: 100%"><i>Swipe left or right to find your feeling.</i></p>
-        <p class="headerText" style="font-size: 100%"><i>Up or down to choose intensity.</i></p>
+        <h1 class="headerText">Hello {{user.firstName}}!<br> How are you feeling today?</h1>
 
+        <mat-horizontal-stepper #stepper id="mainPageStepper">
+            <mat-step >
+                <p class="headerText" style="font-size: 100%"><i>Swipe left or right to find your feeling.</i></p>
+                <p class="headerText" style="font-size: 100%"><i>Up or down to choose intensity.</i></p>
 
+                <!-- Control Gestures -->
+                <div class="swipe-box"
+                     (swipeleft)="emoji.mood = updateEmojiMood(1, emoji.mood, true); emoji.intensity = 1"
+                     (swiperight)="emoji.mood = updateEmojiMood(-1, emoji.mood, true); emoji.intensity = 1"
+                     (swipeup)="emoji.intensity = updateEmojiIntensity(-1, emoji.intensity, emoji.mood)"
+                     (swipedown)="emoji.intensity = updateEmojiIntensity(1, emoji.intensity, emoji.mood)"
 
-        <!-- Control Gestures -->
-        <div class="swipe-box"
-             (swipeleft)="emoji.mood = updateEmojiMood(1, emoji.mood, true); emoji.intensity = 1"
-             (swiperight)="emoji.mood = updateEmojiMood(-1, emoji.mood, true); emoji.intensity = 1"
-             (swipeup)="emoji.intensity = updateEmojiIntensity(-1, emoji.intensity, emoji.mood)"
-             (swipedown)="emoji.intensity = updateEmojiIntensity(1, emoji.intensity, emoji.mood)"
+                >
+                    <!-- Emoji to the left -->
+                    <img draggable="false" id="leftEmoji" src="assets/Emojis/{{updateEmojiMood(-1, emoji.mood, false)}}/1.png">
 
-        >
-            <!-- Emoji to the left -->
-            <img draggable="false" id="leftEmoji" src="assets/Emojis/{{updateEmojiMood(-1, emoji.mood, false)}}/1.png">
+                    <!-- Current Emoji being displayed on screen. Is NOT draggable. -->
+                    <img draggable="false" id="currentEmoji" src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png">
 
-            <!-- Current Emoji being displayed on screen. Is NOT draggable. -->
-            <img draggable="false" id="currentEmoji" src="assets/Emojis/{{emoji.mood}}/{{emoji.intensity}}.png">
+                    <!-- Emoji to the right -->
+                    <img draggable="false" id="rightEmoji" src="assets/Emojis/{{updateEmojiMood(1, emoji.mood, false)}}/1.png">
 
-            <!-- Emoji to the right -->
-            <img draggable="false" id="rightEmoji" src="assets/Emojis/{{updateEmojiMood(1, emoji.mood, false)}}/1.png">
+                </div>
 
-        </div>
+                <br/>
 
-        <br/>
+                <h2 class="moodText">I'm feeling {{parseEmotionIntensity(emoji.mood, emoji.intensity)}}.</h2>
 
-        <h2 class="moodText">I'm feeling {{parseEmotionIntensity(emoji.mood, emoji.intensity)}}.</h2>
+                <button mat-mini-fab id="emojiNavUp"class="emojiNavigationButtonsVert" (click)="emoji.intensity = updateEmojiIntensity(-1, emoji.intensity, emoji.mood)">▲</button>
+                <br>
+                <button mat-mini-fab id="emojiNavLeft" class="emojiNavigationButtonsHorz" (click)="emoji.mood = updateEmojiMood(-1, emoji.mood, true)">◀</button>
+                <button mat-mini-fab id="emojiNavRight"class="emojiNavigationButtonsHorz" (click)="emoji.mood = updateEmojiMood(1, emoji.mood, true)">▶</button>
+                <br>
+                <button mat-mini-fab id="emojiNavDown"class="emojiNavigationButtonsVert" (click)="emoji.intensity = updateEmojiIntensity(1, emoji.intensity, emoji.mood)">▼</button>
+                <br/>
 
-        <button mat-fab id="emojiNavLeft" class="emojiNavigationButtonsHorz" (click)="emoji.mood = updateEmojiMood(-1, emoji.mood, true)">◀</button>
-        <button mat-fab id="emojiNavDown"class="emojiNavigationButtonsVert" (click)="emoji.intensity = updateEmojiIntensity(1, emoji.intensity, emoji.mood)">▼</button>
-        <button mat-fab id="emojiNavUp"class="emojiNavigationButtonsVert" (click)="emoji.intensity = updateEmojiIntensity(-1, emoji.intensity, emoji.mood)">▲</button>
-        <button mat-fab id="emojiNavRight"class="emojiNavigationButtonsHorz" (click)="emoji.mood = updateEmojiMood(1, emoji.mood, true)">▶</button>
+                <button mat-raised-button matStepperNext id="submitEmoji" color="primary" (click)="addEmoji()" type="button">Submit</button>
+            </mat-step>
 
-        <br/>
+            <mat-step >
+                <div id="response">
+                    <h1 id="headerText">
+                        {{generateText(emoji.mood)}}
+                    </h1>
+                    <iframe height="{{iframeMod('height')}}" width="{{iframeMod('width')}}" [src]="safeURL" class="trustedVideo" id="responseVideo" frameborder="0" allowfullscreen></iframe>
+                </div>
 
-        <button mat-raised-button id="submitEmoji" color="primary" (click)="addEmoji()" type="button">Submit</button>
+                <button mat-button matStepperPrevious>Prev</button>
+            </mat-step>
+        </mat-horizontal-stepper>
     </div>
 </div>
 
