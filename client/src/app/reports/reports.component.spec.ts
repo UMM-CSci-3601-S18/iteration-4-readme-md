@@ -297,7 +297,11 @@ fdescribe('Charts', () => {
         reportsComponent.inputType == "Show All Data"
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
         expect(reportsComponent.filterEmojis(3).length).toEqual(1);
+
+
     });
+
+
 
     it('filter emojis by date works correctly', () => {
 
