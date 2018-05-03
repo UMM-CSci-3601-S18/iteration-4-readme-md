@@ -14,7 +14,7 @@
                     <textarea matInput #input id="bodyField" matTextareaAutosize placeholder="Body" [(ngModel)]="data.journal.body"></textarea>
                 </mat-form-field>
 
-                <button mat-button id="confirmAddJournalButton" [mat-dialog-close]="data.journal" type="button">Add journal</button>
+                <button mat-raised-button id="confirmAddJournalButton" color="primary" [mat-dialog-close]="data.journal" type="button">Add journal</button>
             </mat-card-content>
         </mat-card>
         <button mat-raised-button id="exitWithoutAddingButton" (click)="onNoClick()" type="button">Exit</button>
