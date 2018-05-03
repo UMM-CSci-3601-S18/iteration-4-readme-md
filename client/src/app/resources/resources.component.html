@@ -6,7 +6,9 @@
             <mat-card-content class="addedResources" id="addedResources">
                 <mat-card-title id="resourceTitle">Your Contacts</mat-card-title>
                 <mat-divider></mat-divider>
-
+                <div class="addNewResourceDiv">
+                    <button id = "addNewContact" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add a Contact</button>
+                </div>
                 <mat-accordion *ngIf="resources; else resourcesError" >
                     <mat-expansion-panel #elem class="resources" *ngFor="let resource of resources">
                         <mat-expansion-panel-header>
@@ -28,39 +30,28 @@
                     </mat-error>
                 </ng-template>
             </mat-card-content>
-            <div class="addNewResourceDiv">
-                <button id = "addNewContact" mat-raised-button (click)="openDialog()"><mat-icon id="add-icon">add</mat-icon>Add a Contact</button>
-            </div>
         </mat-card>
 
         <mat-card id="contactNumbers">
             <mat-card-content class="contact-numbers">
-                <mat-card-title class="contact-numbers-title" id="contactNumbersTitle"><!--<i class="material-icons">phone_forwarded</i>--><!--<mat-icon class="little-phone-icon">phone</mat-icon>-->Contact Numbers</mat-card-title>
+                <mat-card-title class="contact-numbers-title" id="contactNumbersTitle">Contact Numbers</mat-card-title>
                 <mat-card-subtitle id="contact-numbers-subtitle">In times of need you can refer to these phone numbers
                     to have support. It's always okay to have someone to talk to</mat-card-subtitle>
-
-                <!--<mat-header-cell id="suicide-prevention-lifeline" #elem class="contact-numbers-to-call">-->
                 <h4 mat-line>
                     <mat-panel-title class="hotline-company-name">Suicide Prevention Lifeline</mat-panel-title>
                 </h4>
                 <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon><a href="tel: 1-800-273-8255">1-800-273-8255</a></mat-panel-description>
-                <!--</mat-header-cell>-->
                 <br>
-                <!--<mat-expansion-panel id="crisis-hotline" #elem class="contact-numbers-to-call">-->
                 <h4 mat-line>
                     <mat-panel-title class="hotline-company-name">Crisis Hotline</mat-panel-title>
                 </h4>
                 <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">phone</mat-icon><a href="tel: 775-784-8090">775-784-8090</a></mat-panel-description>
-                <!--</mat-expansion-panel>-->
                 <br>
-
-                <!--        <mat-expansion-panel id="crisis-text-line" #elem class="phone-numbers-to-call">-->
                 <h4 mat-line>
                     <mat-panel-title class="hotline-company-name">Crisis Text Line</mat-panel-title>
                 </h4>
                 <mat-panel-description class="actual-phone-number"><mat-icon class="little-phone-icon">textsms</mat-icon><a href="sms: 741741">741741</a></mat-panel-description>
                 <br>
-                <!--</mat-expansion-panel>-->
             </mat-card-content>
         </mat-card>
 
@@ -68,7 +59,7 @@
             <mat-card-content class="resource-links">
                 <mat-card-title class="resource-links-title" id="resourceLinksTitle">Resource Links</mat-card-title>
                 <mat-card-subtitle>Some possibly useful links to resources</mat-card-subtitle>
-
+                <mat-accordion multi="false">
                 <mat-expansion-panel id="breating-exercises" #elem class="resource-links">
                     <mat-expansion-panel-header>
                         <mat-panel-title class="breathing-exercise-links">Breathing Exercises</mat-panel-title>
@@ -119,66 +110,77 @@
                         PBS Video: THE GIFTS OF IMPERFECTION: LIVING WITH COURAGE, COMPASSION AND CONNECTION
                     </a>
                 </mat-expansion-panel>
+                </mat-accordion>
             </mat-card-content>
         </mat-card>
 
         <mat-card id="youtube">
             <mat-card-title id="youtubeTitle">Video Playlist</mat-card-title>
             <mat-divider></mat-divider>
+                <mat-accordion multi="false">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Happy Playlist</mat-panel-title>
+                        </mat-expansion-panel-header>
+                            <mat-panel-description>
+                                <div class="iframe-container">
+                                    <iframe id="playlistHappy" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+                            </mat-panel-description>
+                    </mat-expansion-panel>
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Happy Playlist</mat-panel-title>
-                    </mat-expansion-panel-header>
-                        <mat-panel-description>
-                            <iframe id="playlistHappy" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37AO-nqegk5cEwS1ElAoQLNr" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </mat-panel-description>
-                </mat-expansion-panel>
+                <br>
 
-            <br>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Meh Playlist</mat-panel-title>
+                        </mat-expansion-panel-header>
+                            <mat-panel-description>
+                                <div class="iframe-container">
+                                    <iframe id="playlistMeh" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+                            </mat-panel-description>
+                    </mat-expansion-panel>
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Meh Playlist</mat-panel-title>
-                    </mat-expansion-panel-header>
-                        <mat-panel-description>
-                            <iframe id="playlistMeh" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37D36KCVAns9LYvh1BV4m6YX" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </mat-panel-description>
-                </mat-expansion-panel>
+                <br>
 
-            <br>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Unhappy Playlist</mat-panel-title>
+                        </mat-expansion-panel-header>
+                            <mat-panel-description>
+                                <div class="iframe-container">
+                                    <iframe id="playlistUnhappy" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+                            </mat-panel-description>
+                    </mat-expansion-panel>
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Unhappy Playlist</mat-panel-title>
-                    </mat-expansion-panel-header>
-                        <mat-panel-description>
-                            <iframe id="playlistUnhappy" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37CvQMRHaqg-6yEQpLWjAdWu" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </mat-panel-description>
-                </mat-expansion-panel>
+                <br>
 
-            <br>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Frustrated Playlist</mat-panel-title>
+                        </mat-expansion-panel-header>
+                            <mat-panel-description>
+                                <div class="iframe-container">
+                                    <iframe id="playlistFrustrated" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+                            </mat-panel-description>
+                    </mat-expansion-panel>
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Frustrated Playlist</mat-panel-title>
-                    </mat-expansion-panel-header>
-                        <mat-panel-description>
-                            <iframe id="playlistFrustrated" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37Dx6Ohz5al_e1GljuZqvZ_M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </mat-panel-description>
-                </mat-expansion-panel>
+                <br>
 
-            <br>
-
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Anxious Playlist</mat-panel-title>
-                    </mat-expansion-panel-header>
-                        <mat-panel-description>
-                            <iframe id="playlistAnxious" width="280" height="315" src="https://www.youtube.com/playlist?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        </mat-panel-description>
-                </mat-expansion-panel>
-
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Anxious Playlist</mat-panel-title>
+                        </mat-expansion-panel-header>
+                            <mat-panel-description>
+                                <div class="iframe-container">
+                                    <iframe id="playlistAnxious" width="280" height="315" src="https://www.youtube.com/embed/videoseries?list=PLJmTiSHMC37BVBh18FtFKX-fEEroV6tQ9" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+                            </mat-panel-description>
+                    </mat-expansion-panel>
+                </mat-accordion>
         </mat-card>
     </div>
 </div>
