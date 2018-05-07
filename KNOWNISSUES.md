@@ -1,7 +1,9 @@
 # Sunshine Journal --- List of Known Issues
 
 - The home button in the nav-bar is locked to the upper left corner of the screen so it can still appear when the user scrolls down on the page
-
+- Menu icon is also locked to top left corner of screen
+- Bug when deleting journals. After adding a journal, unable to delete it from the view card.
+- can refactor the select-journal part of journals, unused
 
 
 
@@ -14,7 +16,8 @@
 - Same as above but for the selection of journals once there are many journals to choose from
 - Allow added contacts under 'Your Contacts' numbers to be clickable to call like the numbers under 'Contact Numbers'
 - Make each goal be a certain height and scrollable, thus not forcing the user to scroll down on the 
-- Allow the user to uncomplete a complete goal in case of accidental clicks
+- Allow the user to un-complete a complete goal in case of accidental clicks
 - Allow the graph to auto update when a different period of time is chosen instead of clicking the submit button
-  (i.e. the graph will auto update from today to last week if the last week dropdown choice is selected)
-   
+  (i.e. the graph will auto update from today to last week if the last week dropdown choice is selected)  
+-Be able to change the theme of the app or fonts.
+-ability to let the user add journal prompts.

@@ -11,7 +11,7 @@
 - Yutaro Miyata
 
 ## Introduction
-Our team's main goal was to develope a web application that provides clients of mental health practitioners a service 
+Our team's main goal was to develop a web application that provides clients of mental health practitioners a service 
 to use when physical appointments are not available. This web app will assist in handling crisis situations as well as 
 the ability for mental health practitioners to review their clients emotions since the last time they met. It is designed in a way
 to be both easy for the clients to use, and the mental health practitioners to analyze. 
@@ -32,7 +32,7 @@ to be both easy for the clients to use, and the mental health practitioners to a
 - A reports & graphs page
     - Ability to see past emotion entries both in a graph format and in text
 - Ability to create goals
-    - Goals can be catgorized
+    - Goals can be categorized
     - Goals can be completed
 - Crisis button for emergency crisis situations
 
