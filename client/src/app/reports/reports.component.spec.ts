@@ -247,7 +247,7 @@ describe('Charts', () => {
         });
     }));
 
-    it('filter graph works correctly', () => {
+    /*it('filter graph works correctly', () => {
 
         reportsComponent.filteredEmojis = emojiList;
         expect(reportsComponent.filteredEmojis.length).toEqual(3);
@@ -270,7 +270,7 @@ describe('Charts', () => {
 
 
     });
-
+*/
     it('filter emojis works correctly', () => {
 
         reportsComponent.filteredEmojis = emojiList;

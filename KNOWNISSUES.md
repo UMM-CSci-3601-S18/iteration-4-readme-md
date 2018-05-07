@@ -1,6 +1,6 @@
 # Sunshine Journal --- List of Known Issues
 
-- The home button in the navbar is locked to the upper left corner of the screen so it can still appear when the user scrolls down on the page
+- The home button in the nav-bar is locked to the upper left corner of the screen so it can still appear when the user scrolls down on the page
 
 
 
